@@ -1,67 +1,47 @@
 import { events } from "@/lib/event";
-import {
-  ScanHeart,
-  Activity,
-  Wrench,
-  MicVocal,
-  Zap,
-  MapPin,
-} from "lucide-react";
 import Link from "next/link";
-import { BlurFade } from "../ui/blur-fade";
 import Image from "next/image";
 
 export default function ContentSection() {
   return (
-    <section className="pt-16 pb-8 md:pt-32 md:pb-16">
-      <BlurFade inView delay={0.2}>
-        <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
-          <div className="mx-auto max-w-xl space-y-6 text-center md:space-y-12">
-            <h2 className="text-balance text-4xl font-medium lg:text-5xl">
-              Participate in our events!
-            </h2>
-            <p>
-              Join us in our events to experience world of mechanical
-              engineering, and learn from the best.
-            </p>
-          </div>
-          <Image
-            className="rounded-(--radius) grayscale"
-            src="/events/events-hero.jpg"
-            alt="team image"
-            height={2747}
-            width={1545}
-            loading="lazy"
-          />
+    // 1. min-h-[100dvh]: Fits mobile screens perfectly (handling address bars)
+    // 2. flex flex-col justify-end: Pushes content to the bottom naturally
+    <section className="grayscale mask-b-from-90% mask-b-to-100% relative min-h-[100dvh] w-full overflow-hidden bg-black flex flex-col justify-end pb-12 md:pb-32">
+      
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/events/events-hero.jpg"
+          alt="Events Hero Background"
+          fill
+          className="object-cover object-center blur-sm opacity-30"
+          priority
+        />
+        {/* Optional: Gradient to make text readable at the bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+      </div>
 
-          <div className="relative mx-auto grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-6 lg:grid-cols-3 items-center">
-            {events.map((event) => (
-              <Link
-                href={`events/#${event.title.toLowerCase()}`}
-                className="space-y-3 hover:scale-105 transition-all cursor-pointer"
-                key={event.title}
-              >
-                <div className="flex items-center gap-2">
-                  {event.logo === "ScanHeart" ? (
-                    <ScanHeart className="size-4" />
-                  ) : event.logo === "Activity" ? (
-                    <Activity className="size-4" />
-                  ) : event.logo === "Wrench" ? (
-                    <Wrench className="size-4" />
-                  ) : event.logo === "MicVocal" ? (
-                    <MicVocal className="size-4" />
-                  ) : event.logo === "Zap" ? (
-                    <Zap className="size-4" />
-                  ) : event.logo === "MapPin" ? (
-                    <MapPin className="size-4" />
-                  ) : null}
-                  <h3 className="text-sm font-medium">{event.title}</h3>
-                </div>
-              </Link>
-            ))}
-          </div>
+      {/* Content Container */}
+      {/* Mobile: Centered text, padding on sides (px-6) */}
+      {/* Desktop: Right aligned (md:text-right), padding on right (md:pr-20) */}
+      <div className="relative z-10 w-full px-6 md:pr-20 md:pl-0 flex flex-col items-center md:items-end">
+        
+        <div className="w-full max-w-4xl text-center md:text-right">
+          <h2 className="mb-4 text-4xl font-bold leading-tight tracking-tight md:text-7xl drop-shadow-xl text-white [font-family:var(--font-next-montserrat)]">
+            Participate in our events!
+          </h2>
+          
+          <p className="mb-6 text-lg italic font-light text-gray-300 md:mb-8 md:text-2xl">
+            A cornucopia of choices to quench your interests
+          </p>
+          
+          {/* md:ml-auto pushes this specific paragraph to the right on desktop */}
+          <p className="max-w-xl text-base leading-relaxed text-gray-200 md:text-xl md:ml-auto">
+            Join us in our events to experience the world of mechanical engineering, and learn from the best.
+          </p>
         </div>
-      </BlurFade>
+
+      </div>
     </section>
   );
 }
