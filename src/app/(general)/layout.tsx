@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ClientLayout from "@/app/(general)/ClientLayout"; // Make sure path is correct
+import ClientLayout from "@/app/(general)/ClientLayout";
 
 export const metadata: Metadata = {
     title: "Mechanical Festival 2026",
@@ -7,10 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    return (
-        /* The Server Layout passes children down to the Client Layout */
-        <ClientLayout>
-            {children}
-        </ClientLayout>
-    );
+    return <ClientLayout>{children}</ClientLayout>;
 }

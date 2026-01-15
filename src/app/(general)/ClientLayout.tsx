@@ -3,9 +3,13 @@
 import { usePathname } from "next/navigation";
 import { Navbar } from "@/components/general/Navbar";
 import FooterSection from "@/components/general/footer";
-import HelpButton from "../help-button"; // Check your import path relative to this new file
+import HelpButton from "../help-button";
 
-export default function ClientLayout({ children }: { children: React.ReactNode }) {
+export default function ClientLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
     const pathname = usePathname();
     const isEventsPage = pathname === "/events";
 
