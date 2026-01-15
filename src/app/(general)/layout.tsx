@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/components/general/Navbar";
-import FooterSection from "@/components/general/footer";
-import HelpButton from "../help-button";
+import ClientLayout from "@/app/(general)/ClientLayout";
 
 export const metadata: Metadata = {
     title: "Mechanical Festival 2026",
@@ -9,14 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    return (
-        <main
-            className={`min-h-screen bg-[url("/fixed-background.png")] bg-cover bg-center bg-fixed`}
-        >
-            <Navbar />
-            {children}
-            <HelpButton />
-            <FooterSection />
-        </main>
-    );
+    return <ClientLayout>{children}</ClientLayout>;
 }
