@@ -88,13 +88,19 @@ export const Navbar = () => {
                         <div className="absolute inset-0 m-auto hidden size-fit lg:block">
                             <ul className="flex gap-8 text-sm">
                                 {menuItems.map((item, index) => (
-                                    <li key={index}>
+                                    <li
+                                        key={index}
+                                        className="hover:scale-110 transition-all"
+                                    >
                                         <Link
                                             href={item.href}
                                             className={cn(
-                                                currentPath === item.href
-                                                    ? "text-accent-foreground"
-                                                    : "text-muted-foreground hover:text-accent-foreground",
+                                                "text-accent-foreground",
+                                                {
+                                                    "border p-2 rounded-xl border-white bg-white/20":
+                                                        currentPath ===
+                                                        item.href,
+                                                },
                                             )}
                                             prefetch
                                         >
@@ -103,13 +109,16 @@ export const Navbar = () => {
                                     </li>
                                 ))}
                                 {isFetched && session?.user && (
-                                    <li>
+                                    <li className="hover:scale-110 transition-all">
                                         <Link
                                             href="/dashboard"
                                             className={cn(
-                                                currentPath === "/dashboard"
-                                                    ? "text-accent-foreground"
-                                                    : "text-muted-foreground hover:text-accent-foreground",
+                                                "text-accent-foreground",
+                                                {
+                                                    "underline underline-offset-2":
+                                                        currentPath ===
+                                                        "/dashboard",
+                                                },
                                             )}
                                             prefetch
                                         >

@@ -100,13 +100,13 @@ export default function FAQs() {
                             ))}
                         </Accordion>
 
-                        <div className="text-muted-foreground mt-6 px-8">
+                        <div className="text-accent-foreground mt-6 px-8">
                             Cannot find what you are looking for? Please contact
                             our
                             <Dialog>
                                 <DialogTrigger
                                     asChild
-                                    className="text-muted-foreground hover:text-primary duration-150 cursor-pointer underline underline-offset-1 px-1"
+                                    className="text-accent-foreground hover:text-primary duration-150 cursor-pointer underline underline-offset-1 px-1"
                                 >
                                     <span>contact person</span>
                                 </DialogTrigger>
