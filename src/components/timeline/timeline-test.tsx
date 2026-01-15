@@ -74,7 +74,7 @@ export function TimelineTest() {
 
     return (
         <section className="">
-            <div className="relative w-full mx-auto max-w-5xl" id="Timeline">
+            <div className="relative w-full mx-auto max-w-5xl" id="timeline">
                 <BlurFade inView delay={0.2}>
                     <Timeline data={timelineData} />
                 </BlurFade>

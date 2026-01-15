@@ -26,28 +26,28 @@ export default function EventsSection() {
                 width={1545}
                 loading="lazy"
               />
-              <div className="grid gap-6 md:grid-cols-2 md:gap-12">
-                <h2 className="text-4xl font-medium">{event.title}</h2>
-                <div className="space-y-6">
-                  <p>{event.desc}</p>
-
-                  <Button
-                    asChild
-                    variant="secondary"
-                    size="sm"
-                    className="gap-1 pr-1.5"
-                  >
-                    <Link
-                      href={`/events/${event.title
-                        .toLowerCase()
-                        .split(" ")
-                        .join("-")}`}
-                    >
-                      <span>Learn More</span>
-                      <ChevronRight className="size-2" />
-                    </Link>
-                  </Button>
+              <div className="grid gap-6 md:grid-rows-3 md:gap-0">
+                <h2 className="text-4xl font-medium my-auto">{event.title}</h2>
+                <div className="grid md:grid-cols-2">
+                  <p className="text-2xl">{event.desc}</p>
+                  <Image className="ml-[70%]"src={event.logo} width ={120} height={120} alt="hehe"/>
                 </div>
+              <Button
+                  asChild
+                  variant="secondary"
+                  size="sm"
+                  className="bg-white mt-5 mx-auto gap-1 pr-1.5 md:w-50"
+                >
+                  <Link
+                    href={`/events/${event.title
+                      .toLowerCase()
+                      .split(" ")
+                      .join("-")}`}
+                  >
+                    <span className="text-black">Learn More</span>
+                    <ChevronRight className="size-4 invert" />
+                  </Link>
+                </Button>
               </div>
             </div>
           </BlurFade>

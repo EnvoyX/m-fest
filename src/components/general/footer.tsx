@@ -14,7 +14,7 @@ export default function FooterSection() {
                     className="flex items-center gap-4 justify-center"
                     prefetch
                 >
-                     <Image
+                    <Image
                         src="/hmm.png"
                         alt="HMM ITB"
                         width={45}
@@ -30,19 +30,24 @@ export default function FooterSection() {
                     />
                 </Link>
 
-                <div className="mx-auto my-10 flex w-fit items-center justify-center rounded-full border border-white bg-transparent py-3 px-8 text-white backdrop-blur-sm transition-colors hover:bg-white/10">
-            
-                    <Link href="https://instagram.com/mfestitb" className="flex items-center gap-3 hover:text-gray-200 transition-colors">
-                         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black">
+                <div className="mx-auto my-10 flex w-full md:w-fit items-center justify-center rounded-full border border-white bg-transparent py-3 px-8 text-white backdrop-blur-sm transition-colors hover:bg-white/10">
+                    <Link
+                        href="https://instagram.com/mfestitb"
+                        className="flex items-center gap-3 hover:text-gray-200 transition-colors"
+                    >
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black">
                             <FaInstagram className="text-xl" />
                         </div>
                         <span className="font-medium">mfestitb</span>
                     </Link>
-                    
+
                     <div className="mx-6 h-6 w-px" />
 
                     {/* TikTok Section */}
-                    <Link href="https://tiktok.com/@mfestitb" className="flex items-center gap-3 hover:text-gray-200 transition-colors">
+                    <Link
+                        href="https://tiktok.com/@mfestitb"
+                        className="flex items-center gap-3 hover:text-gray-200 transition-colors"
+                    >
                         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black">
                             <FaTiktok className="text-xl" />
                         </div>
@@ -50,13 +55,14 @@ export default function FooterSection() {
                     </Link>
                 </div>
 
-                <span className="text-muted-foreground text-center text-sm flex flex-col">
+                <span className="text-accent-foreground text-center text-sm flex flex-col">
                     {" "}
                     © {new Date().getFullYear()} Mechanical Festival 2026, All
                     rights reserved.{" "}
                     <span>
                         {" "}
-                        Jl. Ganesha 10 Coblong, Kota Bandung, Jawa Barat,<br/>
+                        Jl. Ganesha 10 Coblong, Kota Bandung, Jawa Barat,
+                        <br />
                         Indonesia 40132
                     </span>
                 </span>
