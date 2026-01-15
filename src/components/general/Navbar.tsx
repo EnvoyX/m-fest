@@ -275,22 +275,7 @@ export const Navbar = () => {
                                             asChild
                                             variant="outline"
                                             size="sm"
-                                            className={cn(
-                                                isScrolled && "lg:hidden",
-                                            )}
-                                        >
-                                            <Link href="/login">
-                                                <span>Login</span>
-                                            </Link>
-                                        </Button>
-                                        <Button
-                                            asChild
-                                            size="sm"
-                                            className={cn(
-                                                isScrolled
-                                                    ? "lg:inline-flex"
-                                                    : "hidden",
-                                            )}
+                                            className=""
                                         >
                                             <Link href="/login">
                                                 <span>Login</span>
