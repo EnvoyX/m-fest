@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <main
-            className={`min-h-screen bg-[url("/aboutslice.png")] bg-cover bg-center bg-fixed`}
+            className={`min-h-screen bg-[url("/fixed-background.png")] bg-cover bg-center bg-fixed`}
         >
             <Navbar />
             {children}
