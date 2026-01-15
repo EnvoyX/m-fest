@@ -6,7 +6,7 @@ export default function ContentSection() {
   return (
     // 1. min-h-[100dvh]: Fits mobile screens perfectly (handling address bars)
     // 2. flex flex-col justify-end: Pushes content to the bottom naturally
-    <section className="grayscale mask-b-from-90% mask-b-to-100% relative min-h-[100dvh] w-full overflow-hidden bg-black flex flex-col justify-end pb-12 md:pb-32">
+    <section className="grayscale mask-b-from-90% mask-b-to-100% relative min-h-[110dvh] w-full overflow-hidden bg-black flex flex-col justify-end pb-12 md:pb-32">
       
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
