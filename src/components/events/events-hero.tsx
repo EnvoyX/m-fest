@@ -11,10 +11,10 @@ export default function ContentSection() {
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/events/events-hero.jpg"
+          src="/events/event-hero-bg.png"
           alt="Events Hero Background"
           fill
-          className="object-cover object-center blur-sm opacity-30"
+          className="object-cover object-center"
           priority
         />
         {/* Optional: Gradient to make text readable at the bottom */}
@@ -24,10 +24,10 @@ export default function ContentSection() {
       {/* Content Container */}
       {/* Mobile: Centered text, padding on sides (px-6) */}
       {/* Desktop: Right aligned (md:text-right), padding on right (md:pr-20) */}
-      <div className="relative z-10 w-full px-6 md:pr-20 md:pl-0 flex flex-col items-center md:items-end">
+      <div className="relative z-10 pb-15 md:pb-10 w-full px-6 md:pr-20 md:pl-0 flex flex-col items-center md:items-end">
         
-        <div className="w-full max-w-4xl text-center md:text-right">
-          <h2 className="mb-4 text-4xl font-bold leading-tight tracking-tight md:text-7xl drop-shadow-xl text-white [font-family:var(--font-next-montserrat)]">
+        <div className="max-w-screen text-center md:text-right">
+          <h2 className="text-3xl md:text-left leading-tight tracking-tight lg:text-7xl drop-shadow-xl text-white [font-family:var(--font-next-montserrat)]">
             Participate in our events!
           </h2>
           
@@ -36,7 +36,7 @@ export default function ContentSection() {
           </p>
           
           {/* md:ml-auto pushes this specific paragraph to the right on desktop */}
-          <p className="max-w-xl text-base leading-relaxed text-gray-200 md:text-xl md:ml-auto">
+          <p className="mr-auto max-w-4xl text-center text-gray-200 md:text-left md:text-2xl">
             Join us in our events to experience the world of mechanical engineering, and learn from the best.
           </p>
         </div>
