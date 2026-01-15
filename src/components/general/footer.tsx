@@ -30,7 +30,7 @@ export default function FooterSection() {
                     />
                 </Link>
 
-                <div className="mx-auto my-10 flex w-fit items-center justify-center rounded-full border border-white bg-transparent py-3 px-8 text-white backdrop-blur-sm transition-colors hover:bg-white/10">
+                <div className="mx-auto my-10 flex w-full md:w-fit items-center justify-center rounded-full border border-white bg-transparent py-3 px-8 text-white backdrop-blur-sm transition-colors hover:bg-white/10">
                     <Link
                         href="https://instagram.com/mfestitb"
                         className="flex items-center gap-3 hover:text-gray-200 transition-colors"
