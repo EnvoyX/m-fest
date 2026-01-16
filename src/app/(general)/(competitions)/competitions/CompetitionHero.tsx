@@ -38,9 +38,7 @@ export default function CompetitionsHero() {
 
                     <BlurFade inView delay={0.3}>
                         <p className="mr-auto max-w-4xl text-xl text-center text-gray-200 md:text-left md:text-2xl">
-                            Empower your team with workflows that adapt to your
-                            needs, whether you prefer git synchronization or a
-                            AI Agents interface.
+                            Push the boundaries of your skills. M-Fest invites you to tackle real-world challenges with creativity and technical expertise. Design, build, and innovate
                         </p>
                     </BlurFade>
                 </div>

@@ -35,6 +35,7 @@ export const competitions: {
     submissionDeadline: Date | null;
     compOpenCase: Date | null;
     examOpen?: Date;
+    img: string;
 }[] = [
         {
             title: "Business Case Competition",
@@ -65,6 +66,7 @@ export const competitions: {
             uploadThingRoute: "submitFileBCC",
             submissionDeadline: new Date("2026-03-07T23:59:59"),
             compOpenCase: new Date("2026-02-01T00:00:00"),
+            img: "/competitions/image/bcc.png",
         },
 
         {
@@ -96,6 +98,7 @@ export const competitions: {
             uploadThingRoute: "submitFileIPPC",
             submissionDeadline: new Date("2026-03-08T23:59:59"),
             compOpenCase: null,
+            img: "/competitions/image/ippc.png",
         },
         {
             title: "Pipeline Design Competition",
@@ -127,6 +130,7 @@ export const competitions: {
             uploadThingRoute: "submitFilePDC",
             submissionDeadline: new Date("2026-03-06T23:59:59"),
             compOpenCase: new Date("2026-02-01T00:00:00"),
+            img: "/competitions/image/pdc.png",
         },
         {
             title: "Science, Technology, Engineering, and Mathematics",
@@ -155,6 +159,7 @@ export const competitions: {
             uploadThingRoute: "submitFileSTEM",
             submissionDeadline: null,
             compOpenCase: null,
-            examOpen: new Date("2026-03-08T00:00:00")
+            examOpen: new Date("2026-03-08T00:00:00"),
+            img: "/competitions/image/stem.png",
         },
     ];

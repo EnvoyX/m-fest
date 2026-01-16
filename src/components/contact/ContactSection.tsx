@@ -49,7 +49,7 @@ const ContactSection = () => {
                                             Phone Number
                                         </h4>
                                         <p className="text-purple-100">
-                                            +62 85775132602 (Handaru)
+                                            +62 85724415352 (Roland)
                                         </p>
                                     </div>
                                 </div>
@@ -61,8 +61,8 @@ const ContactSection = () => {
                                         <h4 className="text-lg font-semibold">
                                             Email
                                         </h4>
-                                        <p className="text-purple-100 text-sm">
-                                            rahmathandaru.p@gmail.com
+                                        <p className="text-purple-100">
+                                            mfest2026@gmail.com
                                         </p>
                                     </div>
                                 </div>

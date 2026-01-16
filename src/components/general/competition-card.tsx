@@ -11,25 +11,25 @@ export const Competitions = [
     {
         title: "Business Case Competition",
         card: "/competitions/card/BCC.svg",
-        href: "/competitions/BCC",
+        href: "/competitions#bcc",
     },
 
     {
         title: "Innovative Poster and Paper Competition",
         card: "/competitions/card/IPPC.svg",
-        href: "/competitions/IPPC",
+        href: "/competitions#ippc",
     },
 
     {
         title: "Pipeline Design Competition",
         card: "/competitions/card/PDC.svg",
-        href: "/competitions/PDC",
+        href: "/competitions#pdc",
     },
 
     {
         title: "STEM",
         card: "/competitions/card/STEM.svg",
-        href: "/competitions/STEM",
+        href: "/competitions#stem",
     },
 ];
 

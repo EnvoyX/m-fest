@@ -4,9 +4,20 @@ import { BlurFade } from "../ui/blur-fade";
 export function TimelineTest() {
     const timelineData = [
         {
-            title: "February 2026",
+            title: "18 January 2026",
             content: (
                 <div className="flex flex-col gap-2" key={1}>
+                    <p className="text-4xl font-semibold">Starting Phase</p>
+                    <p className="text-2xl font-semibold">
+                        Competition Registration
+                    </p>
+                </div>
+            ),
+        },
+        {
+            title: "14 February 2026",
+            content: (
+                <div className="flex flex-col gap-2" key={2}>
                     <p className="text-4xl font-semibold">Pre-Program</p>
                     <p className="text-2xl font-semibold">
                         M-Care: Klinik Mesin
@@ -15,45 +26,23 @@ export function TimelineTest() {
             ),
         },
         {
-            title: "February 2026",
-            content: (
-                <div className="flex flex-col gap-2" key={2}>
-                    <p className="text-4xl font-semibold">Pre-Program</p>
-                    <p className="text-2xl font-semibold">
-                        M-Care: Hari Bermain Bersama (HMB)
-                    </p>
-                </div>
-            ),
-        },
-        {
-            title: "February - April 2026",
+            title: "15 February 2026",
             content: (
                 <div className="flex flex-col gap-2" key={3}>
-                    <p className="text-4xl font-semibold">Starting Phase</p>
+                    <p className="text-4xl font-semibold">Pre-Program</p>
                     <p className="text-2xl font-semibold">
-                        Competitions Registration and Submission
+                        M-Care: Hari Main Bersama (HMB)
                     </p>
                 </div>
             ),
         },
         {
-            title: "13 April 2026",
+            title: "7 Maret 2026",
             content: (
                 <div className="flex flex-col gap-2" key={4}>
                     <p className="text-4xl font-semibold">Acceleration Phase</p>
                     <p className="text-2xl font-semibold">
-                        M-Run and Engine Tune-Up
-                    </p>
-                </div>
-            ),
-        },
-        {
-            title: "2 May 2026",
-            content: (
-                <div className="flex flex-col gap-2" key={5}>
-                    <p className="text-4xl font-semibold">Final Phase</p>
-                    <p className="text-2xl font-semibold">
-                        Competitions Final, M-Expo
+                        Engine Tune-Up
                     </p>
                 </div>
             ),
@@ -61,10 +50,21 @@ export function TimelineTest() {
         {
             title: "3 May 2026",
             content: (
+                <div className="flex flex-col gap-2" key={5}>
+                    <p className="text-4xl font-semibold">Acceleration Phase</p>
+                    <p className="text-2xl font-semibold">
+                        M-Run
+                    </p>
+                </div>
+            ),
+        },
+        {
+            title: "8-9 May 2026",
+            content: (
                 <div className="flex flex-col gap-2" key={6}>
                     <p className="text-4xl font-semibold">Ending Phase</p>
                     <p className="text-2xl font-semibold">
-                        M-Talks, M-Expo, Solidarity Forever Summit, and Ceremony
+                        Competition Finals, M-Talks, M-Expo, and Ceremony
                     </p>
                 </div>
             ),
