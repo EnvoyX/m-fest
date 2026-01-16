@@ -1,13 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import { links } from "@/constants/constants";
-import React from "react";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 
 export default function FooterSection() {
     return (
-        <footer className="py-16 md:py-32">
-            <div className="mx-auto max-w-5xl px-6">
+        <footer className="mask-t-from-80% lg:mask-t-from-90% lg:mask-t-to-100% min-h-screen relative py-16 md:py-32 ">
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/home-page.svg"
+                    alt="Comp Hero Background"
+                    fill
+                    className="object-cover object-center rotate-180"
+                    priority
+                />
+                <div className="absolute inset-0 bg-linear-to-b from-[#252132] via-[#252132]/40 to-transparent" />
+            </div>
+            <div className="mx-auto max-w-5xl px-6 absolute bottom-64 left-0 right-0">
                 <Link
                     href="/"
                     aria-label="go home"
@@ -43,7 +51,6 @@ export default function FooterSection() {
 
                     <div className="mx-6 h-6 w-px" />
 
-                    {/* TikTok Section */}
                     <Link
                         href="https://tiktok.com/@mfestitb"
                         className="flex items-center gap-3 hover:text-gray-200 transition-colors"
