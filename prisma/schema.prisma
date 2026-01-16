@@ -107,7 +107,7 @@ model EventRegistration {
   userId     String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@map("event_registration")
@@ -167,7 +167,7 @@ model Documents {
   status                VerificationStatus @default(NOT_SUBMITTED)
   createdAt             DateTime           @default(now())
   updatedAt             DateTime           @updatedAt
-  user                  User               @relation(fields: [userId], references: [id])
+  user                  User               @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([id])
@@ -211,7 +211,7 @@ model TeamMember {
   verified    Boolean   @default(false)
   teamName    String?
   team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  user        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, teamId])
   @@index([userId])

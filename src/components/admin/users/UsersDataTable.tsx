@@ -121,14 +121,17 @@ export function UsersDataTable() {
                                 <MoreHorizontal />
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
+                        <DropdownMenuContent
+                            className="bg-transparent! backdrop-blur-lg!"
+                            align="end"
+                        >
                             <DropdownMenuLabel>
                                 Actions for{" "}
                                 <span className="font-bold">{item.name}</span>
                             </DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:bg-white/20!"
                                 onClick={() => {
                                     navigator.clipboard.writeText(item.id);
                                     toast.success(
@@ -139,7 +142,7 @@ export function UsersDataTable() {
                                 Copy user ID
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:bg-white/20!"
                                 onClick={() => {
                                     navigator.clipboard.writeText(item.email);
                                     toast.success("Email copied to clipboard");
@@ -187,7 +190,7 @@ export function UsersDataTable() {
                                     : "Delete User"}
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="cursor-pointer">
+                            <DropdownMenuItem className="cursor-pointer hover:bg-white/20!">
                                 <Link
                                     href={`/admin/users/${item.id}`}
                                     target="_blank"
@@ -196,7 +199,7 @@ export function UsersDataTable() {
                                     View User
                                 </Link>
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="cursor-pointer">
+                            <DropdownMenuItem className="cursor-pointer hover:bg-white/20!">
                                 {" "}
                                 <Link
                                     href={`/admin/users/${item.id}#documents`}
@@ -361,22 +364,22 @@ export function UsersDataTable() {
                 );
             },
         },
-        {
-            accessorKey: "imageKey",
-            accessorFn: (row) => {
-                const user = users?.find((user) => user.id === row.id);
-                return (
-                    user?.imageKey ?? "Image URL was set by the social provider"
-                );
-            },
-            header: ({ column }) => {
-                return (
-                    <DataTableColumnHeader column={column} title="Image Key" />
-                );
-            },
-            cell: ({ row }) => <span>{row.getValue("imageKey")}</span>,
-            filterFn: "includesString",
-        },
+        // {
+        //     accessorKey: "imageKey",
+        //     accessorFn: (row) => {
+        //         const user = users?.find((user) => user.id === row.id);
+        //         return (
+        //             user?.imageKey ?? "Image URL was set by the social provider"
+        //         );
+        //     },
+        //     header: ({ column }) => {
+        //         return (
+        //             <DataTableColumnHeader column={column} title="Image Key" />
+        //         );
+        //     },
+        //     cell: ({ row }) => <span>{row.getValue("imageKey")}</span>,
+        //     filterFn: "includesString",
+        // },
 
         {
             accessorKey: "phoneNumber",
@@ -820,11 +823,14 @@ export function UsersDataTable() {
                                     </span>
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
+                            <DropdownMenuContent
+                                className="bg-transparent! backdrop-blur-xl!"
+                                align="end"
+                            >
                                 <DropdownMenuLabel>Columns</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("id");
                                         table
@@ -836,7 +842,7 @@ export function UsersDataTable() {
                                     User Id
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("name");
                                         table
@@ -848,7 +854,7 @@ export function UsersDataTable() {
                                     Name
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("email");
                                         table
@@ -860,7 +866,7 @@ export function UsersDataTable() {
                                     Email
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("phoneNumber");
                                         table
@@ -872,7 +878,7 @@ export function UsersDataTable() {
                                     Phone Number
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("institution");
                                         table
@@ -884,7 +890,7 @@ export function UsersDataTable() {
                                     Institution
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("major");
                                         table
@@ -896,7 +902,7 @@ export function UsersDataTable() {
                                     Major
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("domicile");
                                         table
@@ -908,7 +914,7 @@ export function UsersDataTable() {
                                     Domicile
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("education");
                                         table
@@ -920,7 +926,7 @@ export function UsersDataTable() {
                                     Education
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("role");
                                         table
@@ -932,7 +938,7 @@ export function UsersDataTable() {
                                     Role
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("comp_registration");
                                         table
@@ -944,7 +950,7 @@ export function UsersDataTable() {
                                     Competition
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("userRegisteredTeam");
                                         table
@@ -1005,7 +1011,10 @@ export function UsersDataTable() {
                                     <MoreHorizontal />
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
+                            <DropdownMenuContent
+                                className="bg-transparent backdrop-blur-xl"
+                                align="end"
+                            >
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 {session?.user.role === "SUPERADMIN" && (

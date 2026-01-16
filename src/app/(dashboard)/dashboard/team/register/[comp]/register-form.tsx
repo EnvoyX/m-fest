@@ -334,11 +334,6 @@ function RegisterForm({
             },
         );
 
-        console.log(
-            `Is one or more team member registered on any comp: `,
-            isTeamMemberRegisteredOnAnyComp,
-        );
-
         if (isTeamMemberRegisteredOnAnyComp) {
             toast.dismiss("register-team");
             setIsLoading(false);
@@ -433,11 +428,6 @@ function RegisterForm({
             },
         );
 
-        console.log(
-            `Is one or more team member registered on any comp: `,
-            isTeamMemberRegisteredOnAnyComp,
-        );
-
         if (isTeamMemberRegisteredOnAnyComp) {
             toast.dismiss("register-team");
             setIsLoading(false);
@@ -530,7 +520,11 @@ function RegisterForm({
                                             >
                                                 <SelectValue placeholder="Select" />
                                             </SelectTrigger>
-                                            <SelectContent position="popper">
+
+                                            <SelectContent
+                                                position="popper"
+                                                className="bg-transparent! backdrop-blur-lg!"
+                                            >
                                                 {stemTeamNames.map(
                                                     (teamName) => (
                                                         <SelectItem
@@ -538,6 +532,7 @@ function RegisterForm({
                                                             value={
                                                                 teamName as string
                                                             }
+                                                            className="bg-transparent! backdrop-blur-lg!"
                                                         >
                                                             {teamName}
                                                         </SelectItem>

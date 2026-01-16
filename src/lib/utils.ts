@@ -7,9 +7,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // Real date
-export const currentDate = new Date();
+// export const currentDate = new Date();
 // For testing date
-// export const currentDate = new Date("2026-01-20T00:00:00");
+export const currentDate = new Date("2026-01-20T00:00:00");
 
 export function getCompFee(comp: string) {
     const compStartDate1 = competitions.find(
