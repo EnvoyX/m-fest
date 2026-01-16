@@ -25,6 +25,7 @@ enum Education {
   SMA
   SMK
   D3
+  D4
   S1
 }
 

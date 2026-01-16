@@ -12,6 +12,14 @@ import {
 } from "@tabler/icons-react";
 import { Key } from "lucide-react";
 
+export const educations = [
+    { key: "SMA", label: "SMA" },
+    { key: "SMK", label: "SMK" },
+    { key: "D3", label: "D3" },
+    { key: "D4", label: "D4" },
+    { key: "S1", label: "S1" },
+];
+
 export const validExtensions = ["png", "jpeg", "jpg", "webp"];
 export const validSubmissionExtensions = ["pdf", "zip"];
 export const maxFileSize = 4 * 1024 * 1024; // 4 MB
@@ -56,10 +64,13 @@ export const menuItems = [
         href: "/competitions",
         subItems: [
             { name: "Business Case Competition", href: "/competition/bcc" },
-            { name: "Innovative Poster and Paper Competition", href: "/competition/ippc" },
+            {
+                name: "Innovative Poster and Paper Competition",
+                href: "/competition/ippc",
+            },
             { name: "Pipeline Design Competition", href: "/competition/pdc" },
             { name: "STEM", href: "/competition/stem" },
-        ]
+        ],
     },
     {
         name: "Events",
@@ -71,9 +82,8 @@ export const menuItems = [
             { name: "M-Talks", href: "/events/m-talks" },
             { name: "M-Expo", href: "/events/m-expo" },
             { name: "Ceremony", href: "/events/ceremony" },
-        ]
+        ],
     },
-
 ];
 
 export const compNavLinks = [
@@ -81,7 +91,7 @@ export const compNavLinks = [
     { name: "IPPC", href: "/competitions/#ippc" },
     { name: "PDC", href: "/competitions/#pdc" },
     { name: "STEM", href: "/competitions/#stem" },
-]
+];
 
 export const eventNavLinks = [
     { name: "M-Care", href: "/events/m-care" },
@@ -90,7 +100,7 @@ export const eventNavLinks = [
     { name: "M-Talks", href: "/events/m-talks" },
     { name: "M-Expo", href: "/events/m-expo" },
     { name: "Ceremony", href: "/events/ceremony" },
-]
+];
 
 export const menus = [
     {

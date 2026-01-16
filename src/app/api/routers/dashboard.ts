@@ -1,5 +1,9 @@
 import { getUser } from "@/action/user.action";
-import { protectedProcedure, protectedRateLimitedProcedure, router } from "@/server/api/trpc";
+import {
+    protectedProcedure,
+    protectedRateLimitedProcedure,
+    router,
+} from "@/server/api/trpc";
 import { type Document } from "@/types/types";
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
@@ -8,14 +12,14 @@ import type { CompetitionName } from "../../../../prisma/generated/prisma/enums"
 
 export const dashboardRouter = router({
     getUser: protectedProcedure.query(async ({ ctx }) => {
-        const user = ctx.session.user;
+        const user = await getUser();
         return user;
     }),
     getUserById: protectedProcedure
         .input(
             z.object({
                 userId: z.string(),
-            })
+            }),
         )
         .query(async ({ input, ctx }) => {
             const user = await ctx.db.user.findUnique({
@@ -27,7 +31,7 @@ export const dashboardRouter = router({
         .input(
             z.object({
                 teamId: z.string(),
-            })
+            }),
         )
         .query(async ({ input, ctx }) => {
             const team = await ctx.db.team.findUnique({
@@ -36,7 +40,7 @@ export const dashboardRouter = router({
                     members: {
                         include: {
                             user: true,
-                        }
+                        },
                     },
                 },
             });
@@ -46,7 +50,7 @@ export const dashboardRouter = router({
         .input(
             z.object({
                 userId: z.string(),
-            })
+            }),
         )
         .output(
             z.object({
@@ -57,7 +61,11 @@ export const dashboardRouter = router({
                         title: z.string(),
                         submissionDetail: z.string(),
                         acceptedFiles: z.array(z.string()),
-                        uploadThingRoute: z.enum(["identityCard", "twibbon", "followIg"]),
+                        uploadThingRoute: z.enum([
+                            "identityCard",
+                            "twibbon",
+                            "followIg",
+                        ]),
                         imageUrl: z.string().nullable(),
                         imageKey: z.string().nullable(),
                         createdAt: z.date().nullable(),
@@ -65,10 +73,12 @@ export const dashboardRouter = router({
                             .enum(["AWAITING_UPLOAD", "PENDING", "VERIFIED"])
                             .nullable(),
                         verified: z.boolean().nullable(),
-                    })
+                    }),
                 ),
-                status: z.enum(["NOT_SUBMITTED", "PENDING", "ACCEPTED"]).nullable(),
-            })
+                status: z
+                    .enum(["NOT_SUBMITTED", "PENDING", "ACCEPTED"])
+                    .nullable(),
+            }),
         ) // @ts-expect-error documents is exist
         .query(async ({ ctx, input }) => {
             const user = await ctx.db.user.findUnique({
@@ -154,7 +164,11 @@ export const dashboardRouter = router({
                         title: z.string(),
                         submissionDetail: z.string(),
                         acceptedFiles: z.array(z.string()),
-                        uploadThingRoute: z.enum(["identityCard", "twibbon", "followIg"]),
+                        uploadThingRoute: z.enum([
+                            "identityCard",
+                            "twibbon",
+                            "followIg",
+                        ]),
                         imageUrl: z.string().nullable(),
                         imageKey: z.string().nullable(),
                         createdAt: z.date().nullable(),
@@ -162,10 +176,12 @@ export const dashboardRouter = router({
                             .enum(["AWAITING_UPLOAD", "PENDING", "VERIFIED"])
                             .nullable(),
                         verified: z.boolean().nullable(),
-                    })
+                    }),
                 ),
-                status: z.enum(["NOT_SUBMITTED", "PENDING", "ACCEPTED"]).nullable(),
-            })
+                status: z
+                    .enum(["NOT_SUBMITTED", "PENDING", "ACCEPTED"])
+                    .nullable(),
+            }),
         ) // @ts-expect-error documents is exist
         .query(async ({ ctx }) => {
             const user = await getUser();
@@ -236,50 +252,50 @@ export const dashboardRouter = router({
                 status: userDocuments.status,
             };
         }),
-    getUserComp: protectedProcedure
-        .query(async ({ ctx }) => {
-            const thisRegisteredCompUser = await ctx.db.compRegistration.findFirst({
-                where: {
-                    statusOrder: "SUCCESS",
-                    team: {
-                        members: {
-                            some: {
-                                userId: ctx.session.user.id
-                            }
-                        }
-                    }
+    getUserComp: protectedProcedure.query(async ({ ctx }) => {
+        const thisRegisteredCompUser = await ctx.db.compRegistration.findFirst({
+            where: {
+                statusOrder: "SUCCESS",
+                team: {
+                    members: {
+                        some: {
+                            userId: ctx.session.user.id,
+                        },
+                    },
                 },
+            },
+        });
+        if (!thisRegisteredCompUser) {
+            throw new TRPCError({
+                code: "NOT_FOUND",
+                message: "You are not registered for this competition",
             });
-            if (!thisRegisteredCompUser) {
-                throw new TRPCError({
-                    code: "NOT_FOUND",
-                    message: "You are not registered for this competition",
-                });
-            }
-            console.log(thisRegisteredCompUser);
-            return thisRegisteredCompUser;
-        }),
+        }
+        console.log(thisRegisteredCompUser);
+        return thisRegisteredCompUser;
+    }),
     getUserRegisteredComp: protectedProcedure
         .input(
             z.object({
                 comp: z.string(),
-            })
+            }),
         )
         .query(async ({ input, ctx }) => {
-            const thisRegisteredCompUser = await ctx.db.compRegistration.findFirst({
-                where: {
-                    leaderUserId: ctx.session.user.id as string,
-                    competitionName:
-                        (input.comp as string) === "BCC"
-                            ? "BCC"
-                            : (input.comp as string) === "IPPC"
-                                ? "IPPC"
-                                : (input.comp as string) === "PDC"
+            const thisRegisteredCompUser =
+                await ctx.db.compRegistration.findFirst({
+                    where: {
+                        leaderUserId: ctx.session.user.id as string,
+                        competitionName:
+                            (input.comp as string) === "BCC"
+                                ? "BCC"
+                                : (input.comp as string) === "IPPC"
+                                  ? "IPPC"
+                                  : (input.comp as string) === "PDC"
                                     ? "PDC"
                                     : undefined,
-                    statusOrder: "SUCCESS",
-                },
-            });
+                        statusOrder: "SUCCESS",
+                    },
+                });
             if (!thisRegisteredCompUser) {
                 throw new TRPCError({
                     code: "NOT_FOUND",
@@ -289,16 +305,21 @@ export const dashboardRouter = router({
             console.log(thisRegisteredCompUser);
             return thisRegisteredCompUser;
         }),
-    getTotalParticipantsComp: protectedProcedure.input(z.object({
-        comp: z.enum(["IPPC", "PDC", "STEM", "BCC"])
-    })).query(({ ctx, input }) => {
-        const totalRegisteredComp = ctx.db.compRegistration.count({
-            where: {
-                competitionName: input.comp.toUpperCase() as CompetitionName
-            }
-        });
-        return totalRegisteredComp;
-    }),
+    getTotalParticipantsComp: protectedProcedure
+        .input(
+            z.object({
+                comp: z.enum(["IPPC", "PDC", "STEM", "BCC"]),
+            }),
+        )
+        .query(({ ctx, input }) => {
+            const totalRegisteredComp = ctx.db.compRegistration.count({
+                where: {
+                    competitionName:
+                        input.comp.toUpperCase() as CompetitionName,
+                },
+            });
+            return totalRegisteredComp;
+        }),
     updateProfile: protectedRateLimitedProcedure
         .input(profileSchema)
         .mutation(async ({ input, ctx }) => {
@@ -312,20 +333,21 @@ export const dashboardRouter = router({
     submitCompetitionFile: protectedRateLimitedProcedure
         .input(submitFileSchema)
         .mutation(async ({ input, ctx }) => {
-            const thisRegisteredCompUser = await ctx.db.compRegistration.findFirst({
-                where: {
-                    leaderUserId: input.leaderUserId as string,
-                    competitionName:
-                        (input.competitionName as string) === "BCC"
-                            ? "BCC"
-                            : (input.competitionName as string) === "IPPC"
-                                ? "IPPC"
-                                : (input.competitionName as string) === "PDC"
+            const thisRegisteredCompUser =
+                await ctx.db.compRegistration.findFirst({
+                    where: {
+                        leaderUserId: input.leaderUserId as string,
+                        competitionName:
+                            (input.competitionName as string) === "BCC"
+                                ? "BCC"
+                                : (input.competitionName as string) === "IPPC"
+                                  ? "IPPC"
+                                  : (input.competitionName as string) === "PDC"
                                     ? "PDC"
                                     : undefined,
-                    statusOrder: "SUCCESS",
-                },
-            });
+                        statusOrder: "SUCCESS",
+                    },
+                });
             if (!thisRegisteredCompUser) {
                 throw new TRPCError({
                     code: "NOT_FOUND",
@@ -391,7 +413,7 @@ export const dashboardRouter = router({
                     type: "identityCard",
                     title: "Identity Card",
                     submissionDetail:
-                        "Every participant must upload identity card scan file either KTM/KTP/KK/SIM or Student Card",
+                        "Every participant must upload Student Card",
                     acceptedFiles: [".png", ".jpeg", ".jpg", ".webp"],
                     uploadThingRoute: "identityCard",
                     imageUrl: userDocuments?.identityCardImageUrl ?? null,
@@ -435,17 +457,19 @@ export const dashboardRouter = router({
             if (userVerification?.status === "PENDING") {
                 // AWAITING_UPLOAD means user has not submitted any pending documents
                 // PENDING means user has submitted documents but not verified yet
-                const documentsStatus = documents?.map((document) => document.status);
+                const documentsStatus = documents?.map(
+                    (document) => document.status,
+                );
                 const isDocumentsStillPendingExist =
                     documentsStatus.includes("AWAITING_UPLOAD");
                 console.log(
                     "Is all documents still pending: ",
-                    isDocumentsStillPendingExist
+                    isDocumentsStillPendingExist,
                 );
                 if (!isDocumentsStillPendingExist) {
                     if (documentsStatus.includes("VERIFIED")) {
                         const documentsNotVerified = documents?.filter(
-                            (document) => document.status === "PENDING"
+                            (document) => document.status === "PENDING",
                         );
                         if (!documentsNotVerified.length) {
                             await ctx.db.documents.update({
@@ -460,23 +484,28 @@ export const dashboardRouter = router({
                         }
                         throw new TRPCError({
                             code: "BAD_REQUEST",
-                            message: `Your ${documentsNotVerified?.length
-                                } documents (${documentsNotVerified
-                                    ?.map((document) => document.title)
-                                    .join(", ")}) is waiting to be verified`,
+                            message: `Your ${
+                                documentsNotVerified?.length
+                            } documents (${documentsNotVerified
+                                ?.map((document) => document.title)
+                                .join(", ")}) is waiting to be verified`,
                         });
                     }
                     throw new TRPCError({
                         code: "BAD_REQUEST",
-                        message: "Your documents are being verified, please wait",
+                        message:
+                            "Your documents are being verified, please wait",
                     });
                 }
 
                 if (isDocumentsStillPendingExist) {
                     const documentsStillPending = documents?.filter(
-                        (document) => document.status === "AWAITING_UPLOAD"
+                        (document) => document.status === "AWAITING_UPLOAD",
                     );
-                    console.log("Documents still pending: ", documentsStillPending);
+                    console.log(
+                        "Documents still pending: ",
+                        documentsStillPending,
+                    );
                     documentsStillPending?.map(async (document) => {
                         if (document.status === "AWAITING_UPLOAD") {
                             await ctx.db.documents.update({
@@ -488,10 +517,11 @@ export const dashboardRouter = router({
                         }
                     });
                     return {
-                        message: `Your pending ${documentsStillPending?.length
-                            } documents (${documentsStillPending
-                                ?.map((document) => document.title)
-                                .join(", ")}) have been submitted`,
+                        message: `Your pending ${
+                            documentsStillPending?.length
+                        } documents (${documentsStillPending
+                            ?.map((document) => document.title)
+                            .join(", ")}) have been submitted`,
                     };
                 }
             }

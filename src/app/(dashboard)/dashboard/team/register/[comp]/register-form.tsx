@@ -84,10 +84,8 @@ function RegisterForm({
     useEffect(() => {
         if (isFetched) {
             if (
-                !user?.gender ||
                 !user?.phoneNumber ||
                 !user?.domicile ||
-                !user?.birthDate ||
                 !user?.major ||
                 !user?.institution ||
                 !user?.education ||
@@ -103,7 +101,6 @@ function RegisterForm({
         competitionName: z.enum(["BCC", "IPPC", "PDC"]),
         leaderName: z.string().min(5, "Name must be leader's fullname"),
         leaderEmail: z
-            .string()
             .email("Invalid email")
             .min(1, "Leader's email is required"),
         leaderPhoneNumber: z
@@ -124,7 +121,6 @@ function RegisterForm({
         competitionName: z.enum(["STEM"]),
         leaderName: z.string().min(5, "Name must be leader's fullname"),
         leaderEmail: z
-            .string()
             .email("Invalid email")
             .min(1, "Leader's email is required"),
         leaderPhoneNumber: z

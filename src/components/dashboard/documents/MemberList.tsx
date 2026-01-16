@@ -75,8 +75,8 @@ async function MemberList({ team }: { team: TeamWithMembers }) {
 
                             <div className="flex flex-col items-center">
                                 <UserAvatar
-                                    src={member.user?.image || ""}
-                                    alt={member.user?.name || ""}
+                                    src={member.user?.image ?? undefined}
+                                    alt={member.user?.name}
                                     className="w-24 h-24 border-2 border-primary/50 mb-2"
                                 />
                                 <span>
@@ -156,8 +156,8 @@ async function MemberList({ team }: { team: TeamWithMembers }) {
 
                             <div className="flex flex-col items-center">
                                 <UserAvatar
-                                    src={member.user?.image || ""}
-                                    alt={member.user?.name || ""}
+                                    src={member.user?.image ?? undefined}
+                                    alt={member.user?.name}
                                     className="w-24 h-24 border-2 border-primary/50 mb-2"
                                 />
                                 <span>

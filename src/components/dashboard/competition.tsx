@@ -115,7 +115,7 @@ export function Competitions() {
                 Competition
             </h3>
             <div className="space-y-4 border-2 rounded-lg bg-transparent backdrop-blur-lg">
-                <div className="glass-sm p-4 hover:bg-card/50 transition-colors">
+                <div className="glass-sm p-4 transition-colors">
                     <div className="flex items-start justify-between gap-4 mb-3">
                         <div className="flex items-start gap-3 flex-1">
                             <Trophy className="w-5 h-5 text-primary mt-0.5 shrink-0" />

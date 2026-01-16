@@ -17,6 +17,7 @@ export enum Education {
     SMA = "SMA",
     SMK = "SMK",
     D3 = "D3",
+    D4 = "D4",
     S1 = "S1",
 }
 
@@ -107,14 +108,14 @@ export type Competition = {
     abbreviation: CompetitionName;
     cover: string;
     isOpen?: boolean;
-    prize1: string;         // 1st Place
-    prize2: string;         // 2nd Place
-    prize3: string,         // 3rd Place
-    prize4?: string,
-    prize5?: string,
-    reg1: string;           // Early Bird
-    reg2: string;           // Regular
-    reg3: string;           // Extended Regular
+    prize1: string; // 1st Place
+    prize2: string; // 2nd Place
+    prize3: string; // 3rd Place
+    prize4?: string;
+    prize5?: string;
+    reg1: string; // Early Bird
+    reg2: string; // Regular
+    reg3: string; // Extended Regular
     startRegDate1: Date;
     startRegDate2: Date;
     startRegDate3: Date;
@@ -236,6 +237,7 @@ export type UploadDocumentProps = {
 export type UploadDialogProps = {
     isLoading: boolean;
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type SuccessPageProps = {
@@ -280,16 +282,16 @@ export type RegisterFormProps = {
 export type NavMainProps = {
     items: (
         | {
-            title: string;
-            url: string;
-            icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
-        }
+              title: string;
+              url: string;
+              icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+          }
         | {
-            title: string;
-            url: string;
-            icon: ForwardRefExoticComponent<
-                Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-            >;
-        }
+              title: string;
+              url: string;
+              icon: ForwardRefExoticComponent<
+                  Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+              >;
+          }
     )[];
 };
