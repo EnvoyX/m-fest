@@ -314,7 +314,7 @@ export const Navbar = () => {
                                         <li
                                             key={index}
                                             className={cn(
-                                                "hover:scale-110 transition-all duration-300",
+                                                "hover:bg-white/15 transition-all duration-300 p-2 rounded-lg",
                                                 {
                                                     "border p-2 rounded-xl border-white bg-white/20":
                                                         currentPath ===
@@ -346,9 +346,9 @@ export const Navbar = () => {
                                         >
                                             <AccordionItem
                                                 value="register"
-                                                className="border-none"
+                                                className="border-none p-2"
                                             >
-                                                <AccordionTrigger className="hover:no-underline py-0 flex justify-centergap-2 text-base font-normal items-center">
+                                                <AccordionTrigger className="hover:no-underline py-0 flex gap-2 text-base font-normal items-center">
                                                     <span>Register</span>
                                                 </AccordionTrigger>
 
@@ -434,7 +434,7 @@ export const Navbar = () => {
                                     </li>
                                     {isFetched && session?.user && (
                                         <>
-                                            <li className="hover:scale-110 transition-all duration-300">
+                                            <li className="hover:bg-white/15 transition-all duration-300 p-2 rounded-lg">
                                                 <Link
                                                     href="/dashboard"
                                                     className={cn(
@@ -450,7 +450,7 @@ export const Navbar = () => {
                                                     <span>Dashboard</span>
                                                 </Link>
                                             </li>
-                                            <li className="hover:scale-110 transition-all duration-300">
+                                            <li className="hover:bg-white/15 transition-all duration-300 p-2 rounded-lg">
                                                 <Link
                                                     href="/dashboard/profile"
                                                     className={cn(

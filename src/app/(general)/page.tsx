@@ -15,7 +15,7 @@ export default function Home() {
             <EventSection />
             <CompetitionSection />
             <TimelineTest />
-            <Sponsors />
+            {/*<Sponsors />*/}
             <FAQs />
             <ContactSection />
         </main>
