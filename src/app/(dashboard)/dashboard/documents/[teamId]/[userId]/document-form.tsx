@@ -163,11 +163,11 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                     </div>
                     <div className="w-full flex justify-center sm:justify-end items-center mt-2 sm:mt-0">
                         <p className="text-sm border-2 bg-white/10 backdrop-blur-lg text-white px-2 py-1 rounded-full">
-                            <span className="font-bold text-green-300">
+                            <span className="font-bold text-green-300 truncate">
                                 {team?.name}
                             </span>{" "}
                             |{" "}
-                            <span className="font-bold text-cyan-300">
+                            <span className="font-bold text-cyan-300 truncate">
                                 {user?.name}
                             </span>
                         </p>

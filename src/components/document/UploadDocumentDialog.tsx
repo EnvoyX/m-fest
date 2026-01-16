@@ -186,7 +186,7 @@ export default function UploadDocumentDialog({
                         <Upload className="w-4 h-4"></Upload>
                     </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-sm sm:max-w-xl ">
+                <DialogContent className="max-w-sm sm:max-w-xl bg-transparent backdrop-blur-lg">
                     <DialogHeader>
                         <DialogTitle>Upload {title}</DialogTitle>
                         <DialogDescription>

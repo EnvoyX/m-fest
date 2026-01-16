@@ -10,7 +10,7 @@ import {
     IconUsers,
     IconUsersGroup,
 } from "@tabler/icons-react";
-import { Key } from "lucide-react";
+import { Key, LayoutDashboard } from "lucide-react";
 
 export const educations = [
     { key: "SMA", label: "SMA" },
@@ -130,7 +130,7 @@ export const dataNavSidebar = {
         {
             title: "Dashboard",
             url: "/dashboard",
-            icon: IconDashboard,
+            icon: LayoutDashboard,
         },
         {
             title: "Profile",
@@ -173,7 +173,7 @@ export const dataNavSidebarAdmin = {
         {
             title: "Back to Home Dashboard",
             url: "/dashboard",
-            icon: IconDashboard,
+            icon: LayoutDashboard,
         },
         {
             title: "Admin Dashboard",

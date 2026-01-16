@@ -140,7 +140,7 @@ async function FetchUserTeams() {
                                     ? `/dashboard/documents/${team.id}`
                                     : ""
                             }
-                            className="cursor-not-allowed"
+                            className=""
                         >
                             {user.id === team.leaderUserId
                                 ? team.teamStatus === "ACCEPTED"

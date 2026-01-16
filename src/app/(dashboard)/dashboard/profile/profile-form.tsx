@@ -161,7 +161,7 @@ function ProfileUpdateForm() {
                                         alt={user.name as string}
                                         className="w-32 h-32 border-2 border-primary/50"
                                     />
-                                    <div
+                                    {/*<div
                                         className={cn(
                                             "",
                                             !isEditing ? "hidden" : "",
@@ -172,7 +172,7 @@ function ProfileUpdateForm() {
                                             setIsLoading={setIsLoading}
                                             setIsEditing={setIsEditing}
                                         />
-                                    </div>
+                                    </div>*/}
                                 </div>
                             )}
                         </div>
@@ -357,11 +357,15 @@ function ProfileUpdateForm() {
                                         >
                                             <SelectValue placeholder="Select" />
                                         </SelectTrigger>
-                                        <SelectContent position="item-aligned">
+                                        <SelectContent
+                                            position="item-aligned"
+                                            className="bg-transparent backdrop-blur-lg"
+                                        >
                                             {educations.map((education) => (
                                                 <SelectItem
                                                     key={education.key}
                                                     value={education.key}
+                                                    className="hover:bg-white/20! focus:bg-white/20 "
                                                 >
                                                     {education.label}
                                                 </SelectItem>

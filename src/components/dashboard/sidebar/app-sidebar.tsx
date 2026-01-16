@@ -57,10 +57,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarContent className="bg-transparent backdrop-blur-3xl ">
                 <NavMain items={dataNavSidebar.navMain} />
                 <NavDocuments items={dataNavSidebar.navDocuments} />
-                <NavSecondary
+                {/*<NavSecondary
                     items={dataNavSidebar.navSecondary}
                     className="mt-auto"
-                />
+                />*/}
             </SidebarContent>
             <SidebarFooter className="bg-transparent backdrop-blur-3xl">
                 <NavUser />
