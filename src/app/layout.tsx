@@ -21,9 +21,9 @@ export default function RootLayout({
                     <QueryTanstackProvider>
                         <ThemeProvider
                             attribute="class"
-                            defaultTheme="system"
-                            enableSystem
-                            disableTransitionOnChange
+                            defaultTheme="dark"
+                            forcedTheme="dark"
+                            enableSystem={false}
                         >
                             <NextTopLoader showSpinner={false} height={3} />
                             {children}
