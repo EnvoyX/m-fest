@@ -1,163 +1,162 @@
 import Link from "next/link";
-import { ArrowRight, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { TextEffect } from "@/components/ui/text-effect";
 import { AnimatedGroup } from "@/components/ui/animated-group";
+import type { Variants } from "framer-motion";
+import Image from "next/image";
 
-const transitionVariants = {
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: "blur(12px)",
-      y: 12,
+const transitionVariants: { item: Variants } = {
+    item: {
+        hidden: {
+            opacity: 0,
+            filter: "blur(12px)",
+            y: 12,
+        },
+        visible: {
+            opacity: 1,
+            filter: "blur(0px)",
+            y: 0,
+            transition: {
+                type: "spring" as const,
+                bounce: 0.3,
+                duration: 1.5,
+            },
+        },
     },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: {
-        type: "spring" as const,
-        bounce: 0.3,
-        duration: 1.5,
-      },
-    },
-  },
 };
 
 export default function HeroSection() {
-  return (
-    <>
-      <main className="overflow-hidden">
-        <section>
-          <div className="relative pt-24 md:pt-36">
-            <div className="mx-auto max-w-7xl px-6">
-              <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
-                <AnimatedGroup variants={transitionVariants}>
-                  <Link
-                    href="/competitions"
-                    className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950"
-                    prefetch
-                  >
-                    <span className="text-foreground text-sm">
-                      Explore Competitions
-                    </span>
-                    <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
-
-                    <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
-                      <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                        <span className="flex size-6">
-                          <ArrowRight className="m-auto size-3" />
-                        </span>
-                        <span className="flex size-6">
-                          <ArrowRight className="m-auto size-3" />
-                        </span>
-                      </div>
+    return (
+        <>
+            <main className="overflow-hidden">
+                <section className="mask-b-from-95% lg:mask-b-from-90% lg:mask-b-to-100% relative min-h-screen bg-black w-full flex flex-col justify-end pb-10 lg:pb-20 px-6 pt-24 md:px-12 lg:pt-16">
+                    <div className="absolute inset-0 z-0">
+                        <Image
+                            src="/home-page.svg"
+                            alt="Comp Hero Background"
+                            fill
+                            className="object-cover object-center"
+                            priority
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-[#252132] via-[#252132]/30 to-transparent" />
                     </div>
-                  </Link>
-                </AnimatedGroup>
+                    <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between w-full max-w-[1600px]">
+                        {/* --- TEXT SECTION --- */}
+                        <div className="flex flex-col z-10">
+                            <TextEffect
+                                preset="fade-in-blur"
+                                speedSegment={0.3}
+                                as="h1"
+                                className="text-left text-5xl md:text-8xl [font-family:var(--font-next-montserrat)] font-bold leading-tight"
+                            >
+                                Mechanical
+                            </TextEffect>
 
-                <TextEffect
-                  per="line"
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  delay={0.5}
-                  as="p"
-                  className="mx-auto mt-8 max-w-2xl text-balance text-3xl [font-family:var(--font-next-montserrat)] font-semibold"
-                >
-                  Welcome to
-                </TextEffect>
-                <TextEffect
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  as="h1"
-                  className="mx-auto mt-8 max-w-4xl text-balance text-5xl md:text-8xl lg:mt-16 xl:text-[5.25rem] [font-family:var(--font-next-montserrat)] font-bold"
-                >
-                  Mechanical Festival 2026
-                </TextEffect>
-                <TextEffect
-                  per="line"
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  delay={0.5}
-                  as="p"
-                  className="mx-auto mt-8 max-w-2xl text-balance text-3xl [font-family:var(--font-next-montserrat)] font-semibold"
-                >
-                  Innovate Ideas. Create Impact.
-                </TextEffect>
+                            <TextEffect
+                                preset="fade-in-blur"
+                                speedSegment={0.3}
+                                as="h1"
+                                className="text-left text-5xl md:text-8xl [font-family:var(--font-next-montserrat)] font-bold leading-tight"
+                            >
+                                Festival 2026
+                            </TextEffect>
 
-                <AnimatedGroup
-                  variants={{
-                    container: {
-                      visible: {
-                        transition: {
-                          staggerChildren: 0.05,
-                          delayChildren: 0.75,
-                        },
-                      },
-                    },
-                    ...transitionVariants,
-                  }}
-                  className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row"
-                >
-                  <div
-                    key={1}
-                    className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5"
-                  >
-                    <Button
-                      asChild
-                      size="lg"
-                      className="rounded-xl px-5 text-base"
-                    >
-                      <Link
-                        href="/events"
-                        className="flex items-center gap-3"
-                        prefetch
-                      >
-                        <Rocket className="relative size-4" />
-                        <span className="text-nowrap">Explore Events</span>
-                      </Link>
-                    </Button>
-                  </div>
-                </AnimatedGroup>
-              </div>
-            </div>
+                            <TextEffect
+                                per="line"
+                                preset="fade-in-blur"
+                                speedSegment={0.3}
+                                delay={0.5}
+                                as="p"
+                                className="max-w-2xl text-left text-lg md:text-xl [font-family:var(--font-next-montserrat)] font-semibold mt-2 md:mt-0"
+                            >
+                                Transforming Visions. Into Motions
+                            </TextEffect>
+                        </div>
 
-            <AnimatedGroup
-              variants={{
-                container: {
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.05,
-                      delayChildren: 0.75,
-                    },
-                  },
-                },
-                ...transitionVariants,
-              }}
-            >
-              <div className="mask-b-from-55% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
-                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
-                  <Image
-                    className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block object-cover"
-                    src="/logo.png"
-                    alt="app screen dark"
-                    width="2700"
-                    height="1440"
-                  />
-                  {/* <Image
-                    className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
-                    src="/mail2-light.png"
-                    alt="app screen"
-                    width="2700"
-                    height="1440"
-                  /> */}
-                </div>
-              </div>
-            </AnimatedGroup>
-          </div>
-        </section>
-      </main>
-    </>
-  );
+                        {/* --- BUTTONS SECTION --- */}
+                        <div className="flex flex-col gap-4 z-10 w-full md:w-auto">
+                            {/* BUTTON 1: Explore Events */}
+                            <AnimatedGroup
+                                variants={{
+                                    container: {
+                                        visible: {
+                                            transition: {
+                                                staggerChildren: 0.05,
+                                                delayChildren: 0.75,
+                                            },
+                                        },
+                                    },
+                                    ...transitionVariants,
+                                }}
+                                className="flex flex-col gap-4"
+                            >
+                                <div key={1} className="w-full">
+                                    <Button
+                                        asChild
+                                        size="lg"
+                                        className="drop-shadow-xl/50 w-full md:w-72 h-auto group relative overflow-hidden bg-slate-900/30 hover:bg-slate-800/50 backdrop-blur-md border border-white/20 text-white rounded-xl px-6 py-5 md:py-6 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
+                                    >
+                                        <Link
+                                            href="/events"
+                                            className="flex items-center justify-center gap-3 w-full"
+                                            prefetch
+                                        >
+                                            <span className="text-xl md:text-3xl font-semibold">
+                                                Explore Events
+                                            </span>
+                                            <img
+                                                src="/eventbuttonlogo.svg"
+                                                alt="Rocket"
+                                                className="relative size-6 md:size-7"
+                                            />
+                                        </Link>
+                                    </Button>
+                                </div>
+                            </AnimatedGroup>
+
+                            {/* BUTTON 2: Explore Competitions */}
+                            <AnimatedGroup
+                                variants={{
+                                    container: {
+                                        visible: {
+                                            transition: {
+                                                staggerChildren: 0.05,
+                                                delayChildren: 0.75,
+                                            },
+                                        },
+                                    },
+                                    ...transitionVariants,
+                                }}
+                                className="flex flex-col gap-4"
+                            >
+                                <div key={1} className="w-full">
+                                    <Button
+                                        asChild
+                                        size="lg"
+                                        className="drop-shadow-xl/50 w-full md:w-72 h-auto group relative overflow-hidden bg-slate-900/30 hover:bg-slate-800/50 backdrop-blur-md border border-white/20 text-white rounded-xl px-6 py-5 md:py-6 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]"
+                                    >
+                                        <Link
+                                            href="/competitions"
+                                            className="flex items-center text-left gap-3 w-full"
+                                            prefetch
+                                        >
+                                            {/* Two lines logic: added <br/> and leading-none */}
+                                            <span className="text-xl md:text-3xl font-semibold text-left leading-none">
+                                                Explore <br /> Competitions
+                                            </span>
+                                            <img
+                                                src="/compbuttonlogo.svg"
+                                                alt="Rocket"
+                                                className="relative size-6 md:size-7"
+                                            />
+                                        </Link>
+                                    </Button>
+                                </div>
+                            </AnimatedGroup>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </>
+    );
 }

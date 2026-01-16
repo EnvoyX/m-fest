@@ -99,7 +99,7 @@ cd m-fest
 ### 2. Install dependancies
 
 ```bash
-pnpm install
+npm install
 ```
 
 ### 3. Setup enviroment variables
@@ -141,8 +141,8 @@ SENTRY_AUTH_TOKEN=""
 ### 4 Initialize Prisma
 
 ```bash
-pnpm dlx prisma db push
-pnpm dlx prisma generate
+npx prisma db push
+npx prisma generate
 ```
 
 ### 5. Run the development server (using bun for faster dev server)
