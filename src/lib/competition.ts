@@ -60,7 +60,7 @@ export const competitions: {
             fee1: 160000, // Early bird
             fee2: 210000, // Regular
             guideBook:
-                "https://drive.google.com/file/d/1kjCYe7Q95CqQ0ZO-syeZsC_XyJrcApno/view?usp=drive_link",
+                "https://drive.google.com/drive/folders/1BWJJ8mOQbO8S1psZmvJ_00pAr6ejR1G-?usp=sharing",
             icon: "Zap",
             uploadThingRoute: "submitFileBCC",
             submissionDeadline: new Date("2026-03-07T23:59:59"),
@@ -90,7 +90,7 @@ export const competitions: {
             fee1: 100000, // Early Bird
             fee2: 120000, // Regular
             guideBook:
-                "https://drive.google.com/file/d/12hsX_V4bllC3blk3ik0Gt0klKA5crVCK/view?usp=drive_link",
+                "https://drive.google.com/drive/folders/1Suy1QMroEjRlUzivl-gLiKBGDZ3oFBux?usp=sharing",
             isOpen: true,
             icon: "Cpu",
             uploadThingRoute: "submitFileIPPC",
@@ -121,7 +121,7 @@ export const competitions: {
             fee1: 210000, // Early Bird
             fee2: 260000, // Regular
             guideBook:
-                "https://drive.google.com/file/d/1vQ6Ma1mNfp4tS0FmsVo6trVgbe_XvADw/view?usp=drive_link",
+                "https://drive.google.com/drive/folders/17ADXN7Iom5nPJXJHEw2oQZvRRvf9q4fP?usp=sharing",
             isOpen: true,
             icon: "Lock",
             uploadThingRoute: "submitFilePDC",
@@ -129,7 +129,7 @@ export const competitions: {
             compOpenCase: new Date("2026-02-01T00:00:00"),
         },
         {
-            title: "STEM Competition",
+            title: "Science, Technology, Engineering, and Mathematics",
             logo: "/competitions/logo/stem.png",
             desc: "STEM Competition M-Fest 2026 provides an inspiring platform for Indonesian high school students to enhance their Science, Technology, Engineering, and Mathematics skills. The competition encourages innovation and real contributions to sustainability in Indonesia while accelerating SDGs achievement through STEM-based solutions.",
             regLink: "https://www.google.com",
@@ -150,7 +150,7 @@ export const competitions: {
             fee1: 130000, // Early Bird
             fee2: 190000, // Regular
             guideBook:
-                "https://drive.google.com/file/d/1eGfmRZPEVHapgrbBgmbjFBPR5EOneAaI/view?usp=drive_link",
+                "https://drive.google.com/drive/folders/1IfVYRpYq67Vk5Sgwnpvrr5eUKpKgNlng?usp=sharing",
             icon: "Sparkles",
             uploadThingRoute: "submitFileSTEM",
             submissionDeadline: null,

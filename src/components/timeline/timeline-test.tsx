@@ -6,7 +6,7 @@ export function TimelineTest() {
         {
             title: "February 2026",
             content: (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2" key={1}>
                     <p className="text-4xl font-semibold">Pre-Program</p>
                     <p className="text-2xl font-semibold">
                         M-Care: Klinik Mesin
@@ -17,7 +17,7 @@ export function TimelineTest() {
         {
             title: "February 2026",
             content: (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2" key={2}>
                     <p className="text-4xl font-semibold">Pre-Program</p>
                     <p className="text-2xl font-semibold">
                         M-Care: Hari Bermain Bersama (HMB)
@@ -28,7 +28,7 @@ export function TimelineTest() {
         {
             title: "February - April 2026",
             content: (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2" key={3}>
                     <p className="text-4xl font-semibold">Starting Phase</p>
                     <p className="text-2xl font-semibold">
                         Competitions Registration and Submission
@@ -39,7 +39,7 @@ export function TimelineTest() {
         {
             title: "13 April 2026",
             content: (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2" key={4}>
                     <p className="text-4xl font-semibold">Acceleration Phase</p>
                     <p className="text-2xl font-semibold">
                         M-Run and Engine Tune-Up
@@ -50,11 +50,10 @@ export function TimelineTest() {
         {
             title: "2 May 2026",
             content: (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2" key={5}>
                     <p className="text-4xl font-semibold">Final Phase</p>
                     <p className="text-2xl font-semibold">
-                        Competitions Final, M-Expo, and Solidarity Forever
-                        Summit
+                        Competitions Final, M-Expo
                     </p>
                 </div>
             ),
@@ -62,7 +61,7 @@ export function TimelineTest() {
         {
             title: "3 May 2026",
             content: (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2" key={6}>
                     <p className="text-4xl font-semibold">Ending Phase</p>
                     <p className="text-2xl font-semibold">
                         M-Talks, M-Expo, Solidarity Forever Summit, and Ceremony

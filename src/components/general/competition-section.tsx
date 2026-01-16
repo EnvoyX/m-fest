@@ -46,8 +46,7 @@ export default function CompetitionSection() {
             </div>
 
             <div className="flex justify-center">
-                {/* Responsive text size: 6xl on mobile, 9xl on desktop */}
-                <h1 className="text-5xl md:text-9xl font-bold mt-12 md:mt-20 text-white [font-family:var(--font-next-montserrat)] text-center">
+                <h1 className="text-4xl sm:text-6xl font-bold mt-12 md:mt-20 text-white [font-family:var(--font-next-montserrat)] text-center">
                     Competitions
                 </h1>
             </div>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { TextEffect } from "@/components/ui/text-effect";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import type { Variants } from "framer-motion";
+import Image from "next/image";
 
 const transitionVariants: { item: Variants } = {
     item: {
@@ -28,12 +29,20 @@ export default function HeroSection() {
     return (
         <>
             <main className="overflow-hidden">
-                <section className="relative min-h-[100dvh] w-full flex flex-col justify-end pb-10 px-6 pt-24 md:pb-20 md:px-12 lg:pt-16">
-                    
-                    <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between w-full max-w-[1600px] mx-auto">
-                        
+                <section className="mask-b-from-95% lg:mask-b-from-90% lg:mask-b-to-100% relative min-h-screen bg-black w-full flex flex-col justify-end pb-10 lg:pb-20 px-6 pt-24 md:px-12 lg:pt-16">
+                    <div className="absolute inset-0 z-0">
+                        <Image
+                            src="/home-page.svg"
+                            alt="Comp Hero Background"
+                            fill
+                            className="object-cover object-center"
+                            priority
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-[#252132] via-[#252132]/30 to-transparent" />
+                    </div>
+                    <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between w-full max-w-[1600px]">
                         {/* --- TEXT SECTION --- */}
-                        <div className="flex flex-col gap-2 md:gap-6 z-10">
+                        <div className="flex flex-col z-10">
                             <TextEffect
                                 preset="fade-in-blur"
                                 speedSegment={0.3}
@@ -66,7 +75,6 @@ export default function HeroSection() {
 
                         {/* --- BUTTONS SECTION --- */}
                         <div className="flex flex-col gap-4 z-10 w-full md:w-auto">
-                            
                             {/* BUTTON 1: Explore Events */}
                             <AnimatedGroup
                                 variants={{
@@ -145,7 +153,6 @@ export default function HeroSection() {
                                     </Button>
                                 </div>
                             </AnimatedGroup>
-
                         </div>
                     </div>
                 </section>

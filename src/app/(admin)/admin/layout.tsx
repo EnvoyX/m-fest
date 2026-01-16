@@ -13,11 +13,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 } as React.CSSProperties
             }
             // className={`min-h-screen`}
-            className={`min-h-screen bg-[url("/fixed-background-darker.png")] bg-cover bg-center bg-fixed`}
+            className={`min-h-screen bg-[url("/FAQslice.png")] bg-cover bg-center bg-fixed`}
         >
             <AppSidebar variant="inset" />
             <SidebarInset
-                className={`min-h-screen bg-[url("/fixed-background-darker.png")] bg-cover bg-center bg-fixed`}
+                className={`min-h-screen bg-[url("/FAQslice.png")] bg-cover bg-center bg-fixed`}
             >
                 {/* <SidebarInset className="bg-card"> */}
                 <SiteHeader />
