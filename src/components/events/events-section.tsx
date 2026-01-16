@@ -15,54 +15,65 @@ export default function EventsSection() {
                 {events.map((event, index) => (
                     <BlurFade key={index} delay={0.2} inView>
                         <div
-                            id={event.title.toLowerCase()}
-                            className="flex flex-col md:grid md:grid-cols-2  gap-10 mt-32"
-                        >
-                            <Image
-                                className="my-auto rounded-(--radius) object-contain grayscale"
-                                src={event.img}
-                                alt={event.title}
-                                height={2747}
-                                width={1545}
-                                loading="lazy"
-                            />
-                            <div className="grid gap-6 md:grid-rows-3 md:gap-0">
-                                <h2 className="text-4xl font-medium my-auto">
-                                    {event.title}
-                                </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center max-sm:gap-6 sm:gap-0">
-                                    <span className="text-2xl">
-                                        {event.desc}
-                                    </span>
-                                    <Image
-                                        className="max-sm:mx-auto ml-[70%]"
-                                        src={event.logo}
-                                        width={120}
-                                        height={120}
-                                        alt="hehe"
-                                    />
-                                </div>
-                                <Button
-                                    asChild
-                                    variant="secondary"
-                                    size="sm"
-                                    className="bg-white mt-5 mx-auto gap-1 pr-1.5 md:w-50 hover:bg-white/75"
-                                >
-                                    <Link
-                                        href={`/events/${event.title
-                                            .toLowerCase()
-                                            .split(" ")
-                                            .join("-")}`}
-                                        // target="_blank"
-                                    >
-                                        <span className="text-black">
-                                            Learn More
-                                        </span>
-                                        <ChevronRight className="size-4 invert" />
-                                    </Link>
-                                </Button>
-                            </div>
-                        </div>
+  id={event.title.toLowerCase()}
+  className="flex flex-col md:grid md:grid-cols-2 gap-10 mt-32"
+>
+  {/* Left Side: Image */}
+  <Image
+    className="my-auto rounded-[var(--radius)] object-cover grayscale w-full h-auto"
+    src={event.img}
+    alt={event.title}
+    height={2747}
+    width={1545}
+    loading="lazy"
+  />
+
+  {/* Right Side: Content */}
+  <div className="flex flex-col justify-center gap-6">
+    
+    {/* Title */}
+    <h2 className="text-4xl font-medium">
+      {event.title}
+    </h2>
+
+    {/* Description & Logo Row */}
+    {/* CHANGED: Switched from grid-cols-2 to flex-row to let text expand */}
+    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      {/* Text: Added flex-1 to make it take up available width */}
+      <span className="text-lg md:text-2xl leading-relaxed flex-1">
+        {event.desc}
+      </span>
+
+      {/* Logo: Added shrink-0 so it doesn't get squashed, removed ml-[70%] */}
+      <div className="shrink-0">
+        <Image
+          src={event.logo}
+          width={100}
+          height={100}
+          alt="Event Logo"
+          className="object-contain"
+        />
+      </div>
+    </div>
+
+    {/* Button */}
+    {/* Moved alignment to start (left) or keep centered based on preference */}
+    <Button
+      asChild
+      variant="secondary"
+      size="sm"
+      className="bg-white mt-2 w-fit gap-1 pr-1.5 hover:bg-white/75"
+    >
+      <Link
+        href={`/events/${event.title.toLowerCase().split(" ").join("-")}`}
+      >
+        <span className="text-black font-semibold">Learn More</span>
+        <ChevronRight className="size-4 invert" />
+      </Link>
+    </Button>
+  </div>
+</div>
                     </BlurFade>
                 ))}
             </div>
