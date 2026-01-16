@@ -135,15 +135,16 @@ export const Navbar = () => {
             >
                 <div
                     className={cn(
-                        "mx-auto w-full px-6 transition-all duration-300 md:px-12 bg-background/35 backdrop-blur-lg",
+                        "mx-auto w-full px-6 transition-all duration-300 md:px-12 bg-background/35 backdrop-blur-xl",
                         isScrolled &&
                             "mt-2 max-w-6xl rounded-2xl border md:px-5",
+                        menuState && "bg-background/50",
                     )}
                 >
                     <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                         <div
                             className={cn(
-                                "flex w-full justify-between md:w-auto hover:scale-105 transition-all duration-300",
+                                "flex w-full justify-between md:w-auto transition-all duration-300",
                             )}
                         >
                             <Link

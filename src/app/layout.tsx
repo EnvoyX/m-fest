@@ -8,30 +8,30 @@ import { ReactLenis } from "lenis/react";
 import QueryTanstackProvider from "@/components/providers/query-provider";
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${montserrat.variable} ${roboto.variable} ${onest.className} antialiased`}
-      >
-        <ReactLenis root>
-          <QueryTanstackProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
+    return (
+        <html lang="en" className="dark" suppressHydrationWarning>
+            <body
+                className={`${montserrat.variable} ${roboto.variable} ${onest.className} antialiased`}
             >
-              <NextTopLoader showSpinner={false} height={3} />
-              {children}
-              <Toaster />
-            </ThemeProvider>
-          </QueryTanstackProvider>
-        </ReactLenis>
-      </body>
-    </html>
-  );
+                <ReactLenis root>
+                    <QueryTanstackProvider>
+                        <ThemeProvider
+                            attribute="class"
+                            defaultTheme="system"
+                            enableSystem
+                            disableTransitionOnChange
+                        >
+                            <NextTopLoader showSpinner={false} height={3} />
+                            {children}
+                            <Toaster />
+                        </ThemeProvider>
+                    </QueryTanstackProvider>
+                </ReactLenis>
+            </body>
+        </html>
+    );
 }
