@@ -27,7 +27,7 @@ export default function EventCard({
                     <img
                         src={imageSrc}
                         alt={title}
-                        className="w-full h-full object-cover transition-transform duration-500 "
+                        className="w-full h-35 object-cover transition-transform duration-500 "
                     />
                 </div>
                 {/* Bottom Half: Dark Content Area */}
