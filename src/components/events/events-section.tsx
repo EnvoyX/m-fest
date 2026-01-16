@@ -63,7 +63,7 @@ export default function EventsSection() {
       asChild
       variant="secondary"
       size="sm"
-      className="bg-white mt-2 w-fit gap-1 pr-1.5 hover:bg-white/75"
+      className="mx-auto md:mx-0 bg-white mt-2 w-fit gap-1 pr-1.5 hover:bg-white/75"
     >
       <Link
         href={`/events/${event.title.toLowerCase().split(" ").join("-")}`}
