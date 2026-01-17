@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function DocumentsPage() {
     return (
         <section className="min-h-screen  w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="h-fit overflow-hidden rounded-[calc(var(--radius)+.125rem)]  shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
+            <div className="h-fit overflow-hidden rounded-[calc(var(--radius)+.125rem)] dark:[--color-muted:var(--color-zinc-900)]">
                 <div className="bg-transparent -m-px rounded-[calc(var(--radius)+.125rem)] border sm:p-8 sm:pb-6">
                     <div className="text-center">
                         <h1 className="mb-1 mt-4 text-4xl font-semibold text-start">

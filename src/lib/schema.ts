@@ -7,7 +7,9 @@ export const profileSchema = z.object({
     domicile: z.string().min(1, "Domicile is required"),
     institution: z.string().min(1, "institution is required"),
     major: z.string().min(1, "Major is required"),
-    education: z.enum(["SMA", "SMK", "D3", "D4", "S1"]),
+    education: z.enum(["SMA", "SMK", "D3", "D4", "S1"], {
+        error: "Education level is required",
+    }),
     semester: z.coerce
         .number<number>()
         .min(1, "Minimum semester is 1")
