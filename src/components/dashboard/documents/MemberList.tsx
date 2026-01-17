@@ -22,7 +22,7 @@ async function MemberList({ team }: { team: TeamWithMembers }) {
             <div className="grid max-xs:grid-cols-1 xs:grid-cols-2 max-xxl:grid-cols-2 xxl:grid-cols-3 gap-16 items-stretch my-2">
                 {team.members.map((member) => (
                     <div
-                        className="p-6 border rounded-lg bg-white/5 w-fit h-fit"
+                        className="p-6 border rounded-lg bg-white/5 backdrop-blur-lg w-fit h-fit"
                         key={member.userId}
                     >
                         {/* Desktop */}
@@ -107,7 +107,7 @@ async function MemberList({ team }: { team: TeamWithMembers }) {
                             </div>
                         </div>
                         {/* Mobile */}
-                        <div className="flex w-fit gap-6 items-center max-[1160px]:flex-col-reverse min-[1160px]:hidden">
+                        <div className="flex w-fit gap-6 items-center max-[1160px]:flex-col-reverse min-[1160px]:hidden bg-white/5 backdrop-blur-lg">
                             <div className="max-[1160px]:text-center flex flex-col">
                                 <p className="text-muted-foreground">
                                     {member.role}

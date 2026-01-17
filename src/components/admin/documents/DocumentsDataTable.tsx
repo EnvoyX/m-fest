@@ -122,7 +122,10 @@ export function DocumentsDataTable() {
                                 <MoreHorizontal />
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
+                        <DropdownMenuContent
+                            className="bg-transparent! backdrop-blur-lg!"
+                            align="end"
+                        >
                             <DropdownMenuLabel>
                                 Actions for{" "}
                                 <span className="font-bold truncate">
@@ -173,7 +176,7 @@ export function DocumentsDataTable() {
                                         "User ID copied to clipboard",
                                     );
                                 }}
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:bg-white/20!"
                             >
                                 Copy user ID
                             </DropdownMenuItem>
@@ -184,7 +187,7 @@ export function DocumentsDataTable() {
                                     );
                                     toast.success("Email copied to clipboard");
                                 }}
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:bg-white/20!"
                             >
                                 Copy email
                             </DropdownMenuItem>
@@ -205,7 +208,7 @@ export function DocumentsDataTable() {
                                 Delete documents
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="cursor-pointer">
+                            <DropdownMenuItem className="cursor-pointer hover:bg-white/20!">
                                 <Link
                                     href={`/admin/users/${item.userId}`}
                                     target="_blank"
@@ -214,7 +217,7 @@ export function DocumentsDataTable() {
                                     View User
                                 </Link>
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="cursor-pointer">
+                            <DropdownMenuItem className="cursor-pointer hover:bg-white/20!">
                                 {" "}
                                 <Link
                                     href={`/admin/users/${item.userId}#documents`}
@@ -833,7 +836,10 @@ export function DocumentsDataTable() {
                                     </span>
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
+                            <DropdownMenuContent
+                                className="bg-transparent! backdrop-blur-xl!"
+                                align="end"
+                            >
                                 <DropdownMenuLabel>Columns</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
@@ -849,7 +855,7 @@ export function DocumentsDataTable() {
                                     userId
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("userName");
                                         table
@@ -861,7 +867,7 @@ export function DocumentsDataTable() {
                                     userName
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("userEmail");
                                         table
@@ -873,7 +879,7 @@ export function DocumentsDataTable() {
                                     userEmail
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("userInstitution");
                                         table
@@ -885,7 +891,7 @@ export function DocumentsDataTable() {
                                     userInstitution
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("userRegisteredTeam");
                                         table
@@ -897,7 +903,7 @@ export function DocumentsDataTable() {
                                     userRegisteredTeam
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
-                                    className="cursor-pointer"
+                                    className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
                                         setFilterColumn("comp_registration");
                                         table
@@ -958,7 +964,10 @@ export function DocumentsDataTable() {
                                     <MoreHorizontal />
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
+                            <DropdownMenuContent
+                                className="bg-transparent backdrop-blur-xl"
+                                align="end"
+                            >
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem

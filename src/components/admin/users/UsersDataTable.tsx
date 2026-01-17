@@ -1039,7 +1039,7 @@ export function UsersDataTable() {
                                                 table.getFilteredSelectedRowModel()
                                                     .rows.length
                                             }{" "}
-                                            user's role to USER
+                                            user&apos;ss role to USER
                                         </DropdownMenuItem>
                                         <DropdownMenuItem
                                             onClick={() => {
@@ -1061,7 +1061,7 @@ export function UsersDataTable() {
                                                 table.getFilteredSelectedRowModel()
                                                     .rows.length
                                             }{" "}
-                                            user's role to ADMIN
+                                            user&apos;ss role to ADMIN
                                         </DropdownMenuItem>
                                     </>
                                 )}

@@ -47,7 +47,6 @@ async function FetchUserAvailableCompetitions() {
                     },
                 },
             },
-            statusOrder: "SUCCESS",
         },
         include: {
             team: true,

@@ -45,7 +45,7 @@ export const registerRouter = router({
                             leaderEmail: input.leaderEmail as string,
                             leaderPhoneNumber: input.leaderPhoneNumber as string,
                             teamInstitution: input.teamInstitution as string,
-                            statusOrder: "SUCCESS",
+                            statusOrder: "PENDING",
                             teamStatus: "PENDING",
                         },
                     });
@@ -59,7 +59,7 @@ export const registerRouter = router({
                         paymentId: input.paymentId as string,
                         paymentProofUrl: input.paymentProofUrl as string,
                         competition: input.competitionName as CompetitionName,
-                        status: "SUCCESS",
+                        status: "PENDING",
                         teamStatus: "PENDING",
                         verificationDeadlineAt: new Date(
                             Date.now() + 3 * 24 * 60 * 60 * 1000 // 3 days in milliseconds
@@ -90,7 +90,7 @@ export const registerRouter = router({
                             leaderPhoneNumber: input.leaderPhoneNumber as string,
                             teamInstitution: input.teamInstitution as string,
                             mentor: input.mentor as string,
-                            statusOrder: "SUCCESS",
+                            statusOrder: "PENDING",
                             teamStatus: "PENDING",
                         },
                     });
@@ -103,7 +103,7 @@ export const registerRouter = router({
                         paymentId: input.paymentId as string,
                         paymentProofUrl: input.paymentProofUrl as string,
                         competition: input.competitionName as CompetitionName,
-                        status: "SUCCESS",
+                        status: "PENDING",
                         teamStatus: "PENDING",
                         verificationDeadlineAt: new Date(
                             Date.now() + 3 * 24 * 60 * 60 * 1000 // 3 days in milliseconds

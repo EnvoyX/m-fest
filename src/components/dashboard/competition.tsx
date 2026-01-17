@@ -6,12 +6,13 @@ import { useTRPC } from "@/utils/trpc";
 import { useQuery } from "@tanstack/react-query";
 import type { CompetitionName } from "../../../prisma/generated/prisma/enums";
 import { IconListDetails, IconUsersGroup } from "@tabler/icons-react";
-import { Avatar, Skeleton } from "@heroui/react";
+import { Avatar } from "@heroui/react";
 import { competitions } from "@/lib/competition";
 import { EmptyMedia } from "../ui/empty";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { Skeleton } from "../ui/skeleton";
 
 export function Competitions() {
     const trpc = useTRPC();
@@ -39,7 +40,7 @@ export function Competitions() {
     const getStatusColor = (status: boolean) => {
         return status
             ? "bg-green-600 text-white border-muted/50"
-            : "bg-yellow-500 text-accent border-accent/50";
+            : "bg-yellow-500 text-white border-accent/50";
     };
 
     if (isLoadingComp || isLoadingTotalCompPartcitipants || isLoadingTeam) {

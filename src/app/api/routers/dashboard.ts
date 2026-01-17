@@ -9,6 +9,7 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { documentsSchema, profileSchema, submitFileSchema } from "@/lib/schema";
 import type { CompetitionName } from "../../../../prisma/generated/prisma/enums";
+import type { TeamMember } from "../../../../prisma/generated/prisma/client";
 
 export const dashboardRouter = router({
     getUser: protectedProcedure.query(async ({ ctx }) => {
@@ -255,7 +256,6 @@ export const dashboardRouter = router({
     getUserComp: protectedProcedure.query(async ({ ctx }) => {
         const thisRegisteredCompUser = await ctx.db.compRegistration.findFirst({
             where: {
-                statusOrder: "SUCCESS",
                 team: {
                     members: {
                         some: {
@@ -289,10 +289,10 @@ export const dashboardRouter = router({
                             (input.comp as string) === "BCC"
                                 ? "BCC"
                                 : (input.comp as string) === "IPPC"
-                                  ? "IPPC"
-                                  : (input.comp as string) === "PDC"
-                                    ? "PDC"
-                                    : undefined,
+                                    ? "IPPC"
+                                    : (input.comp as string) === "PDC"
+                                        ? "PDC"
+                                        : undefined,
                         statusOrder: "SUCCESS",
                     },
                 });
@@ -311,14 +311,24 @@ export const dashboardRouter = router({
                 comp: z.enum(["IPPC", "PDC", "STEM", "BCC"]),
             }),
         )
-        .query(({ ctx, input }) => {
-            const totalRegisteredComp = ctx.db.compRegistration.count({
+        .query(async ({ ctx, input }) => {
+            const totalRegisteredComp = await ctx.db.compRegistration.findMany({
                 where: {
                     competitionName:
                         input.comp.toUpperCase() as CompetitionName,
                 },
+                include: {
+                    team: {
+                        include: {
+                            members: true
+                        }
+                    }
+                }
             });
-            return totalRegisteredComp;
+
+            const compMembers = totalRegisteredComp.map((comp) => comp.team?.members as TeamMember[])
+            const totalParticipants = compMembers.reduce((acc, curr: TeamMember[]) => acc + curr?.length, 0)
+            return totalParticipants;
         }),
     updateProfile: protectedRateLimitedProcedure
         .input(profileSchema)
@@ -341,10 +351,10 @@ export const dashboardRouter = router({
                             (input.competitionName as string) === "BCC"
                                 ? "BCC"
                                 : (input.competitionName as string) === "IPPC"
-                                  ? "IPPC"
-                                  : (input.competitionName as string) === "PDC"
-                                    ? "PDC"
-                                    : undefined,
+                                    ? "IPPC"
+                                    : (input.competitionName as string) === "PDC"
+                                        ? "PDC"
+                                        : undefined,
                         statusOrder: "SUCCESS",
                     },
                 });
@@ -484,11 +494,10 @@ export const dashboardRouter = router({
                         }
                         throw new TRPCError({
                             code: "BAD_REQUEST",
-                            message: `Your ${
-                                documentsNotVerified?.length
-                            } documents (${documentsNotVerified
-                                ?.map((document) => document.title)
-                                .join(", ")}) is waiting to be verified`,
+                            message: `Your ${documentsNotVerified?.length
+                                } documents (${documentsNotVerified
+                                    ?.map((document) => document.title)
+                                    .join(", ")}) is waiting to be verified`,
                         });
                     }
                     throw new TRPCError({
@@ -517,11 +526,10 @@ export const dashboardRouter = router({
                         }
                     });
                     return {
-                        message: `Your pending ${
-                            documentsStillPending?.length
-                        } documents (${documentsStillPending
-                            ?.map((document) => document.title)
-                            .join(", ")}) have been submitted`,
+                        message: `Your pending ${documentsStillPending?.length
+                            } documents (${documentsStillPending
+                                ?.map((document) => document.title)
+                                .join(", ")}) have been submitted`,
                     };
                 }
             }

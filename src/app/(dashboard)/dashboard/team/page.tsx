@@ -204,8 +204,7 @@ async function FetchTeams() {
                                             )}
                                     </h3>
                                     <h5 className="text-sm text-muted-foreground">
-                                        {team.competition &&
-                                        team.status === "SUCCESS"
+                                        {team.competition
                                             ? team.competition
                                             : "No competition"}
                                     </h5>

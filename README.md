@@ -2,7 +2,7 @@
 
 A modern web platform built for **Mechanical Festival 2026**, designed to handle team registrations, competition enrollments.
 
-This project was developed using **Next.js (App Router)**, with **TypeScript**, **Prisma**, **Better-auth**, **TanStack Query** , **TanStack Table**, **tRPC**, **Zod**, **React Hook Form**, **Zustand**, **UploadThing**, **Sentry**.
+This project was developed using **Next.js (App Router)**, with **TypeScript**, **Prisma**, **Better-auth**, **TanStack Query** , **TanStack Table**, **tRPC**, **Zod**, **React Hook Form**, **Zustand**, **UploadThing**.
 It serves as the official system for participants to register, create teams, and manage competition payments online.
 
 ---
@@ -25,7 +25,6 @@ It serves as the official system for participants to register, create teams, and
 | **Form Managment**                                                          | [React Hook Form](https://react-hook-form.com/)     |
 | **State Managment**                                                         | [Zustand](https://zustand.docs.pmnd.rs/)            |
 | **File Uploads**                                                            | [UploadThing](https://uploadthing.com/)             |
-| **Error Tracking**                                                          | [Sentry.js](https://sentry.io/)                     |
 | **Deployment**                                                              | [Vercel](https://vercel.com/)                       |
 
 ---
@@ -81,7 +80,6 @@ It serves as the official system for participants to register, create teams, and
 
 ### ⚙️ Additional Features
 
-- Error and performance tracking via **Sentry**.
 - Secure server actions and Prisma operations.
 - Suspense and server components for optimized rendering.
 
@@ -130,12 +128,6 @@ UPLOADTHING_TOKEN=''
 UPLOADTHING_API=""
 UPLOADTHING_APP_ID=""
 
-# Duitku
-DUITKU_MERCHANT_ID=""
-DUITKU_API_KEY=""
-
-# Sentry
-SENTRY_AUTH_TOKEN=""
 ```
 
 ### 4 Initialize Prisma
