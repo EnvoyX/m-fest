@@ -8,15 +8,15 @@ import EventSection from "@/components/general/event-section";
 import CompetitionSection from "@/components/general/competition-section";
 
 export default function Home() {
-    return (
-        <main>
-            <HeroSection />
-            <AboutSection />
-            <EventSection />
-            <CompetitionSection />
-            <TimelineTest />
-            <FAQs />
-            <ContactSection />
-        </main>
-    );
+  return (
+    <main>
+      <HeroSection />
+      <AboutSection />
+      <EventSection />
+      <CompetitionSection />
+      <TimelineTest />
+      <FAQs />
+      <ContactSection />
+    </main>
+  );
 }
