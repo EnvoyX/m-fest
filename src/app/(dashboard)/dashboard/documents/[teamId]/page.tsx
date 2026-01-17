@@ -8,6 +8,7 @@ import MemberListSkeleton from "@/components/dashboard/documents/MemberListSkele
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { BadgeCheckIcon, Calendar } from "lucide-react";
+import { currentDate } from "@/lib/utils";
 
 export async function generateMetadata({
     params,
@@ -77,7 +78,8 @@ async function FetchTeamMembers({
         redirect("/dashboard/team");
 
     const isDeadlinePassed = team.verificationDeadlineAt
-        ? new Date(team.verificationDeadlineAt).getTime() < new Date().getTime()
+        ? new Date(team.verificationDeadlineAt).getTime() <
+          currentDate.getTime()
         : false;
     return (
         <>

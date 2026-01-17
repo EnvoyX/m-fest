@@ -6,6 +6,7 @@ import { TooltipContent } from "@radix-ui/react-tooltip";
 import { Badge } from "@/components/ui/badge";
 import { BadgeCheckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { currentDate } from "@/lib/utils";
 
 type TeamWithMembers = Prisma.TeamGetPayload<{
     include: {
@@ -15,7 +16,7 @@ type TeamWithMembers = Prisma.TeamGetPayload<{
 
 async function MemberList({ team }: { team: TeamWithMembers }) {
     const isDeadlinePassed = team.verificationDeadlineAt
-        ? new Date(team.verificationDeadlineAt) < new Date()
+        ? new Date(team.verificationDeadlineAt) < currentDate
         : false;
     return (
         <div className="w-full">
@@ -133,7 +134,7 @@ async function MemberList({ team }: { team: TeamWithMembers }) {
                                         disabled
                                     >
                                         <span className="flex items-center gap-2">
-                                            <p>Deadline has passed</p>
+                                            <p>Deadline passed</p>
                                         </span>
                                     </Button>
                                 ) : (

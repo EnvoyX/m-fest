@@ -372,14 +372,20 @@ export function TeamsDataTable() {
                                 </span>
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
+                        <DropdownMenuContent
+                            className="bg-transparent backdrop-blur-lg"
+                            align="end"
+                        >
                             <DropdownMenuLabel>Members</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             {members.map((member) => (
-                                <DropdownMenuItem key={member.userId}>
+                                <DropdownMenuItem
+                                    key={member.userId}
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    asChild
+                                >
                                     <Link
                                         href={`/admin/users/${member.userId}`}
-                                        className="cursor-pointer"
                                         target="_blank"
                                     >
                                         <div className="flex items-center justify-center gap-4">
@@ -399,12 +405,14 @@ export function TeamsDataTable() {
                                             </div>
                                             <p>{member.user?.name}</p>
                                             {member.role === "Leader" ? (
-                                                <Badge
-                                                    variant={"default"}
-                                                    className="-ml-2"
-                                                >
-                                                    {member.role}
-                                                </Badge>
+                                                <>
+                                                    <Badge
+                                                        variant={"default"}
+                                                        className="-ml-2"
+                                                    >
+                                                        {member.role}
+                                                    </Badge>
+                                                </>
                                             ) : (
                                                 <Badge
                                                     variant={"outline"}

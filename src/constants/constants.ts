@@ -20,7 +20,7 @@ export const educations = [
     { key: "S1", label: "S1" },
 ];
 
-export const validExtensions = ["png", "jpeg", "jpg", "webp"];
+export const validExtensions = ["png", "jpeg", "jpg", "webp", "pdf"];
 export const validSubmissionExtensions = ["pdf", "zip"];
 export const maxFileSize = 4 * 1024 * 1024; // 4 MB
 export const MAX_PROFILEIMAGE_SIZE = 512; // px

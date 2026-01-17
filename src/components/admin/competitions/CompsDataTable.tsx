@@ -468,14 +468,19 @@ export function CompsDataTable() {
                                 </span>
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
+                        <DropdownMenuContent
+                            className="bg-transparent backdrop-blur-lg"
+                            align="end"
+                        >
                             <DropdownMenuLabel>Members</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             {members.map((member) => (
-                                <DropdownMenuItem key={member.userId}>
+                                <DropdownMenuItem
+                                    key={member.userId}
+                                    className="cursor-pointer hover:bg-white/20!"
+                                >
                                     <Link
                                         href={`/admin/users/${member.userId}`}
-                                        className="cursor-pointer"
                                         target="_blank"
                                     >
                                         <div className="flex items-center gap-4">

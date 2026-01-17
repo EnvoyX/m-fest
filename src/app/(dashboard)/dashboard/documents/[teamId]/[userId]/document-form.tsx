@@ -52,8 +52,6 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
         trpc.dashboard.getTeamById.queryOptions({ teamId }),
     );
 
-    console.log(data);
-
     const documents = data?.documents;
     const userVerificationStatus = data?.status;
 
@@ -145,7 +143,7 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                         <h2 className="text-xl font-bold">
                             Verification Status
                         </h2>
-                        <Badge variant={"secondary"}>
+                        <Badge variant={"outline"}>
                             {userVerificationStatus === "PENDING" ? (
                                 <p className="text-sm text-yellow-500">
                                     Pending
@@ -163,11 +161,11 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                     </div>
                     <div className="w-full flex justify-center sm:justify-end items-center mt-2 sm:mt-0">
                         <p className="text-sm border-2 bg-white/10 backdrop-blur-lg text-white px-2 py-1 rounded-full">
-                            <span className="font-bold text-green-300 truncate">
+                            <span className="font-bold text-[#52a9df] truncate">
                                 {team?.name}
                             </span>{" "}
                             |{" "}
-                            <span className="font-bold text-cyan-300 truncate">
+                            <span className="font-bold text-[#75f376] truncate">
                                 {user?.name}
                             </span>
                         </p>
@@ -243,8 +241,7 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                                         This document have been verified.
                                     </p>
                                 )}
-
-                                <div className="mt-5">
+                                {/*<div className="mt-5">
                                     {document.imageUrl && (
                                         <>
                                             <h1 className="mb-2 text-muted-foreground">
@@ -259,7 +256,7 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                                             />
                                         </>
                                     )}
-                                </div>
+                                </div>*/}
                                 <div className="mt-3">
                                     <Controller
                                         name={type}
@@ -299,7 +296,9 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                                     />
                                 </div>
                                 <h3 className="mt-6 text-muted-foreground">
-                                    Accepted File Types (Max 4MB):
+                                    {document.type === "twibbon"
+                                        ? "Accepted File Types (Max 8MB):"
+                                        : "Accepted File Types (Max 4MB):"}
                                 </h3>
                                 <p className="mt-2">
                                     {acceptedFiles.join(", ")}

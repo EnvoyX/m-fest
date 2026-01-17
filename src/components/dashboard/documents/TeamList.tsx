@@ -9,7 +9,7 @@ import {
     EmptyMedia,
     EmptyTitle,
 } from "@/components/ui/empty";
-import { cn } from "@/lib/utils";
+import { cn, currentDate } from "@/lib/utils";
 import { db } from "@/server/db";
 import { type User } from "@/types/types";
 import { IconUsersGroup } from "@tabler/icons-react";
@@ -53,8 +53,10 @@ async function FetchUserTeams() {
             members: true,
             status: true,
             teamStatus: true,
+            verificationDeadlineAt: true,
         },
     });
+
     if (!teams.length) {
         return (
             <Empty>

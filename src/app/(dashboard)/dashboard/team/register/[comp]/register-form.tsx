@@ -109,7 +109,7 @@ function RegisterForm({
         teamName: z.enum(teamNames as string[], {
             error: "Team name is required",
         }),
-        teamInstitution: z.string().min(5, "Team's institution is required"),
+        teamInstitution: z.string().min(1, "Team's institution is required"),
         paymentProofUrl: z
             .string()
             .min(1, "Please upload a payment proof") // Triggers if empty
@@ -129,7 +129,7 @@ function RegisterForm({
         teamName: z.enum(stemTeamNames as string[], {
             error: "Team name is required",
         }),
-        teamInstitution: z.string().min(5, "Team's institution is required"),
+        teamInstitution: z.string().min(1, "Team's institution is required"),
         paymentProofUrl: z
             .string()
             .min(1, "Please provide a payment proof") // Triggers if empty

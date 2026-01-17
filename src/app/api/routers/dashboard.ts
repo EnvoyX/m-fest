@@ -111,7 +111,7 @@ export const dashboardRouter = router({
                     type: "identityCard",
                     title: "Identity Card",
                     submissionDetail:
-                        "Every participant must upload identity card scan file either KTM/KTP/KK/SIM or Student Card",
+                        "Every participant must upload identity card scan file Student Card",
                     acceptedFiles: [".png", ".jpeg", ".jpg", ".webp"],
                     uploadThingRoute: "identityCard",
                     imageUrl: userDocuments?.identityCardImageUrl ?? null,
@@ -126,7 +126,7 @@ export const dashboardRouter = router({
                     title: "Twibbon",
                     submissionDetail: ` Twibbon is uploaded to the Instagram account of each team participant in the form of an Instagram post by tagging the official M-FEST 2026 account @mfestitb. Instagram accounts must not be in private mode. Participants may not delete Instagram posts until the competition series is finished. Captions on Instagram posts follow the template format.
           `,
-                    acceptedFiles: [".png", ".jpeg", ".jpg", ".webp"],
+                    acceptedFiles: [".png", ".jpeg", ".jpg", ".webp", ".pdf"],
                     uploadThingRoute: "twibbon",
                     imageUrl: userDocuments?.twibbonImageUrl ?? null,
                     imageKey: userDocuments?.twibbonImageKey ?? null,
@@ -209,7 +209,7 @@ export const dashboardRouter = router({
                     type: "identityCard",
                     title: "Identity Card",
                     submissionDetail:
-                        "Every participant must upload identity card scan file either KTM/KTP/KK/SIM or Student Card",
+                        "Every participant must upload identity card scan file Student Card",
                     acceptedFiles: [".png", ".jpeg", ".jpg", ".webp"],
                     uploadThingRoute: "identityCard",
                     imageUrl: userDocuments?.identityCardImageUrl ?? null,
@@ -223,8 +223,8 @@ export const dashboardRouter = router({
                     type: "twibbon",
                     title: "Twibbon",
                     submissionDetail: ` Twibbon is uploaded to the Instagram account of each team participant in the form of an Instagram post by tagging the official M-FEST 2026 account @mfestitb. Instagram accounts must not be in private mode. Participants may not delete Instagram posts until the competition series is finished. Captions on Instagram posts follow the template format.
-          `,
-                    acceptedFiles: [".png", ".jpeg", ".jpg", ".webp"],
+                      `,
+                    acceptedFiles: [".png", ".jpeg", ".jpg", ".webp", ".pdf"],
                     uploadThingRoute: "twibbon",
                     imageUrl: userDocuments?.twibbonImageUrl ?? null,
                     imageKey: userDocuments?.twibbonImageKey ?? null,
@@ -289,10 +289,10 @@ export const dashboardRouter = router({
                             (input.comp as string) === "BCC"
                                 ? "BCC"
                                 : (input.comp as string) === "IPPC"
-                                    ? "IPPC"
-                                    : (input.comp as string) === "PDC"
-                                        ? "PDC"
-                                        : undefined,
+                                  ? "IPPC"
+                                  : (input.comp as string) === "PDC"
+                                    ? "PDC"
+                                    : undefined,
                         statusOrder: "SUCCESS",
                     },
                 });
@@ -320,14 +320,19 @@ export const dashboardRouter = router({
                 include: {
                     team: {
                         include: {
-                            members: true
-                        }
-                    }
-                }
+                            members: true,
+                        },
+                    },
+                },
             });
 
-            const compMembers = totalRegisteredComp.map((comp) => comp.team?.members as TeamMember[])
-            const totalParticipants = compMembers.reduce((acc, curr: TeamMember[]) => acc + curr?.length, 0)
+            const compMembers = totalRegisteredComp.map(
+                (comp) => comp.team?.members as TeamMember[],
+            );
+            const totalParticipants = compMembers.reduce(
+                (acc, curr: TeamMember[]) => acc + curr?.length,
+                0,
+            );
             return totalParticipants;
         }),
     updateProfile: protectedRateLimitedProcedure
@@ -351,10 +356,10 @@ export const dashboardRouter = router({
                             (input.competitionName as string) === "BCC"
                                 ? "BCC"
                                 : (input.competitionName as string) === "IPPC"
-                                    ? "IPPC"
-                                    : (input.competitionName as string) === "PDC"
-                                        ? "PDC"
-                                        : undefined,
+                                  ? "IPPC"
+                                  : (input.competitionName as string) === "PDC"
+                                    ? "PDC"
+                                    : undefined,
                         statusOrder: "SUCCESS",
                     },
                 });
@@ -423,7 +428,7 @@ export const dashboardRouter = router({
                     type: "identityCard",
                     title: "Identity Card",
                     submissionDetail:
-                        "Every participant must upload Student Card",
+                        "Every participant must upload identity card scan file Student Card",
                     acceptedFiles: [".png", ".jpeg", ".jpg", ".webp"],
                     uploadThingRoute: "identityCard",
                     imageUrl: userDocuments?.identityCardImageUrl ?? null,
@@ -437,8 +442,8 @@ export const dashboardRouter = router({
                     type: "twibbon",
                     title: "Twibbon",
                     submissionDetail: ` Twibbon is uploaded to the Instagram account of each team participant in the form of an Instagram post by tagging the official M-FEST 2026 account @mfestitb. Instagram accounts must not be in private mode. Participants may not delete Instagram posts until the competition series is finished. Captions on Instagram posts follow the template format.
-            `,
-                    acceptedFiles: [".png", ".jpeg", ".jpg", ".webp"],
+          `,
+                    acceptedFiles: [".png", ".jpeg", ".jpg", ".webp", ".pdf"],
                     uploadThingRoute: "twibbon",
                     imageUrl: userDocuments?.twibbonImageUrl ?? null,
                     imageKey: userDocuments?.twibbonImageKey ?? null,
@@ -494,10 +499,11 @@ export const dashboardRouter = router({
                         }
                         throw new TRPCError({
                             code: "BAD_REQUEST",
-                            message: `Your ${documentsNotVerified?.length
-                                } documents (${documentsNotVerified
-                                    ?.map((document) => document.title)
-                                    .join(", ")}) is waiting to be verified`,
+                            message: `Your ${
+                                documentsNotVerified?.length
+                            } documents (${documentsNotVerified
+                                ?.map((document) => document.title)
+                                .join(", ")}) is waiting to be verified`,
                         });
                     }
                     throw new TRPCError({
@@ -526,10 +532,11 @@ export const dashboardRouter = router({
                         }
                     });
                     return {
-                        message: `Your pending ${documentsStillPending?.length
-                            } documents (${documentsStillPending
-                                ?.map((document) => document.title)
-                                .join(", ")}) have been submitted`,
+                        message: `Your pending ${
+                            documentsStillPending?.length
+                        } documents (${documentsStillPending
+                            ?.map((document) => document.title)
+                            .join(", ")}) have been submitted`,
                     };
                 }
             }
