@@ -17,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu";
-import { SlashIcon } from "lucide-react";
+import { EllipsisIcon, SlashIcon } from "lucide-react";
 import { Fragment, useEffect, useState } from "react";
 import { adminMenus } from "@/constants/constants";
 export function SiteHeader() {
@@ -41,12 +41,15 @@ export function SiteHeader() {
             <BreadcrumbItem>
               <DropdownMenu>
                 <DropdownMenuTrigger className="hover:cursor-pointer hover:text-foreground">
-                  Admin Dashboard
+                  <EllipsisIcon />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start">
+                <DropdownMenuContent
+                  className="bg-transparent backdrop-glass-xl mt-5"
+                  align="start"
+                >
                   {adminMenus.map((menu) => (
                     <Link key={menu.title} href={menu.url} prefetch>
-                      <DropdownMenuItem className="hover:cursor-pointer hover:text-foreground">
+                      <DropdownMenuItem className="hover:cursor-pointer! hover:bg-white/20!">
                         {menu.title}
                       </DropdownMenuItem>
                     </Link>

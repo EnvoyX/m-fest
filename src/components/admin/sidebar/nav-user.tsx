@@ -29,12 +29,12 @@ export function NavUser() {
   const { isMobile } = useSidebar();
   const trpc = useTRPC();
   const { data: user, isFetched } = useQuery(
-    trpc.dashboard.getUser.queryOptions(),
+    trpc.dashboard.getUser.queryOptions()
   );
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   return (
-    <SidebarMenu className="bg-transparent backdrop-blur-lg">
+    <SidebarMenu className="bg-transparent backdrop-glass-lg">
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -56,8 +56,8 @@ export function NavUser() {
                         user?.role === "SUPERADMIN"
                           ? "max-w-20"
                           : user?.role === "ADMIN"
-                            ? "max-w-25"
-                            : "w-full",
+                          ? "max-w-25"
+                          : "w-full"
                       )}
                     >
                       {user?.name as string}

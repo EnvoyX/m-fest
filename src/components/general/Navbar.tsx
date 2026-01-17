@@ -135,7 +135,7 @@ export const Navbar = () => {
             >
                 <div
                     className={cn(
-                        "mx-auto w-full px-6 transition-all duration-300 md:px-12 bg-background/35 backdrop-blur-xl",
+                        "mx-auto w-full px-6 transition-all duration-300 md:px-12 bg-background/35 backdrop-glass-xl",
                         isScrolled &&
                             "mt-2 max-w-6xl rounded-2xl border md:px-5",
                         menuState && "bg-background/50",
@@ -230,7 +230,7 @@ export const Navbar = () => {
                                                     duration: 0.2,
                                                     ease: "easeOut",
                                                 }}
-                                                className="bg-slate-800/25 backdrop-blur-xl border-white/25 p-2 rounded-md shadow-xl"
+                                                className="bg-slate-800/25 backdrop-glass-xl border-white/25 p-2 rounded-md shadow-xl"
                                             >
                                                 <DropdownMenuLabel>
                                                     Competitions
@@ -496,7 +496,7 @@ export const Navbar = () => {
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent
                                                     align="end"
-                                                    className="w-56 bg-background/25 backdrop-blur-xl border-white/25 hidden md:block"
+                                                    className="w-56 bg-background/25 backdrop-glass-xl border-white/25 hidden md:block"
                                                 >
                                                     <div className="p-2 px-3">
                                                         <p className="text-sm font-medium truncate">

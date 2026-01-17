@@ -12,21 +12,16 @@ export default function DocumentsPage() {
             <div className="h-fit overflow-hidden rounded-[calc(var(--radius)+.125rem)] dark:[--color-muted:var(--color-zinc-900)]">
                 <div className="bg-transparent -m-px rounded-[calc(var(--radius)+.125rem)] border sm:p-8 sm:pb-6">
                     <div className="text-center">
-                        <h1 className="mb-1 mt-4 text-4xl font-semibold text-start">
+                        <h1 className="mb-1 mt-4 text-4xl font-bold text-start">
                             Documents & Verification
                         </h1>
                         <p className="text-lg text-start">
                             Please upload all your members legal documents as
                             leader of the team and other required data below to
-                            able to participate in competitions .
-                        </p>
-                        <p className="text-lg text-start">
-                            Also make sure the leader is the one to upload all
-                            team member legal documents (including leader)
-                        </p>
-                        <p className="text-lg text-start">
-                            Do not forget to upload all the required files
-                            before submitting for each member!
+                            able to participate in competitions. Also make sure
+                            the leader is the one to upload all team member
+                            legal documents. Do not forget to upload all the
+                            required files before submitting for each member!
                         </p>
                     </div>
                     <div className="mt-10">

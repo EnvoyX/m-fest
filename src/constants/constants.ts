@@ -1,6 +1,7 @@
 import {
     IconConfetti,
     IconDashboard,
+    IconDashboardFilled,
     IconDatabase,
     IconFileAnalytics,
     IconFileText,
@@ -123,6 +124,10 @@ export const menus = [
         title: "Team & Register",
         url: "/dashboard/team",
     },
+    {
+        title: "Documents",
+        url: "/dashboard/documents",
+    },
 ];
 
 export const dataNavSidebar = {
@@ -178,7 +183,7 @@ export const dataNavSidebarAdmin = {
         {
             title: "Admin Dashboard",
             url: "/admin",
-            icon: Key,
+            icon: IconDashboard,
         },
         {
             title: "Documents",

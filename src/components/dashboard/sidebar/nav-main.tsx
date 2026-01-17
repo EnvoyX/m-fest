@@ -1,6 +1,6 @@
 "use client";
 
-import { type Icon } from "@tabler/icons-react";
+import { IconDashboard, type Icon } from "@tabler/icons-react";
 
 import {
   SidebarGroup,
@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Key } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/utils/trpc";
 
@@ -28,8 +27,8 @@ export function NavMain({
   const trpc = useTRPC();
   const { data: user } = useQuery(trpc.dashboard.getUser.queryOptions());
   return (
-    <SidebarGroup className="bg-transparent backdrop-blur-lg">
-      <SidebarGroupContent className="flex flex-col gap-2 bg-transparent backdrop-blur-lg ">
+    <SidebarGroup className="bg-transparent backdrop-glass-lg">
+      <SidebarGroupContent className="flex flex-col gap-2 bg-transparent backdrop-glass-lg ">
         <SidebarMenu></SidebarMenu>
         <SidebarMenu>
           {user?.role === "SUPERADMIN" && (
@@ -39,7 +38,7 @@ export function NavMain({
                   tooltip="Admin Panel"
                   className={`hover:bg-white/30 cursor-pointer`}
                 >
-                  <Key className="w-4 h-4" />
+                  <IconDashboard className="w-4 h-4" />
                   <span>Admin Panel</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -52,7 +51,7 @@ export function NavMain({
                   tooltip="Admin Panel"
                   className={`hover:bg-white/30 cursor-pointer`}
                 >
-                  <Key className="w-4 h-4" />
+                  <IconDashboard className="w-4 h-4" />
                   <span>Admin Panel</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>

@@ -15,8 +15,8 @@ export function NavMain({ items }: NavMainProps) {
   const pathname = usePathname();
 
   return (
-    <SidebarGroup className="bg-transparent backdrop-blur-lg">
-      <SidebarGroupContent className="flex flex-col gap-2 bg-transparent backdrop-blur-lg ">
+    <SidebarGroup className="bg-transparent backdrop-glass-lg">
+      <SidebarGroupContent className="flex flex-col gap-2 bg-transparent backdrop-glass-lg ">
         <SidebarMenu></SidebarMenu>
         <SidebarMenu>
           {items.map((item) => (

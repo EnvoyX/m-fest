@@ -53,7 +53,7 @@ export function NavSecondary({
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-md bg-transparent backdrop-blur-lg">
+              <DialogContent className="sm:max-w-md bg-transparent backdrop-glass-lg">
                 <DialogHeader>
                   <DialogTitle>Need Help?</DialogTitle>
                   <DialogDescription>
