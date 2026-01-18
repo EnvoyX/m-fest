@@ -5,29 +5,32 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Profile | Mechanical Festival 2026",
-  description: "Profile to Mechanical Festival 2026",
+    title: "Profile | Mechanical Festival 2026",
+    description: "Profile to Mechanical Festival 2026",
 };
 
 export default function ProfilePage() {
-  return (
-    <section className="flex min-h-screen bg-transparent w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 dark:bg-transparent">
-      <div className="bg-transparent m-auto h-fit w-full max-w-7xl overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
-        <div className="bg-transparent -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6 backdrop-glass-sm">
-          <div className="text-center">
-            <h1 className="mb-1 mt-4 text-4xl font-bold text-start">
-              My Profile
-            </h1>
-            <p className="text-base text-start text-muted-foreground">
-              Please complete your profile below to able to register
-              competitions and events!
-            </p>
-          </div>
-          <Suspense fallback={<ProfileFormSkeleton />}>
-            <ProfileUpdateForm />
-          </Suspense>
-        </div>
-      </div>
-    </section>
-  );
+    return (
+        <section className="flex min-h-screen bg-transparent w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 dark:bg-transparent">
+            <div className="bg-transparent m-auto h-fit w-full max-w-7xl overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
+                <div className="bg-transparent -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6 backdrop-glass-sm">
+                    <div className="text-center">
+                        <h1 className="mb-1 mt-4 text-4xl font-bold text-start">
+                            My Profile
+                        </h1>
+                        <p className="text-base text-start text-destructive font-bold">
+                            Please complete your profile below to able to
+                            register competitions and events. Make sure your
+                            full name is match with your Student Card. Fill the
+                            institution field with its full name. These will
+                            help to verify your identity.
+                        </p>
+                    </div>
+                    <Suspense fallback={<ProfileFormSkeleton />}>
+                        <ProfileUpdateForm />
+                    </Suspense>
+                </div>
+            </div>
+        </section>
+    );
 }
