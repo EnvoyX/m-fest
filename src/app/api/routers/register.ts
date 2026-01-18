@@ -2,6 +2,7 @@ import { router, registerProctectedRateLimitedProcedure } from "@/server/api/trp
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { CompetitionName } from "../../../../prisma/generated/prisma/enums";
+import { getCurrentDate } from "@/lib/utils";
 
 export const registerRouter = router({
     registerTeam: registerProctectedRateLimitedProcedure
@@ -62,7 +63,7 @@ export const registerRouter = router({
                         status: "PENDING",
                         teamStatus: "PENDING",
                         verificationDeadlineAt: new Date(
-                            Date.now() + 3 * 24 * 60 * 60 * 1000 // 3 days in milliseconds
+                            getCurrentDate().getTime() + 3 * 24 * 60 * 60 * 1000 // 3 days in milliseconds
                         ),
                     },
                 });
@@ -106,7 +107,7 @@ export const registerRouter = router({
                         status: "PENDING",
                         teamStatus: "PENDING",
                         verificationDeadlineAt: new Date(
-                            Date.now() + 3 * 24 * 60 * 60 * 1000 // 3 days in milliseconds
+                            getCurrentDate().getTime() + 3 * 24 * 60 * 60 * 1000 // 3 days in milliseconds
                         ),
                     },
                 });

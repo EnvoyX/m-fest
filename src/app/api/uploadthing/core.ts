@@ -5,6 +5,7 @@ import { auth } from "@/server/auth/auth";
 import { db } from "@/server/db";
 import { deleteFiles } from "@/action/uploadthing.action";
 import { headers } from "next/headers";
+import { getCurrentDate } from "@/lib/utils";
 
 const f = createUploadthing();
 
@@ -132,7 +133,7 @@ export const ourFileRouter = {
                     data: {
                         identityCardImageUrl: file.ufsUrl,
                         identityCardImageKey: file.key,
-                        identityCardCreatedAt: new Date(),
+                        identityCardCreatedAt: getCurrentDate(),
                     },
                 });
 
@@ -204,7 +205,7 @@ export const ourFileRouter = {
                     data: {
                         twibbonImageUrl: file.ufsUrl,
                         twibbonImageKey: file.key,
-                        twibbonCreatedAt: new Date(),
+                        twibbonCreatedAt: getCurrentDate(),
                     },
                 });
 
@@ -272,7 +273,7 @@ export const ourFileRouter = {
                     data: {
                         followIgImageUrl: file.ufsUrl,
                         followIgImageKey: file.key,
-                        followIgCreatedAt: new Date(),
+                        followIgCreatedAt: getCurrentDate(),
                     },
                 });
 
@@ -345,7 +346,7 @@ export const ourFileRouter = {
                     data: {
                         submissionFileUrl: file.ufsUrl,
                         submissionFileKey: file.key,
-                        submissionFileCreatedAt: new Date(),
+                        submissionFileCreatedAt: getCurrentDate(),
                         submissionFileUploaded: true,
                     },
                 });
@@ -418,7 +419,7 @@ export const ourFileRouter = {
                     data: {
                         submissionFileUrl: file.ufsUrl,
                         submissionFileKey: file.key,
-                        submissionFileCreatedAt: new Date(),
+                        submissionFileCreatedAt: getCurrentDate(),
                         submissionFileUploaded: true,
                     },
                 });
@@ -490,7 +491,7 @@ export const ourFileRouter = {
                     data: {
                         submissionFileUrl: file.ufsUrl,
                         submissionFileKey: file.key,
-                        submissionFileCreatedAt: new Date(),
+                        submissionFileCreatedAt: getCurrentDate(),
                         submissionFileUploaded: true,
                     },
                 });

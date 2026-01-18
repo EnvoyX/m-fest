@@ -1,4 +1,5 @@
 import { env } from "@/env";
+import { getCurrentDate } from "@/lib/utils";
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -7,25 +8,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const staticRoutes: MetadataRoute.Sitemap = [
         {
             url: `${baseUrl}/`,
-            lastModified: new Date(),
+            lastModified: getCurrentDate(),
             changeFrequency: "daily",
             priority: 1,
         },
         {
             url: `${baseUrl}/competitions`,
-            lastModified: new Date(),
+            lastModified: getCurrentDate(),
             changeFrequency: "weekly",
             priority: 0.9,
         },
         {
             url: `${baseUrl}/events`,
-            lastModified: new Date(),
+            lastModified: getCurrentDate(),
             changeFrequency: "weekly",
             priority: 0.9,
         },
         {
             url: `${baseUrl}/login`,
-            lastModified: new Date(),
+            lastModified: getCurrentDate(),
             changeFrequency: "yearly",
             priority: 0.1,
         },
