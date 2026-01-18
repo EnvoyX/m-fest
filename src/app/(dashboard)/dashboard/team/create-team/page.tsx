@@ -20,8 +20,8 @@ async function CreateTeamPage() {
                         </p>
                         <p className="text-sm text-red-500 text-start font-bold mt-2">
                             Team must be at least 3 members and maximum of 5
-                            members. For STEM, team must consist of 3 members
-                            only.
+                            members. For STEM, BCC & IPPC, team must consist of
+                            3 members only. PDC up to 5 members.
                         </p>
                         <p className="text-sm text-red-500 text-start font-bold mt-2">
                             The first member is the team leader and the

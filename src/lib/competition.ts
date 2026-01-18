@@ -67,8 +67,8 @@ export const competitions: {
             endRegDate1,
             endRegDate2,
             endRegDate3,
-            fee1: 160000, // Early bird
-            fee2: 210000, // Regular
+            fee1: 150000, // Early bird
+            fee2: 200000, // Regular
             guideBook:
                 "https://drive.google.com/drive/folders/1BWJJ8mOQbO8S1psZmvJ_00pAr6ejR1G-?usp=sharing",
             icon: "Zap",
@@ -99,8 +99,8 @@ export const competitions: {
             prize2: "Rp3.500.000",
             prize3: "Rp2.500.000",
             prize4: "Most Favorite Poster: Rp 1.000.000",
-            fee1: 100000, // Early Bird
-            fee2: 120000, // Regular
+            fee1: 90000, // Early Bird
+            fee2: 110000, // Regular
             guideBook:
                 "https://drive.google.com/drive/folders/1Suy1QMroEjRlUzivl-gLiKBGDZ3oFBux?usp=sharing",
             isOpen: true,
@@ -132,8 +132,8 @@ export const competitions: {
             endRegDate1,
             endRegDate2,
             endRegDate3,
-            fee1: 210000, // Early Bird
-            fee2: 260000, // Regular
+            fee1: 200000, // Early Bird
+            fee2: 250000, // Regular
             guideBook:
                 "https://drive.google.com/drive/folders/17ADXN7Iom5nPJXJHEw2oQZvRRvf9q4fP?usp=sharing",
             isOpen: true,
@@ -163,8 +163,8 @@ export const competitions: {
             endRegDate1,
             endRegDate2,
             endRegDate3,
-            fee1: 130000, // Early Bird
-            fee2: 190000, // Regular
+            fee1: 120000, // Early Bird
+            fee2: 180000, // Regular
             guideBook:
                 "https://drive.google.com/drive/folders/1IfVYRpYq67Vk5Sgwnpvrr5eUKpKgNlng?usp=sharing",
             icon: "Sparkles",

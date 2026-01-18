@@ -103,11 +103,11 @@ async function FetchCompForm({
                         )?.title
                     }
                 </h1>
-                {comp.toUpperCase() === "STEM" && (
-                    <p className="text-xl mb-2 text-red-500">
-                        For STEM, team must consist of 3 members only.
-                    </p>
-                )}
+
+                <p className="text-xl mb-2 text-red-500">
+                    For STEM, BCC & IPPC, team must consist of 3 members only.
+                </p>
+
                 <h3 className="text-base">
                     {`Before you register, please read this competition's`}{" "}
                     <Link
