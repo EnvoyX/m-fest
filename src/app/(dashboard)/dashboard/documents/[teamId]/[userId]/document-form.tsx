@@ -17,241 +17,272 @@ import { documentsSchema } from "@/lib/schema";
 import { Badge } from "@/components/ui/badge";
 import type { CompetitionName } from "../../../../../../../prisma/generated/prisma/enums";
 import { getTwibbonFormatLink } from "@/lib/utils";
+import { ArrowUpRightIcon } from "lucide-react";
 
 function usePreventRefreshUserDuringUpload(isLoading: boolean) {
-  useEffect(() => {
-    const handler = (e: BeforeUnloadEvent) => {
-      if (isLoading) {
-        e.preventDefault();
-        e.returnValue = "";
-      }
-    };
+    useEffect(() => {
+        const handler = (e: BeforeUnloadEvent) => {
+            if (isLoading) {
+                e.preventDefault();
+                e.returnValue = "";
+            }
+        };
 
-    window.addEventListener("beforeunload", handler);
-    return () => window.removeEventListener("beforeunload", handler);
-  }, [isLoading]);
+        window.addEventListener("beforeunload", handler);
+        return () => window.removeEventListener("beforeunload", handler);
+    }, [isLoading]);
 }
 
 function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const router = useRouter();
-  const trpc = useTRPC();
-  // const { data: user, isFetched } = useQuery(
-  //   trpc.dashboard.getUserById.queryOptions({ userId })
-  // );
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const router = useRouter();
+    const trpc = useTRPC();
+    // const { data: user, isFetched } = useQuery(
+    //   trpc.dashboard.getUserById.queryOptions({ userId })
+    // );
 
-  const {
-    data,
-    isLoading: isLoadingUserDocuments,
-    isFetched: isFetchedUserDocuments,
-  } = useQuery(trpc.dashboard.getDocumentsByUserId.queryOptions({ userId }));
-  const queryClient = useQueryClient();
-  const { data: user } = useQuery(
-    trpc.dashboard.getUserById.queryOptions({ userId })
-  );
-  const { data: team } = useQuery(
-    trpc.dashboard.getTeamById.queryOptions({ teamId })
-  );
+    const {
+        data,
+        isLoading: isLoadingUserDocuments,
+        isFetched: isFetchedUserDocuments,
+    } = useQuery(trpc.dashboard.getDocumentsByUserId.queryOptions({ userId }));
+    const queryClient = useQueryClient();
+    const { data: user } = useQuery(
+        trpc.dashboard.getUserById.queryOptions({ userId }),
+    );
+    const { data: team } = useQuery(
+        trpc.dashboard.getTeamById.queryOptions({ teamId }),
+    );
 
-  const documents = data?.documents;
-  const userVerificationStatus = data?.status;
+    const documents = data?.documents;
+    const userVerificationStatus = data?.status;
 
-  const updateUserDocuments = useMutation({
-    ...trpc.dashboard.submitDocuments.mutationOptions(),
-    onMutate: () => {
-      setIsLoading(true);
-      toast.loading("Submitting file...", {
-        id: "submitting-file",
-      });
-    },
-    onSuccess: (data) => {
-      setIsLoading(false);
-      toast.dismiss("submitting-file");
-      toast.success("File submitted successfully!", {
-        description: data.message,
-      });
-    },
-    onError(error) {
-      setIsLoading(false);
-      toast.dismiss("submitting-file");
-      toast.error("Failed to submit file", {
-        description: error.message,
-      });
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: trpc.dashboard.getDocumentsByUserId.queryKey({
-          userId,
-        }),
-      });
-      router.refresh();
-    },
-  });
-
-  const twibbonFormatLink = getTwibbonFormatLink(
-    team?.competition as CompetitionName
-  );
-
-  const { handleSubmit, control, setValue } = useForm<documentsSchema>({
-    resolver: zodResolver(documentsSchema),
-    defaultValues: {
-      userId,
-      identityCard:
-        documents?.find((document) => document.type === "identityCard")
-          ?.imageUrl ?? "",
-      twibbon:
-        documents?.find((document) => document.type === "twibbon")?.imageUrl ??
-        "",
-      followIg:
-        documents?.find((document) => document.type === "followIg")?.imageUrl ??
-        "",
-    },
-  });
-
-  useEffect(() => {
-    if (documents) {
-      setValue("userId", userId);
-      setValue(
-        "identityCard",
-        documents?.find((document) => document.type === "identityCard")
-          ?.imageUrl ?? ""
-      );
-      setValue(
-        "twibbon",
-        documents?.find((document) => document.type === "twibbon")?.imageUrl ??
-          ""
-      );
-      setValue(
-        "followIg",
-        documents?.find((document) => document.type === "followIg")?.imageUrl ??
-          ""
-      );
-    }
-  }, [documents, setValue, userId]);
-
-  usePreventRefreshUserDuringUpload(isLoading);
-
-  if (isFetchedUserDocuments)
-    queryClient.invalidateQueries({
-      queryKey: trpc.dashboard.getDocumentsByUserId.queryKey({ userId }),
+    const updateUserDocuments = useMutation({
+        ...trpc.dashboard.submitDocuments.mutationOptions(),
+        onMutate: () => {
+            setIsLoading(true);
+            toast.loading("Submitting file...", {
+                id: "submitting-file",
+            });
+        },
+        onSuccess: (data) => {
+            setIsLoading(false);
+            toast.dismiss("submitting-file");
+            toast.success("File submitted successfully!", {
+                description: data.message,
+            });
+        },
+        onError(error) {
+            setIsLoading(false);
+            toast.dismiss("submitting-file");
+            toast.error("Failed to submit file", {
+                description: error.message,
+            });
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries({
+                queryKey: trpc.dashboard.getDocumentsByUserId.queryKey({
+                    userId,
+                }),
+            });
+            router.refresh();
+        },
     });
-  if (isLoadingUserDocuments) return <DocumentFormSkeleton />;
 
-  async function onSubmit(formData: documentsSchema) {
-    updateUserDocuments.mutate(formData);
-  }
+    const twibbonFormatLink = getTwibbonFormatLink(
+        team?.competition as CompetitionName,
+    );
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col gap-5 mt-5">
-        <div className="w-full flex flex-col justify-center sm:flex-row sm:justify-between items-center">
-          <div className="w-full flex justify-center sm:justify-start gap-2 items-center">
-            <h2 className="text-xl font-bold">Verification Status</h2>
-            <Badge variant={"outline"}>
-              {userVerificationStatus === "PENDING" ? (
-                <p className="text-sm text-yellow-500">Pending</p>
-              ) : userVerificationStatus === "ACCEPTED" ? (
-                <p className="text-sm text-green-500">Verified</p>
-              ) : (
-                <p className="text-sm text-red-500">Not Submitted</p>
-              )}
-            </Badge>
-          </div>
-          <div className="w-full flex justify-center sm:justify-end items-center mt-2 sm:mt-0">
-            <p className="text-sm border-2 bg-white/10 backdrop-glass-lg text-white px-2 py-1 rounded-full">
-              <span className="font-bold text-[#52a9df] truncate">
-                {team?.name}
-              </span>{" "}
-              |{" "}
-              <span className="font-bold text-[#75f376] truncate">
-                {user?.name}
-              </span>
-            </p>
-          </div>
-        </div>
-        {documents?.map((document) => {
-          const {
-            title,
-            type,
-            submissionDetail,
-            id,
-            acceptedFiles,
-            uploadThingRoute,
-          } = document;
-          return (
-            <main key={id} className="border rounded-lg p-5 backdrop-glass-sm">
-              <div className="mb-6">
-                <div className="mb-8 w-full flex max-sm:flex-col justify-between items-center  ">
-                  <h1 className="text-3xl max-sm:mb-4">{title}</h1>
-                  <div
-                    className={`px-4 py-2 rounded-full border bg-accent-foreground/10`}
-                  >
-                    {document.status === "AWAITING_UPLOAD" ? (
-                      <p className="text-sm text-muted-foreground">
-                        Not Submitted
-                      </p>
-                    ) : document.status === "PENDING" ? (
-                      <p className="text-sm text-yellow-500">Pending</p>
-                    ) : (
-                      <p className="text-sm text-green-500">Verified</p>
-                    )}
-                  </div>
+    const { handleSubmit, control, setValue } = useForm<documentsSchema>({
+        resolver: zodResolver(documentsSchema),
+        defaultValues: {
+            userId,
+            identityCard:
+                documents?.find((document) => document.type === "identityCard")
+                    ?.imageUrl ?? "",
+            twibbon:
+                documents?.find((document) => document.type === "twibbon")
+                    ?.imageUrl ?? "",
+            followIg:
+                documents?.find((document) => document.type === "followIg")
+                    ?.imageUrl ?? "",
+        },
+    });
+
+    useEffect(() => {
+        if (documents) {
+            setValue("userId", userId);
+            setValue(
+                "identityCard",
+                documents?.find((document) => document.type === "identityCard")
+                    ?.imageUrl ?? "",
+            );
+            setValue(
+                "twibbon",
+                documents?.find((document) => document.type === "twibbon")
+                    ?.imageUrl ?? "",
+            );
+            setValue(
+                "followIg",
+                documents?.find((document) => document.type === "followIg")
+                    ?.imageUrl ?? "",
+            );
+        }
+    }, [documents, setValue, userId]);
+
+    usePreventRefreshUserDuringUpload(isLoading);
+
+    if (isFetchedUserDocuments)
+        queryClient.invalidateQueries({
+            queryKey: trpc.dashboard.getDocumentsByUserId.queryKey({ userId }),
+        });
+    if (isLoadingUserDocuments) return <DocumentFormSkeleton />;
+
+    async function onSubmit(formData: documentsSchema) {
+        updateUserDocuments.mutate(formData);
+    }
+
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-5 mt-5">
+                <div className="w-full flex flex-col justify-center sm:flex-row sm:justify-between items-center">
+                    <div className="w-full flex justify-center sm:justify-start gap-2 items-center">
+                        <h2 className="text-xl font-bold">
+                            Verification Status
+                        </h2>
+                        <Badge variant={"outline"}>
+                            {userVerificationStatus === "PENDING" ? (
+                                <p className="text-sm text-yellow-500">
+                                    Pending
+                                </p>
+                            ) : userVerificationStatus === "ACCEPTED" ? (
+                                <p className="text-sm text-green-500">
+                                    Verified
+                                </p>
+                            ) : (
+                                <p className="text-sm text-red-500">
+                                    Not Submitted
+                                </p>
+                            )}
+                        </Badge>
+                    </div>
+                    <div className="w-full flex justify-center sm:justify-end items-center mt-2 sm:mt-0">
+                        <p className="text-sm border-2 bg-white/10 backdrop-glass-lg text-white px-2 py-1 rounded-full">
+                            <span className="font-bold text-[#52a9df] truncate">
+                                {team?.name}
+                            </span>{" "}
+                            |{" "}
+                            <span className="font-bold text-[#75f376] truncate">
+                                {user?.name}
+                            </span>
+                        </p>
+                    </div>
                 </div>
-                <h3 className="text-muted-foreground">Submission Detail</h3>
-                <div className="flex justify-start gap-5">
-                  <p>{submissionDetail}</p>
-                </div>
-                {type === "twibbon" && (
-                  <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-2 my-4">
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="sm"
-                      className="rounded-lg text-base font-bold max-sm:w-full max-sm:max-w-sm"
-                    >
-                      <Link href={twibbonFormatLink} target="_blank">
-                        <span>Twibbon & Caption</span>
-                      </Link>
-                    </Button>
-                    <Button
-                      asChild
-                      variant="outline"
-                      size="sm"
-                      className="rounded-lg text-base font-bold max-sm:w-full max-sm:max-w-sm"
-                    >
-                      <Link
-                        href={`https://drive.google.com/drive/folders/16a7CaXlXSdSiyMy-l0PqnZLKH-bXbgRj`}
-                        target="_blank"
-                      >
-                        <span>Example</span>
-                      </Link>
-                    </Button>
-                  </div>
-                )}
-              </div>
-              <div className="grid grid-cols-1">
-                {document.status === "AWAITING_UPLOAD" ? (
-                  <UploadDocumentDialog
-                    isLoading={isLoading}
-                    setIsLoading={setIsLoading}
-                    id={id}
-                    title={title}
-                    type={type as UploadThingRoute}
-                    uploadThingRoute={uploadThingRoute as UploadThingRoute}
-                    setValue={setValue}
-                    userId={userId}
-                  />
-                ) : document.status === "PENDING" ? (
-                  <p className="text-sm text-yellow-500">
-                    You have already submitted your {document.title} document.
-                    Please wait for the documents process to complete.
-                  </p>
-                ) : (
-                  <p className="text-sm text-green-500">
-                    This document have been verified.
-                  </p>
-                )}
-                {/*<div className="mt-5">
+                {documents?.map((document) => {
+                    const {
+                        title,
+                        type,
+                        submissionDetail,
+                        id,
+                        acceptedFiles,
+                        uploadThingRoute,
+                    } = document;
+                    return (
+                        <main
+                            key={id}
+                            className="border rounded-lg p-5 backdrop-glass-sm"
+                        >
+                            <div className="mb-6">
+                                <div className="mb-8 w-full flex max-sm:flex-col justify-between items-center  ">
+                                    <h1 className="text-3xl max-sm:mb-4">
+                                        {title}
+                                    </h1>
+                                    <div
+                                        className={`px-4 py-2 rounded-full border bg-accent-foreground/10`}
+                                    >
+                                        {document.status ===
+                                        "AWAITING_UPLOAD" ? (
+                                            <p className="text-sm text-muted-foreground">
+                                                Not Submitted
+                                            </p>
+                                        ) : document.status === "PENDING" ? (
+                                            <p className="text-sm text-yellow-500">
+                                                Pending
+                                            </p>
+                                        ) : (
+                                            <p className="text-sm text-green-500">
+                                                Verified
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+                                <h3 className="text-muted-foreground">
+                                    Submission Detail
+                                </h3>
+                                <div className="flex justify-start gap-5">
+                                    <p>{submissionDetail}</p>
+                                </div>
+                                {type === "twibbon" && (
+                                    <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-2 my-4">
+                                        <Button
+                                            asChild
+                                            variant="outline"
+                                            size="sm"
+                                            className="rounded-lg text-base font-bold max-sm:w-full max-sm:max-w-sm bg-white/15"
+                                        >
+                                            <Link
+                                                href={twibbonFormatLink}
+                                                target="_blank"
+                                                className="flex items-center"
+                                            >
+                                                <span>Twibbon & Caption</span>{" "}
+                                                <ArrowUpRightIcon />
+                                            </Link>
+                                        </Button>
+                                        <Button
+                                            asChild
+                                            variant="outline"
+                                            size="sm"
+                                            className="rounded-lg text-base font-bold max-sm:w-full max-sm:max-w-sm bg-white/15"
+                                        >
+                                            <Link
+                                                href={`https://drive.google.com/drive/folders/16a7CaXlXSdSiyMy-l0PqnZLKH-bXbgRj`}
+                                                target="_blank"
+                                                className="flex items-center"
+                                            >
+                                                <span>Example</span>{" "}
+                                                <ArrowUpRightIcon />
+                                            </Link>
+                                        </Button>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="grid grid-cols-1">
+                                {document.status === "AWAITING_UPLOAD" ? (
+                                    <UploadDocumentDialog
+                                        isLoading={isLoading}
+                                        setIsLoading={setIsLoading}
+                                        id={id}
+                                        title={title}
+                                        type={type as UploadThingRoute}
+                                        uploadThingRoute={
+                                            uploadThingRoute as UploadThingRoute
+                                        }
+                                        setValue={setValue}
+                                        userId={userId}
+                                    />
+                                ) : document.status === "PENDING" ? (
+                                    <p className="text-sm text-yellow-500">
+                                        You have already submitted your{" "}
+                                        {document.title} document. Please wait
+                                        for the documents process to complete.
+                                    </p>
+                                ) : (
+                                    <p className="text-sm text-green-500">
+                                        This document have been verified.
+                                    </p>
+                                )}
+                                {/*<div className="mt-5">
                                     {document.imageUrl && (
                                         <>
                                             <h1 className="mb-2 text-muted-foreground">
@@ -267,92 +298,107 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                                         </>
                                     )}
                                 </div>*/}
-                <div className="mt-3 w-full max-w-sm">
-                  <Controller
-                    name={type}
-                    control={control}
-                    render={({ field, fieldState }) => (
-                      <Field data-invalid={fieldState.invalid}>
-                        <FieldLabel htmlFor={field.name} className="hidden">
-                          {title}
-                        </FieldLabel>
-                        <Input
-                          {...field}
-                          id={field.name}
-                          aria-invalid={fieldState.invalid}
-                          disabled
-                          readOnly
-                          // type="hidden"
-                        />
-                        {fieldState.invalid && (
-                          <FieldError
-                            errors={[fieldState.error]}
-                            className="mt-2"
-                          />
-                        )}
-                      </Field>
-                    )}
-                  />
-                </div>
-                <h3 className="mt-6 text-muted-foreground">
-                  {document.type === "twibbon"
-                    ? "Accepted File Types (Max 8MB):"
-                    : "Accepted File Types (Max 4MB):"}
-                </h3>
-                <p className="mt-2">{acceptedFiles.join(", ")}</p>
+                                <div className="mt-3 w-full max-w-sm">
+                                    <Controller
+                                        name={type}
+                                        control={control}
+                                        render={({ field, fieldState }) => (
+                                            <Field
+                                                data-invalid={
+                                                    fieldState.invalid
+                                                }
+                                            >
+                                                <FieldLabel
+                                                    htmlFor={field.name}
+                                                    className="hidden"
+                                                >
+                                                    {title}
+                                                </FieldLabel>
+                                                <Input
+                                                    {...field}
+                                                    id={field.name}
+                                                    aria-invalid={
+                                                        fieldState.invalid
+                                                    }
+                                                    disabled
+                                                    readOnly
+                                                    // type="hidden"
+                                                />
+                                                {fieldState.invalid && (
+                                                    <FieldError
+                                                        errors={[
+                                                            fieldState.error,
+                                                        ]}
+                                                        className="mt-2"
+                                                    />
+                                                )}
+                                            </Field>
+                                        )}
+                                    />
+                                </div>
+                                <h3 className="mt-6 text-muted-foreground">
+                                    {document.type === "twibbon"
+                                        ? "Accepted File Types (Max 8MB):"
+                                        : "Accepted File Types (Max 4MB):"}
+                                </h3>
+                                <p className="mt-2">
+                                    {acceptedFiles.join(", ")}
+                                </p>
 
-                <div className="flex justify-between items-center">
-                  {document.imageUrl && (
-                    <div>
-                      <h1 className="mt-5 text-muted-foreground">
-                        Uploaded file:
-                      </h1>
-                      <p className="text-sm">
-                        Last uploaded:{" "}
-                        <span>
-                          {`${
-                            document.createdAt
-                              ? new Date(document.createdAt).toDateString()
-                              : ""
-                          } at ${
-                            document.createdAt
-                              ? new Date(
-                                  document.createdAt
-                                ).toLocaleTimeString()
-                              : ""
-                          }`}
-                        </span>
-                      </p>
-                      <Link
-                        href={document.imageUrl}
-                        className="underline italic text-blue-400"
-                        target="_blank"
-                      >
-                        View Uploaded File
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className="w-full flex justify-center items-center mt-5"></div>
-            </main>
-          );
-        })}
-      </div>
-      <Button
-        type="submit"
-        disabled={isLoading || userVerificationStatus === "ACCEPTED"}
-        className="cursor-pointer w-full mt-5 backdrop-glass-sm"
-        variant={"outline"}
-      >
-        {userVerificationStatus === "NOT_SUBMITTED"
-          ? "Submit Documents"
-          : userVerificationStatus === "PENDING"
-          ? "Update Documents"
-          : "Documents Verified"}
-      </Button>
-    </form>
-  );
+                                <div className="flex justify-between items-center">
+                                    {document.imageUrl && (
+                                        <div>
+                                            <h1 className="mt-5 text-muted-foreground">
+                                                Uploaded file:
+                                            </h1>
+                                            <p className="text-sm">
+                                                Last uploaded:{" "}
+                                                <span>
+                                                    {`${
+                                                        document.createdAt
+                                                            ? new Date(
+                                                                  document.createdAt,
+                                                              ).toDateString()
+                                                            : ""
+                                                    } at ${
+                                                        document.createdAt
+                                                            ? new Date(
+                                                                  document.createdAt,
+                                                              ).toLocaleTimeString()
+                                                            : ""
+                                                    }`}
+                                                </span>
+                                            </p>
+                                            <Link
+                                                href={document.imageUrl}
+                                                className="underline italic text-blue-400"
+                                                target="_blank"
+                                            >
+                                                View Uploaded File
+                                            </Link>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="w-full flex justify-center items-center mt-5"></div>
+                        </main>
+                    );
+                })}
+            </div>
+            <Button
+                type="submit"
+                disabled={isLoading || userVerificationStatus === "ACCEPTED"}
+                className="cursor-pointer w-full mt-5 backdrop-glass-sm"
+                variant={"outline"}
+            >
+                {userVerificationStatus === "NOT_SUBMITTED"
+                    ? "Submit Documents"
+                    : userVerificationStatus === "PENDING"
+                      ? "Update Documents"
+                      : "Documents Verified"}
+            </Button>
+        </form>
+    );
 }
 
 export default DocumentsForm;

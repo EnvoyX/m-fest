@@ -5,6 +5,7 @@ import DocumentFormSkeleton from "@/components/document/DocumentFormSkeleton";
 import { db } from "@/server/db";
 import { redirect } from "next/navigation";
 import { env } from "@/env";
+import { getCurrentDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
     title: "Verify Member Documents | Mechanical Festival 2026",
@@ -51,14 +52,16 @@ async function RenderDocumentsForm({
 }: {
     params: Promise<{ userId: string; teamId: string }>;
 }) {
+    const currentDate = getCurrentDate();
     const { userId, teamId } = await params;
     const team = await db.team.findUnique({
         where: { id: teamId },
         select: { verificationDeadlineAt: true },
     });
     const isDeadlinePassed = team?.verificationDeadlineAt
-        ? new Date(team?.verificationDeadlineAt) < new Date()
+        ? new Date(team?.verificationDeadlineAt) < currentDate
         : false;
+    console.log("Is Deadline Passed:", isDeadlinePassed);
     if (isDeadlinePassed) {
         redirect(`${env.NEXT_PUBLIC_BASE_URL}/dashboard/documents/${teamId}`);
     }

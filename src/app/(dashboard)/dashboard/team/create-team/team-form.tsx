@@ -28,6 +28,8 @@ function TeamForm() {
     } = useQuery({
         ...trpc.dashboard.getUser.queryOptions(),
         refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: false,
     });
     const router = useRouter();
     const [emailDuplicates, setEmailDuplicates] = useState<string[]>([]);
@@ -68,7 +70,7 @@ function TeamForm() {
                     z.object({
                         name: z
                             .string()
-                            .min(5, "Name must be member's fullname"),
+                            .min(1, "Name must be member's fullname"),
                         email: z.email("Invalid email"),
                         institution: z
                             .string()
@@ -83,7 +85,6 @@ function TeamForm() {
             const emails = data.members.map((member) =>
                 member.email.toLowerCase().trim(),
             );
-            const members = data.members;
             const duplicates = emails.filter(
                 (email, index) => emails.indexOf(email) !== index,
             );

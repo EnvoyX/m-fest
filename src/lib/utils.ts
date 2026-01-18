@@ -8,10 +8,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // Real date
-export const currentDate = new Date();
+export const getCurrentDate = () => new Date();
 // For testing date
-// export const currentDate = new Date("2026-01-20T00:00:00");
+// export const getCurrentDate = () => new Date("2026-01-21T00:00:00");
 
+const currentDate = getCurrentDate();
 export function getCompFee(comp: string) {
     const compStartDate1 = competitions.find(
         (competition) => competition.abbreviation === comp.toUpperCase(),

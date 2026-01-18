@@ -1,12 +1,13 @@
 import { competitions } from "@/lib/competition";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Clock, Download } from "lucide-react";
+import { ArrowUpRightIcon, ChevronRight, Clock, Download } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { BlurFade } from "@/components/ui/blur-fade";
-import { currentDate } from "@/lib/utils";
+import { getCurrentDate } from "@/lib/utils";
 
 export default function CompetitionsList() {
+    const currentDate = getCurrentDate();
     return (
         <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
             <BlurFade inView delay={0.2}>
@@ -51,10 +52,10 @@ export default function CompetitionsList() {
                             size="lg"
                             className="rounded-lg text-base font-bold px-6 py-6"
                         >
-                            {/*<Link href={competition.guideBook} target="_blank">
-                                <span>Download Guidebook</span>
-                                <Download className="ml-2 size-5" />
-                            </Link>*/}
+                            <Link href={competition.guideBook} target="_blank">
+                                <span>Guidebook</span>
+                                <ArrowUpRightIcon className="ml-2 size-5" />
+                            </Link>
                         </Button>
 
                         <Button
@@ -77,7 +78,7 @@ export default function CompetitionsList() {
                                 </span>
                             ) : (
                                 <Link
-                                    href={`/dashboard/competitions`}
+                                    href={`/dashboard/team`}
                                     prefetch
                                     className="flex items-center gap-2"
                                 >

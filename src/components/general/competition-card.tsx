@@ -41,17 +41,16 @@ export default function CompetitionCard({
     return (
         <Link
             href={href}
-            // Use 'transform-gpu' to force hardware acceleration
             className="group block w-48 rounded-xl overflow-hidden shadow-lg bg-white transition-transform transform-gpu md:grayscale hover:grayscale-0 hover:-translate-y-1"
         >
             <div className="relative h-120 w-full overflow-hidden">
                 <Image
                     src={card}
                     alt={title}
-                    fill // Fills the parent container
-                    sizes="(max-width: 768px) 160px, 192px" // Tells browser exactly how big the image will be
+                    fill
+                    sizes="(max-width: 768px) 160px, 192px"
                     className="transition-transform duration-500 "
-                    priority={false} // Ensures lazy loading
+                    priority={false}
                 />
             </div>
         </Link>

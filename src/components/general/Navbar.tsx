@@ -51,33 +51,6 @@ export const Navbar = () => {
         enabled: session?.user ? true : false,
     });
 
-    const containerVariants = {
-        open: {
-            transition: {
-                staggerChildren: 0.1,
-            },
-        },
-        closed: {
-            transition: {
-                staggerChildren: 0.05,
-                staggerDirection: -1,
-            },
-        },
-    };
-
-    const itemVariants = {
-        open: {
-            opacity: 1,
-            x: 0,
-            transition: { duration: 0.3 },
-        },
-        closed: {
-            opacity: 0,
-            x: -10,
-            transition: { duration: 0.2 },
-        },
-    };
-
     const handleLogout = async () => {
         setIsLoading(true);
         const toastId = toast.loading("Logging out...");
@@ -354,81 +327,45 @@ export const Navbar = () => {
                                                 </AccordionTrigger>
 
                                                 <AccordionContent className="pt-4 pb-0 flex flex-col gap-4 pl-4 border-l border-white/20 mt-2">
-                                                    <motion.div
-                                                        variants={
-                                                            containerVariants
-                                                        }
-                                                        initial="closed"
-                                                        animate="open"
-                                                        exit="closed"
-                                                    >
-                                                        <div className="space-y-3">
-                                                            <p className="text-xs font-bold uppercase tracking-wider opacity-50">
-                                                                Competitions
-                                                            </p>
-                                                            {compNavLinks.map(
-                                                                (comp) => (
-                                                                    <motion.div
-                                                                        key={
-                                                                            comp.name
-                                                                        }
-                                                                        variants={
-                                                                            itemVariants
-                                                                        }
-                                                                    >
-                                                                        <Link
-                                                                            key={
-                                                                                comp.name
-                                                                            }
-                                                                            href={
-                                                                                comp.href
-                                                                            }
-                                                                            className="block text-sm hover:translate-x-1 transition-transform"
-                                                                        >
-                                                                            {
-                                                                                comp.name
-                                                                            }
-                                                                        </Link>
-                                                                    </motion.div>
-                                                                ),
-                                                            )}
-                                                        </div>
+                                                    <div className="space-y-3">
+                                                        <p className="text-xs font-bold uppercase tracking-wider opacity-50">
+                                                            Competitions
+                                                        </p>
+                                                        {compNavLinks.map(
+                                                            (comp) => (
+                                                                <Link
+                                                                    key={
+                                                                        comp.name
+                                                                    }
+                                                                    href={
+                                                                        comp.href
+                                                                    }
+                                                                    className="block text-sm hover:translate-x-1 transition-transform"
+                                                                >
+                                                                    {comp.name}
+                                                                </Link>
+                                                            ),
+                                                        )}
+                                                    </div>
 
-                                                        <div className="space-y-3 mt-2">
-                                                            <p className="text-xs font-bold uppercase tracking-wider opacity-50">
-                                                                Events
-                                                            </p>
-                                                            {eventNavLinks.map(
-                                                                (
-                                                                    event,
-                                                                    index,
-                                                                ) => (
-                                                                    <motion.div
-                                                                        key={
-                                                                            index
-                                                                        }
-                                                                        variants={
-                                                                            itemVariants
-                                                                        }
-                                                                    >
-                                                                        <Link
-                                                                            key={
-                                                                                index
-                                                                            }
-                                                                            href={
-                                                                                event.href
-                                                                            }
-                                                                            className="block text-sm hover:translate-x-1 transition-transform"
-                                                                        >
-                                                                            {
-                                                                                event.name
-                                                                            }
-                                                                        </Link>
-                                                                    </motion.div>
-                                                                ),
-                                                            )}
-                                                        </div>
-                                                    </motion.div>
+                                                    <div className="space-y-3 mt-2">
+                                                        <p className="text-xs font-bold uppercase tracking-wider opacity-50">
+                                                            Events
+                                                        </p>
+                                                        {eventNavLinks.map(
+                                                            (event, index) => (
+                                                                <Link
+                                                                    key={index}
+                                                                    href={
+                                                                        event.href
+                                                                    }
+                                                                    className="block text-sm hover:translate-x-1 transition-transform"
+                                                                >
+                                                                    {event.name}
+                                                                </Link>
+                                                            ),
+                                                        )}
+                                                    </div>
                                                 </AccordionContent>
                                             </AccordionItem>
                                         </Accordion>

@@ -283,14 +283,11 @@ export const ourFileRouter = {
             }
         }),
     submitFileBCC: f({
-        "application/zip": {
-            maxFileSize: "16MB",
+        blob: {
+            maxFileSize: "64GB",
             maxFileCount: 1,
         },
-        "application/pdf": {
-            maxFileSize: "16MB",
-            maxFileCount: 1,
-        },
+
     })
         .middleware(async () => {
             const session = await auth.api.getSession({
@@ -360,12 +357,8 @@ export const ourFileRouter = {
             }
         }),
     submitFileIPPC: f({
-        "application/zip": {
-            maxFileSize: "16MB",
-            maxFileCount: 1,
-        },
-        "application/pdf": {
-            maxFileSize: "16MB",
+        blob: {
+            maxFileSize: "64GB",
             maxFileCount: 1,
         },
     })
@@ -436,12 +429,8 @@ export const ourFileRouter = {
             }
         }),
     submitFilePDC: f({
-        "application/zip": {
-            maxFileSize: "16MB",
-            maxFileCount: 1,
-        },
-        "application/pdf": {
-            maxFileSize: "16MB",
+        blob: {
+            maxFileSize: "64GB",
             maxFileCount: 1,
         },
     })
@@ -512,8 +501,8 @@ export const ourFileRouter = {
             }
         }),
     submitExam: f({
-        "application/pdf": {
-            maxFileSize: "16MB",
+        blob: {
+            maxFileSize: "64GB",
             maxFileCount: 1,
         },
     })

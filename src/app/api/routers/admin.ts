@@ -3,7 +3,6 @@ import { router, adminProcedure, superAdminProcedure } from "@/server/api/trpc";
 import { z } from "zod";
 import { deleteFiles } from "@/action/uploadthing.action";
 import { TRPCError } from "@trpc/server";
-import type { TeamStatus } from "../../../../prisma/generated/prisma/enums";
 
 export const adminRouter = router({
     getUsers: adminProcedure.query(async () => {
@@ -758,6 +757,30 @@ export const adminRouter = router({
                 },
             });
         }),
+    resetCompSubmission: adminProcedure
+        .input(
+            z.object({
+                compRegistrationId: z.string(),
+                teamId: z.string(),
+                fileKey: z.string(),
+            })
+        )
+        .mutation(async ({ input, ctx }) => {
+            await deleteFiles(input.fileKey);
+            await ctx.db.compRegistration.update({
+                where: {
+                    id: input.compRegistrationId,
+                    teamId: input.teamId,
+                },
+                data: {
+                    submissionFileName: null,
+                    submissionFileKey: null,
+                    submissionFileUrl: null,
+                    submissionFileSubmitted: false,
+                    submissionFileUploaded: false,
+                },
+            });
+        }),
     deleteCompRegistration: adminProcedure
         .input(
             z.object({
@@ -810,6 +833,7 @@ export const adminRouter = router({
                 },
             });
         }),
+
     deleteUser: adminProcedure
         .input(
             z.object({

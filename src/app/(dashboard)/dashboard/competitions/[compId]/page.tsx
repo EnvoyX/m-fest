@@ -3,12 +3,6 @@ import SubmitForm from "@/components/dashboard/competitions/SubmitForm";
 import { Button } from "@/components/ui/button";
 import { LinkPreview } from "@/components/ui/link-preview";
 import { Separator } from "@/components/ui/separator";
-import {
-    submissionDeadlineBCC,
-    submissionDeadlineIPPC,
-    submissionDeadlinePDC,
-    submissionOpenDate,
-} from "@/constants/constants";
 import { competitions } from "@/lib/competition";
 import { auth } from "@/server/auth/auth";
 import { db } from "@/server/db";
@@ -17,27 +11,37 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Button as HeroButton } from "@heroui/react";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import { SubmissionSkeleton } from "./CompFormSkeleton";
+import { getCurrentDate } from "@/lib/utils";
 
 export async function generateMetadata({
     params,
 }: {
-    params: Promise<{ comp: string }>;
+    params: Promise<{ compId: string }>;
 }): Promise<Metadata> {
-    const comp = (await params).comp;
+    const compId = (await params).compId;
+    const competition = await db.compRegistration.findUnique({
+        where: {
+            id: compId,
+        },
+    });
     return {
-        title: `${comp.toUpperCase()} Submission | Mechanical Festival 2026`,
-        description: `Dashboard ${comp.toUpperCase()} Competition`,
+        title: `Competition ${competition?.competitionName} Details | Mechanical Festival 2026`,
+        description: `Dashboard Competition ${competition?.competitionName} details`,
     };
 }
 
 export default function CompPage({
     params,
 }: {
-    params: Promise<{ comp: string }>;
+    params: Promise<{ compId: string }>;
 }) {
     return (
         <>
-            <FetchCompForm params={params} />
+            <Suspense fallback={<SubmissionSkeleton />}>
+                <FetchCompForm params={params} />
+            </Suspense>
         </>
     );
 }
@@ -45,11 +49,21 @@ export default function CompPage({
 async function FetchCompForm({
     params,
 }: {
-    params: Promise<{ comp: string }>;
+    params: Promise<{ compId: string }>;
 }) {
-    const { comp } = await params;
+    const { compId } = await params;
+    const currentDate = getCurrentDate();
+    const competition = await db.compRegistration.findUnique({
+        where: {
+            id: compId,
+        },
+    });
+    const thisComp = competitions.find(
+        (comp) => comp.abbreviation === competition?.competitionName,
+    );
+    const comp = competition?.competitionName;
     const submissionDeadline = competitions.find(
-        (competition) => competition.abbreviation === comp.toUpperCase(),
+        (competition) => competition.abbreviation === comp?.toUpperCase(),
     )?.submissionDeadline;
     const session = await auth.api.getSession({
         headers: await headers(),
@@ -66,7 +80,7 @@ async function FetchCompForm({
         },
     });
 
-    if (!comp) {
+    if (!comp || !competition || !compId) {
         redirect("/dashboard/competitions");
     }
 
@@ -100,17 +114,6 @@ async function FetchCompForm({
                                           : null}{" "}
                                 2026
                             </span>
-                            <span>
-                                {comp.toUpperCase() === "BCC"
-                                    ? submissionOpenDate
-                                    : comp.toUpperCase() === "IPPC"
-                                      ? new Date().toDateString()
-                                      : comp.toUpperCase() === "PDC"
-                                        ? submissionOpenDate
-                                        : comp.toUpperCase() === "STEM"
-                                          ? "1 Ferbuary 2026"
-                                          : null}
-                            </span>
                         </div>
                         <Separator orientation="horizontal" />
                         <div className="mt-6 mb-6 text-white w-full">
@@ -125,8 +128,7 @@ async function FetchCompForm({
                                 Good luck!
                                 <br />
                                 If there is any question you can contact our
-                                contact person by press &quot;Get Help&quot;
-                                button.
+                                contact person in the home page.
                                 <br />
                                 You can submit your exam by press
                                 &quot;Submit&quot; after you finish your work.
@@ -202,17 +204,6 @@ async function FetchCompForm({
                                       : null}{" "}
                             2026
                         </span>
-                        <span>
-                            {comp.toUpperCase() === "BCC"
-                                ? submissionOpenDate
-                                : comp.toUpperCase() === "IPPC"
-                                  ? new Date().toDateString()
-                                  : comp.toUpperCase() === "PDC"
-                                    ? submissionOpenDate
-                                    : comp.toUpperCase() === "STEM"
-                                      ? "1 Ferbuary 2026"
-                                      : null}
-                        </span>
                     </div>
                     <Separator orientation="horizontal" />
                     <div className="mt-6 mb-6 text-white w-full">
@@ -228,7 +219,7 @@ async function FetchCompForm({
                             Good luck!
                             <br />
                             If there is any question you can contact our contact
-                            person by press &quot;Get Help&quot; button.
+                            person in the home page.
                             <br />
                             You can submit your submission by press
                             &quot;Submit&quot; button on the right
@@ -251,19 +242,12 @@ async function FetchCompForm({
                             </Button>
                         </div>
                         <p className="mt-3 text-red-600">
-                            <span className="font-semibold">DEADLINE :</span>{" "}
-                            {comp.toUpperCase() === "BCC"
-                                ? submissionDeadlineBCC
-                                : comp.toUpperCase() === "IPPC"
-                                  ? submissionDeadlineIPPC
-                                  : comp.toUpperCase() === "PDC"
-                                    ? submissionDeadlinePDC
-                                    : comp.toUpperCase() === "STEM"
-                                      ? ""
-                                      : null}{" "}
-                            at 23.59
+                            <span className="font-semibold">
+                                {thisComp?.submissionContext}{" "}
+                                {thisComp?.submissionDeadline?.toDateString()}
+                            </span>{" "}
                         </p>
-                        <div className="mt-6">
+                        <div className="mt-6 flex justify-center sm:justify-start">
                             <CountdownClient
                                 date={
                                     competitions.find(
@@ -278,9 +262,12 @@ async function FetchCompForm({
                         </div>
                     </div>
                 </div>
-                {submissionDeadline && new Date() < submissionDeadline && (
+                {submissionDeadline && currentDate < submissionDeadline && (
                     <div className="p-6 bg-transparent ">
-                        <SubmitForm comp={comp} />
+                        <SubmitForm
+                            comp={comp}
+                            leaderUserId={team.leaderUserId}
+                        />
                     </div>
                 )}
             </div>
