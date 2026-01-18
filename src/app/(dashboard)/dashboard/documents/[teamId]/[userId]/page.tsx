@@ -61,7 +61,7 @@ async function RenderDocumentsForm({
     const isDeadlinePassed = team?.verificationDeadlineAt
         ? new Date(team?.verificationDeadlineAt) < currentDate
         : false;
-    console.log("Is Deadline Passed:", isDeadlinePassed);
+    // console.log("Is Deadline Passed:", isDeadlinePassed);
     if (isDeadlinePassed) {
         redirect(`${env.NEXT_PUBLIC_BASE_URL}/dashboard/documents/${teamId}`);
     }

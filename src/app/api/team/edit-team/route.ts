@@ -3,294 +3,294 @@ import { db } from "@/server/db";
 import { NextResponse } from "next/server";
 
 type Member = {
-  name: string;
-  email: string;
-  userId: string;
-  institution: string;
-  role: "Leader" | "Member";
+    name: string;
+    email: string;
+    userId: string;
+    institution: string;
+    role: "Leader" | "Member";
 };
 
 export async function POST(req: Request) {
-  const {
-    teamName: submittedTeamName,
-    userId,
-    email,
-    members,
-    teamId: submittedTeamId,
-    leaderName,
-    leaderEmail,
-    leaderPhoneNumber,
-    teamInstitution,
-  } = await req.json();
-  try {
-    const authUser = await db.user.findUnique({
-      where: { email, id: userId },
-    });
-    if (!authUser) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-
-    const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
-    const key = authUser ? `user:${userId}` : `ip:${ip}`;
-    const { success, reset } = await teamEditLimiter.limit(key);
-    if (!success) {
-      return NextResponse.json(
-        {
-          error: `Too many requests, please try again after ${Math.ceil(
-            (reset - Date.now()) / 1000
-          )} seconds`,
-          resetAt: reset,
-        },
-        { status: 429 }
-      );
-    }
-
-    // Current team from database
-    const existingCurrentTeam = await db.team.findUnique({
-      where: { id: submittedTeamId },
-      include: { members: true },
-    });
-
-    console.log("Current team: ", existingCurrentTeam);
-
-    // Check if edited team name is already taken
-    console.log("Current existing team name: ", existingCurrentTeam?.name);
-    console.log("Submitted team name: ", submittedTeamName);
-
-    if (existingCurrentTeam?.name !== submittedTeamName) {
-      const existingTeamName = await db.team.findUnique({
-        where: {
-          name: submittedTeamName,
-        },
-      });
-
-      if (existingTeamName) {
-        console.log("Team name is already taken");
-        return NextResponse.json(
-          { success: false, error: "This team name is already taken." },
-          { status: 400 }
-        );
-      } else {
-        console.log("Team name is available");
-      }
-    }
-
-    // Check if all members are registered
-    const existingSubmittedUsers = await db.user.findMany({
-      where: { email: { in: members.map((member: Member) => member.email) } },
-    });
-
-    const submittedMemberEmails = members.map((member: Member) => member.email);
-    console.log("Submitted emails: ", submittedMemberEmails);
-
-    console.log(
-      "Existing users based on submitted emails: ",
-      existingSubmittedUsers
-    );
-    if (existingSubmittedUsers.length !== submittedMemberEmails.length) {
-      return NextResponse.json(
-        { success: false, error: "All members must be registered" },
-        { status: 400 }
-      );
-    }
-
-    // if all member is registered, add userId to submitted members
-    const submittedMembers = members.map((member: Member) => {
-      return {
-        name: member.name,
-        email: member.email,
-        userId: existingSubmittedUsers.find(
-          (user) => user.email === member.email
-        )?.id,
-        role: member.role,
-        institution: member.institution,
-      };
-    });
-
-    console.log("Submitted members: ", submittedMembers);
-
-    const submittedMemberEmailsSet = new Set(submittedMemberEmails);
-    const existingCurrentTeamMembersEmails = new Set(
-      existingCurrentTeam?.members.map((member) => member.email)
-    );
-
-    // Check if all members are unique
-    const submittedMemberProfiles = existingSubmittedUsers.map((user) => {
-      return {
-        name: user.name,
-        email: user.email,
-        userId: user.id,
-        role: user.role,
-        institution: user.institution,
-      };
-    });
-    console.log("Member profiles: ", submittedMemberProfiles);
-
-    // Update team
-    const team = await db.team.update({
-      where: { id: submittedTeamId },
-      data: {
-        name: submittedTeamName,
-        leaderUserId: userId,
+    const {
+        teamName: submittedTeamName,
+        userId,
+        email,
+        members,
+        teamId: submittedTeamId,
         leaderName,
         leaderEmail,
         leaderPhoneNumber,
         teamInstitution,
-      },
-    });
+    } = await req.json();
+    try {
+        const authUser = await db.user.findUnique({
+            where: { email, id: userId },
+        });
+        if (!authUser) {
+            return NextResponse.json({ error: "User not found" }, { status: 404 });
+        }
 
-    console.log("Team updated: ", team);
+        const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+        const key = authUser ? `user:${userId}` : `ip:${ip}`;
+        const { success, reset } = await teamEditLimiter.limit(key);
+        if (!success) {
+            return NextResponse.json(
+                {
+                    error: `Too many requests, please try again after ${Math.ceil(
+                        (reset - Date.now()) / 1000
+                    )} seconds`,
+                    resetAt: reset,
+                },
+                { status: 429 }
+            );
+        }
 
-    // Determined what's changed
-    const membersToAdd = submittedMembers.filter(
-      (member: Member) => !existingCurrentTeamMembersEmails.has(member.email)
-    );
-    console.log("Members to add: ", membersToAdd);
+        // Current team from database
+        const existingCurrentTeam = await db.team.findUnique({
+            where: { id: submittedTeamId },
+            include: { members: true },
+        });
 
-    const membersToRemove = existingCurrentTeam?.members.filter(
-      (member) => !submittedMemberEmailsSet.has(member.email)
-    );
-    console.log("Members to remove: ", membersToRemove);
+        // console.log("Current team: ", existingCurrentTeam);
 
-    const membersToUpdate = submittedMembers.filter((member: Member) =>
-      existingCurrentTeamMembersEmails.has(member.email)
-    );
+        // Check if edited team name is already taken
+        // console.log("Current existing team name: ", existingCurrentTeam?.name);
+        // console.log("Submitted team name: ", submittedTeamName);
 
-    // !! Since every user can only have 1 registration, we don't need to check if editing a team, must consist of many combination of users that are different from existing teams
-    // If there's any removal or addition of members, check if team already exists
-    // if (membersToAdd?.length !== 0 || membersToRemove?.length !== 0) {
-    //   //  Check all team members
-    //   const candidateTeams = await db.team.findMany({
-    //     where: {
-    //       members: {
-    //         some: {
-    //           email: {
-    //             in: submittedMemberEmails,
-    //           },
-    //         },
-    //       },
-    //     },
-    //     include: {
-    //       members: true,
-    //     },
-    //   });
-    //   // console.log("Candidate teams: ", candidateTeams);
-    //   // console.log("Candidate teams total: ", candidateTeams.length);
-    //   const teamAlreadyExists = candidateTeams.some((team, index: number) => {
-    //     // console.log("iteration: ", index);
-    //     // console.log("Team: ", team);
-    //     // console.log("Team Members: ", team.members);
-    //     // console.log(
-    //     //   "Existing Team Members Emails: ",
-    //     //   team.members.map((member) => member.email)
-    //     // );
-    //     // console.log(
-    //     //   "Existing Team Members Emails Total: ",
-    //     //   team.members.map((member) => member.email).length
-    //     // );
-    //     // console.log("Submitted member emails: ", submittedMemberEmails);
-    //     // console.log(
-    //     //   "Submitted member emails total: ",
-    //     //   submittedMemberEmails.length
-    //     // );
-    //     const existingTeamMembersEmails = new Set(
-    //       team.members.map((member) => member.email)
-    //     );
-    //     if (existingTeamMembersEmails.size !== submittedMemberEmailsSet.size)
-    //       return false;
-    //     for (const email of existingTeamMembersEmails) {
-    //       if (!submittedMemberEmailsSet.has(email)) return false;
-    //     }
-    //     return true;
-    //   });
-    //   console.log(
-    //     "Team already exists or result of checks: ",
-    //     teamAlreadyExists
-    //   );
-    //   if (teamAlreadyExists) {
-    //     console.log("Team already exists");
-    //     return NextResponse.json(
-    //       {
-    //         success: false,
-    //         error: "All these members are already in the same team.",
-    //       },
-    //       { status: 400 }
-    //     );
-    //   }
-    //   console.log("Team does not already exist, proceed to edit team");
-    // }
+        if (existingCurrentTeam?.name !== submittedTeamName) {
+            const existingTeamName = await db.team.findUnique({
+                where: {
+                    name: submittedTeamName,
+                },
+            });
 
-    // Remove old members
-    const removeMembers = await db.teamMember.deleteMany({
-      where: {
-        teamId: submittedTeamId,
-        email: {
-          in: membersToRemove?.map((member) => member.email as string),
-        },
-      },
-    });
-    console.log("Remove members: ", removeMembers);
-    // Add new members
-    const addMembers = await db.teamMember.createMany({
-      data: membersToAdd.map((member: Member) => ({
-        name: member.name,
-        email: member.email,
-        teamId: submittedTeamId,
-        role: member.role,
-        institution: member.institution,
-        userId:
-          member.role === "Leader"
-            ? userId
-            : member.role === "Member"
-            ? submittedMemberProfiles.find(
-                (memberProfile) => memberProfile.email === member.email
-              )?.userId
-            : undefined,
-      })),
-    });
-    console.log("Add members: ", addMembers);
+            if (existingTeamName) {
+                // console.log("Team name is already taken");
+                return NextResponse.json(
+                    { success: false, error: "This team name is already taken." },
+                    { status: 400 }
+                );
+            } else {
+                // console.log("Team name is available");
+            }
+        }
 
-    console.log("Members to update: ", membersToUpdate);
+        // Check if all members are registered
+        const existingSubmittedUsers = await db.user.findMany({
+            where: { email: { in: members.map((member: Member) => member.email) } },
+        });
 
-    const updatedUser = await Promise.all(
-      membersToUpdate.map((member: Member) =>
-        db.teamMember.update({
-          where: {
-            userId_teamId: {
-              userId: member.userId,
-              teamId: submittedTeamId,
+        const submittedMemberEmails = members.map((member: Member) => member.email);
+        // console.log("Submitted emails: ", submittedMemberEmails);
+
+        // console.log(
+        //     "Existing users based on submitted emails: ",
+        //     existingSubmittedUsers
+        // );
+        if (existingSubmittedUsers.length !== submittedMemberEmails.length) {
+            return NextResponse.json(
+                { success: false, error: "All members must be registered" },
+                { status: 400 }
+            );
+        }
+
+        // if all member is registered, add userId to submitted members
+        const submittedMembers = members.map((member: Member) => {
+            return {
+                name: member.name,
+                email: member.email,
+                userId: existingSubmittedUsers.find(
+                    (user) => user.email === member.email
+                )?.id,
+                role: member.role,
+                institution: member.institution,
+            };
+        });
+
+        // console.log("Submitted members: ", submittedMembers);
+
+        const submittedMemberEmailsSet = new Set(submittedMemberEmails);
+        const existingCurrentTeamMembersEmails = new Set(
+            existingCurrentTeam?.members.map((member) => member.email)
+        );
+
+        // Check if all members are unique
+        const submittedMemberProfiles = existingSubmittedUsers.map((user) => {
+            return {
+                name: user.name,
+                email: user.email,
+                userId: user.id,
+                role: user.role,
+                institution: user.institution,
+            };
+        });
+        // console.log("Member profiles: ", submittedMemberProfiles);
+
+        // Update team
+        const team = await db.team.update({
+            where: { id: submittedTeamId },
+            data: {
+                name: submittedTeamName,
+                leaderUserId: userId,
+                leaderName,
+                leaderEmail,
+                leaderPhoneNumber,
+                teamInstitution,
             },
-          },
-          data: {
-            name: member.name,
-            role: member.role,
-            email: member.email,
-            institution: member.institution,
-            userId:
-              member.role === "Leader"
-                ? userId
-                : member.role === "Member"
-                ? submittedMemberProfiles.find(
-                    (memberProfile) => memberProfile.email === member.email
-                  )?.userId
-                : undefined,
-          },
-        })
-      )
-    );
+        });
 
-    console.log("Updated user: ", updatedUser);
+        // console.log("Team updated: ", team);
 
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch (error) {
-    // console.log(error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: "Something went wrong when editing team",
-        message: error,
-      },
-      { status: 500 }
-    );
-  }
+        // Determined what's changed
+        const membersToAdd = submittedMembers.filter(
+            (member: Member) => !existingCurrentTeamMembersEmails.has(member.email)
+        );
+        // console.log("Members to add: ", membersToAdd);
+
+        const membersToRemove = existingCurrentTeam?.members.filter(
+            (member) => !submittedMemberEmailsSet.has(member.email)
+        );
+        // console.log("Members to remove: ", membersToRemove);
+
+        const membersToUpdate = submittedMembers.filter((member: Member) =>
+            existingCurrentTeamMembersEmails.has(member.email)
+        );
+
+        // !! Since every user can only have 1 registration, we don't need to check if editing a team, must consist of many combination of users that are different from existing teams
+        // If there's any removal or addition of members, check if team already exists
+        // if (membersToAdd?.length !== 0 || membersToRemove?.length !== 0) {
+        //   //  Check all team members
+        //   const candidateTeams = await db.team.findMany({
+        //     where: {
+        //       members: {
+        //         some: {
+        //           email: {
+        //             in: submittedMemberEmails,
+        //           },
+        //         },
+        //       },
+        //     },
+        //     include: {
+        //       members: true,
+        //     },
+        //   });
+        //   // console.log("Candidate teams: ", candidateTeams);
+        //   // console.log("Candidate teams total: ", candidateTeams.length);
+        //   const teamAlreadyExists = candidateTeams.some((team, index: number) => {
+        //     // console.log("iteration: ", index);
+        //     // console.log("Team: ", team);
+        //     // console.log("Team Members: ", team.members);
+        //     // console.log(
+        //     //   "Existing Team Members Emails: ",
+        //     //   team.members.map((member) => member.email)
+        //     // );
+        //     // console.log(
+        //     //   "Existing Team Members Emails Total: ",
+        //     //   team.members.map((member) => member.email).length
+        //     // );
+        //     // console.log("Submitted member emails: ", submittedMemberEmails);
+        //     // console.log(
+        //     //   "Submitted member emails total: ",
+        //     //   submittedMemberEmails.length
+        //     // );
+        //     const existingTeamMembersEmails = new Set(
+        //       team.members.map((member) => member.email)
+        //     );
+        //     if (existingTeamMembersEmails.size !== submittedMemberEmailsSet.size)
+        //       return false;
+        //     for (const email of existingTeamMembersEmails) {
+        //       if (!submittedMemberEmailsSet.has(email)) return false;
+        //     }
+        //     return true;
+        //   });
+        //   console.log(
+        //     "Team already exists or result of checks: ",
+        //     teamAlreadyExists
+        //   );
+        //   if (teamAlreadyExists) {
+        //     console.log("Team already exists");
+        //     return NextResponse.json(
+        //       {
+        //         success: false,
+        //         error: "All these members are already in the same team.",
+        //       },
+        //       { status: 400 }
+        //     );
+        //   }
+        //   console.log("Team does not already exist, proceed to edit team");
+        // }
+
+        // Remove old members
+        await db.teamMember.deleteMany({
+            where: {
+                teamId: submittedTeamId,
+                email: {
+                    in: membersToRemove?.map((member) => member.email as string),
+                },
+            },
+        });
+        // console.log("Remove members: ", removeMembers);
+        // Add new members
+        const addMembers = await db.teamMember.createMany({
+            data: membersToAdd.map((member: Member) => ({
+                name: member.name,
+                email: member.email,
+                teamId: submittedTeamId,
+                role: member.role,
+                institution: member.institution,
+                userId:
+                    member.role === "Leader"
+                        ? userId
+                        : member.role === "Member"
+                            ? submittedMemberProfiles.find(
+                                (memberProfile) => memberProfile.email === member.email
+                            )?.userId
+                            : undefined,
+            })),
+        });
+        // console.log("Add members: ", addMembers);
+
+        // console.log("Members to update: ", membersToUpdate);
+
+        const updatedUser = await Promise.all(
+            membersToUpdate.map((member: Member) =>
+                db.teamMember.update({
+                    where: {
+                        userId_teamId: {
+                            userId: member.userId,
+                            teamId: submittedTeamId,
+                        },
+                    },
+                    data: {
+                        name: member.name,
+                        role: member.role,
+                        email: member.email,
+                        institution: member.institution,
+                        userId:
+                            member.role === "Leader"
+                                ? userId
+                                : member.role === "Member"
+                                    ? submittedMemberProfiles.find(
+                                        (memberProfile) => memberProfile.email === member.email
+                                    )?.userId
+                                    : undefined,
+                    },
+                })
+            )
+        );
+
+        // console.log("Updated user: ", updatedUser);
+
+        return NextResponse.json({ success: true }, { status: 200 });
+    } catch (error) {
+        // console.log(error);
+        return NextResponse.json(
+            {
+                success: false,
+                error: "Something went wrong when editing team",
+                message: error,
+            },
+            { status: 500 }
+        );
+    }
 }

@@ -27,6 +27,7 @@ import {
 import { IconListDetails } from "@tabler/icons-react";
 import { cn, getCurrentDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { is } from "zod/v4/locales";
 
 export default function RegisteredCompetitionList() {
     return (
@@ -62,6 +63,7 @@ async function FetchUserAvailableCompetitions() {
             },
         },
     });
+    const isTeamLeader = userTeam?.leaderUserId === user?.id;
 
     // console.log("Registered competitions: ", registeredCompetitions);
     const registeredCompetitionNames = registeredCompetitions.map(
@@ -152,7 +154,8 @@ async function FetchUserAvailableCompetitions() {
                                     registeredCompetitions.length ||
                                     currentDate < comp.startRegDate1 ||
                                     currentDate > comp.endRegDate3 ||
-                                    !userTeam,
+                                    !userTeam ||
+                                    !isTeamLeader,
                             })}
                             disabled={
                                 registeredCompetitions.length
@@ -160,7 +163,8 @@ async function FetchUserAvailableCompetitions() {
                                     : false ||
                                       currentDate < comp.startRegDate1 ||
                                       currentDate > comp.endRegDate3 ||
-                                      !userTeam
+                                      !userTeam ||
+                                      !isTeamLeader
                             }
                         >
                             <Link
@@ -168,7 +172,8 @@ async function FetchUserAvailableCompetitions() {
                                     registeredCompetitions.length ||
                                     currentDate < comp.startRegDate1 ||
                                     currentDate > comp.endRegDate3 ||
-                                    !userTeam
+                                    !userTeam ||
+                                    !isTeamLeader
                                         ? ""
                                         : `/dashboard/team/register/${comp.abbreviation}`
                                 }

@@ -12,7 +12,7 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -23,26 +23,11 @@ import {
 } from "@/components/ui/field";
 import { UserAvatar } from "@/components/general/UserProfile";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { cn } from "@/lib/utils";
 import ProfileFormSkeleton from "@/components/dashboard/profile/ProfileFormSkeleton";
 import { useTRPC } from "@/utils/trpc";
 import { profileSchema } from "@/lib/schema";
 import { authClient } from "@/lib/auth-client";
 import { educations } from "@/constants/constants";
-
-function usePreventRefreshUserDuringUpload(isLoading: boolean) {
-    useEffect(() => {
-        const handler = (e: BeforeUnloadEvent) => {
-            if (isLoading) {
-                e.preventDefault();
-                e.returnValue = "";
-            }
-        };
-
-        window.addEventListener("beforeunload", handler);
-        return () => window.removeEventListener("beforeunload", handler);
-    }, [isLoading]);
-}
 
 function ProfileUpdateForm() {
     const { data: session } = authClient.useSession();
@@ -80,30 +65,15 @@ function ProfileUpdateForm() {
             toast.error("Failed to update profile", {
                 description: error.message,
             });
-            console.log(error.message);
+            // console.log(error.message);
         },
         onSettled: () => {
             queryClient.invalidateQueries({
                 queryKey: trpc.dashboard.getUser.queryKey(),
             });
             router.replace("/dashboard/profile");
-            router.refresh();
         },
     });
-
-    usePreventRefreshUserDuringUpload(isLoading);
-
-    useEffect(() => {
-        const toastType = searchParams.get("notif");
-        if (toastType === "incomplete_profile") {
-            toast.warning(
-                "Please complete your profile first before uploading documents & register to any competitions.",
-                {
-                    duration: 5000,
-                },
-            );
-        }
-    }, [searchParams]);
 
     const {
         handleSubmit,
@@ -126,32 +96,58 @@ function ProfileUpdateForm() {
     });
 
     useEffect(() => {
-        if (session?.user && !isEditing) {
-            setTimeout(() => {
-                reset({
-                    name: user?.name as string,
-                    phoneNumber: user?.phoneNumber ?? "",
-                    domicile: user?.domicile ?? "",
-                    institution: user?.institution ?? "",
-                    major: user?.major ?? "",
-                    education: user?.education ?? undefined,
-                    semester: (user?.semester as unknown as number) ?? 1,
-                });
-            }, 500);
+        const toastType = searchParams.get("notif");
+        if (toastType === "incomplete_profile") {
+            toast.warning(
+                "Please complete your profile first before uploading documents & register to any competitions.",
+                {
+                    duration: 5000,
+                },
+            );
         }
-    }, [session?.user, reset, user, isEditing]);
+    }, [searchParams]);
 
-    if (isLoadingUser) return <ProfileFormSkeleton />;
+    const hasInitialized = useRef(false);
+    useEffect(() => {
+        if (!user || hasInitialized.current) return;
+
+        reset({
+            name: user.name ?? "",
+            phoneNumber: user.phoneNumber ?? "",
+            domicile: user.domicile ?? "",
+            institution: user.institution ?? "",
+            major: user.major ?? "",
+            education: user.education ?? undefined,
+            semester: user.semester ?? 1,
+        });
+
+        hasInitialized.current = true;
+    }, [user, reset]);
+
+    function handleCancelEdit() {
+        setIsEditing(!isEditing);
+
+        reset({
+            name: user?.name ?? "",
+            phoneNumber: user?.phoneNumber ?? "",
+            domicile: user?.domicile ?? "",
+            institution: user?.institution ?? "",
+            major: user?.major ?? "",
+            education: user?.education ?? undefined,
+            semester: user?.semester ?? 1,
+        });
+    }
 
     async function onSubmit(formData: profileSchema) {
         const data = {
             ...formData,
             email: session?.user?.email,
         };
-        console.log("Form data: ", data);
+        // console.log("Form data: ", data);
         updateProfile.mutate(data);
     }
 
+    if (isLoadingUser) return <ProfileFormSkeleton />;
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <section>
@@ -165,18 +161,6 @@ function ProfileUpdateForm() {
                                         alt={user.name as string}
                                         className="w-32 h-32 border-2 border-primary/50"
                                     />
-                                    {/*<div
-                                        className={cn(
-                                            "",
-                                            !isEditing ? "hidden" : "",
-                                        )}
-                                    >
-                                        <UploadDialog
-                                            isLoading={isLoading}
-                                            setIsLoading={setIsLoading}
-                                            setIsEditing={setIsEditing}
-                                        />
-                                    </div>*/}
                                 </div>
                             )}
                         </div>
@@ -185,16 +169,7 @@ function ProfileUpdateForm() {
                                 variant="outline"
                                 type="button"
                                 className="cursor-pointer"
-                                onClick={() =>
-                                    setIsEditing((prev) => {
-                                        if (prev) {
-                                            setTimeout(() => {
-                                                reset();
-                                            }, 500);
-                                        }
-                                        return !prev;
-                                    })
-                                }
+                                onClick={handleCancelEdit}
                             >
                                 {isEditing ? "Cancel" : "Edit Profile"}
                             </Button>

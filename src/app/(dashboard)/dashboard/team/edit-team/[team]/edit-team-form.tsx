@@ -5,7 +5,7 @@ import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { type Member, type Team, type User } from "@/types/types";
@@ -23,7 +23,7 @@ function TeamForm({ team }: { team: Team }) {
     const [emailDuplicates, setEmailDuplicates] = useState<string[]>([]);
     const router = useRouter();
     const trpc = useTRPC();
-    const { data: user, isLoading: isUserLoading } = useQuery({
+    const { data: user } = useQuery({
         ...trpc.dashboard.getUser.queryOptions(),
         refetchOnWindowFocus: false,
         refetchOnMount: false,
@@ -84,6 +84,7 @@ function TeamForm({ team }: { team: Team }) {
         control,
         reset,
         getValues,
+        setValue,
         formState: { errors, isSubmitting },
     } = useForm<teamSchema>({
         resolver: zodResolver(teamSchema),
@@ -115,16 +116,38 @@ function TeamForm({ team }: { team: Team }) {
         },
     });
 
+    const hasInitialized = useRef(false);
     useEffect(() => {
-        if (user) {
-            reset({
-                leaderName: (user?.name as string) ?? "",
-                leaderEmail: (user?.email as string) ?? "",
-                leaderPhoneNumber: user?.phoneNumber ?? "",
-                teamInstitution: user?.institution ?? "",
-                teamName: (team.name as string) ?? "",
-            });
-        }
+        if (!user || hasInitialized.current) return;
+
+        reset({
+            leaderName: (user?.name as string) ?? "",
+            leaderEmail: (user?.email as string) ?? "",
+            leaderPhoneNumber: user?.phoneNumber ?? "",
+            teamInstitution: user?.institution ?? "",
+            teamName: (team.name as string) ?? "",
+            members: [
+                // @ts-expect-error members is exist if include members when prisma calls within Team Type
+                ...team.members
+                    .sort((a: Member, b: Member) =>
+                        a.role === "Leader" ? -1 : 1,
+                    )
+                    .map((member: Member) => {
+                        return {
+                            name:
+                                member.userId === user?.id
+                                    ? user?.name
+                                    : (member.name as string),
+                            email: (member.email as string) ?? "",
+                            institution: (member.institution as string) ?? "",
+                            userId: (member.userId as string) ?? "",
+                            role: member.role as "Leader" | "Member",
+                        };
+                    }),
+            ],
+        });
+
+        hasInitialized.current = true;
     }, [user, reset, team]);
 
     const { fields, append, remove } = useFieldArray({
@@ -192,10 +215,15 @@ function TeamForm({ team }: { team: Team }) {
 
     // @ts-expect-error error is working
     const onError = (errors) => {
-        if (errors.members) {
-            toast.error(errors.members.message ?? "Duplicate email detected", {
-                description: `Email ${emailDuplicates.join(", ")} is already added.`,
-            });
+        if (!emailDuplicates.includes("")) {
+            if (errors.members) {
+                toast.error(
+                    errors.members.message ?? "Duplicate email detected",
+                    {
+                        description: `Email ${emailDuplicates.join(", ")} is already added.`,
+                    },
+                );
+            }
         }
     };
 
@@ -220,6 +248,17 @@ function TeamForm({ team }: { team: Team }) {
                                         id={field.name}
                                         aria-invalid={fieldState.invalid}
                                         className="mb-12"
+                                        onBlur={(e) => {
+                                            e.target.value =
+                                                e.target.value.trim();
+                                        }}
+                                        onMouseLeave={() => {
+                                            const value = getValues("teamName");
+                                            if (!value) {
+                                                return;
+                                            }
+                                            setValue("teamName", value.trim());
+                                        }}
                                     />
                                     {fieldState.invalid && (
                                         <FieldError
@@ -339,6 +378,23 @@ function TeamForm({ team }: { team: Team }) {
                                             {...field}
                                             id={field.name}
                                             aria-invalid={fieldState.invalid}
+                                            onBlur={(e) => {
+                                                e.target.value =
+                                                    e.target.value.trim();
+                                            }}
+                                            onMouseLeave={() => {
+                                                const value =
+                                                    getValues(
+                                                        "teamInstitution",
+                                                    );
+                                                if (!value) {
+                                                    return;
+                                                }
+                                                setValue(
+                                                    "teamInstitution",
+                                                    value.trim(),
+                                                );
+                                            }}
                                         />
                                         {fieldState.invalid && (
                                             <FieldError
@@ -529,6 +585,22 @@ function TeamForm({ team }: { team: Team }) {
                                                 aria-invalid={
                                                     fieldState.invalid
                                                 }
+                                                onBlur={(e) => {
+                                                    e.target.value =
+                                                        e.target.value.trim();
+                                                }}
+                                                onMouseLeave={() => {
+                                                    const value = getValues(
+                                                        `members.${index}.institution`,
+                                                    );
+                                                    if (!value) {
+                                                        return;
+                                                    }
+                                                    setValue(
+                                                        `members.${index}.institution`,
+                                                        value.trim(),
+                                                    );
+                                                }}
                                                 readOnly={index === 0}
                                                 disabled={index === 0}
                                             />

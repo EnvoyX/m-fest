@@ -5,7 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { competitions } from "@/lib/competition";
 import { type RegisterFormProps, type TeamMember } from "@/types/types";
@@ -43,9 +43,12 @@ function RegisterForm({
     const router = useRouter();
     const trpc = useTRPC();
     const queryClient = useQueryClient();
-    const { data: user, isFetched } = useQuery(
-        trpc.dashboard.getUser.queryOptions(),
-    );
+    const { data: user } = useQuery({
+        ...trpc.dashboard.getUser.queryOptions(),
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+    });
     const register = useMutation({
         ...trpc.register.registerTeam.mutationOptions(),
         onMutate: () => {
@@ -82,22 +85,6 @@ function RegisterForm({
         },
     });
 
-    useEffect(() => {
-        if (isFetched) {
-            if (
-                !user?.phoneNumber ||
-                !user?.domicile ||
-                !user?.major ||
-                !user?.institution ||
-                !user?.education ||
-                !user?.major ||
-                !user?.semester
-            ) {
-                router.push("/dashboard/profile?notif=incomplete_profile");
-            }
-        }
-    }, [isFetched, user, router]);
-
     const registerSchema = z.object({
         competitionName: z.enum(["BCC", "IPPC", "PDC", "STEM"]),
         leaderName: z.string().min(5, "Name must be leader's fullname"),
@@ -116,7 +103,6 @@ function RegisterForm({
             .min(1, "Please upload a payment proof") // Triggers if empty
             .url("Please provide a valid URL link"), // Triggers if format is wrong
     });
-    type registerSchema = z.infer<typeof registerSchema>;
 
     const {
         control,
@@ -145,28 +131,45 @@ function RegisterForm({
             paymentProofUrl: "",
         },
     });
+    type registerSchema = z.infer<typeof registerSchema>;
 
+    // useEffect(() => {
+    //     if (isFetched) {
+    //         if (
+    //             !user?.phoneNumber ||
+    //             !user?.domicile ||
+    //             !user?.major ||
+    //             !user?.institution ||
+    //             !user?.education ||
+    //             !user?.major ||
+    //             !user?.semester
+    //         ) {
+    //             router.push("/dashboard/profile?notif=incomplete_profile");
+    //         }
+    //     }
+    // }, [isFetched, user, router]);
+    //
+    //
+    const hasInitialized = useRef(false);
     useEffect(() => {
-        if (user && comp.toUpperCase()) {
-            setTimeout(() => {
-                reset({
-                    competitionName:
-                        comp.toUpperCase() === "BCC"
-                            ? "BCC"
-                            : comp.toUpperCase() === "IPPC"
-                              ? "IPPC"
-                              : comp.toUpperCase() === "PDC"
-                                ? "PDC"
-                                : "STEM",
-                    leaderName: user?.name as string,
-                    leaderEmail: user?.email as string,
-                    leaderPhoneNumber: user?.phoneNumber ?? "",
-                    teamInstitution: teamInstitution ?? "",
-                    teamName: teamName ?? "",
-                    paymentProofUrl: getValues("paymentProofUrl") ?? "",
-                });
-            }, 500);
-        }
+        if (!user || !comp.toUpperCase() || hasInitialized.current) return;
+        reset({
+            competitionName:
+                comp.toUpperCase() === "BCC"
+                    ? "BCC"
+                    : comp.toUpperCase() === "IPPC"
+                      ? "IPPC"
+                      : comp.toUpperCase() === "PDC"
+                        ? "PDC"
+                        : "STEM",
+            leaderName: user?.name as string,
+            leaderEmail: user?.email as string,
+            leaderPhoneNumber: user?.phoneNumber ?? "",
+            teamInstitution: teamInstitution ?? "",
+            teamName: teamName ?? "",
+            paymentProofUrl: getValues("paymentProofUrl") ?? "",
+        });
+        hasInitialized.current = true;
     }, [reset, user, comp, teamInstitution, teamName, getValues]);
 
     // console.log("Available teams: ", userAsLeaderTeams);
@@ -322,8 +325,9 @@ function RegisterForm({
                                         value={field.value}
                                         onValueChange={(value) => {
                                             field.onChange(value);
-                                            setTeamName(value);
-                                            setTeamInstitution(
+                                            setValue("teamName", value);
+                                            setValue(
+                                                "teamInstitution",
                                                 userTeams.find(
                                                     (team) =>
                                                         team.name === value,

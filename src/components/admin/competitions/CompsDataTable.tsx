@@ -840,7 +840,7 @@ export function CompsDataTable() {
             toast.error("Failed to approve registration", {
                 description: error.message,
             });
-            console.log(error.message);
+            // console.log(error.message);
         },
         onSuccess() {
             toast.dismiss("approve-registration");
@@ -865,7 +865,7 @@ export function CompsDataTable() {
             toast.error("Failed to approve registrations", {
                 description: error.message,
             });
-            console.log(error.message);
+            // console.log(error.message);
         },
         onSuccess(data, variables) {
             toast.dismiss("approve-registrations");
@@ -892,7 +892,7 @@ export function CompsDataTable() {
             toast.error("Failed to reject registration", {
                 description: error.message,
             });
-            console.log(error.message);
+            // console.log(error.message);
         },
         onSuccess() {
             toast.dismiss("reject-registration");
@@ -916,7 +916,7 @@ export function CompsDataTable() {
             toast.error("Failed to reject registrations", {
                 description: error.message,
             });
-            console.log(error.message);
+            // console.log(error.message);
         },
         onSuccess(data, variables) {
             toast.dismiss("reject-registrations");
@@ -943,7 +943,7 @@ export function CompsDataTable() {
             toast.error("Failed to delete registration", {
                 description: error.message,
             });
-            console.log(error.message);
+            // console.log(error.message);
         },
         onSuccess() {
             toast.dismiss("delete-registration");
@@ -967,7 +967,7 @@ export function CompsDataTable() {
             toast.error("Failed to delete registrations", {
                 description: error.message,
             });
-            console.log(error.message);
+            // console.log(error.message);
         },
         onSuccess(data, variables) {
             toast.dismiss("delete-registrations");
@@ -994,7 +994,7 @@ export function CompsDataTable() {
             toast.error("Failed to reset submission", {
                 description: error.message,
             });
-            console.log(error.message);
+            // console.log(error.message);
         },
         onSuccess() {
             toast.dismiss("reset-submission");

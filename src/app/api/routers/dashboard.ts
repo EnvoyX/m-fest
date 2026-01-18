@@ -101,7 +101,7 @@ export const dashboardRouter = router({
                         userId: user?.id as string,
                     },
                 });
-                console.log(createUserDocuments);
+                // console.log(createUserDocuments);
                 return createUserDocuments;
             }
 
@@ -199,7 +199,7 @@ export const dashboardRouter = router({
                         userId: user?.id as string,
                     },
                 });
-                console.log(createUserDocuments);
+                // console.log(createUserDocuments);
                 return createUserDocuments;
             }
 
@@ -271,7 +271,7 @@ export const dashboardRouter = router({
                 message: "You are not registered for this competition",
             });
         }
-        console.log(thisRegisteredCompUser);
+        // console.log(thisRegisteredCompUser);
         return thisRegisteredCompUser;
     }),
     getUserRegisteredComp: protectedProcedure
@@ -289,10 +289,10 @@ export const dashboardRouter = router({
                             (input.comp as string) === "BCC"
                                 ? "BCC"
                                 : (input.comp as string) === "IPPC"
-                                  ? "IPPC"
-                                  : (input.comp as string) === "PDC"
-                                    ? "PDC"
-                                    : undefined,
+                                    ? "IPPC"
+                                    : (input.comp as string) === "PDC"
+                                        ? "PDC"
+                                        : undefined,
                         statusOrder: "SUCCESS",
                     },
                 });
@@ -302,7 +302,7 @@ export const dashboardRouter = router({
                     message: "You are not registered for this competition",
                 });
             }
-            console.log(thisRegisteredCompUser);
+            // console.log(thisRegisteredCompUser);
             return thisRegisteredCompUser;
         }),
     getTotalParticipantsComp: protectedProcedure
@@ -356,10 +356,10 @@ export const dashboardRouter = router({
                             (input.competitionName as string) === "BCC"
                                 ? "BCC"
                                 : (input.competitionName as string) === "IPPC"
-                                  ? "IPPC"
-                                  : (input.competitionName as string) === "PDC"
-                                    ? "PDC"
-                                    : undefined,
+                                    ? "IPPC"
+                                    : (input.competitionName as string) === "PDC"
+                                        ? "PDC"
+                                        : undefined,
                         statusOrder: "SUCCESS",
                     },
                 });
@@ -467,8 +467,8 @@ export const dashboardRouter = router({
                 },
             ];
 
-            console.log("Documents: ", documents);
-            console.log("User documents: ", userVerification);
+            // console.log("Documents: ", documents);
+            // console.log("User documents: ", userVerification);
             if (userVerification?.status === "PENDING") {
                 // AWAITING_UPLOAD means user has not submitted any pending documents
                 // PENDING means user has submitted documents but not verified yet
@@ -499,11 +499,10 @@ export const dashboardRouter = router({
                         }
                         throw new TRPCError({
                             code: "BAD_REQUEST",
-                            message: `Your ${
-                                documentsNotVerified?.length
-                            } documents (${documentsNotVerified
-                                ?.map((document) => document.title)
-                                .join(", ")}) is waiting to be verified`,
+                            message: `Your ${documentsNotVerified?.length
+                                } documents (${documentsNotVerified
+                                    ?.map((document) => document.title)
+                                    .join(", ")}) is waiting to be verified`,
                         });
                     }
                     throw new TRPCError({
@@ -517,10 +516,10 @@ export const dashboardRouter = router({
                     const documentsStillPending = documents?.filter(
                         (document) => document.status === "AWAITING_UPLOAD",
                     );
-                    console.log(
-                        "Documents still pending: ",
-                        documentsStillPending,
-                    );
+                    // console.log(
+                    //     "Documents still pending: ",
+                    //     documentsStillPending,
+                    // );
                     documentsStillPending?.map(async (document) => {
                         if (document.status === "AWAITING_UPLOAD") {
                             await ctx.db.documents.update({
@@ -532,11 +531,10 @@ export const dashboardRouter = router({
                         }
                     });
                     return {
-                        message: `Your pending ${
-                            documentsStillPending?.length
-                        } documents (${documentsStillPending
-                            ?.map((document) => document.title)
-                            .join(", ")}) have been submitted`,
+                        message: `Your pending ${documentsStillPending?.length
+                            } documents (${documentsStillPending
+                                ?.map((document) => document.title)
+                                .join(", ")}) have been submitted`,
                     };
                 }
             }

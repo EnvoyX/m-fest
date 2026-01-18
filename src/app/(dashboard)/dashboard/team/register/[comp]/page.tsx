@@ -53,6 +53,15 @@ async function FetchCompForm({
     params: Promise<{ comp: string }>;
 }) {
     const user = await getUser();
+    const userTeam = await db.team.findFirst({
+        where: {
+            members: {
+                some: {
+                    userId: user?.id,
+                },
+            },
+        },
+    });
     const registeredTeam = await db.compRegistration.findFirst({
         where: {
             team: {
@@ -64,6 +73,7 @@ async function FetchCompForm({
             },
         },
     });
+    const isTeamLeader = userTeam?.leaderUserId === user?.id;
     let { comp } = await params;
     const currentDate = getCurrentDate();
     const thisComp = competitions.find(
@@ -83,7 +93,15 @@ async function FetchCompForm({
         redirect("/dashboard/team");
     }
 
+    if (!userTeam) {
+        redirect("/dashboard/team");
+    }
+
     if (registeredTeam) {
+        redirect("/dashboard/team");
+    }
+
+    if (!isTeamLeader) {
         redirect("/dashboard/team");
     }
 
@@ -125,6 +143,7 @@ async function FetchCompForm({
 
                 <p className="text-xl mb-2 text-red-500">
                     For STEM, BCC & IPPC, team must consist of 3 members only.
+                    PDC up to 5 members
                 </p>
 
                 <h3 className="text-base">

@@ -5,7 +5,7 @@ import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -106,7 +106,7 @@ function TeamForm() {
         control,
         reset,
         getValues,
-
+        setValue,
         formState: { errors, isSubmitting },
     } = useForm<teamSchema>({
         resolver: zodResolver(teamSchema),
@@ -127,36 +127,38 @@ function TeamForm() {
         },
     });
 
+    const hasInitialized = useRef(false);
     useEffect(() => {
-        if (user) {
-            reset({
-                leaderName: (user?.name as string) ?? "",
-                leaderEmail: (user?.email as string) ?? "",
-                leaderPhoneNumber: user?.phoneNumber ?? "",
-                teamInstitution: user?.institution ?? "",
-                teamName: "",
-                members: [
-                    {
-                        name: (user?.name as string) ?? "",
-                        email: (user?.email as string) ?? "",
-                        institution: (user?.institution as string) ?? "",
-                        role: "Leader",
-                    },
-                    {
-                        name: "",
-                        email: "",
-                        institution: "",
-                        role: "Member",
-                    },
-                    {
-                        name: "",
-                        email: "",
-                        institution: "",
-                        role: "Member",
-                    },
-                ],
-            });
-        }
+        if (!user || hasInitialized.current) return;
+
+        reset({
+            leaderName: (user?.name as string) ?? "",
+            leaderEmail: (user?.email as string) ?? "",
+            leaderPhoneNumber: user?.phoneNumber ?? "",
+            teamInstitution: user?.institution ?? "",
+            teamName: "",
+            members: [
+                {
+                    name: (user?.name as string) ?? "",
+                    email: (user?.email as string) ?? "",
+                    institution: (user?.institution as string) ?? "",
+                    role: "Leader",
+                },
+                {
+                    name: "",
+                    email: "",
+                    institution: "",
+                    role: "Member",
+                },
+                {
+                    name: "",
+                    email: "",
+                    institution: "",
+                    role: "Member",
+                },
+            ],
+        });
+        hasInitialized.current = true;
     }, [user, reset]);
 
     const { fields, append, remove } = useFieldArray({
@@ -227,10 +229,15 @@ function TeamForm() {
 
     // @ts-expect-error error is working
     const onError = (errors) => {
-        if (errors.members) {
-            toast.error(errors.members.message ?? "Duplicate email detected", {
-                description: `Email ${emailDuplicates.join(", ")} is already added.`,
-            });
+        if (!emailDuplicates.includes("")) {
+            if (errors.members) {
+                toast.error(
+                    errors.members.message ?? "Duplicate email detected",
+                    {
+                        description: `Email ${emailDuplicates.join(", ")} is already added.`,
+                    },
+                );
+            }
         }
     };
 
@@ -255,6 +262,17 @@ function TeamForm() {
                                         id={field.name}
                                         aria-invalid={fieldState.invalid}
                                         className="mb-12"
+                                        onBlur={(e) => {
+                                            e.target.value =
+                                                e.target.value.trim();
+                                        }}
+                                        onMouseLeave={() => {
+                                            const value = getValues("teamName");
+                                            if (!value) {
+                                                return;
+                                            }
+                                            setValue("teamName", value.trim());
+                                        }}
                                     />
                                     {fieldState.invalid && (
                                         <FieldError
@@ -381,8 +399,23 @@ function TeamForm() {
                                                 aria-invalid={
                                                     fieldState.invalid
                                                 }
-                                                disabled
-                                                readOnly
+                                                onBlur={(e) => {
+                                                    e.target.value =
+                                                        e.target.value.trim();
+                                                }}
+                                                onMouseLeave={() => {
+                                                    const value =
+                                                        getValues(
+                                                            "teamInstitution",
+                                                        );
+                                                    if (!value) {
+                                                        return;
+                                                    }
+                                                    setValue(
+                                                        "teamInstitution",
+                                                        value.trim(),
+                                                    );
+                                                }}
                                             />
                                             {fieldState.invalid && (
                                                 <FieldError
@@ -485,7 +518,7 @@ function TeamForm() {
                                                                     toast.error(
                                                                         "User is not completed their profile yet!",
                                                                         {
-                                                                            description: `Please ask ${user.name} to complete their profile.`,
+                                                                            description: `Please make sure ${user.name} to complete their profile.`,
                                                                         },
                                                                     );
                                                                     return;
@@ -574,6 +607,22 @@ function TeamForm() {
                                                 aria-invalid={
                                                     fieldState.invalid
                                                 }
+                                                onBlur={(e) => {
+                                                    e.target.value =
+                                                        e.target.value.trim();
+                                                }}
+                                                onMouseLeave={() => {
+                                                    const value = getValues(
+                                                        `members.${index}.institution`,
+                                                    );
+                                                    if (!value) {
+                                                        return;
+                                                    }
+                                                    setValue(
+                                                        `members.${index}.institution`,
+                                                        value.trim(),
+                                                    );
+                                                }}
                                                 readOnly={index === 0}
                                                 disabled={index === 0}
                                             />

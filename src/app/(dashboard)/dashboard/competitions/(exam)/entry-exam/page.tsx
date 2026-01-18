@@ -16,10 +16,10 @@ export default async function EntryExamPage() {
     const sebKey = await headers().then((h) =>
         h.get("x-safeexambrowser-configkeyhash"),
     );
-    console.log("SEB Key for this client exam: ", sebKey);
+    // console.log("SEB Key for this client exam: ", sebKey);
 
     if (!sebKey) {
-        console.log("SEB key not found, user is not using SEB");
+        // console.log("SEB key not found, user is not using SEB");
         redirect("use-seb");
     }
 
@@ -51,7 +51,7 @@ export default async function EntryExamPage() {
         user?.registration[0]?.competitionName !== "STEM" &&
         user?.id === user?.team_member[0]?.team.leaderUserId
     ) {
-        console.log("User as the leader is not registered for STEM");
+        // console.log("User as the leader is not registered for STEM");
         redirect("/dashboard");
     }
 
@@ -63,7 +63,7 @@ export default async function EntryExamPage() {
         !user.team_member[0] ||
         !user.team_member[0].team
     ) {
-        console.log("Member's team is not accepted and not registered");
+        // console.log("Member's team is not accepted and not registered");
         redirect("/dashboard");
     }
 
