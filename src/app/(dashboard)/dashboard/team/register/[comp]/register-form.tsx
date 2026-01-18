@@ -226,7 +226,8 @@ function RegisterForm({
             <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8">
                 <div className="text-center">
                     <h1 className="mb-1 mt-2 text-xl font-semibold">
-                        You have already registered for STEM Competition
+                        You have already registered or you are not a leader of
+                        any team.
                     </h1>
                     <p className="text-sm">
                         Please contact us if you want to change your
@@ -244,8 +245,8 @@ function RegisterForm({
             <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8">
                 <div className="text-center">
                     <h1 className="mb-1 mt-2 text-xl font-semibold">
-                        You have already registered for all available teams or
-                        you are not a leader of any team.
+                        You have already registered or you are not a leader of
+                        any team.
                     </h1>
                     <p className="text-sm">
                         Please contact us if you want to change your
@@ -261,9 +262,8 @@ function RegisterForm({
             <div className="bg-card -m-px rounded-[calc(var(--radius)+.125rem)] border p-8">
                 <div className="text-center">
                     <h1 className="mb-1 mt-2 text-xl font-semibold">
-                        You have already registered for all available teams or
-                        you are not a leader of any team or your team has more
-                        than 3 members.
+                        You have already registered or you are not a leader of
+                        any team
                     </h1>
                     <p className="text-sm">
                         Please contact us if you want to change your

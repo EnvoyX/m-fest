@@ -593,7 +593,7 @@ function TeamForm({ team }: { team: Team }) {
                                                 Add Member
                                             </Button>
                                         )}
-                                    {index !== 0 && index > 2 && (
+                                    {index !== 0 && (
                                         <Button
                                             type="button"
                                             variant={"destructive"}

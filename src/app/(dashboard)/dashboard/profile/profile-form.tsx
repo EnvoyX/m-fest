@@ -250,6 +250,7 @@ function ProfileUpdateForm() {
                                         id={field.name}
                                         aria-invalid={fieldState.invalid}
                                         disabled={!isEditing}
+                                        placeholder="081234567890"
                                     />
                                     {fieldState.invalid && (
                                         <FieldError
@@ -274,6 +275,7 @@ function ProfileUpdateForm() {
                                         id={field.name}
                                         aria-invalid={fieldState.invalid}
                                         disabled={!isEditing}
+                                        placeholder="Bandung"
                                     />
                                     {fieldState.invalid && (
                                         <FieldError
@@ -298,6 +300,7 @@ function ProfileUpdateForm() {
                                         id={field.name}
                                         aria-invalid={fieldState.invalid}
                                         disabled={!isEditing}
+                                        placeholder="Institut Teknologi Bandung"
                                     />
                                     {fieldState.invalid && (
                                         <FieldError
@@ -322,6 +325,7 @@ function ProfileUpdateForm() {
                                         id={field.name}
                                         aria-invalid={fieldState.invalid}
                                         disabled={!isEditing}
+                                        placeholder="Mechanical Engineering"
                                     />
                                     {fieldState.invalid && (
                                         <FieldError
