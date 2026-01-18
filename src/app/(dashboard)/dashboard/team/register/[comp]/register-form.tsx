@@ -276,6 +276,7 @@ function RegisterForm({
         ) {
             toast.error(`Team can only have 3 members for ${comp}`);
             toast.dismiss("register-team");
+            toast.dismiss("registering-team");
             return;
         }
         register.mutate({
