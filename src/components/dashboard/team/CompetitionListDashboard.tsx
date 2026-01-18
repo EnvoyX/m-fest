@@ -53,6 +53,15 @@ async function FetchUserAvailableCompetitions() {
             team: true,
         },
     });
+    const userTeam = await db.team.findFirst({
+        where: {
+            members: {
+                some: {
+                    userId: user.id,
+                },
+            },
+        },
+    });
 
     // console.log("Registered competitions: ", registeredCompetitions);
     const registeredCompetitionNames = registeredCompetitions.map(
@@ -142,21 +151,24 @@ async function FetchUserAvailableCompetitions() {
                                 "bg-muted-foreground pointer-events-none cursor-not-allowed":
                                     registeredCompetitions.length ||
                                     currentDate < comp.startRegDate1 ||
-                                    currentDate > comp.endRegDate3,
+                                    currentDate > comp.endRegDate3 ||
+                                    !userTeam,
                             })}
                             disabled={
                                 registeredCompetitions.length
                                     ? true
                                     : false ||
                                       currentDate < comp.startRegDate1 ||
-                                      currentDate > comp.endRegDate3
+                                      currentDate > comp.endRegDate3 ||
+                                      !userTeam
                             }
                         >
                             <Link
                                 href={
                                     registeredCompetitions.length ||
                                     currentDate < comp.startRegDate1 ||
-                                    currentDate > comp.endRegDate3
+                                    currentDate > comp.endRegDate3 ||
+                                    !userTeam
                                         ? ""
                                         : `/dashboard/team/register/${comp.abbreviation}`
                                 }

@@ -20,9 +20,9 @@ export const getCurrentDate = () => {
 };
 // For testing date
 // export const getCurrentDate = () => {
-//     const now = new Date();
+//     const now = new Date("2026-02-20T00:00:00");
 
-//     if (env.NODE_ENV === "development") {
+//     if (process.env.NODE_ENV === "development") {
 //         return now
 //     }
 
@@ -38,7 +38,6 @@ export function getCompFee(comp: string) {
     const compEndDate1 = competitions.find(
         (competition) => competition.abbreviation === comp.toUpperCase(),
     )?.endRegDate1 as Date;
-
     if (compStartDate1 < currentDate && currentDate < compEndDate1) {
         const compFee = competitions.find(
             (competition) => competition.abbreviation === comp.toUpperCase(),

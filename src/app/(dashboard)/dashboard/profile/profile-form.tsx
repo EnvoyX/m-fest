@@ -110,6 +110,8 @@ function ProfileUpdateForm() {
         control,
         reset,
         formState: { errors, isSubmitting },
+        setValue,
+        getValues,
     } = useForm<profileSchema>({
         resolver: zodResolver(profileSchema),
         defaultValues: {
@@ -215,6 +217,17 @@ function ProfileUpdateForm() {
                                             id={field.name}
                                             aria-invalid={fieldState.invalid}
                                             disabled={!isEditing}
+                                            onBlur={(e) => {
+                                                e.target.value =
+                                                    e.target.value.trim();
+                                            }}
+                                            onMouseLeave={() => {
+                                                const value = getValues("name");
+                                                if (!value) {
+                                                    return;
+                                                }
+                                                setValue("name", value.trim());
+                                            }}
                                         />
                                         {fieldState.invalid && (
                                             <FieldError
@@ -251,6 +264,21 @@ function ProfileUpdateForm() {
                                         aria-invalid={fieldState.invalid}
                                         disabled={!isEditing}
                                         placeholder="081234567890"
+                                        onBlur={(e) => {
+                                            e.target.value =
+                                                e.target.value.trim();
+                                        }}
+                                        onMouseLeave={() => {
+                                            const value =
+                                                getValues("phoneNumber");
+                                            if (!value) {
+                                                return;
+                                            }
+                                            setValue(
+                                                "phoneNumber",
+                                                value.trim(),
+                                            );
+                                        }}
                                     />
                                     {fieldState.invalid && (
                                         <FieldError
@@ -276,6 +304,17 @@ function ProfileUpdateForm() {
                                         aria-invalid={fieldState.invalid}
                                         disabled={!isEditing}
                                         placeholder="Bandung"
+                                        onBlur={(e) => {
+                                            e.target.value =
+                                                e.target.value.trim();
+                                        }}
+                                        onMouseLeave={() => {
+                                            const value = getValues("domicile");
+                                            if (!value) {
+                                                return;
+                                            }
+                                            setValue("domicile", value.trim());
+                                        }}
                                     />
                                     {fieldState.invalid && (
                                         <FieldError
@@ -301,6 +340,21 @@ function ProfileUpdateForm() {
                                         aria-invalid={fieldState.invalid}
                                         disabled={!isEditing}
                                         placeholder="Institut Teknologi Bandung"
+                                        onBlur={(e) => {
+                                            e.target.value =
+                                                e.target.value.trim();
+                                        }}
+                                        onMouseLeave={() => {
+                                            const value =
+                                                getValues("institution");
+                                            if (!value) {
+                                                return;
+                                            }
+                                            setValue(
+                                                "institution",
+                                                value.trim(),
+                                            );
+                                        }}
                                     />
                                     {fieldState.invalid && (
                                         <FieldError
@@ -326,6 +380,17 @@ function ProfileUpdateForm() {
                                         aria-invalid={fieldState.invalid}
                                         disabled={!isEditing}
                                         placeholder="Mechanical Engineering"
+                                        onBlur={(e) => {
+                                            e.target.value =
+                                                e.target.value.trim();
+                                        }}
+                                        onMouseLeave={() => {
+                                            const value = getValues("major");
+                                            if (!value) {
+                                                return;
+                                            }
+                                            setValue("major", value.trim());
+                                        }}
                                     />
                                     {fieldState.invalid && (
                                         <FieldError

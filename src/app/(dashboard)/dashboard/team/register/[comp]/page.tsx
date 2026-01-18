@@ -4,6 +4,7 @@ import {
     type Team,
     type CompRegistration,
     type TeamMember,
+    CompetitionName,
 } from "@/types/types";
 import { competitionsName } from "@/constants/constants";
 import { Suspense } from "react";
@@ -12,7 +13,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { competitions } from "@/lib/competition";
 import { getRegisteredTeams } from "@/action/register.action";
-import { getCurrentDate } from "@/lib/utils";
+import { getCompFee, getCurrentDate } from "@/lib/utils";
+import { getUser } from "@/action/user.action";
+import { db } from "@/server/db";
 
 export async function generateMetadata({
     params,
@@ -49,11 +52,24 @@ async function FetchCompForm({
 }: {
     params: Promise<{ comp: string }>;
 }) {
+    const user = await getUser();
+    const registeredTeam = await db.compRegistration.findFirst({
+        where: {
+            team: {
+                members: {
+                    some: {
+                        userId: user?.id,
+                    },
+                },
+            },
+        },
+    });
     let { comp } = await params;
     const currentDate = getCurrentDate();
     const thisComp = competitions.find(
         (c) => c.abbreviation === comp.toUpperCase(),
     );
+    const compFee = getCompFee(comp);
     if (comp) {
         if (!competitionsName.includes(comp.toUpperCase())) {
             redirect("/dashboard/team");
@@ -67,6 +83,10 @@ async function FetchCompForm({
         redirect("/dashboard/team");
     }
 
+    if (registeredTeam) {
+        redirect("/dashboard/team");
+    }
+
     comp = comp.toLowerCase();
 
     const {
@@ -77,7 +97,6 @@ async function FetchCompForm({
         userRegisteredCompetitions,
         userAsLeaderTeams,
         teamNames,
-        stemTeamNames,
     } = await getRegisteredTeams();
 
     return (
@@ -126,11 +145,7 @@ async function FetchCompForm({
                     Fee:{" "}
                     <span className="font-bold italic">
                         Rp. {""}
-                        {
-                            competitions.find(
-                                (c) => c.abbreviation === comp.toUpperCase(),
-                            )?.fee1
-                        }
+                        {compFee}
                     </span>
                 </h2>
                 <h3 className="text-base text-center mb-3">
@@ -148,7 +163,7 @@ async function FetchCompForm({
                 </p>
             </div>
             <RegisterForm
-                comp={comp}
+                comp={comp.toUpperCase() as CompetitionName}
                 userTeams={userTeams as Team[]}
                 userRegisteredCompetitions={
                     userRegisteredCompetitions as CompRegistration[]
@@ -160,7 +175,6 @@ async function FetchCompForm({
                 allTeamMembersDatas={allTeamMembersDatas as TeamMember[]}
                 userAsLeaderTeams={userAsLeaderTeams as Team[]}
                 teamNames={teamNames as (string | null)[]}
-                stemTeamNames={stemTeamNames as (string | null)[]}
             />
         </>
     );
