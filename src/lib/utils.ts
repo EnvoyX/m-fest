@@ -2,7 +2,6 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { competitions } from "./competition";
 import { CompetitionName } from "../../prisma/generated/prisma/enums";
-import { env } from "@/env";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -12,7 +11,7 @@ export function cn(...inputs: ClassValue[]) {
 export const getCurrentDate = () => {
     const now = new Date();
 
-    if (env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV === "development") {
         return now
     }
 
