@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 async function CreateTeamPage() {
     return (
         <section className="flex min-h-screen bg-transparent px-4 py-4 md:py-8 dark:bg-transparent">
-            <div className="bg-transparent m-auto h-fit w-full max-w-5xl overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
+            <div className="bg-transparent backdrop-glass-lg m-auto h-fit w-full max-w-5xl overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
                 <div className="bg-transparent -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6">
                     <div className="text-center">
                         <h1 className="mb-1 mt-4 text-3xl font-semibold text-start">

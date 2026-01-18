@@ -143,6 +143,7 @@ export type Team = {
     leaderPhoneNumber: string | null;
     teamInstitution: string | null;
     paymentId: string | null;
+    members: TeamMember[]
     createdAt: Date;
     updatedAt: Date;
     competition: CompetitionName | null;
@@ -268,7 +269,7 @@ export type ImageCropperProps = {
 };
 
 export type RegisterFormProps = {
-    comp: string;
+    comp: CompetitionName;
     userTeams: Team[];
     userRegisteredCompetitions: CompRegistration[];
     allTeamsDatas: Team[];
@@ -276,22 +277,21 @@ export type RegisterFormProps = {
     allTeamMembersDatas: TeamMember[];
     userAsLeaderTeams: Team[];
     teamNames: (string | null)[];
-    stemTeamNames: (string | null)[];
 };
 
 export type NavMainProps = {
     items: (
         | {
-              title: string;
-              url: string;
-              icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
-          }
+            title: string;
+            url: string;
+            icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+        }
         | {
-              title: string;
-              url: string;
-              icon: ForwardRefExoticComponent<
-                  Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-              >;
-          }
+            title: string;
+            url: string;
+            icon: ForwardRefExoticComponent<
+                Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+            >;
+        }
     )[];
 };
