@@ -63,15 +63,29 @@ export default function CompetitionsList() {
                             variant="secondary"
                             size="lg"
                             className="rounded-lg text-base font-bold px-6 py-6"
+                            disabled={
+                                competition.startRegDate1 > currentDate ||
+                                competition.endRegDate3 < currentDate
+                            }
                         >
-                            <Link
-                                href={`/dashboard/team`}
-                                prefetch
-                                className="flex items-center gap-2"
-                            >
-                                <span>Register Now</span>
-                                <ChevronRight className="size-5" />
-                            </Link>
+                            {competition.startRegDate1 > currentDate ? (
+                                <span className="cursor-not-allowed opacity-50 flex items-center gap-2">
+                                    Coming Soon <Clock className="size-5" />
+                                </span>
+                            ) : competition.endRegDate3 < currentDate ? (
+                                <span className="cursor-not-allowed opacity-50">
+                                    Registration Closed
+                                </span>
+                            ) : (
+                                <Link
+                                    href={`/dashboard/team`}
+                                    prefetch
+                                    className="flex items-center gap-2"
+                                >
+                                    <span>Register Now</span>
+                                    <ChevronRight className="size-5" />
+                                </Link>
+                            )}
                         </Button>
                     </div>
                 </BlurFade>

@@ -2,15 +2,34 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { competitions } from "./competition";
 import { CompetitionName } from "../../prisma/generated/prisma/enums";
+import { env } from "@/env";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
 // Real date
-export const getCurrentDate = () => new Date();
+export const getCurrentDate = () => {
+    const now = new Date();
+
+    if (env.NODE_ENV === "development") {
+        return now
+    }
+
+    // // Convert UTC → WIB (UTC+7)
+    return new Date(now.getTime() + 7 * 60 * 60 * 1000);
+};
 // For testing date
-// export const getCurrentDate = () => new Date("2026-01-21T00:00:00");
+// export const getCurrentDate = () => {
+//     const now = new Date();
+
+//     if (env.NODE_ENV === "development") {
+//         return now
+//     }
+
+//     // // Convert UTC → WIB (UTC+7)
+//     return new Date(now.getTime() + 7 * 60 * 60 * 1000);
+// };
 
 const currentDate = getCurrentDate();
 export function getCompFee(comp: string) {
