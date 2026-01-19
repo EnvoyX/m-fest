@@ -140,7 +140,7 @@ async function FetchTeams() {
                                 <div className="flex items-center gap-3 mb-6">
                                     <IconUsersGroup className="w-6 h-6 text-primary" />
                                     <div className="flex flex-col ">
-                                        <h3 className="text-lg font-semibold text-foreground flex items-center gap-1">
+                                        <h3 className="text-lg font-semibold text-foreground flex items-center gap-1 line-clamp-1">
                                             <span>{team.name}</span>
                                             {team.members.some(
                                                 (member) =>
@@ -310,7 +310,7 @@ async function FetchTeams() {
                                                     <h4 className="font-medium text-foreground text-sm mt-3 line-clamp-1">
                                                         {member.user?.name}
                                                     </h4>
-                                                    <p className="text-xs text-muted-foreground mt-1">
+                                                    <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
                                                         {
                                                             member.user
                                                                 ?.institution

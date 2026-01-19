@@ -22,8 +22,8 @@ export default function ProfilePage() {
                             Please complete your profile below to able to
                             register competitions and events. Make sure your
                             full name is match with your Student Card. Fill the
-                            institution field with its full name. These will
-                            help to verify your identity.
+                            Institution/School field with its full name. These
+                            will help to verify your identity.
                         </p>
                     </div>
                     <Suspense fallback={<ProfileFormSkeleton />}>
