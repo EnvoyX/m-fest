@@ -51,6 +51,12 @@ import { DataTableViewOptions } from "@/components/ui/data-table-view-options";
 import { toast } from "sonner";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { IconFileExport, IconTableExport } from "@tabler/icons-react";
+import {
+    exportAllToXlsx,
+    exportCurrentPageToXlsx,
+    exportFilteredRowsToXlsx,
+} from "@/utils/xlsx";
 
 export function DocumentsDataTable() {
     const trpc = useTRPC();
@@ -477,12 +483,12 @@ export function DocumentsDataTable() {
         },
         {
             accessorKey: "userIdentityCard",
+            accessorFn: (row) => row.identityCardImageUrl,
             header: "Identity Card",
             cell: ({ row }) => {
-                const userId = row.getValue("userId") as string;
-                const identityCardUrl = documents?.find(
-                    (user) => user.userId === userId,
-                )?.identityCardImageUrl;
+                const identityCardUrl = row.getValue(
+                    "userIdentityCard",
+                ) as string;
                 return (
                     <Link
                         href={(identityCardUrl as string) ?? ""}
@@ -498,12 +504,10 @@ export function DocumentsDataTable() {
         },
         {
             accessorKey: "userTwibbon",
+            accessorFn: (row) => row.twibbonImageUrl,
             header: "Twibbon",
             cell: ({ row }) => {
-                const userId = row.getValue("userId") as string;
-                const twibbonUrl = documents?.find(
-                    (user) => user.userId === userId,
-                )?.twibbonImageUrl;
+                const twibbonUrl = row.getValue("userTwibbon") as string;
                 return (
                     <Link
                         href={(twibbonUrl as string) ?? ""}
@@ -519,12 +523,10 @@ export function DocumentsDataTable() {
         },
         {
             accessorKey: "userFollowIg",
+            accessorFn: (row) => row.followIgImageUrl,
             header: "Follow IG",
             cell: ({ row }) => {
-                const userId = row.getValue("userId") as string;
-                const followIgUrl = documents?.find(
-                    (user) => user.userId === userId,
-                )?.followIgImageUrl;
+                const followIgUrl = row.getValue("userFollowIg") as string;
                 return (
                     <Link
                         href={(followIgUrl as string) ?? ""}
@@ -938,6 +940,57 @@ export function DocumentsDataTable() {
                             })}
                         />
                     </Button>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="relative cursor-pointer"
+                                disabled={isFetching}
+                            >
+                                <IconTableExport />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            className="bg-transparent backdrop-glass-xl"
+                            align="end"
+                        >
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:bg-white/20!"
+                                onClick={() => {
+                                    exportCurrentPageToXlsx(
+                                        table,
+                                        "documents.xlsx",
+                                    );
+                                }}
+                            >
+                                <IconFileExport />
+                                Export current rows to .xlsx
+                            </DropdownMenuItem>
+                            {table.getFilteredSelectedRowModel().rows.length ? (
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        exportFilteredRowsToXlsx(
+                                            table,
+                                            "documents.xlsx",
+                                        );
+                                    }}
+                                >
+                                    <IconFileExport />
+                                    Export selected to .xlsx
+                                </DropdownMenuItem>
+                            ) : null}
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:bg-white/20!"
+                                onClick={() => {
+                                    exportAllToXlsx(table, "documents.xlsx");
+                                }}
+                            >
+                                <IconFileExport />
+                                Export all rows to .xlsx
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                     {table.getFilteredSelectedRowModel().rows.length ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -976,6 +1029,18 @@ export function DocumentsDataTable() {
                             >
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        exportFilteredRowsToXlsx(
+                                            table,
+                                            "documents.xlsx",
+                                        );
+                                    }}
+                                >
+                                    <IconFileExport />
+                                    Export selected to .xlsx
+                                </DropdownMenuItem>
                                 <DropdownMenuItem
                                     onClick={() => {
                                         const userIds = table

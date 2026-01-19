@@ -971,7 +971,6 @@ export function UsersDataTable() {
                             })}
                         />
                     </Button>
-
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
