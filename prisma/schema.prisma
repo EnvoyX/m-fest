@@ -119,15 +119,12 @@ model User {
   email             String              @unique
   emailVerified     Boolean
   image             String?
-  imageKey          String?
-  gender            Gender?
   phoneNumber       String?
   domicile          String?
   institution       String?
   major             String?
   education         Education?
   semester          Int?
-  birthDate         DateTime?
   role              Role                @default(USER)
   verified          Boolean             @default(false)
   createdAt         DateTime            @default(now())
