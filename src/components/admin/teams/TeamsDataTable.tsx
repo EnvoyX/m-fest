@@ -16,6 +16,7 @@ import {
 import {
     ArrowUpRightSquare,
     BadgeCheckIcon,
+    ListFilter,
     Loader2,
     MoreHorizontal,
     RefreshCw,
@@ -841,7 +842,8 @@ export function TeamsDataTable() {
                                     variant="outline"
                                     className="w-fit cursor-pointer"
                                 >
-                                    <span className="">Filter by column:</span>
+                                    <ListFilter />
+                                    <span className="">Filter:</span>
                                     <span className="capitalize">
                                         {filterColumn}
                                     </span>

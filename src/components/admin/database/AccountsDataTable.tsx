@@ -13,7 +13,7 @@ import {
     useReactTable,
     type VisibilityState,
 } from "@tanstack/react-table";
-import { Loader2, MoreHorizontal, RefreshCw } from "lucide-react";
+import { ListFilter, Loader2, MoreHorizontal, RefreshCw } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -477,7 +477,8 @@ export default function AccountsDataTable() {
                                     variant="outline"
                                     className="w-fit cursor-pointer"
                                 >
-                                    <span className="">Filter by column:</span>
+                                    <ListFilter />
+                                    <span className="">Filter:</span>
                                     <span className="capitalize">
                                         {filterColumn}
                                     </span>

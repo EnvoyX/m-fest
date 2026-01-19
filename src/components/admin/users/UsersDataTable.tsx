@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-table";
 import {
     BadgeCheckIcon,
+    ListFilter,
     Loader2,
     MoreHorizontal,
     RefreshCw,
@@ -53,6 +54,12 @@ import { authClient } from "@/lib/auth-client";
 import { userRoles } from "@/constants/constants";
 import type { Role } from "../../../../prisma/generated/prisma/enums";
 import { Badge } from "@/components/ui/badge";
+import { IconFileExport, IconTableExport } from "@tabler/icons-react";
+import {
+    exportAllToXlsx,
+    exportCurrentPageToXlsx,
+    exportFilteredRowsToXlsx,
+} from "@/utils/xlsx";
 
 export function UsersDataTable() {
     const trpc = useTRPC();
@@ -364,22 +371,6 @@ export function UsersDataTable() {
                 );
             },
         },
-        // {
-        //     accessorKey: "imageKey",
-        //     accessorFn: (row) => {
-        //         const user = users?.find((user) => user.id === row.id);
-        //         return (
-        //             user?.imageKey ?? "Image URL was set by the social provider"
-        //         );
-        //     },
-        //     header: ({ column }) => {
-        //         return (
-        //             <DataTableColumnHeader column={column} title="Image Key" />
-        //         );
-        //     },
-        //     cell: ({ row }) => <span>{row.getValue("imageKey")}</span>,
-        //     filterFn: "includesString",
-        // },
 
         {
             accessorKey: "phoneNumber",
@@ -817,7 +808,8 @@ export function UsersDataTable() {
                                     variant="outline"
                                     className="w-fit cursor-pointer"
                                 >
-                                    <span className="">Filter by column:</span>
+                                    <ListFilter />
+                                    <span className="">Filter:</span>
                                     <span className="capitalize">
                                         {filterColumn}
                                     </span>
@@ -979,6 +971,58 @@ export function UsersDataTable() {
                             })}
                         />
                     </Button>
+
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="relative cursor-pointer"
+                                disabled={isFetching}
+                            >
+                                <IconTableExport />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            className="bg-transparent backdrop-glass-xl"
+                            align="end"
+                        >
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:bg-white/20!"
+                                onClick={() => {
+                                    exportCurrentPageToXlsx(
+                                        table,
+                                        "users.xlsx",
+                                    );
+                                }}
+                            >
+                                <IconFileExport />
+                                Export current rows to .xlsx
+                            </DropdownMenuItem>
+                            {table.getFilteredSelectedRowModel().rows.length ? (
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        exportFilteredRowsToXlsx(
+                                            table,
+                                            "users.xlsx",
+                                        );
+                                    }}
+                                >
+                                    <IconFileExport />
+                                    Export selected to .xlsx
+                                </DropdownMenuItem>
+                            ) : null}
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:bg-white/20!"
+                                onClick={() => {
+                                    exportAllToXlsx(table, "users.xlsx");
+                                }}
+                            >
+                                <IconFileExport />
+                                Export all rows to .xlsx
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                     {table.getFilteredSelectedRowModel().rows.length ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -1017,6 +1061,18 @@ export function UsersDataTable() {
                             >
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        exportFilteredRowsToXlsx(
+                                            table,
+                                            "users.xlsx",
+                                        );
+                                    }}
+                                >
+                                    <IconFileExport />
+                                    Export selected to .xlsx
+                                </DropdownMenuItem>
                                 {session?.user.role === "SUPERADMIN" && (
                                     <>
                                         <DropdownMenuItem
@@ -1094,6 +1150,7 @@ export function UsersDataTable() {
                         </DropdownMenu>
                     ) : null}
                 </div>
+
                 <DataTableViewOptions table={table} />
             </div>
             <div className="w-full overflow-x-auto rounded-md border mb-2">

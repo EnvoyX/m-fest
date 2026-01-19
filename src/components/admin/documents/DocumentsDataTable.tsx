@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-table";
 import {
     BadgeCheckIcon,
+    ListFilter,
     Loader2,
     MoreHorizontal,
     RefreshCw,
@@ -834,7 +835,8 @@ export function DocumentsDataTable() {
                                     variant="outline"
                                     className="w-fit cursor-pointer"
                                 >
-                                    <span className="">Filter by column:</span>
+                                    <ListFilter />
+                                    <span className="">Filter:</span>
                                     <span className="capitalize">
                                         {filterColumn}
                                     </span>
