@@ -59,6 +59,25 @@ export default function FAQs() {
       answer:
         "If you have any further questions regarding our competitions, please kindly follow our Instagram and click 'FAQ Competitions' highlight or contact our contact person. Thank you!",
     },
+    {
+      id: "item-7",
+      question: "How do i register to a competition?",
+      answer:
+      (
+        <span>
+          Please kindly follow the instructions given on this{" "}
+          <a
+            href="https://www.instagram.com/p/DTpL87WEjd6/?igsh=ZXR5eThneHY5NHNr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline hover:text-blue-700"
+          >
+            Instagram post
+          </a>
+          .
+        </span>
+      ),
+    },
   ];
 
   return (
