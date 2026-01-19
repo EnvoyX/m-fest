@@ -1,7 +1,6 @@
 import ProfileFormSkeleton from "@/components/dashboard/profile/ProfileFormSkeleton";
 import ProfileUpdateForm from "./profile-form";
 import { type Metadata } from "next";
-import Link from "next/link";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {

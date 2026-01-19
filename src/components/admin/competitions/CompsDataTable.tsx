@@ -56,6 +56,12 @@ import { toast } from "sonner";
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { IconFileExport, IconTableExport } from "@tabler/icons-react";
+import {
+    exportAllToXlsx,
+    exportCurrentPageToXlsx,
+    exportFilteredRowsToXlsx,
+} from "@/utils/xlsx";
 
 type TeamMember = Prisma.TeamMemberGetPayload<{
     include: {
@@ -1208,6 +1214,60 @@ export function CompsDataTable() {
                             })}
                         />
                     </Button>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="relative cursor-pointer"
+                                disabled={isFetching}
+                            >
+                                <IconTableExport />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            className="bg-transparent backdrop-glass-xl"
+                            align="end"
+                        >
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:bg-white/20!"
+                                onClick={() => {
+                                    exportCurrentPageToXlsx(
+                                        table,
+                                        "compregistrations.xlsx",
+                                    );
+                                }}
+                            >
+                                <IconFileExport />
+                                Export current rows to .xlsx
+                            </DropdownMenuItem>
+                            {table.getFilteredSelectedRowModel().rows.length ? (
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        exportFilteredRowsToXlsx(
+                                            table,
+                                            "compregistrations.xlsx",
+                                        );
+                                    }}
+                                >
+                                    <IconFileExport />
+                                    Export selected to .xlsx
+                                </DropdownMenuItem>
+                            ) : null}
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:bg-white/20!"
+                                onClick={() => {
+                                    exportAllToXlsx(
+                                        table,
+                                        "compregistrations.xlsx",
+                                    );
+                                }}
+                            >
+                                <IconFileExport />
+                                Export all rows to .xlsx
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                     {table.getFilteredSelectedRowModel().rows.length ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -1246,6 +1306,18 @@ export function CompsDataTable() {
                             >
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        exportFilteredRowsToXlsx(
+                                            table,
+                                            "compregistrations.xlsx",
+                                        );
+                                    }}
+                                >
+                                    <IconFileExport />
+                                    Export selected to .xlsx
+                                </DropdownMenuItem>
                                 <DropdownMenuItem
                                     className="cursor-pointer text-green-500 hover:text-green-500! hover:bg-green-900/60!"
                                     onClick={() => {
