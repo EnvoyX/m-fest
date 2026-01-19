@@ -6,6 +6,7 @@ import { TimelineTest } from "@/components/timeline/timeline-test";
 import AboutSection from "@/components/general/about-section";
 import EventSection from "@/components/general/event-section";
 import CompetitionSection from "@/components/general/competition-section";
+import Collaborators from "@/components/collaborators";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <EventSection />
       <CompetitionSection />
       <TimelineTest />
+      <Collaborators />
       <FAQs />
       <ContactSection />
     </main>
