@@ -8,10 +8,6 @@ export enum Role {
     ADMIN = "ADMIN",
     SUPERADMIN = "SUPERADMIN",
 }
-export enum Gender {
-    Male = "Male",
-    Female = "Female",
-}
 
 export enum Education {
     SMA = "SMA",
@@ -59,16 +55,13 @@ export type User = {
     email: string;
     emailVerified: boolean | null;
     image: string | null;
-    imageKey: string | null;
 
-    gender: Gender | null;
     phoneNumber: string | null;
     domicile: string | null;
     institution: string | null;
     major: string | null;
     education: Education | null;
     semester: number | null;
-    birthDate: Date | null;
     role: Role;
 
     verified: boolean;

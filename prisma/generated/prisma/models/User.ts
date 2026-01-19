@@ -40,15 +40,12 @@ export type UserMinAggregateOutputType = {
   email: string | null
   emailVerified: boolean | null
   image: string | null
-  imageKey: string | null
-  gender: $Enums.Gender | null
   phoneNumber: string | null
   domicile: string | null
   institution: string | null
   major: string | null
   education: $Enums.Education | null
   semester: number | null
-  birthDate: Date | null
   role: $Enums.Role | null
   verified: boolean | null
   createdAt: Date | null
@@ -61,15 +58,12 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   emailVerified: boolean | null
   image: string | null
-  imageKey: string | null
-  gender: $Enums.Gender | null
   phoneNumber: string | null
   domicile: string | null
   institution: string | null
   major: string | null
   education: $Enums.Education | null
   semester: number | null
-  birthDate: Date | null
   role: $Enums.Role | null
   verified: boolean | null
   createdAt: Date | null
@@ -82,15 +76,12 @@ export type UserCountAggregateOutputType = {
   email: number
   emailVerified: number
   image: number
-  imageKey: number
-  gender: number
   phoneNumber: number
   domicile: number
   institution: number
   major: number
   education: number
   semester: number
-  birthDate: number
   role: number
   verified: number
   createdAt: number
@@ -113,15 +104,12 @@ export type UserMinAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
-  imageKey?: true
-  gender?: true
   phoneNumber?: true
   domicile?: true
   institution?: true
   major?: true
   education?: true
   semester?: true
-  birthDate?: true
   role?: true
   verified?: true
   createdAt?: true
@@ -134,15 +122,12 @@ export type UserMaxAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
-  imageKey?: true
-  gender?: true
   phoneNumber?: true
   domicile?: true
   institution?: true
   major?: true
   education?: true
   semester?: true
-  birthDate?: true
   role?: true
   verified?: true
   createdAt?: true
@@ -155,15 +140,12 @@ export type UserCountAggregateInputType = {
   email?: true
   emailVerified?: true
   image?: true
-  imageKey?: true
-  gender?: true
   phoneNumber?: true
   domicile?: true
   institution?: true
   major?: true
   education?: true
   semester?: true
-  birthDate?: true
   role?: true
   verified?: true
   createdAt?: true
@@ -263,15 +245,12 @@ export type UserGroupByOutputType = {
   email: string
   emailVerified: boolean
   image: string | null
-  imageKey: string | null
-  gender: $Enums.Gender | null
   phoneNumber: string | null
   domicile: string | null
   institution: string | null
   major: string | null
   education: $Enums.Education | null
   semester: number | null
-  birthDate: Date | null
   role: $Enums.Role
   verified: boolean
   createdAt: Date
@@ -307,15 +286,12 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   image?: Prisma.StringNullableFilter<"User"> | string | null
-  imageKey?: Prisma.StringNullableFilter<"User"> | string | null
-  gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   phoneNumber?: Prisma.StringNullableFilter<"User"> | string | null
   domicile?: Prisma.StringNullableFilter<"User"> | string | null
   institution?: Prisma.StringNullableFilter<"User"> | string | null
   major?: Prisma.StringNullableFilter<"User"> | string | null
   education?: Prisma.EnumEducationNullableFilter<"User"> | $Enums.Education | null
   semester?: Prisma.IntNullableFilter<"User"> | number | null
-  birthDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   verified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -336,15 +312,12 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
-  imageKey?: Prisma.SortOrderInput | Prisma.SortOrder
-  gender?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   domicile?: Prisma.SortOrderInput | Prisma.SortOrder
   institution?: Prisma.SortOrderInput | Prisma.SortOrder
   major?: Prisma.SortOrderInput | Prisma.SortOrder
   education?: Prisma.SortOrderInput | Prisma.SortOrder
   semester?: Prisma.SortOrderInput | Prisma.SortOrder
-  birthDate?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -368,15 +341,12 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"User"> | string
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   image?: Prisma.StringNullableFilter<"User"> | string | null
-  imageKey?: Prisma.StringNullableFilter<"User"> | string | null
-  gender?: Prisma.EnumGenderNullableFilter<"User"> | $Enums.Gender | null
   phoneNumber?: Prisma.StringNullableFilter<"User"> | string | null
   domicile?: Prisma.StringNullableFilter<"User"> | string | null
   institution?: Prisma.StringNullableFilter<"User"> | string | null
   major?: Prisma.StringNullableFilter<"User"> | string | null
   education?: Prisma.EnumEducationNullableFilter<"User"> | $Enums.Education | null
   semester?: Prisma.IntNullableFilter<"User"> | number | null
-  birthDate?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   verified?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -397,15 +367,12 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
-  imageKey?: Prisma.SortOrderInput | Prisma.SortOrder
-  gender?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   domicile?: Prisma.SortOrderInput | Prisma.SortOrder
   institution?: Prisma.SortOrderInput | Prisma.SortOrder
   major?: Prisma.SortOrderInput | Prisma.SortOrder
   education?: Prisma.SortOrderInput | Prisma.SortOrder
   semester?: Prisma.SortOrderInput | Prisma.SortOrder
-  birthDate?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -426,15 +393,12 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   image?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  imageKey?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"User"> | $Enums.Gender | null
   phoneNumber?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   domicile?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   institution?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   major?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   education?: Prisma.EnumEducationNullableWithAggregatesFilter<"User"> | $Enums.Education | null
   semester?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
-  birthDate?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   verified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -447,15 +411,12 @@ export type UserCreateInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -476,15 +437,12 @@ export type UserUncheckedCreateInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -505,15 +463,12 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -534,15 +489,12 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -563,15 +515,12 @@ export type UserCreateManyInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -584,15 +533,12 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -605,15 +551,12 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -631,15 +574,12 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  imageKey?: Prisma.SortOrder
-  gender?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   domicile?: Prisma.SortOrder
   institution?: Prisma.SortOrder
   major?: Prisma.SortOrder
   education?: Prisma.SortOrder
   semester?: Prisma.SortOrder
-  birthDate?: Prisma.SortOrder
   role?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -656,15 +596,12 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  imageKey?: Prisma.SortOrder
-  gender?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   domicile?: Prisma.SortOrder
   institution?: Prisma.SortOrder
   major?: Prisma.SortOrder
   education?: Prisma.SortOrder
   semester?: Prisma.SortOrder
-  birthDate?: Prisma.SortOrder
   role?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -677,15 +614,12 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   image?: Prisma.SortOrder
-  imageKey?: Prisma.SortOrder
-  gender?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   domicile?: Prisma.SortOrder
   institution?: Prisma.SortOrder
   major?: Prisma.SortOrder
   education?: Prisma.SortOrder
   semester?: Prisma.SortOrder
-  birthDate?: Prisma.SortOrder
   role?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -724,10 +658,6 @@ export type UserUpdateOneRequiredWithoutEventRegistrationNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEventRegistrationInput, Prisma.UserUpdateWithoutEventRegistrationInput>, Prisma.UserUncheckedUpdateWithoutEventRegistrationInput>
 }
 
-export type NullableEnumGenderFieldUpdateOperationsInput = {
-  set?: $Enums.Gender | null
-}
-
 export type NullableEnumEducationFieldUpdateOperationsInput = {
   set?: $Enums.Education | null
 }
@@ -738,10 +668,6 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
 }
 
 export type EnumRoleFieldUpdateOperationsInput = {
@@ -838,15 +764,12 @@ export type UserCreateWithoutRegistrationInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -866,15 +789,12 @@ export type UserUncheckedCreateWithoutRegistrationInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -910,15 +830,12 @@ export type UserUpdateWithoutRegistrationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -938,15 +855,12 @@ export type UserUncheckedUpdateWithoutRegistrationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -966,15 +880,12 @@ export type UserCreateWithoutEventRegistrationInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -994,15 +905,12 @@ export type UserUncheckedCreateWithoutEventRegistrationInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1038,15 +946,12 @@ export type UserUpdateWithoutEventRegistrationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1066,15 +971,12 @@ export type UserUncheckedUpdateWithoutEventRegistrationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1094,15 +996,12 @@ export type UserCreateWithoutDocumentsInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1122,15 +1021,12 @@ export type UserUncheckedCreateWithoutDocumentsInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1166,15 +1062,12 @@ export type UserUpdateWithoutDocumentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1194,15 +1087,12 @@ export type UserUncheckedUpdateWithoutDocumentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1222,15 +1112,12 @@ export type UserCreateWithoutTeam_memberInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1250,15 +1137,12 @@ export type UserUncheckedCreateWithoutTeam_memberInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1294,15 +1178,12 @@ export type UserUpdateWithoutTeam_memberInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1322,15 +1203,12 @@ export type UserUncheckedUpdateWithoutTeam_memberInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1350,15 +1228,12 @@ export type UserCreateWithoutAccountsInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1378,15 +1253,12 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1422,15 +1294,12 @@ export type UserUpdateWithoutAccountsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1450,15 +1319,12 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1478,15 +1344,12 @@ export type UserCreateWithoutSessionsInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1506,15 +1369,12 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1550,15 +1410,12 @@ export type UserUpdateWithoutSessionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1578,15 +1435,12 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1606,15 +1460,12 @@ export type UserCreateWithoutExamSessionInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1634,15 +1485,12 @@ export type UserUncheckedCreateWithoutExamSessionInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1678,15 +1526,12 @@ export type UserUpdateWithoutExamSessionInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1706,15 +1551,12 @@ export type UserUncheckedUpdateWithoutExamSessionInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1734,15 +1576,12 @@ export type UserCreateWithoutQuizResultsInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1762,15 +1601,12 @@ export type UserUncheckedCreateWithoutQuizResultsInput = {
   email: string
   emailVerified: boolean
   image?: string | null
-  imageKey?: string | null
-  gender?: $Enums.Gender | null
   phoneNumber?: string | null
   domicile?: string | null
   institution?: string | null
   major?: string | null
   education?: $Enums.Education | null
   semester?: number | null
-  birthDate?: Date | string | null
   role?: $Enums.Role
   verified?: boolean
   createdAt?: Date | string
@@ -1806,15 +1642,12 @@ export type UserUpdateWithoutQuizResultsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1834,15 +1667,12 @@ export type UserUncheckedUpdateWithoutQuizResultsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  imageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   domicile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   major?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   education?: Prisma.NullableEnumEducationFieldUpdateOperationsInput | $Enums.Education | null
   semester?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1947,15 +1777,12 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  imageKey?: boolean
-  gender?: boolean
   phoneNumber?: boolean
   domicile?: boolean
   institution?: boolean
   major?: boolean
   education?: boolean
   semester?: boolean
-  birthDate?: boolean
   role?: boolean
   verified?: boolean
   createdAt?: boolean
@@ -1977,15 +1804,12 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  imageKey?: boolean
-  gender?: boolean
   phoneNumber?: boolean
   domicile?: boolean
   institution?: boolean
   major?: boolean
   education?: boolean
   semester?: boolean
-  birthDate?: boolean
   role?: boolean
   verified?: boolean
   createdAt?: boolean
@@ -1998,15 +1822,12 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  imageKey?: boolean
-  gender?: boolean
   phoneNumber?: boolean
   domicile?: boolean
   institution?: boolean
   major?: boolean
   education?: boolean
   semester?: boolean
-  birthDate?: boolean
   role?: boolean
   verified?: boolean
   createdAt?: boolean
@@ -2019,22 +1840,19 @@ export type UserSelectScalar = {
   email?: boolean
   emailVerified?: boolean
   image?: boolean
-  imageKey?: boolean
-  gender?: boolean
   phoneNumber?: boolean
   domicile?: boolean
   institution?: boolean
   major?: boolean
   education?: boolean
   semester?: boolean
-  birthDate?: boolean
   role?: boolean
   verified?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "imageKey" | "gender" | "phoneNumber" | "domicile" | "institution" | "major" | "education" | "semester" | "birthDate" | "role" | "verified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "phoneNumber" | "domicile" | "institution" | "major" | "education" | "semester" | "role" | "verified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   registration?: boolean | Prisma.User$registrationArgs<ExtArgs>
@@ -2067,15 +1885,12 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string
     emailVerified: boolean
     image: string | null
-    imageKey: string | null
-    gender: $Enums.Gender | null
     phoneNumber: string | null
     domicile: string | null
     institution: string | null
     major: string | null
     education: $Enums.Education | null
     semester: number | null
-    birthDate: Date | null
     role: $Enums.Role
     verified: boolean
     createdAt: Date
@@ -2516,15 +2331,12 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly image: Prisma.FieldRef<"User", 'String'>
-  readonly imageKey: Prisma.FieldRef<"User", 'String'>
-  readonly gender: Prisma.FieldRef<"User", 'Gender'>
   readonly phoneNumber: Prisma.FieldRef<"User", 'String'>
   readonly domicile: Prisma.FieldRef<"User", 'String'>
   readonly institution: Prisma.FieldRef<"User", 'String'>
   readonly major: Prisma.FieldRef<"User", 'String'>
   readonly education: Prisma.FieldRef<"User", 'Education'>
   readonly semester: Prisma.FieldRef<"User", 'Int'>
-  readonly birthDate: Prisma.FieldRef<"User", 'DateTime'>
   readonly role: Prisma.FieldRef<"User", 'Role'>
   readonly verified: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>

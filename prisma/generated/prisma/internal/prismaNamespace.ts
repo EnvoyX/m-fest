@@ -1315,15 +1315,12 @@ export const UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
-  imageKey: 'imageKey',
-  gender: 'gender',
   phoneNumber: 'phoneNumber',
   domicile: 'domicile',
   institution: 'institution',
   major: 'major',
   education: 'education',
   semester: 'semester',
-  birthDate: 'birthDate',
   role: 'role',
   verified: 'verified',
   createdAt: 'createdAt',
@@ -1589,20 +1586,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
- * Reference to a field of type 'Gender'
- */
-export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
-    
-
-
-/**
- * Reference to a field of type 'Gender[]'
- */
-export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
     
 
 
