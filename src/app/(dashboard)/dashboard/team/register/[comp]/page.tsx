@@ -176,7 +176,7 @@ async function FetchCompForm({
                         <span>Holder: Reva Elita Nurhaliza</span>
                     </p>
                 </h3>
-                <p className="text-sm mb-2 text-dangerous text-bold">
+                <p className="text-md mb-2 text-red-500 text-bold">
                     Please add a note on your payment with your team name.
                 </p>
                 <p className="text-sm mb-2">
