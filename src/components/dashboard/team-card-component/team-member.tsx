@@ -1,12 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import { db } from "@/server/db";
-import { ArrowRight, BadgeCheckIcon } from "lucide-react";
+import { BadgeCheckIcon, Edit, Trash } from "lucide-react";
 import { Fragment, Suspense } from "react";
 import { UserAvatar } from "../../general/UserProfile";
-import { getUser } from "@/action/user.action";
-import { type User } from "@/types/types";
-import { IconUsersGroup } from "@tabler/icons-react";
-import { Button } from "@/components/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -14,31 +10,55 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
+} from "../../ui/empty";
+import { IconUsersGroup } from "@tabler/icons-react";
+import { Button } from "../../ui/button";
 import Link from "next/link";
-import TeamFallback from "./../TeamFallback";
+import { type User } from "@/types/types";
+import TeamFallback from "../TeamFallback";
+import { getUser } from "@/action/user.action";
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import AlertDialogActionButton from "../deleteButton";
 
-export function RegisteredCompetitionsTeams() {
+async function deleteTeam(teamId: string) {
+  "use server";
+  await db.teamMember.deleteMany({
+    where: { teamId },
+  });
+  await db.team.delete({
+    where: { id: teamId },
+  });
+}
+
+export function TeamMembers() {
   return (
-    <section className="glass my-2">
-      <h3 className="text-3xl font-semibold text-foreground mb-6">Team</h3>
+    <section className="glass p-6">
+      <h3 className="text-3xl font-bold text-foreground mb-6">Teams</h3>
       <Suspense fallback={<TeamFallback />}>
-        <RegisteredTeams />
+        <FetchUserTeams />
       </Suspense>
     </section>
   );
 }
 
-async function RegisteredTeams() {
+async function FetchUserTeams() {
   const user = (await getUser()) as User;
   const teams = await db.team.findMany({
     where: {
       members: {
         some: {
-          userId: user.id,
+          userId: user?.id,
         },
       },
-      status: "SUCCESS",
     },
     include: {
       members: {
@@ -50,66 +70,110 @@ async function RegisteredTeams() {
       },
     },
   });
-  const teamMembers = await db.teamMember.findMany({
-    where: {
-      userId: user.id,
-    },
-  });
-  const teamIds = teamMembers.map((member) => member.teamId);
-  const registeredCompetitions = await db.compRegistration.findMany({
-    where: {
-      teamId: {
-        in: teamIds,
-      },
-      statusOrder: "SUCCESS",
-    },
-  });
-
-  if (!registeredCompetitions.length) {
+  if (!teams.length) {
     return (
       <Empty>
         <EmptyHeader>
           <EmptyMedia variant="icon">
             <IconUsersGroup />
           </EmptyMedia>
-          <EmptyTitle>No Registered Teams Yet</EmptyTitle>
+          <EmptyTitle>No Teams Yet</EmptyTitle>
           <EmptyDescription>
-            You haven&apos;t registered any competitions yet. Get registered by
+            You haven&apos;t join or create any teams yet. Create your team by
             clicking the button below.
           </EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
-          <Button variant="default" asChild className="text-black" size="sm">
-            <Link href="/dashboard/team">
-              Register <ArrowRight />
-            </Link>
-          </Button>
+          <div className="flex gap-2">
+            <Button className="cursor-pointer" asChild>
+              <Link href="dashboard/team/create-team" prefetch>
+                Create team
+              </Link>
+            </Button>
+          </div>
         </EmptyContent>
+        <Button
+          variant="link"
+          asChild
+          className="text-muted-foreground"
+          size="sm"
+        ></Button>
       </Empty>
     );
   }
+
   return (
     <>
       {teams.map((team) => {
         return (
           <Fragment key={team.id}>
             <div className="p-6 border-2 rounded-lg my-12 backdrop-glass-sm">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex max-sm:flex-col items-center gap-3 mb-6">
                 <IconUsersGroup className="w-6 h-6 text-primary" />
                 <div className="flex flex-col ">
-                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-1">
-                    <span>{team.name}</span>
+                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-1 ">
+                    <span className="line-clamp-1">{team.name}</span>
+                    {team.members.some(
+                      (member) =>
+                        member.userId === user?.id && member.role === "Leader",
+                    ) &&
+                      !team.competition && (
+                        <div className="flex items-center">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="ml-2 cursor-pointer h-8 w-8"
+                            asChild
+                          >
+                            <Link
+                              href={`/dashboard/team/edit-team/${team?.name
+                                ?.split(" ")
+                                .join("-")}`}
+                              prefetch
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Link>
+                          </Button>
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button
+                                variant="destructive"
+                                size="sm"
+                                className="ml-2 cursor-pointer h-8 w-8"
+                              >
+                                <Trash className="w-4 h-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent className="bg-transparent backdrop-glass-lg">
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>
+                                  Are you absolutely sure?
+                                </AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  This action cannot be undone. This will
+                                  permanently delete {team.name} and remove this
+                                  team from our servers.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel className="cursor-pointer">
+                                  Cancel
+                                </AlertDialogCancel>
+                                <AlertDialogActionButton
+                                  teamId={team.id}
+                                  deleteTeam={deleteTeam}
+                                />
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                        </div>
+                      )}
                   </h3>
-                  <h5 className="text-sm text-muted-foreground">
-                    {team.competition && team.status === "SUCCESS"
-                      ? team.competition
-                      : "No competition"}
+                  <h5 className="text-sm text-muted-foreground max-sm:text-center">
+                    {team.competition ? team.competition : "No competition"}
                   </h5>
                 </div>
-                <div className="ml-auto flex flex-col-reverse gap-2 items-center justify-center">
-                  <Badge className="bg-primary/30 text-primary border-primary/50">
-                    {team.members.length} members
-                  </Badge>
+                <div className="sm:ml-auto flex flex-col-reverse gap-2 items-center justify-center">
                   <span>
                     {team.teamStatus === "NOT_REGISTERED" ? (
                       <Badge variant={"default"}>Unregistered</Badge>
@@ -173,7 +237,7 @@ async function RegisteredTeams() {
                         <h4 className="font-medium text-foreground text-sm mt-3 line-clamp-1">
                           {member.user?.name}
                         </h4>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
                           {member.user?.institution}
                         </p>
                         <Badge

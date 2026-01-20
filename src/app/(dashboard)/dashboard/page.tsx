@@ -1,6 +1,6 @@
 import { Competitions } from "@/components/dashboard/competition";
 import { Events } from "@/components/dashboard/events";
-import { TeamMembers } from "@/components/dashboard/team-member";
+import { TeamMembers } from "@/components/dashboard/team-card-component/team-member";
 import { UserInfo } from "@/components/dashboard/user-info";
 import { UserProfile } from "@/components/dashboard/user-profile";
 import { type Metadata } from "next";
