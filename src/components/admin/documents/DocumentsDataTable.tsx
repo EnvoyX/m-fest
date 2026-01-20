@@ -62,7 +62,7 @@ export function DocumentsDataTable() {
   const trpc = useTRPC();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
   const [filterColumn, setFilterColumn] = React.useState<string>("userEmail");
   const [columnVisibility, setColumnVisibility] =
@@ -255,14 +255,14 @@ export function DocumentsDataTable() {
       cell: ({ getValue, row }) => (
         <span>
           {documents?.find(
-            (document) => document.userId === row.original.userId
+            (document) => document.userId === row.original.userId,
           )?.status === "PENDING" ? (
             <Badge variant="secondary" className="bg-yellow-600 text-white">
               Pending
             </Badge>
           ) : getValue<string>() === "Verified" &&
             documents?.find(
-              (document) => document.userId === row.original.userId
+              (document) => document.userId === row.original.userId,
             )?.status === "ACCEPTED" ? (
             <Badge
               variant="secondary"
@@ -388,11 +388,12 @@ export function DocumentsDataTable() {
       accessorFn: (row) => {
         const user = users?.find((user) => user.id === row.user?.id);
         const userRegisteredTeam = user?.team_member.find(
-          (member) => member.userId === row.user?.id
+          (member) => member.userId === row.user?.id,
         );
         const userRegisteredTeamName = userRegisteredTeam?.team?.name;
         const isUserTeamRegistered =
-          userRegisteredTeam?.team?.teamStatus === "ACCEPTED";
+          userRegisteredTeam?.team?.teamStatus === "ACCEPTED" ||
+          userRegisteredTeam?.team?.teamStatus === "PENDING";
         if (!isUserTeamRegistered) {
           return "Not a member of any registered team";
         } else {
@@ -415,10 +416,11 @@ export function DocumentsDataTable() {
       accessorFn: (row) => {
         const user = users?.find((user) => user.id === row.userId);
         const userRegisteredMember = user?.team_member.find(
-          (member) => member.userId === row.userId
+          (member) => member.userId === row.userId,
         );
         const registeredComp = userRegisteredMember?.team?.competition;
         const isTeamRegistered =
+          userRegisteredMember?.team?.teamStatus === "PENDING" ||
           userRegisteredMember?.team?.teamStatus === "ACCEPTED";
         if (!isTeamRegistered) {
           return "Not registered to any competition";
@@ -533,7 +535,7 @@ export function DocumentsDataTable() {
       toast.success(
         `Documents verifed successfully for ${
           users?.find((user) => user.id === variables.userId)?.name
-        }`
+        }`,
       );
     },
     onSettled: () => {
@@ -565,7 +567,7 @@ export function DocumentsDataTable() {
       toast.success(
         `Documents unverifed successfully for ${
           users?.find((user) => user.id === variables.userId)?.name
-        }`
+        }`,
       );
     },
     onSettled: () => {
@@ -595,7 +597,7 @@ export function DocumentsDataTable() {
     onSuccess(data, variables) {
       toast.dismiss("update-documents");
       toast.success(
-        `Documents verifed successfully for ${variables.userIds.length} users`
+        `Documents verifed successfully for ${variables.userIds.length} users`,
       );
     },
     onSettled: () => {
@@ -626,7 +628,7 @@ export function DocumentsDataTable() {
     onSuccess(data, variables) {
       toast.dismiss("update-documents");
       toast.success(
-        `Documents unverifed successfully for ${variables.userIds.length} users`
+        `Documents unverifed successfully for ${variables.userIds.length} users`,
       );
     },
     onSettled: () => {
@@ -658,7 +660,7 @@ export function DocumentsDataTable() {
       toast.success(
         `Documents reset successfully for ${
           users?.find((user) => user.id === variables.userId)?.name
-        }`
+        }`,
       );
     },
     onSettled: () => {
@@ -688,7 +690,7 @@ export function DocumentsDataTable() {
     onSuccess: (data, variables) => {
       toast.dismiss("reset-documents");
       toast.success(
-        `Documents reset successfully for ${variables.userIds.length} users.`
+        `Documents reset successfully for ${variables.userIds.length} users.`,
       );
     },
     onSettled: () => {
@@ -720,7 +722,7 @@ export function DocumentsDataTable() {
       toast.success(
         `Documents deleted successfully for ${
           users?.find((user) => user.id === variables.userId)?.name
-        }`
+        }`,
       );
     },
     onSettled: () => {
@@ -750,7 +752,7 @@ export function DocumentsDataTable() {
     onSuccess: (data, variables) => {
       toast.dismiss("delete-documents");
       toast.success(
-        `Documents deleted successfully for ${variables.userIds.length} users.`
+        `Documents deleted successfully for ${variables.userIds.length} users.`,
       );
     },
     onSettled: () => {
@@ -860,7 +862,7 @@ export function DocumentsDataTable() {
             variant="outline"
             className={cn(
               "cursor-pointer w-fit",
-              isFetching && "cursor-not-allowed"
+              isFetching && "cursor-not-allowed",
             )}
             disabled={isFetching}
             onClick={() => queryClient.invalidateQueries()}
@@ -932,7 +934,7 @@ export function DocumentsDataTable() {
                           table.getFilteredSelectedRowModel().rows.length > 9,
                         "w-7":
                           table.getFilteredSelectedRowModel().rows.length > 99,
-                      }
+                      },
                     )}
                   >
                     <p>{table.getFilteredSelectedRowModel().rows.length}</p>
@@ -1072,7 +1074,7 @@ export function DocumentsDataTable() {
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -1091,7 +1093,7 @@ export function DocumentsDataTable() {
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}

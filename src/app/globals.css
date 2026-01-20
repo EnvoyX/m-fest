@@ -185,7 +185,8 @@
       transparent
     );
 
-    background: radial-gradient(
+    background:
+      radial-gradient(
         at 110% 110%,
         var(--bg-rd-clear-sky),
         var(--bg-rd-clear-sky-d) 30%,
@@ -219,6 +220,10 @@
 }
 
 @layer utilities {
+  .backdrop-glass-none {
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(0px);
+  }
   .backdrop-glass-sm {
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);

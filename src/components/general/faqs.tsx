@@ -62,8 +62,7 @@ export default function FAQs() {
     {
       id: "item-7",
       question: "How do i register to a competition?",
-      answer:
-      (
+      answer: (
         <span>
           Please kindly follow the instructions given on this{" "}
           <a
@@ -85,13 +84,13 @@ export default function FAQs() {
       <BlurFade inView delay={0.3}>
         <div className="mx-auto max-w-9xl px-4 md:px-6">
           <div className="mx-auto max-w-9xl text-center">
-            <h2 className="text-5xl font-bold pt-20 sm:text-[40px] md:text-4xl lg:text-5xl">
+            <h2 className="text-4xl md:text-5xl font-bold pt-20 sm:text-[40px] lg:text-6xl">
               Frequently Asked Questions
             </h2>
             <div className="mx-auto max-w-2xl text-center">
-              <p className="text-semibold mt-4 text-2xl">
+              <p className="text-semibold mt-4 text-xl md:text-2xl">
                 Discover quick and comprehensive answers to common questions
-                about our platform, services, and features.
+                about Mechanical Festival 2026.
               </p>
             </div>
           </div>
