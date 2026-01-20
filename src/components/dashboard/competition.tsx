@@ -143,7 +143,7 @@ export function Competitions() {
           <div className="flex items-center justify-between max-sm:flex-col max-sm:justify-center max-sm:gap-4 mt-3 pt-3 border-t border-border/20">
             <div className="flex items-center gap-2">
               <IconUsersGroup className="w-5 h-5 text-primary" />
-              <span className="text-base font-semibold text-foreground">
+              <span className="text-base font-semibold text-foreground line-clamp-1">
                 {comp?.teamName}
               </span>
             </div>
