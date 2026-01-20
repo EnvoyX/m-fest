@@ -126,9 +126,7 @@ async function FetchUserTeams() {
                             asChild
                           >
                             <Link
-                              href={`/dashboard/team/edit-team/${team?.name
-                                ?.split(" ")
-                                .join("-")}`}
+                              href={`/dashboard/team/edit-team/${team?.id}`}
                               prefetch
                             >
                               <Edit className="w-4 h-4" />
