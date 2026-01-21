@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-table";
 import {
   BadgeCheckIcon,
+  Clock,
   ListFilter,
   Loader2,
   MoreHorizontal,
@@ -213,7 +214,7 @@ export function UsersDataTable() {
       },
     },
     {
-      accessorKey: "verified",
+      accessorKey: "verifiedStatus",
       accessorFn: (row) => {
         const user = users?.find((user) => user.id === row.id);
         if (!user?.verified && row.documents?.status === "PENDING") {
@@ -233,6 +234,7 @@ export function UsersDataTable() {
         <span>
           {row.original.documents?.status === "PENDING" ? (
             <Badge variant="secondary" className="bg-yellow-600 text-white">
+              <Clock />
               Pending
             </Badge>
           ) : getValue<string>() === "Verified" &&
@@ -740,6 +742,16 @@ export function UsersDataTable() {
               >
                 <DropdownMenuLabel>Columns</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="cursor-pointer hover:bg-white/20!"
+                  onClick={() => {
+                    setFilterColumn("verifiedStatus");
+                    table.getColumn("verifiedStatus")?.setFilterValue("");
+                    table.resetColumnFilters();
+                  }}
+                >
+                  Verified Status
+                </DropdownMenuItem>
                 <DropdownMenuItem
                   className="cursor-pointer hover:bg-white/20!"
                   onClick={() => {

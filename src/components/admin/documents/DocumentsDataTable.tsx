@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-table";
 import {
   BadgeCheckIcon,
+  Clock,
   ListFilter,
   Loader2,
   MoreHorizontal,
@@ -227,43 +228,83 @@ export function DocumentsDataTable() {
         );
       },
     },
+    // {
+    //   accessorKey: "verifiedStatus",
+    //   accessorFn: (row) => {
+    //     const user = users?.find((user) => user.id === row.userId);
+    //     if (
+    //       !user?.verified &&
+    //       documents?.find((document) => document.userId === row.userId)
+    //         ?.status === "PENDING"
+    //     ) {
+    //       return "Pending";
+    //     } else if (
+    //       user?.verified &&
+    //       documents?.find((document) => document.userId === row.userId)
+    //         ?.status === "ACCEPTED"
+    //     ) {
+    //       return "Verified";
+    //     } else {
+    //       return "Not Verified";
+    //     }
+    //   },
+    //   header: ({ column }) => {
+    //     return (
+    //       <DataTableColumnHeader column={column} title="Verified Status" />
+    //     );
+    //   },
+    //   cell: ({ getValue, row }) => (
+    //     <span>
+    //       {documents?.find(
+    //         (document) => document.userId === row.original.userId,
+    //       )?.status === "PENDING" ? (
+    //         <Badge variant="secondary" className="bg-yellow-600 text-white">
+    //           <Clock />
+    //           Pending
+    //         </Badge>
+    //       ) : getValue<string>() === "Verified" &&
+    //         documents?.find(
+    //           (document) => document.userId === row.original.userId,
+    //         )?.status === "ACCEPTED" ? (
+    //         <Badge
+    //           variant="secondary"
+    //           className="bg-blue-500 text-white dark:bg-blue-600"
+    //         >
+    //           <BadgeCheckIcon />
+    //           Verified
+    //         </Badge>
+    //       ) : (
+    //         <Badge className="bg-red-500 text-white">Not Verified</Badge>
+    //       )}
+    //     </span>
+    //   ),
+    //   filterFn: "includesString",
+    // },
     {
-      accessorKey: "verifiedStatus",
+      accessorKey: "documentStatus",
       accessorFn: (row) => {
-        const user = users?.find((user) => user.id === row.userId);
-        if (
-          !user?.verified &&
-          documents?.find((document) => document.userId === row.userId)
-            ?.status === "PENDING"
-        ) {
-          return "Pending";
-        } else if (
-          user?.verified &&
-          documents?.find((document) => document.userId === row.userId)
-            ?.status === "ACCEPTED"
-        ) {
-          return "Verified";
-        } else {
-          return "Not Verified";
-        }
+        const document = documents?.find(
+          (document) => document.userId === row.userId,
+        );
+        return document?.status === "ACCEPTED"
+          ? "Verified"
+          : document?.status === "PENDING"
+            ? "Pending"
+            : "Not Submitted";
       },
       header: ({ column }) => {
         return (
-          <DataTableColumnHeader column={column} title="Verified Status" />
+          <DataTableColumnHeader column={column} title="Document Status" />
         );
       },
-      cell: ({ getValue, row }) => (
-        <span>
-          {documents?.find(
-            (document) => document.userId === row.original.userId,
-          )?.status === "PENDING" ? (
+      cell: ({ row }) => (
+        <span className="capitalize">
+          {row.getValue("documentStatus") === "Pending" ? (
             <Badge variant="secondary" className="bg-yellow-600 text-white">
+              <Clock />
               Pending
             </Badge>
-          ) : getValue<string>() === "Verified" &&
-            documents?.find(
-              (document) => document.userId === row.original.userId,
-            )?.status === "ACCEPTED" ? (
+          ) : row.getValue("documentStatus") === "Verified" ? (
             <Badge
               variant="secondary"
               className="bg-blue-500 text-white dark:bg-blue-600"
@@ -272,32 +313,11 @@ export function DocumentsDataTable() {
               Verified
             </Badge>
           ) : (
-            <Badge className="bg-red-500 text-white">Not Verified</Badge>
+            <Badge className="bg-red-500 text-white">Not Submitted</Badge>
           )}
         </span>
       ),
       filterFn: "includesString",
-    },
-    {
-      accessorKey: "status",
-      header: ({ column }) => {
-        return (
-          <DataTableColumnHeader column={column} title="Document Status" />
-        );
-      },
-      cell: ({ row }) => (
-        <span className="capitalize">
-          <Badge variant={"secondary"}>
-            {row.getValue("status") === "PENDING" ? (
-              <p className="text-sm text-yellow-500">Pending</p>
-            ) : row.getValue("status") === "ACCEPTED" ? (
-              <p className="text-sm text-green-500">Verified</p>
-            ) : (
-              <p className="text-sm text-red-500">Not Submitted</p>
-            )}
-          </Badge>
-        </span>
-      ),
     },
 
     {
@@ -844,6 +864,16 @@ export function DocumentsDataTable() {
                   }}
                 >
                   userRegisteredTeam
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="cursor-pointer hover:bg-white/20!"
+                  onClick={() => {
+                    setFilterColumn("documentStatus");
+                    table.getColumn("documentStatus")?.setFilterValue("");
+                    table.resetColumnFilters();
+                  }}
+                >
+                  Document Status
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="cursor-pointer hover:bg-white/20!"
