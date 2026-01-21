@@ -29,48 +29,26 @@ function TeamForm({ team }: { team: Team }) {
     refetchOnMount: false,
     refetchOnReconnect: false,
   });
-  const teamSchema = z
-    .object({
-      leaderName: z.string().min(5, "Name must be leader's fullname"),
-      leaderEmail: z
-        .email("Invalid email")
-        .min(1, "Leader's email is required"),
-      leaderPhoneNumber: z
-        .string()
-        .regex(/^(\+?\d{9,15})$/, "Invalid phone number"),
-      teamInstitution: z.string().min(1, "Team's institution is required"),
-      teamName: z.string().min(1),
-      members: z
-        .array(
-          z.object({
-            name: z.string().min(1, "Name must be member's fullname"),
-            email: z.email("Invalid email"),
-            institution: z.string().min(1, "Institution is required"),
-            role: z.enum(["Leader", "Member"]),
-          }),
-        )
-        .min(3, "Minimum 3 members required")
-        .max(5, "Maximum 5 members allowed"),
-    })
-    .superRefine((data, context) => {
-      const emails = data.members.map((member) =>
-        member.email.toLowerCase().trim(),
-      );
-      const duplicates = emails.filter(
-        (email, index) => emails.indexOf(email) !== index,
-      );
-
-      if (duplicates.length > 0) {
-        setEmailDuplicates(duplicates);
-        context.addIssue({
-          code: "custom",
-          message: `Duplicate emails detected ${[...new Set(duplicates)].join(
-            ", ",
-          )}`,
-          path: ["members"],
-        });
-      }
-    });
+  const teamSchema = z.object({
+    leaderName: z.string().min(5, "Name must be leader's fullname"),
+    leaderEmail: z.email("Invalid email").min(1, "Leader's email is required"),
+    leaderPhoneNumber: z
+      .string()
+      .regex(/^(\+?\d{9,15})$/, "Invalid phone number"),
+    teamInstitution: z.string().min(1, "Team's institution is required"),
+    teamName: z.string().min(1),
+    members: z
+      .array(
+        z.object({
+          name: z.string().min(1, "Name must be member's fullname"),
+          email: z.email("Invalid email"),
+          institution: z.string().min(1, "Institution is required"),
+          role: z.enum(["Leader", "Member"]),
+        }),
+      )
+      .min(3, "Minimum 3 members required")
+      .max(5, "Maximum 5 members allowed"),
+  });
 
   type teamSchema = z.infer<typeof teamSchema>;
   const {
@@ -203,19 +181,8 @@ function TeamForm({ team }: { team: Team }) {
     }
   }
 
-  // @ts-expect-error error is working
-  const onError = (errors) => {
-    if (!emailDuplicates.includes("")) {
-      if (errors.members) {
-        toast.error(errors.members.message ?? "Duplicate email detected", {
-          description: `Email ${emailDuplicates.join(", ")} is already added.`,
-        });
-      }
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)} className="">
+    <form onSubmit={handleSubmit(onSubmit)} className="">
       <section>
         <div className="mt-6 space-y-6 grid grid-cols-1 gap-3 lg:gap-5">
           <div className="space-y-2">
