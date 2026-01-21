@@ -51,9 +51,25 @@ async function deleteTeam(teamId: string) {
 export default function TeamsPage() {
   return (
     <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <h1 className="text-3xl font-bold text-foreground">
-        Register Competition
-      </h1>
+      <h1 className="text-3xl font-bold text-foreground">Register Team</h1>
+      <div className="my-4">
+        <p className="text-xl max-sm:text-lg">
+          <strong>
+            Create your team first before registering for a competition
+          </strong>
+          .{" "}
+          <span>
+            Read our{" "}
+            <Link
+              className="underline italic font-bold"
+              href={`https://www.instagram.com/p/DTpL87WEjd6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==`}
+              target="_blank"
+            >
+              registration guide
+            </Link>
+          </span>
+        </p>
+      </div>
       <CompetitionListDashboard />
 
       <Suspense fallback={<TeamFallback />}>

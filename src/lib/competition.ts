@@ -1,3 +1,5 @@
+import { getCompCaseDate, getSubmissionDeadline } from "./utils";
+
 enum CompetitionName {
   BCC = "BCC",
   IPPC = "IPPC",
@@ -73,9 +75,9 @@ export const competitions: {
       "https://drive.google.com/drive/folders/1BWJJ8mOQbO8S1psZmvJ_00pAr6ejR1G-?usp=sharing",
     icon: "Zap",
     uploadThingRoute: "submitFileBCC",
-    submissionDeadline: new Date("2026-03-14T23:59:59"),
+    submissionDeadline: getSubmissionDeadline("BCC"),
     submissionContext: "Submit your paper before:",
-    compOpenCase: new Date("2026-02-23T00:00:00"),
+    compOpenCase: getCompCaseDate("BCC"),
     img: "/competitions/image/bcc.png",
   },
 
@@ -106,7 +108,7 @@ export const competitions: {
     isOpen: true,
     icon: "Cpu",
     uploadThingRoute: "submitFileIPPC",
-    submissionDeadline: new Date("2026-02-28T23:59:59"),
+    submissionDeadline: getSubmissionDeadline("IPPC"),
     submissionContext: "Submit Extended Abstract before:",
     compOpenCase: null,
     img: "/competitions/image/ippc.png",
@@ -139,9 +141,9 @@ export const competitions: {
     isOpen: true,
     icon: "Lock",
     uploadThingRoute: "submitFilePDC",
-    submissionDeadline: new Date("2026-03-06T23:59:59"),
+    submissionDeadline: getSubmissionDeadline("PDC"),
     submissionContext: "Submit your work before:",
-    compOpenCase: new Date("2026-02-01T00:00:00"),
+    compOpenCase: getCompCaseDate("PDC"),
     img: "/competitions/image/pdc.png",
   },
   {
@@ -171,7 +173,7 @@ export const competitions: {
     uploadThingRoute: "submitFileSTEM",
     submissionDeadline: null,
     compOpenCase: null,
-    examOpen: new Date("2026-03-08T00:00:00"),
+    examOpen: getCompCaseDate("STEM") as Date,
     img: "/competitions/image/stem.png",
   },
 ];

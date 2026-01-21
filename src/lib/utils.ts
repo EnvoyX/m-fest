@@ -65,3 +65,50 @@ export function getTwibbonFormatLink(comp: CompetitionName) {
       return "https://drive.google.com/drive/folders/1IfVYRpYq67Vk5Sgwnpvrr5eUKpKgNlng?usp=sharing";
   }
 }
+
+export function getCompCaseDate(comp: CompetitionName) {
+  if (comp === "BCC") {
+    return process.env.NODE_ENV === "development"
+      ? new Date("2026-02-23T00:00:00")
+      : new Date(
+          new Date("2026-02-23T00:00:00").getTime() + 7 * 60 * 60 * 1000,
+        );
+  } else if (comp === "IPPC") return null;
+  else if (comp === "PDC") {
+    return process.env.NODE_ENV === "development"
+      ? new Date("2026-02-01T00:00:00")
+      : new Date(
+          new Date("2026-02-01T00:00:00").getTime() + 7 * 60 * 60 * 1000,
+        );
+  } else if (comp === "STEM") {
+    return process.env.NODE_ENV === "development"
+      ? new Date("2026-03-08T00:00:00")
+      : new Date(
+          new Date("2026-03-08T00:00:00").getTime() + 7 * 60 * 60 * 1000,
+        );
+  }
+  return null;
+}
+
+export function getSubmissionDeadline(comp: CompetitionName) {
+  if (comp === "BCC") {
+    return process.env.NODE_ENV === "development"
+      ? new Date("2026-03-14T23:59:59")
+      : new Date(
+          new Date("2026-03-14T23:59:59").getTime() + 7 * 60 * 60 * 1000,
+        );
+  } else if (comp === "IPPC") {
+    return process.env.NODE_ENV === "development"
+      ? new Date("2026-02-28T23:59:59")
+      : new Date(
+          new Date("2026-02-28T23:59:59").getTime() + 7 * 60 * 60 * 1000,
+        );
+  } else if (comp === "PDC") {
+    return process.env.NODE_ENV === "development"
+      ? new Date("2026-03-06T23:59:59")
+      : new Date(
+          new Date("2026-03-06T23:59:59").getTime() + 7 * 60 * 60 * 1000,
+        );
+  } else if (comp === "STEM") return null;
+  return null;
+}

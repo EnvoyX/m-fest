@@ -22,7 +22,7 @@ export default async function proxy(request: NextRequest) {
 
   if (isProtected && !session) {
     const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("callbackUrl", pathname);
+    // loginUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
@@ -42,5 +42,10 @@ export default async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login", "/admin/:path*"],
+  matcher: [
+    "/dashboard/:path*",
+    "/login",
+    "/admin/:path*",
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
 };
