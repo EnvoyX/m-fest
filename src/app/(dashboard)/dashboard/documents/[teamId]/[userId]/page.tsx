@@ -8,62 +8,77 @@ import { env } from "@/env";
 import { getCurrentDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
-    title: "Verify Member Documents | Mechanical Festival 2026",
-    description: "Verify Member Documents Mechanical Festival 2026",
+  title: "Verify Member Documents | Mechanical Festival 2026",
+  description: "Verify Member Documents Mechanical Festival 2026",
 };
 
 export default function MemberDocumentsPage({
-    params,
+  params,
 }: {
-    params: Promise<{ userId: string; teamId: string }>;
+  params: Promise<{ userId: string; teamId: string }>;
 }) {
-    return (
-        <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="h-fit overflow-hidden rounded-[calc(var(--radius)+.125rem)]  shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
-                <div className="bg-transparent -m-px rounded-[calc(var(--radius)+.125rem)] border sm:p-8 sm:pb-6">
-                    <div className="text-center">
-                        <h1 className="mb-1 mt-4 text-4xl font-semibold text-start">
-                            Documents & Verification
-                        </h1>
-                        <p className="text-lg text-start">
-                            Please upload all legal documents to able to
-                            participate in competition.
-                        </p>
+  return (
+    <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="h-fit overflow-hidden rounded-[calc(var(--radius)+.125rem)]  shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
+        <div className="bg-transparent -m-px rounded-[calc(var(--radius)+.125rem)] border sm:p-8 sm:pb-6">
+          <div className="text-center">
+            <h1 className="mb-1 mt-4 text-4xl font-semibold text-start">
+              Documents & Verification
+            </h1>
+            <p className="text-lg text-start">
+              Please upload all legal documents to able to participate in
+              competition.
+            </p>
 
-                        <p className="text-lg text-start">
-                            Do not forget to upload all the required files
-                            before submitting!
-                        </p>
-                    </div>
+            <p className="text-lg text-start">
+              Do not forget to upload all the required files before submitting!
+            </p>
+          </div>
 
-                    <div>
-                        <Suspense fallback={<DocumentFormSkeleton />}>
-                            <RenderDocumentsForm params={params} />
-                        </Suspense>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+          <div>
+            <Suspense fallback={<DocumentFormSkeleton />}>
+              <RenderDocumentsForm params={params} />
+            </Suspense>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 async function RenderDocumentsForm({
-    params,
+  params,
 }: {
-    params: Promise<{ userId: string; teamId: string }>;
+  params: Promise<{ userId: string; teamId: string }>;
 }) {
-    const currentDate = getCurrentDate();
-    const { userId, teamId } = await params;
-    const team = await db.team.findUnique({
-        where: { id: teamId },
-        select: { verificationDeadlineAt: true },
-    });
-    const isDeadlinePassed = team?.verificationDeadlineAt
-        ? new Date(team?.verificationDeadlineAt) < currentDate
-        : false;
-    // console.log("Is Deadline Passed:", isDeadlinePassed);
-    if (isDeadlinePassed) {
-        redirect(`${env.NEXT_PUBLIC_BASE_URL}/dashboard/documents/${teamId}`);
-    }
-    return <DocumentsForm userId={userId} teamId={teamId} />;
+  const currentDate = getCurrentDate();
+  const { userId, teamId } = await params;
+
+  if (!userId || !teamId) {
+    redirect("/dashboard/team");
+  }
+
+  const user = await db.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    redirect("/dashboard/team");
+  }
+
+  const team = await db.team.findUnique({
+    where: { id: teamId },
+    select: { verificationDeadlineAt: true },
+  });
+  if (!team) {
+    redirect("/dashboard/team");
+  }
+  const isDeadlinePassed = team?.verificationDeadlineAt
+    ? new Date(team?.verificationDeadlineAt) < currentDate
+    : false;
+  // console.log("Is Deadline Passed:", isDeadlinePassed);
+  if (isDeadlinePassed) {
+    redirect(`${env.NEXT_PUBLIC_BASE_URL}/dashboard/documents/${teamId}`);
+  }
+  return <DocumentsForm userId={userId} teamId={teamId} />;
 }

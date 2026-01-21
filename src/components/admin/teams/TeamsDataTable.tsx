@@ -247,12 +247,14 @@ export function TeamsDataTable() {
       cell: ({ row }) => (
         <span>
           {" "}
-          {row.getValue("paymentStatus") === "Pending" ? (
+          {row.getValue("paymentStatus") === "Pending" &&
+          row.getValue("teamStatus") !== "Not Registered" ? (
             <Badge variant="secondary" className="bg-yellow-600 text-white">
               <Clock />
               Pending
             </Badge>
-          ) : row.getValue("paymentStatus") === "Verified" ? (
+          ) : row.getValue("paymentStatus") === "Verified" &&
+            row.getValue("teamStatus") !== "Not Registered" ? (
             <Badge
               variant="secondary"
               className="bg-green-500 text-white dark:bg-green-600"
@@ -261,7 +263,7 @@ export function TeamsDataTable() {
               Verified
             </Badge>
           ) : (
-            <Badge className="bg-red-500 text-white">No Payment Made</Badge>
+            <Badge className="bg-red-500 text-white">Not Paid yet</Badge>
           )}
         </span>
       ),
