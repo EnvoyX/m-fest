@@ -7,10 +7,25 @@ import { redirect } from "next/navigation";
 import { env } from "@/env";
 import { getCurrentDate } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Verify Member Documents | Mechanical Festival 2026",
-  description: "Verify Member Documents Mechanical Festival 2026",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ teamId: string; userId: string }>;
+}): Promise<Metadata> {
+  const { teamId, userId } = await params;
+  const user = await db.user.findUnique({
+    where: { id: userId },
+    select: { name: true },
+  });
+  const team = await db.team.findUnique({
+    where: { id: teamId },
+    select: { name: true },
+  });
+  return {
+    title: `${user?.name} | ${team?.name} | Verification | Mechanical Festival 2026`,
+    description: `Verification | Mechanical Festival 2026 | M-FEST 2026`,
+  };
+}
 
 export default function MemberDocumentsPage({
   params,
@@ -23,15 +38,15 @@ export default function MemberDocumentsPage({
         <div className="bg-transparent -m-px rounded-[calc(var(--radius)+.125rem)] border sm:p-8 sm:pb-6">
           <div className="text-center">
             <h1 className="mb-1 mt-4 text-4xl font-semibold text-start">
-              Documents & Verification
+              Verification
             </h1>
             <p className="text-lg text-start">
-              Please upload all legal documents to able to participate in
+              Please upload all required files to able to participate in
               competition.
             </p>
 
-            <p className="text-lg text-start">
-              Do not forget to upload all the required files before submitting!
+            <p className="text-lg text-start text-destructive">
+              Do not forget to submit after you uploaded all the required files!
             </p>
           </div>
 

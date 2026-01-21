@@ -236,6 +236,41 @@ export function TeamsDataTable() {
       filterFn: "includesString",
     },
     {
+      accessorKey: "paymentProofUrl",
+      accessorFn: (row) => {
+        const team = teams?.find((team) => team.id === row.id);
+        return team?.paymentProofUrl ?? null;
+      },
+      header: ({ column }) => {
+        return (
+          <DataTableColumnHeader column={column} title="Payment Proof URL" />
+        );
+      },
+      cell: ({ row }) => {
+        const paymentProofUrl = row.getValue("paymentProofUrl") as
+          | string
+          | null;
+        return (
+          <>
+            {paymentProofUrl ? (
+              <Link
+                href={(paymentProofUrl as string) ?? ""}
+                className={cn(
+                  paymentProofUrl ? "underline italic font-bold" : "",
+                )}
+                target="_blank"
+              >
+                {paymentProofUrl ? "View" : "No File"}
+              </Link>
+            ) : (
+              <span>No Payment Proof URL</span>
+            )}
+          </>
+        );
+      },
+      filterFn: "includesString",
+    },
+    {
       accessorKey: "paymentStatus",
       accessorFn: (row) => {
         const team = teams?.find((team) => team.id === row.id);

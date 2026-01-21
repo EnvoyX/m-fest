@@ -13,7 +13,9 @@ export default async function proxy(request: NextRequest) {
   const protectedPaths = [
     "/dashboard",
     "/dashboard/competitions",
-    "/dashboard/competitions/register",
+    "/dashboard/team",
+    "/dashboard/team/register",
+    "/dashboard/documents",
     "/admin",
   ];
   const isProtected = protectedPaths.some((path) => pathname.startsWith(path));
