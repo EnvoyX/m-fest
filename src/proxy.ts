@@ -42,10 +42,5 @@ export default async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/dashboard/:path*",
-    "/login",
-    "/admin/:path*",
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/dashboard/:path*", "/login", "/admin/:path*"],
 };
