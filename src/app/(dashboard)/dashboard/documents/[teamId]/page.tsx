@@ -105,7 +105,16 @@ async function FetchTeamMembers({
               <span className="text-xs font-semibold uppercase tracking-wider hidden md:inline">
                 Due:
               </span>
-              <CompactCountdown date={verificationDeadline as Date} />
+              <CompactCountdown
+                date={
+                  process.env.NODE_ENV === "development"
+                    ? (verificationDeadline as Date)
+                    : new Date(
+                        new Date(verificationDeadline as Date).getTime() -
+                          7 * 60 * 60 * 1000,
+                      )
+                }
+              />
             </div>
           )}
       </div>
