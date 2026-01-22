@@ -8,11 +8,11 @@ import { useRouter } from "next/navigation";
 
 function AuthButtons() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const session = authClient.useSession();
-  const router = useRouter();
-  if (session) {
-    router.replace("/dashboard");
-  }
+  // const session = authClient.useSession();
+  // const router = useRouter();
+  // if (session) {
+  //   router.replace("/dashboard");
+  // }
   return (
     <div className="flex flex-col gap-5 items-center justify-center">
       <div className="w-full">
