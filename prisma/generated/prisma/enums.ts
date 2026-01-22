@@ -89,3 +89,59 @@ export const QuizTypes = {
 } as const
 
 export type QuizTypes = (typeof QuizTypes)[keyof typeof QuizTypes]
+
+
+export const EventType = {
+  M_RUN: 'M_RUN',
+  ETU: 'ETU',
+  KLINIK_MESIN: 'KLINIK_MESIN',
+  MEXPO_MTALKS: 'MEXPO_MTALKS'
+} as const
+
+export type EventType = (typeof EventType)[keyof typeof EventType]
+
+
+export const JerseySize = {
+  S: 'S',
+  M: 'M',
+  L: 'L',
+  XL: 'XL',
+  XXL: 'XXL'
+} as const
+
+export type JerseySize = (typeof JerseySize)[keyof typeof JerseySize]
+
+
+export const BloodType = {
+  A: 'A',
+  B: 'B',
+  AB: 'AB',
+  O: 'O'
+} as const
+
+export type BloodType = (typeof BloodType)[keyof typeof BloodType]
+
+
+export const Rhesus = {
+  POSITIVE: 'POSITIVE',
+  NEGATIVE: 'NEGATIVE'
+} as const
+
+export type Rhesus = (typeof Rhesus)[keyof typeof Rhesus]
+
+
+export const KlinikActivity = {
+  DONOR: 'DONOR',
+  EYE_CHECK: 'EYE_CHECK',
+  BOTH: 'BOTH'
+} as const
+
+export type KlinikActivity = (typeof KlinikActivity)[keyof typeof KlinikActivity]
+
+
+export const Kategori = {
+  UMUM: 'UMUM',
+  MAHASISWA: 'MAHASISWA'
+} as const
+
+export type Kategori = (typeof Kategori)[keyof typeof Kategori]
