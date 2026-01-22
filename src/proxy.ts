@@ -1,24 +1,14 @@
+import { auth } from "@/server/auth/auth";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { adminRoles } from "@/constants/constants";
-import type { Session } from "./server/auth/auth";
 
 export default async function proxy(request: NextRequest) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
   const { pathname } = request.nextUrl;
-
-  // Fetch the session via HTTP request instead of direct DB import
-  // This prevents Prisma from loading in the Edge runtime
-  const sessionResponse = await fetch(
-    `${request.nextUrl.origin}/api/auth/get-session`,
-    {
-      headers: {
-        cookie: request.headers.get("cookie") || "",
-      },
-    },
-  );
-
-  const sessionData = ((await sessionResponse.json()) as Session) || null;
-  const session = sessionData?.session ? sessionData : null;
 
   const protectedPaths = [
     "/dashboard",
@@ -32,6 +22,7 @@ export default async function proxy(request: NextRequest) {
 
   if (isProtected && !session) {
     const loginUrl = new URL("/login", request.url);
+    // loginUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
