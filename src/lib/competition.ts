@@ -7,12 +7,30 @@ enum CompetitionName {
   STEM = "STEM",
 }
 
-const startRegDate1 = new Date("2026-01-18T14:00:00");
-const startRegDate2 = new Date("2026-01-25T00:00:00");
-const startRegDate3 = new Date("2026-02-16T00:00:00");
-const endRegDate1 = new Date("2026-01-24T23:59:59");
-const endRegDate2 = new Date("2026-02-15T23:59:59");
-const endRegDate3 = new Date("2026-02-22T23:59:59");
+const startRegDate1 =
+  process.env.NODE_ENV === "development"
+    ? new Date("2026-01-18T14:00:00")
+    : new Date(new Date("2026-01-18T14:00:00").getTime() - 7 * 60 * 60 * 1000);
+const startRegDate2 =
+  process.env.NODE_ENV === "development"
+    ? new Date("2026-01-25T00:00:00")
+    : new Date(new Date("2026-01-25T00:00:00").getTime() - 7 * 60 * 60 * 1000);
+const startRegDate3 =
+  process.env.NODE_ENV === "development"
+    ? new Date("2026-02-16T00:00:00")
+    : new Date(new Date("2026-02-16T00:00:00").getTime() - 7 * 60 * 60 * 1000);
+const endRegDate1 =
+  process.env.NODE_ENV === "development"
+    ? new Date("2026-01-24T23:59:59")
+    : new Date(new Date("2026-01-24T23:59:59").getTime() - 7 * 60 * 60 * 1000);
+const endRegDate2 =
+  process.env.NODE_ENV === "development"
+    ? new Date("2026-02-15T23:59:59")
+    : new Date(new Date("2026-02-15T23:59:59").getTime() - 7 * 60 * 60 * 1000);
+const endRegDate3 =
+  process.env.NODE_ENV === "development"
+    ? new Date("2026-02-22T23:59:59")
+    : new Date(new Date("2026-02-22T23:59:59").getTime() - 7 * 60 * 60 * 1000);
 
 export const competitions: {
   title: string;
