@@ -10,7 +10,6 @@ import { Badge } from "@/components/ui/badge";
 import { BadgeCheckIcon, Calendar } from "lucide-react";
 import { getCurrentDate } from "@/lib/utils";
 import CompactCountdown from "./CompactCountdown";
-import { competitionsName } from "@/constants/constants";
 
 export async function generateMetadata({
   params,
@@ -87,13 +86,8 @@ async function FetchTeamMembers({
     redirect("/dashboard/documents");
   }
 
-  const verificationDeadline = new Date(
-    new Date(team.verificationDeadlineAt as Date).getTime() -
-      7 * 60 * 60 * 1000,
-  );
-
-  const isDeadlinePassed = verificationDeadline
-    ? new Date(verificationDeadline as Date).getTime() < currentDate.getTime()
+  const isDeadlinePassed = team.verificationDeadlineAt
+    ? new Date(team.verificationDeadlineAt).getTime() < currentDate.getTime()
     : false;
   return (
     <>
@@ -109,16 +103,7 @@ async function FetchTeamMembers({
               <span className="text-xs font-semibold uppercase tracking-wider hidden md:inline">
                 Due:
               </span>
-              <CompactCountdown
-                date={
-                  process.env.NODE_ENV === "development"
-                    ? (verificationDeadline as Date)
-                    : new Date(
-                        new Date(verificationDeadline as Date).getTime() -
-                          7 * 60 * 60 * 1000,
-                      )
-                }
-              />
+              <CompactCountdown date={new Date(team.verificationDeadlineAt)} />
             </div>
           )}
       </div>
@@ -131,7 +116,9 @@ async function FetchTeamMembers({
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
                 <Calendar className="hidden sm:block" />
-                {`Due: ${new Date(verificationDeadline as Date).toLocaleString()}`}
+                {`Due: ${new Date(
+                  team.verificationDeadlineAt,
+                ).toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -141,7 +128,9 @@ async function FetchTeamMembers({
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
                 <Calendar className="hidden sm:block" />
-                {`Due: ${new Date(verificationDeadline as Date).toLocaleString()}`}
+                {`Due: ${new Date(
+                  team.verificationDeadlineAt,
+                ).toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -157,7 +146,9 @@ async function FetchTeamMembers({
           >
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
-                {`Deadline Passed: ${new Date(verificationDeadline as Date).toLocaleString()}`}
+                {`Deadline Passed: ${new Date(
+                  team.verificationDeadlineAt,
+                ).toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -166,7 +157,9 @@ async function FetchTeamMembers({
           <div className="flex flex-col items-center justify-center justify-self-center text-center text-sm rounded-full px-4 py-1 text-red-500 sm:hidden border-2 bg-transparent backdrop-glass-lg mt-1 mb-6 w-full max-w-xs">
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
-                {`Due passed: ${new Date(verificationDeadline as Date).toLocaleString()}`}
+                {`Due passed: ${new Date(
+                  team.verificationDeadlineAt,
+                ).toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"

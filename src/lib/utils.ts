@@ -7,30 +7,43 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Real date
-export const getCurrentDate = () => {
-  const now = new Date();
-
-  if (process.env.NODE_ENV === "development") {
-    return now;
-  }
-
-  // // Convert UTC → WIB (UTC+7)
-  return new Date(now.getTime() + 7 * 60 * 60 * 1000);
-};
 // For testing date
 // export const getCurrentDate = () => {
-//     const now = new Date("2026-01-26T00:00:00");
+  //     const now = new Date("2026-01-26T00:00:00");
+  
+  //     return now;
+  // };
+  
+  // Real date
+  export const getCurrentDate = () => {
+    const now = new Date();
+  
+    return now;
+  };
+  const currentDate = getCurrentDate();
 
-//     if (process.env.NODE_ENV === "development") {
-//         return now
-//     }
+export function getCompCaseDate(comp: CompetitionName) {
+  if (comp === "BCC") {
+    return new Date("2026-02-23T00:00:00");
+  } else if (comp === "IPPC") return null;
+  else if (comp === "PDC") {
+    new Date("2026-02-01T00:00:00");
+  } else if (comp === "STEM") {
+    new Date("2026-03-08T00:00:00");
+  }
+  return null;
+}
 
-//     // // Convert UTC → WIB (UTC+7)
-//     return new Date(now.getTime() + 7 * 60 * 60 * 1000);
-// };
-
-const currentDate = getCurrentDate();
+export function getSubmissionDeadline(comp: CompetitionName) {
+  if (comp === "BCC") {
+    return new Date("2026-03-14T23:59:59");
+  } else if (comp === "IPPC") {
+    return new Date("2026-02-28T23:59:59");
+  } else if (comp === "PDC") {
+    return new Date("2026-03-06T23:59:59");
+  } else if (comp === "STEM") return null;
+  return null;
+}
 export function getCompFee(comp: string) {
   const compStartDate1 = competitions.find(
     (competition) => competition.abbreviation === comp.toUpperCase(),
@@ -64,51 +77,4 @@ export function getTwibbonFormatLink(comp: CompetitionName) {
     case CompetitionName.STEM:
       return "https://drive.google.com/drive/folders/1IfVYRpYq67Vk5Sgwnpvrr5eUKpKgNlng?usp=sharing";
   }
-}
-
-export function getCompCaseDate(comp: CompetitionName) {
-  if (comp === "BCC") {
-    return process.env.NODE_ENV === "development"
-      ? new Date("2026-02-23T00:00:00")
-      : new Date(
-          new Date("2026-02-23T00:00:00").getTime() - 7 * 60 * 60 * 1000,
-        );
-  } else if (comp === "IPPC") return null;
-  else if (comp === "PDC") {
-    return process.env.NODE_ENV === "development"
-      ? new Date("2026-02-01T00:00:00")
-      : new Date(
-          new Date("2026-02-01T00:00:00").getTime() - 7 * 60 * 60 * 1000,
-        );
-  } else if (comp === "STEM") {
-    return process.env.NODE_ENV === "development"
-      ? new Date("2026-03-08T00:00:00")
-      : new Date(
-          new Date("2026-03-08T00:00:00").getTime() - 7 * 60 * 60 * 1000,
-        );
-  }
-  return null;
-}
-
-export function getSubmissionDeadline(comp: CompetitionName) {
-  if (comp === "BCC") {
-    return process.env.NODE_ENV === "development"
-      ? new Date("2026-03-14T23:59:59")
-      : new Date(
-          new Date("2026-03-14T23:59:59").getTime() - 7 * 60 * 60 * 1000,
-        );
-  } else if (comp === "IPPC") {
-    return process.env.NODE_ENV === "development"
-      ? new Date("2026-02-28T23:59:59")
-      : new Date(
-          new Date("2026-02-28T23:59:59").getTime() - 7 * 60 * 60 * 1000,
-        );
-  } else if (comp === "PDC") {
-    return process.env.NODE_ENV === "development"
-      ? new Date("2026-03-06T23:59:59")
-      : new Date(
-          new Date("2026-03-06T23:59:59").getTime() - 7 * 60 * 60 * 1000,
-        );
-  } else if (comp === "STEM") return null;
-  return null;
 }

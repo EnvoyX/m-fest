@@ -66,7 +66,7 @@ export const registerRouter = router({
             status: "PENDING",
             teamStatus: "PENDING",
             verificationDeadlineAt: new Date(
-              Date.now() + 7 * 60 * 60 * 1000 + 3 * 24 * 60 * 60 * 1000, // 3 days in milliseconds
+              Date.now() + 3 * 24 * 60 * 60 * 1000, // 3 days in milliseconds
             ),
           },
         });
@@ -110,7 +110,7 @@ export const registerRouter = router({
             status: "PENDING",
             teamStatus: "PENDING",
             verificationDeadlineAt: new Date(
-              Date.now() + 7 * 60 * 60 * 1000 + 3 * 24 * 60 * 60 * 1000, // 3 days in milliseconds
+              Date.now() + 3 * 24 * 60 * 60 * 1000, // 3 days in milliseconds
             ),
           },
         });
