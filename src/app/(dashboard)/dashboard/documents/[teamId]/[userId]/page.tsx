@@ -88,10 +88,16 @@ async function RenderDocumentsForm({
   if (!team) {
     redirect("/dashboard/team");
   }
-  const isDeadlinePassed = team?.verificationDeadlineAt
-    ? new Date(team?.verificationDeadlineAt) < currentDate
+
+  const verificationDeadline =
+    process.env.NODE_ENV === "development"
+      ? team.verificationDeadlineAt
+      : new Date(team.verificationDeadlineAt as Date).getTime() -
+        7 * 60 * 60 * 1000;
+
+  const isDeadlinePassed = verificationDeadline
+    ? new Date(verificationDeadline as Date).getTime() < currentDate.getTime()
     : false;
-  // console.log("Is Deadline Passed:", isDeadlinePassed);
   if (isDeadlinePassed) {
     redirect(`${env.NEXT_PUBLIC_BASE_URL}/dashboard/documents/${teamId}`);
   }

@@ -20,7 +20,7 @@ export const getCurrentDate = () => {
 };
 // For testing date
 // export const getCurrentDate = () => {
-//     const now = new Date("2026-02-20T00:00:00");
+//     const now = new Date("2026-01-26T00:00:00");
 
 //     if (process.env.NODE_ENV === "development") {
 //         return now

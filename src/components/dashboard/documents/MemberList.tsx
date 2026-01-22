@@ -16,8 +16,13 @@ type TeamWithMembers = Prisma.TeamGetPayload<{
 
 async function MemberList({ team }: { team: TeamWithMembers }) {
   const currentDate = getCurrentDate();
-  const isDeadlinePassed = team.verificationDeadlineAt
-    ? new Date(team.verificationDeadlineAt) < currentDate
+  const verificationDeadline =
+    process.env.NODE_ENV === "development"
+      ? team.verificationDeadlineAt
+      : new Date(team.verificationDeadlineAt as Date).getTime() -
+        7 * 60 * 60 * 1000;
+  const isDeadlinePassed = verificationDeadline
+    ? new Date(verificationDeadline as Date).getTime() < currentDate.getTime()
     : false;
   return (
     <div className="w-full">

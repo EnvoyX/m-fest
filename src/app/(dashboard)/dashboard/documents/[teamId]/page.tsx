@@ -82,8 +82,14 @@ async function FetchTeamMembers({
   )
     redirect("/dashboard/team");
 
-  const isDeadlinePassed = team.verificationDeadlineAt
-    ? new Date(team.verificationDeadlineAt).getTime() < currentDate.getTime()
+  const verificationDeadline =
+    process.env.NODE_ENV === "development"
+      ? team.verificationDeadlineAt
+      : new Date(team.verificationDeadlineAt as Date).getTime() -
+        7 * 60 * 60 * 1000;
+
+  const isDeadlinePassed = verificationDeadline
+    ? new Date(verificationDeadline as Date).getTime() < currentDate.getTime()
     : false;
   return (
     <>
@@ -99,7 +105,7 @@ async function FetchTeamMembers({
               <span className="text-xs font-semibold uppercase tracking-wider hidden md:inline">
                 Due:
               </span>
-              <CompactCountdown date={new Date(team.verificationDeadlineAt)} />
+              <CompactCountdown date={verificationDeadline as Date} />
             </div>
           )}
       </div>
@@ -112,9 +118,7 @@ async function FetchTeamMembers({
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
                 <Calendar className="hidden sm:block" />
-                {`Due: ${new Date(
-                  team.verificationDeadlineAt,
-                ).toLocaleString()}`}
+                {`Due: ${verificationDeadline?.toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -124,9 +128,7 @@ async function FetchTeamMembers({
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
                 <Calendar className="hidden sm:block" />
-                {`Due: ${new Date(
-                  team.verificationDeadlineAt,
-                ).toLocaleString()}`}
+                {`Due: ${verificationDeadline?.toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -142,9 +144,7 @@ async function FetchTeamMembers({
           >
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
-                {`Deadline Passed: ${new Date(
-                  team.verificationDeadlineAt,
-                ).toLocaleString()}`}
+                {`Deadline Passed: ${verificationDeadline?.toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -153,9 +153,7 @@ async function FetchTeamMembers({
           <div className="flex flex-col items-center justify-center justify-self-center text-center text-sm rounded-full px-4 py-1 text-red-500 sm:hidden border-2 bg-transparent backdrop-glass-lg mt-1 mb-6 w-full max-w-xs">
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
-                {`Due passed: ${new Date(
-                  team.verificationDeadlineAt,
-                ).toLocaleString()}`}
+                {`Due passed: ${verificationDeadline?.toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
