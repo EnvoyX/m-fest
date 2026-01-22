@@ -70,12 +70,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
  * Enums
  */
 
-export const TransactionIsolationLevel = {
+export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
-} as const
+} as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
@@ -113,10 +113,37 @@ export type CompRegistrationScalarFieldEnum = (typeof CompRegistrationScalarFiel
 
 export const EventRegistrationScalarFieldEnum = {
   id: 'id',
-  event_name: 'event_name',
-  userId: 'userId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  eventType: 'eventType',
+  gender: 'gender',
+  usia: 'usia',
+  kategori: 'kategori',
+  ukuranJersey: 'ukuranJersey',
+  golonganDarah: 'golonganDarah',
+  rhesus: 'rhesus',
+  riwayatPenyakit: 'riwayatPenyakit',
+  detailPenyakit: 'detailPenyakit',
+  alergi: 'alergi',
+  aktivitasKlinik: 'aktivitasKlinik',
+  merekKendaraan: 'merekKendaraan',
+  tahunBuat: 'tahunBuat',
+  platNomor: 'platNomor',
+  lastServiceDate: 'lastServiceDate',
+  isITB: 'isITB',
+  nimOrNip: 'nimOrNip',
+  kdNama: 'kdNama',
+  kdTelepon: 'kdTelepon',
+  sumberInfo: 'sumberInfo',
+  ktpUrl: 'ktpUrl',
+  buktiBayarUrl: 'buktiBayarUrl',
+  isAlumni: 'isAlumni',
+  isHMM: 'isHMM',
+  nimHMM: 'nimHMM',
+  siapLomba: 'siapLomba',
+  isSopCompliant: 'isSopCompliant',
+  memenuhiSyarat: 'memenuhiSyarat'
 } as const
 
 export type EventRegistrationScalarFieldEnum = (typeof EventRegistrationScalarFieldEnum)[keyof typeof EventRegistrationScalarFieldEnum]
@@ -288,7 +315,7 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
 export const JsonNullValueInput = {
-  JsonNull: 'JsonNull'
+  JsonNull: JsonNull
 } as const
 
 export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
@@ -311,9 +338,9 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 export const JsonNullValueFilter = {
-  DbNull: 'DbNull',
-  JsonNull: 'JsonNull',
-  AnyNull: 'AnyNull'
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
