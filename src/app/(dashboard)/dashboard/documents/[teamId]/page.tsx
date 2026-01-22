@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { BadgeCheckIcon, Calendar } from "lucide-react";
 import { getCurrentDate } from "@/lib/utils";
 import CompactCountdown from "./CompactCountdown";
+import { competitionsName } from "@/constants/constants";
 
 export async function generateMetadata({
   params,
@@ -73,20 +74,23 @@ async function FetchTeamMembers({
     },
   });
   if (!team) {
-    redirect("/dashboard/team");
+    redirect("/dashboard/documents");
   }
   if (
     !team?.members.find(
       (member) => member.userId === user.id && member.role === "Leader",
     )
   )
-    redirect("/dashboard/team");
+    redirect("/dashboard/documents");
 
-  const verificationDeadline =
-    process.env.NODE_ENV === "development"
-      ? team.verificationDeadlineAt
-      : new Date(team.verificationDeadlineAt as Date).getTime() +
-        7 * 60 * 60 * 1000;
+  if (team.teamStatus === "NOT_REGISTERED" || !team.competition) {
+    redirect("/dashboard/documents");
+  }
+
+  const verificationDeadline = new Date(
+    new Date(team.verificationDeadlineAt as Date).getTime() -
+      7 * 60 * 60 * 1000,
+  );
 
   const isDeadlinePassed = verificationDeadline
     ? new Date(verificationDeadline as Date).getTime() < currentDate.getTime()
