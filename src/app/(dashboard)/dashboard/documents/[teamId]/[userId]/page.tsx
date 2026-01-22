@@ -92,7 +92,7 @@ async function RenderDocumentsForm({
   const verificationDeadline =
     process.env.NODE_ENV === "development"
       ? team.verificationDeadlineAt
-      : new Date(team.verificationDeadlineAt as Date).getTime() -
+      : new Date(team.verificationDeadlineAt as Date).getTime() +
         7 * 60 * 60 * 1000;
 
   const isDeadlinePassed = verificationDeadline
