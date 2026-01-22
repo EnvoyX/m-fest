@@ -118,7 +118,7 @@ async function FetchTeamMembers({
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
                 <Calendar className="hidden sm:block" />
-                {`Due: ${verificationDeadline?.toLocaleString()}`}
+                {`Due: ${new Date(verificationDeadline as Date).toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -128,7 +128,7 @@ async function FetchTeamMembers({
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
                 <Calendar className="hidden sm:block" />
-                {`Due: ${verificationDeadline?.toLocaleString()}`}
+                {`Due: ${new Date(verificationDeadline as Date).toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -144,7 +144,7 @@ async function FetchTeamMembers({
           >
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
-                {`Deadline Passed: ${verificationDeadline?.toLocaleString()}`}
+                {`Deadline Passed: ${new Date(verificationDeadline as Date).toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -153,7 +153,7 @@ async function FetchTeamMembers({
           <div className="flex flex-col items-center justify-center justify-self-center text-center text-sm rounded-full px-4 py-1 text-red-500 sm:hidden border-2 bg-transparent backdrop-glass-lg mt-1 mb-6 w-full max-w-xs">
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
-                {`Due passed: ${verificationDeadline?.toLocaleString()}`}
+                {`Due passed: ${new Date(verificationDeadline as Date).toLocaleString()}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
