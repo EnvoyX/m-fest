@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { adminRoles } from "@/constants/constants";
 
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const session = await auth.api.getSession({
     headers: request.headers,
@@ -14,10 +14,6 @@ export default async function middleware(request: NextRequest) {
 
   if (isProtected && !session) {
     return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  if (pathname === "/login" && session) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   if (
@@ -32,5 +28,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login", "/admin/:path*"],
+  matcher: ["/dashboard/:path*", "/admin/:path*"],
 };
