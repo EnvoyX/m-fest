@@ -37,15 +37,10 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const trpc = useTRPC();
-  // const { data: user, isFetched } = useQuery(
-  //   trpc.dashboard.getUserById.queryOptions({ userId })
-  // );
 
-  const {
-    data,
-    isLoading: isLoadingUserDocuments,
-    isFetched: isFetchedUserDocuments,
-  } = useQuery(trpc.dashboard.getDocumentsByUserId.queryOptions({ userId }));
+  const { data, isLoading: isLoadingUserDocuments } = useQuery(
+    trpc.dashboard.getDocumentsByUserId.queryOptions({ userId }),
+  );
   const queryClient = useQueryClient();
   const { data: user } = useQuery(
     trpc.dashboard.getUserById.queryOptions({ userId }),
@@ -132,10 +127,6 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
 
   usePreventRefreshUserDuringUpload(isLoading);
 
-  if (isFetchedUserDocuments)
-    queryClient.invalidateQueries({
-      queryKey: trpc.dashboard.getDocumentsByUserId.queryKey({ userId }),
-    });
   if (isLoadingUserDocuments) return <DocumentFormSkeleton />;
 
   async function onSubmit(formData: documentsSchema) {

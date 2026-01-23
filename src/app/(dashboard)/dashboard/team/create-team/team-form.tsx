@@ -32,7 +32,6 @@ function TeamForm() {
     refetchOnReconnect: false,
   });
   const router = useRouter();
-  const [emailDuplicates, setEmailDuplicates] = useState<string[]>([]);
 
   useEffect(() => {
     if (isFetchedUser) {
@@ -71,7 +70,6 @@ function TeamForm() {
       .min(3, "Minimum 3 members required")
       .max(5, "Maximum 5 members allowed"),
   });
-
   type teamSchema = z.infer<typeof teamSchema>;
   const {
     handleSubmit,
@@ -79,6 +77,7 @@ function TeamForm() {
     reset,
     getValues,
     setValue,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<teamSchema>({
     resolver: zodResolver(teamSchema),
@@ -159,6 +158,29 @@ function TeamForm() {
       toast.error("You cannot have more than 5 members!");
       return;
     }
+    const members = formData.members;
+    const differentInstitution = members.filter(
+      (member) => member.institution !== formData.teamInstitution,
+    );
+    if (differentInstitution.length > 0) {
+      toast.dismiss("create-team");
+      setIsLoading(false);
+      toast.error("All members must be from the same institution!", {
+        description: `Members with different institution: ${differentInstitution
+          .map((member) => member.name)
+          .join(", ")} must match with team's institution`,
+        duration: 5000,
+      });
+      members.forEach((member, index) => {
+        if (differentInstitution.includes(member)) {
+          setError(`members.${index}.institution`, {
+            message: "All members must be from the same institution!",
+          });
+        }
+      });
+      return;
+    }
+
     try {
       const res = await fetch("/api/team/create-team", {
         method: "POST",
@@ -505,8 +527,6 @@ function TeamForm() {
                             value.trim(),
                           );
                         }}
-                        readOnly={index === 0}
-                        disabled={index === 0}
                       />
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />

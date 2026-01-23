@@ -20,7 +20,6 @@ import { useTRPC } from "@/utils/trpc";
 
 function TeamForm({ team }: { team: Team }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [emailDuplicates, setEmailDuplicates] = useState<string[]>([]);
   const router = useRouter();
   const trpc = useTRPC();
   const { data: user } = useQuery({
@@ -57,6 +56,7 @@ function TeamForm({ team }: { team: Team }) {
     reset,
     getValues,
     setValue,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<teamSchema>({
     resolver: zodResolver(teamSchema),
@@ -64,10 +64,9 @@ function TeamForm({ team }: { team: Team }) {
       leaderName: (user?.name as string) ?? "",
       leaderEmail: (user?.email as string) ?? "",
       leaderPhoneNumber: (user?.phoneNumber as string) ?? "",
-      teamInstitution: (user?.institution as string) ?? "",
+      teamInstitution: (team.teamInstitution as string) ?? "",
       teamName: (team.name as string) ?? "",
       members: [
-        // @ts-expect-error members is exist if include members when prisma calls within Team Type
         ...team.members
           .sort((a: Member, b: Member) => (a.role === "Leader" ? -1 : 1))
           .map((member: Member) => {
@@ -94,10 +93,9 @@ function TeamForm({ team }: { team: Team }) {
       leaderName: (user?.name as string) ?? "",
       leaderEmail: (user?.email as string) ?? "",
       leaderPhoneNumber: user?.phoneNumber ?? "",
-      teamInstitution: user?.institution ?? "",
+      teamInstitution: team.teamInstitution ?? "",
       teamName: (team.name as string) ?? "",
       members: [
-        // @ts-expect-error members is exist if include members when prisma calls within Team Type
         ...team.members
           .sort((a: Member, b: Member) => (a.role === "Leader" ? -1 : 1))
           .map((member: Member) => {
@@ -138,6 +136,29 @@ function TeamForm({ team }: { team: Team }) {
       toast.dismiss("edit-team");
       setIsLoading(false);
       toast.error("You cannot have more than 5 members!");
+      return;
+    }
+
+    const members = formData.members;
+    const differentInstitution = members.filter(
+      (member) => member.institution !== formData.teamInstitution,
+    );
+    if (differentInstitution.length > 0) {
+      toast.dismiss("edit-team");
+      setIsLoading(false);
+      toast.error("All members must be from the same institution!", {
+        description: `Members with different institution: ${differentInstitution
+          .map((member) => member.name)
+          .join(", ")} must match with team's institution`,
+        duration: 5000,
+      });
+      members.forEach((member, index) => {
+        if (differentInstitution.includes(member)) {
+          setError(`members.${index}.institution`, {
+            message: "All members must be from the same institution!",
+          });
+        }
+      });
       return;
     }
 
@@ -487,8 +508,6 @@ function TeamForm({ team }: { team: Team }) {
                             value.trim(),
                           );
                         }}
-                        readOnly={index === 0}
-                        disabled={index === 0}
                       />
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
