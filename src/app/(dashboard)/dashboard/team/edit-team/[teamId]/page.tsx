@@ -49,7 +49,7 @@ export default function EditTeamPage({
             </p>
             <p className="text-sm text-destructive text-start font-bold mt-2">
               Please match your member&apos;s institution with your team&apos;s
-              institution (fullname).
+              institution/School (fullname).
             </p>
           </div>
           <Suspense fallback={<TeamFormSkeleton />}>

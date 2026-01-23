@@ -334,7 +334,7 @@ function TeamForm({ team }: { team: Team }) {
                   >
                     <FieldContent>
                       <FieldLabel htmlFor="form-rhf">
-                        Team Institution
+                        Team Institution/School
                       </FieldLabel>
                     </FieldContent>
                     <Input
@@ -471,7 +471,7 @@ function TeamForm({ team }: { team: Team }) {
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel htmlFor={field.name}>
-                        Member&apos;s Institution
+                        Member&apos;s Institution/School
                       </FieldLabel>
                       <Input
                         {...field}
