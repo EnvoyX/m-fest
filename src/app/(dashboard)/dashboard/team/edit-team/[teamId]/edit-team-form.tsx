@@ -5,7 +5,7 @@ import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { type Member, type Team, type User } from "@/types/types";
@@ -19,6 +19,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/utils/trpc";
 
 function TeamForm({ team }: { team: Team }) {
+  const [isPending, startTransition] = useTransition();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const trpc = useTRPC();
@@ -182,9 +183,9 @@ function TeamForm({ team }: { team: Team }) {
         toast.dismiss("edit-team");
         toast.success("Team edited successfully!");
         router.refresh();
-        setTimeout(() => {
+        startTransition(() => {
           router.push("/dashboard/team");
-        }, 1000);
+        });
       } else {
         const { error, success } = await res.json();
         toast.dismiss("edit-team");
@@ -414,7 +415,7 @@ function TeamForm({ team }: { team: Team }) {
                           const email = event.target.value.trim();
                           if (email) {
                             try {
-                              toast.loading("Checking user...", {
+                              toast.loading("Checking member...", {
                                 id: "checking-user",
                               });
                               const res = await fetch(
@@ -424,22 +425,6 @@ function TeamForm({ team }: { team: Team }) {
 
                               if (res.ok && user) {
                                 toast.dismiss("checking-user");
-                                if (
-                                  !user?.phoneNumber ||
-                                  !user?.domicile ||
-                                  !user?.institution ||
-                                  !user?.education ||
-                                  !user?.major ||
-                                  !user?.semester
-                                ) {
-                                  toast.error(
-                                    "User is not completed their profile yet!",
-                                    {
-                                      description: `Please ask ${user.name} to complete their profile. Then try again.`,
-                                    },
-                                  );
-                                  return;
-                                }
                                 const userName = user.name;
                                 const userInstitution = user.institution;
                                 toast.success(
@@ -454,14 +439,13 @@ function TeamForm({ team }: { team: Team }) {
                                 reset(values);
                               } else {
                                 toast.dismiss("checking-user");
-                                toast.error(
-                                  `Email ${email} is not registered.`,
-                                );
+                                throw new Error(user.error);
                               }
                             } catch (error) {
                               toast.dismiss("checking-user");
-                              toast.error("Failed to check user", {
+                              toast.error("Failed to check member", {
                                 description: (error as Error).message,
+                                duration: 5000,
                               });
                             }
                           }
@@ -582,10 +566,10 @@ function TeamForm({ team }: { team: Team }) {
             className={`w-full max-w-lg mt-12 border text-white bg-white/10 hover:bg-white/25 ${
               isLoading ? "cursor-not-allowed" : "cursor-pointer"
             }`}
-            disabled={isSubmitting || fields.length < 3}
+            disabled={isSubmitting || fields.length < 3 || isPending}
             type="submit"
           >
-            {isSubmitting ? (
+            {isSubmitting || isPending ? (
               <div className="flex gap-2">
                 <span>Editing Team...</span>
                 <Loader2 className="animate-spin" />
