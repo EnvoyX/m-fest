@@ -12,7 +12,6 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import React from "react";
 
 export function DataTableViewOptions<TData>({
     table,
@@ -25,26 +24,7 @@ export function DataTableViewOptions<TData>({
             (column) =>
                 typeof column.accessorFn !== "undefined" && column.getCanHide(),
         );
-    const [selected, setSelected] = React.useState<Set<string>>(
-        () =>
-            new Set(
-                columns
-                    .filter((col) => !col.getIsVisible())
-                    .map((col) => col.id),
-            ),
-    );
-    const toggleColumn = (id: string) => {
-        setSelected((prev) => {
-            const next = new Set(prev);
-            next.has(id) ? next.delete(id) : next.add(id);
-            return next;
-        });
-    };
-    const applyVisibility = () => {
-        columns.forEach((column) => {
-            column.toggleVisibility(!selected.has(column.id));
-        });
-    };
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>

@@ -1,31 +1,19 @@
 import { auth } from "@/server/auth/auth";
-import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { adminRoles } from "@/constants/constants";
 
 export default async function proxy(request: NextRequest) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
   const { pathname } = request.nextUrl;
+  const session = await auth.api.getSession({
+    headers: request.headers,
+  });
 
-  const protectedPaths = [
-    "/dashboard",
-    "/dashboard/competitions",
-    "/dashboard/competitions/register",
-    "/admin",
-  ];
+  const protectedPaths = ["/dashboard", "/admin"];
   const isProtected = protectedPaths.some((path) => pathname.startsWith(path));
 
   if (isProtected && !session) {
-    const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("callbackUrl", pathname);
-    return NextResponse.redirect(loginUrl);
-  }
-
-  if (pathname === "/login" && session) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   if (
@@ -40,5 +28,5 @@ export default async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login", "/admin/:path*"],
+  matcher: ["/dashboard/:path*", "/admin/:path*"],
 };

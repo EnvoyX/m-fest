@@ -1,0 +1,195 @@
+import { Badge } from "@/components/ui/badge";
+import { db } from "@/server/db";
+import { ArrowRight, BadgeCheckIcon } from "lucide-react";
+import { Fragment, Suspense } from "react";
+import { UserAvatar } from "../../general/UserProfile";
+import { getUser } from "@/action/user.action";
+import { type User } from "@/types/types";
+import { IconUsersGroup } from "@tabler/icons-react";
+import { Button } from "@/components/ui/button";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import Link from "next/link";
+import TeamFallback from "../TeamFallback";
+
+export function RegisteredCompetitionsTeams() {
+  return (
+    <section className="glass my-2">
+      <h3 className="text-3xl font-semibold text-foreground mb-6">Team</h3>
+      <Suspense fallback={<TeamFallback />}>
+        <RegisteredTeams />
+      </Suspense>
+    </section>
+  );
+}
+
+async function RegisteredTeams() {
+  const user = (await getUser()) as User;
+  const teams = await db.team.findMany({
+    where: {
+      members: {
+        some: {
+          userId: user.id,
+        },
+      },
+      status: "SUCCESS",
+    },
+    include: {
+      members: {
+        include: {
+          user: {
+            include: { documents: true },
+          },
+        },
+      },
+    },
+  });
+  const teamMembers = await db.teamMember.findMany({
+    where: {
+      userId: user.id,
+    },
+  });
+  const teamIds = teamMembers.map((member) => member.teamId);
+  const registeredCompetitions = await db.compRegistration.findMany({
+    where: {
+      teamId: {
+        in: teamIds,
+      },
+      statusOrder: "SUCCESS",
+    },
+  });
+
+  if (!registeredCompetitions.length) {
+    return (
+      <Empty>
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <IconUsersGroup />
+          </EmptyMedia>
+          <EmptyTitle>No Registered Teams Yet</EmptyTitle>
+          <EmptyDescription>
+            You haven&apos;t registered any competitions yet. Get registered by
+            clicking the button below.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Button variant="default" asChild className="text-black" size="sm">
+            <Link href="/dashboard/team">
+              Register <ArrowRight />
+            </Link>
+          </Button>
+        </EmptyContent>
+      </Empty>
+    );
+  }
+  return (
+    <>
+      {teams.map((team) => {
+        return (
+          <Fragment key={team.id}>
+            <div className="p-6 border-2 rounded-lg my-12 backdrop-glass-sm">
+              <div className="flex max-sm:flex-col items-center gap-3 mb-6">
+                <IconUsersGroup className="w-6 h-6 text-primary" />
+                <div className="flex flex-col ">
+                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-1">
+                    <span className="line-clamp-1">{team.name}</span>
+                  </h3>
+                  <h5 className="text-sm text-muted-foreground max-sm:text-center">
+                    {team.competition && team.teamStatus === "ACCEPTED"
+                      ? team.competition
+                      : "No competition"}
+                  </h5>
+                </div>
+                <div className="sm:ml-auto flex flex-col-reverse gap-2 items-center justify-center">
+                  <span>
+                    {team.teamStatus === "NOT_REGISTERED" ? (
+                      <Badge variant={"default"}>Unregistered</Badge>
+                    ) : team.teamStatus === "PENDING" ? (
+                      <Badge
+                        variant="secondary"
+                        className="bg-yellow-600 text-white"
+                      >
+                        Pending
+                      </Badge>
+                    ) : (
+                      <Badge
+                        variant="secondary"
+                        className="bg-blue-500 text-white dark:bg-blue-600"
+                      >
+                        <BadgeCheckIcon />
+                        Verified
+                      </Badge>
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+                {team.members
+                  .sort((a, b) => (a.role === "Leader" ? -1 : 1))
+                  .map((member) => {
+                    return (
+                      <div
+                        key={member.user?.id}
+                        className="glass-sm p-4 flex flex-col items-center text-center"
+                      >
+                        <span className="mb-2">
+                          {member.user?.documents?.status === "PENDING" ? (
+                            <Badge
+                              variant="secondary"
+                              className="bg-yellow-600 text-white"
+                            >
+                              Pending
+                            </Badge>
+                          ) : member.user?.verified &&
+                            member.user?.documents?.status === "ACCEPTED" ? (
+                            <Badge
+                              variant="secondary"
+                              className="bg-blue-500 text-white dark:bg-blue-600"
+                            >
+                              <BadgeCheckIcon />
+                              Verified
+                            </Badge>
+                          ) : (
+                            <Badge className="bg-red-500 text-white">
+                              Not Submitted
+                            </Badge>
+                          )}
+                        </span>
+                        <UserAvatar
+                          src={member.user?.image as string}
+                          alt={member.user?.name as string}
+                          className="w-24 h-24 border-2 border-primary/50"
+                        />
+                        <h4 className="font-medium text-foreground text-sm mt-3 line-clamp-1">
+                          {member.user?.name}
+                        </h4>
+                        <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                          {member.user?.institution}
+                        </p>
+                        <Badge
+                          className={`mt-3 text-xs ${
+                            member.role === "Leader"
+                              ? "bg-primary/30 text-primary border-primary/50"
+                              : "bg-primary/15 text-foreground border-muted/50"
+                          } border`}
+                        >
+                          {member.role}
+                        </Badge>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          </Fragment>
+        );
+      })}
+    </>
+  );
+}

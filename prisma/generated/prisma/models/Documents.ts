@@ -678,10 +678,6 @@ export type NullableEnumDocumentStatusFieldUpdateOperationsInput = {
   set?: $Enums.DocumentStatus | null
 }
 
-export type NullableBoolFieldUpdateOperationsInput = {
-  set?: boolean | null
-}
-
 export type EnumVerificationStatusFieldUpdateOperationsInput = {
   set?: $Enums.VerificationStatus
 }

@@ -12,7 +12,6 @@ import superjson from "superjson";
 import { auth } from "../auth/auth";
 import { db } from "../db";
 import { adminRoles } from "@/constants/constants";
-import { headers } from "next/headers";
 import { dashboardLimiter, registerLimiter } from "@/lib/ratelimit";
 import type { NextRequest } from "next/server";
 
@@ -29,25 +28,28 @@ import type { NextRequest } from "next/server";
  * @see https://trpc.io/docs/server/context
  */
 
-export async function createTRPCContext(opts: { headers: Headers, req: NextRequest }) {
-    const head = await headers();
-    const session = await auth.api.getSession({
-        headers: head,
-    });
+export async function createTRPCContext(opts: {
+  headers: Headers;
+  req: NextRequest;
+}) {
+  const head = opts.headers;
+  const session = await auth.api.getSession({
+    headers: head,
+  });
 
-    return {
-        session,
-        db,
-        ip: head.get("x-forwarded-for") ?? "unknown",
-        ...opts,
-    };
+  return {
+    session,
+    db,
+    ip: head.get("x-forwarded-for") ?? "unknown",
+    ...opts,
+  };
 }
 /**
  * Initialization of tRPC backend
  * Should be done only once per backend!
  */
 const t = initTRPC.context<typeof createTRPCContext>().create({
-    transformer: superjson,
+  transformer: superjson,
 });
 /**
  * Export reusable router and procedure helpers
@@ -62,113 +64,125 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
 export const createCallerFactory = t.createCallerFactory;
 
 export const router = t.router;
-export const dashboardRateLimitMiddleware = t.middleware(async ({ ctx, next, path }) => {
-    const identifier = ctx.session?.user.id || ctx.ip
+export const dashboardRateLimitMiddleware = t.middleware(
+  async ({ ctx, next, path }) => {
+    const identifier = ctx.session?.user.id || ctx.ip;
 
-    const { success, reset } = await dashboardLimiter.limit(`${path}:${identifier}`)
-
-    if (!success) {
-        const now = Date.now();
-        const retryAfter = Math.ceil((reset - now) / 1000);
-        throw new TRPCError({
-            code: "TOO_MANY_REQUESTS",
-            message: `Too Many Request. Retry in ${retryAfter}s`,
-        });
-    }
-
-    return next()
-})
-
-export const registerRateLimitMiddleware = t.middleware(async ({ ctx, next, path }) => {
-    const identifier = ctx.session?.user.id || ctx.ip
-
-    const { success, reset } = await registerLimiter.limit(`${path}:${identifier}`)
+    const { success, reset } = await dashboardLimiter.limit(
+      `${path}:${identifier}`,
+    );
 
     if (!success) {
-        const now = Date.now();
-        const retryAfter = Math.ceil((reset - now) / 1000);
-        throw new TRPCError({
-            code: "TOO_MANY_REQUESTS",
-            message: `Too Many Request. Retry in ${retryAfter}s`,
-        });
+      const now = Date.now();
+      const retryAfter = Math.ceil((reset - now) / 1000);
+      throw new TRPCError({
+        code: "TOO_MANY_REQUESTS",
+        message: `Too Many Request. Retry in ${retryAfter}s`,
+      });
     }
 
-    return next()
-})
+    return next();
+  },
+);
+
+export const registerRateLimitMiddleware = t.middleware(
+  async ({ ctx, next, path }) => {
+    const identifier = ctx.session?.user.id || ctx.ip;
+
+    const { success, reset } = await registerLimiter.limit(
+      `${path}:${identifier}`,
+    );
+
+    if (!success) {
+      const now = Date.now();
+      const retryAfter = Math.ceil((reset - now) / 1000);
+      throw new TRPCError({
+        code: "TOO_MANY_REQUESTS",
+        message: `Too Many Request. Retry in ${retryAfter}s`,
+      });
+    }
+
+    return next();
+  },
+);
 
 export const publicProcedure = t.procedure;
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
-    if (!ctx.session?.user) {
-        throw new TRPCError({
-            message: "Unauthorized to access this resource",
-            code: "UNAUTHORIZED",
-        });
-    }
-    return next({
-        ctx: {
-            session: { ...ctx.session, user: ctx.session.user },
-        },
+  if (!ctx.session?.user) {
+    throw new TRPCError({
+      message: "Unauthorized to access this resource",
+      code: "UNAUTHORIZED",
     });
+  }
+  return next({
+    ctx: {
+      session: { ...ctx.session, user: ctx.session.user },
+    },
+  });
 });
 
 export const adminProcedure = t.procedure.use(({ ctx, next }) => {
-    if (
-        !ctx.session?.user ||
-        !adminRoles.includes(ctx.session.user.role as string)
-    ) {
-        throw new TRPCError({
-            message:
-                "Unauthorized to access this resource, only admin can access this resource",
-            code: "UNAUTHORIZED",
-        });
-    }
-    return next({
-        ctx: {
-            session: { ...ctx.session, user: ctx.session.user },
-        },
+  if (
+    !ctx.session?.user ||
+    !adminRoles.includes(ctx.session.user.role as string)
+  ) {
+    throw new TRPCError({
+      message:
+        "Unauthorized to access this resource, only admin can access this resource",
+      code: "UNAUTHORIZED",
     });
+  }
+  return next({
+    ctx: {
+      session: { ...ctx.session, user: ctx.session.user },
+    },
+  });
 });
 
 export const superAdminProcedure = t.procedure.use(({ ctx, next }) => {
-    if (!ctx.session?.user || ctx.session.user.role !== "SUPERADMIN") {
-        throw new TRPCError({
-            message:
-                "Unauthorized to access this resource, only SUPERADMIN access this resource",
-            code: "UNAUTHORIZED",
-        });
-    }
-    return next({
-        ctx: {
-            session: { ...ctx.session, user: ctx.session.user },
-        },
+  if (!ctx.session?.user || ctx.session.user.role !== "SUPERADMIN") {
+    throw new TRPCError({
+      message:
+        "Unauthorized to access this resource, only SUPERADMIN access this resource",
+      code: "UNAUTHORIZED",
     });
+  }
+  return next({
+    ctx: {
+      session: { ...ctx.session, user: ctx.session.user },
+    },
+  });
 });
 
 // Ratelimited Procedures
-export const protectedRateLimitedProcedure = t.procedure.use(({ ctx, next }) => {
+export const protectedRateLimitedProcedure = t.procedure
+  .use(({ ctx, next }) => {
     if (!ctx.session?.user) {
-        throw new TRPCError({
-            message: "Unauthorized to access this resource",
-            code: "UNAUTHORIZED",
-        });
+      throw new TRPCError({
+        message: "Unauthorized to access this resource",
+        code: "UNAUTHORIZED",
+      });
     }
     return next({
-        ctx: {
-            session: { ...ctx.session, user: ctx.session.user },
-        },
+      ctx: {
+        session: { ...ctx.session, user: ctx.session.user },
+      },
     });
-}).use(dashboardRateLimitMiddleware);
+  })
+  .use(dashboardRateLimitMiddleware);
 
-export const registerProctectedRateLimitedProcedure = t.procedure.use(({ ctx, next }) => {
+export const registerProctectedRateLimitedProcedure = t.procedure
+  .use(({ ctx, next }) => {
     if (!ctx.session?.user) {
-        throw new TRPCError({
-            message: "Unauthorized to access this resource",
-            code: "UNAUTHORIZED",
-        });
+      throw new TRPCError({
+        message: "Unauthorized to access this resource",
+        code: "UNAUTHORIZED",
+      });
     }
     return next({
-        ctx: {
-            session: { ...ctx.session, user: ctx.session.user },
-        },
+      ctx: {
+        session: { ...ctx.session, user: ctx.session.user },
+      },
     });
-}).use(registerRateLimitMiddleware);
+  })
+  .use(registerRateLimitMiddleware);

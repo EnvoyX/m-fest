@@ -116,34 +116,34 @@ export function Competitions() {
       </h3>
       <div className="space-y-4 border-2 rounded-lg bg-transparent backdrop-glass-lg">
         <div className="glass-sm p-4 transition-colors">
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <div className="flex items-start gap-3 flex-1">
+          <div className="flex items-start justify-between max-sm:flex-col-reverse max-sm:items-center max-sm:justify-center gap-4 mb-3">
+            <div className="flex items-start max-sm:flex-col max-sm:items-center max-sm:justify-center gap-3 flex-1">
               <Trophy className="w-5 h-5 text-primary mt-0.5 shrink-0" />
               <div>
                 <h4 className="font-medium text-foreground">
                   {
                     competitions.find(
-                      (c) => c.abbreviation === comp?.competitionName
+                      (c) => c.abbreviation === comp?.competitionName,
                     )?.title
                   }
                 </h4>
-                <p className="text-xs text-muted-foreground mt-1">
+                <p className="text-xs text-muted-foreground mt-1 max-sm:text-center">
                   {totalCompPartcitipants} participants
                 </p>
               </div>
             </div>
             <Badge
               className={`${getStatusColor(
-                comp?.isVerified as boolean
+                comp?.isVerified as boolean,
               )} border`}
             >
               {comp?.isVerified ? "Verified" : "Pending"}
             </Badge>
           </div>
-          <div className="flex items-center justify-between mt-3 pt-3 border-t border-border/20">
+          <div className="flex items-center justify-between max-sm:flex-col max-sm:justify-center max-sm:gap-4 mt-3 pt-3 border-t border-border/20">
             <div className="flex items-center gap-2">
               <IconUsersGroup className="w-5 h-5 text-primary" />
-              <span className="text-base font-semibold text-foreground">
+              <span className="text-base font-semibold text-foreground line-clamp-1">
                 {comp?.teamName}
               </span>
             </div>

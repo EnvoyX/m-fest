@@ -21,14 +21,14 @@ const ContactSection = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="bg-trasnparent backdrop-glass-lg rounded-lg  p-8 text-white">
+            <div className="rounded-lg p-8 text-white">
               <h3 className="text-2xl font-bold mb-4">Contact Information</h3>
               <p className="text-purple-100 mb-8">
                 For any further questions and informations, you can contact our
                 contact person below here.
               </p>
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
+                <div className="flex  items-start space-x-4">
                   <div className="flex-shrink-0 bg-transparent p-3 rounded-full">
                     <FaMapMarkerAlt className="w-5 h-5" />
                   </div>
@@ -48,7 +48,7 @@ const ContactSection = () => {
                     <h4 className="text-lg font-semibold">
                       Business Inquiries
                     </h4>
-                    <p className="text-purple-100 gap-2 flex flex-col text-sm mt-1">
+                    <p className="text-purple-100 gap-2 flex flex-col text-sm max-sm:text-xs mt-1">
                       <span>+62 85724415352 (Roland)</span>
                       <span>mfest2026@gmail.com</span>
                     </p>
@@ -60,7 +60,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold">Contact Support</h4>
-                    <p className="text-purple-100 gap-2 flex flex-col text-sm mt-1">
+                    <p className="text-purple-100 gap-2 flex flex-col text-sm max-sm:text-xs mt-1">
                       <span>+62 85775132602 (Handaru)</span>
                       <span>rahmathandaru.p@gmail.com</span>
                     </p>
@@ -68,7 +68,7 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="px-8 md:px-0">
               <h3 className="text-3xl font-bold text-primary mb-2 flex gap-4 items-center">
                 <FaMapLocation /> <span>Our Location on Maps</span>
               </h3>
