@@ -132,7 +132,7 @@ export const dashboardRouter = router({
           type: "followIg",
           title: "Follow Instagram",
           submissionDetail:
-            "Participants are required to have an Instagram account and must follow social media @mfestitb and upload the proof here.",
+            "Participants are required to have an Instagram account and must follow social media @mfestitb and @hmm_itb and upload the proof here.",
           acceptedFiles: [".png", ".jpeg", ".jpg", ".webp"],
           uploadThingRoute: "followIg",
           imageUrl: userDocuments?.followIgImageUrl ?? null,

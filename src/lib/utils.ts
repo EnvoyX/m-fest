@@ -46,24 +46,24 @@ export function getSubmissionDeadline(comp: CompetitionName) {
   return null;
 }
 export function getCompFee(comp: string) {
-  const compStartDate1 = competitions.find(
-    (competition) => competition.abbreviation === comp.toUpperCase(),
-  )?.startRegDate1 as Date;
-  const compEndDate1 = competitions.find(
-    (competition) => competition.abbreviation === comp.toUpperCase(),
-  )?.endRegDate1 as Date;
-  if (
-    isWithinInterval(currentDate, {
-      start: compStartDate1,
-      end: compEndDate1,
-    })
-  ) {
-    const compFee = competitions.find(
-      (competition) => competition.abbreviation === comp.toUpperCase(),
-    )?.fee1 as number;
+  // const compStartDate1 = competitions.find(
+  //   (competition) => competition.abbreviation === comp.toUpperCase(),
+  // )?.startRegDate1 as Date;
+  // const compEndDate1 = competitions.find(
+  //   (competition) => competition.abbreviation === comp.toUpperCase(),
+  // )?.endRegDate1 as Date;
+  // if (
+  //   isWithinInterval(currentDate, {
+  //     start: compStartDate1,
+  //     end: compEndDate1,
+  //   })
+  // ) {
+  //   const compFee = competitions.find(
+  //     (competition) => competition.abbreviation === comp.toUpperCase(),
+  //   )?.fee1 as number;
 
-    return compFee;
-  }
+  //   return compFee;
+  // }
 
   const compFee = competitions.find(
     (competition) => competition.abbreviation === comp.toUpperCase(),
