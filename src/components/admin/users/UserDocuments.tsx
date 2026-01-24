@@ -10,6 +10,7 @@ import DocumentFormSkeleton from "@/components/document/DocumentFormSkeleton";
 import { useTRPC } from "@/utils/trpc";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import { format } from "date-fns";
 
 export default function UserDocuments({ userId }: { userId: string }) {
   const trpc = useTRPC();
@@ -374,13 +375,10 @@ export default function UserDocuments({ userId }: { userId: string }) {
                         <span>
                           {`${
                             document.createdAt
-                              ? new Date(document.createdAt).toDateString()
-                              : ""
-                          } at ${
-                            document.createdAt
-                              ? new Date(
-                                  document.createdAt,
-                                ).toLocaleTimeString()
+                              ? format(
+                                  document.createdAt as Date,
+                                  "EEEE, d MMMM yyyy, HH:mm",
+                                )
                               : ""
                           }`}
                         </span>

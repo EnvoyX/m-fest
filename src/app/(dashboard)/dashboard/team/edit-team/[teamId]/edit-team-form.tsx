@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/field";
 import { useQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/utils/trpc";
+import { trim } from "es-toolkit";
 
 function TeamForm({ team }: { team: Team }) {
   const [isPending, startTransition] = useTransition();
@@ -225,14 +226,14 @@ function TeamForm({ team }: { team: Team }) {
                     aria-invalid={fieldState.invalid}
                     className="mb-12"
                     onBlur={(e) => {
-                      e.target.value = e.target.value.trim();
+                      e.target.value = trim(e.target.value);
                     }}
                     onMouseLeave={() => {
                       const value = getValues("teamName");
                       if (!value) {
                         return;
                       }
-                      setValue("teamName", value.trim());
+                      setValue("teamName", trim(value));
                     }}
                   />
                   {fieldState.invalid && (
@@ -342,14 +343,14 @@ function TeamForm({ team }: { team: Team }) {
                       id={field.name}
                       aria-invalid={fieldState.invalid}
                       onBlur={(e) => {
-                        e.target.value = e.target.value.trim();
+                        e.target.value = trim(e.target.value);
                       }}
                       onMouseLeave={() => {
                         const value = getValues("teamInstitution");
                         if (!value) {
                           return;
                         }
-                        setValue("teamInstitution", value.trim());
+                        setValue("teamInstitution", trim(value));
                       }}
                     />
                     {fieldState.invalid && (
@@ -381,14 +382,14 @@ function TeamForm({ team }: { team: Team }) {
                         readOnly={index === 0}
                         disabled={index === 0}
                         onBlur={(e) => {
-                          e.target.value = e.target.value.trim();
+                          e.target.value = trim(e.target.value);
                         }}
                         onMouseLeave={() => {
                           const value = getValues(`members.${index}.name`);
                           if (!value) {
                             return;
                           }
-                          setValue(`members.${index}.name`, value.trim());
+                          setValue(`members.${index}.name`, trim(value));
                         }}
                       />
                       {fieldState.invalid && (
@@ -412,7 +413,8 @@ function TeamForm({ team }: { team: Team }) {
                         readOnly={index === 0}
                         disabled={index === 0}
                         onBlur={async (event) => {
-                          const email = event.target.value.trim();
+                          event.target.value = trim(event.target.value);
+                          const email = trim(event.target.value);
                           if (email) {
                             try {
                               toast.loading("Checking member...", {
@@ -450,6 +452,13 @@ function TeamForm({ team }: { team: Team }) {
                             }
                           }
                         }}
+                        onMouseLeave={(e) => {
+                          const value = getValues(`members.${index}.email`);
+                          if (!value) {
+                            return;
+                          }
+                          setValue(`members.${index}.email`, trim(value));
+                        }}
                         onChange={(e) => {
                           const value = e.target.value;
                           if (value.includes("@")) {
@@ -478,7 +487,7 @@ function TeamForm({ team }: { team: Team }) {
                         id={field.name}
                         aria-invalid={fieldState.invalid}
                         onBlur={(e) => {
-                          e.target.value = e.target.value.trim();
+                          e.target.value = trim(e.target.value);
                         }}
                         onMouseLeave={() => {
                           const value = getValues(
@@ -487,10 +496,7 @@ function TeamForm({ team }: { team: Team }) {
                           if (!value) {
                             return;
                           }
-                          setValue(
-                            `members.${index}.institution`,
-                            value.trim(),
-                          );
+                          setValue(`members.${index}.institution`, trim(value));
                         }}
                       />
                       {fieldState.invalid && (

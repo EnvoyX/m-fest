@@ -27,6 +27,7 @@ import {
 import { IconListDetails } from "@tabler/icons-react";
 import { cn, getCurrentDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { isBefore, isWithinInterval } from "date-fns";
 
 export default function RegisteredCompetitionList() {
   return (
@@ -112,18 +113,22 @@ async function FetchUserAvailableCompetitions() {
             <CardDescription className="text-center text-sm line-clamp-1">
               {comp.title}
             </CardDescription>
-            {currentDate < comp.startRegDate1 ? (
+            {isBefore(currentDate, comp.startRegDate1) ? (
               <Badge variant={"default"}>Not Started</Badge>
-            ) : comp.startRegDate1 < currentDate &&
-              currentDate < comp.endRegDate1 ? (
+            ) : isWithinInterval(currentDate, {
+                start: comp.startRegDate1,
+                end: comp.endRegDate1,
+              }) ? (
               <Badge
                 variant={"secondary"}
                 className="bg-blue-500 text-white dark:bg-blue-600"
               >
                 Early Bird
               </Badge>
-            ) : comp.startRegDate2 < currentDate &&
-              currentDate < comp.endRegDate3 ? (
+            ) : isWithinInterval(currentDate, {
+                start: comp.startRegDate2,
+                end: comp.endRegDate3,
+              }) ? (
               <Badge variant="secondary" className="bg-green-600 text-white">
                 Regular
               </Badge>
@@ -161,8 +166,10 @@ async function FetchUserAvailableCompetitions() {
                 className={cn("gap-1 pr-1.5 cursor-pointer", {
                   "bg-muted-foreground pointer-events-none cursor-not-allowed":
                     registeredCompetitions.length ||
-                    currentDate < comp.startRegDate1 ||
-                    currentDate > comp.endRegDate3 ||
+                    !isWithinInterval(currentDate, {
+                      start: comp.startRegDate1,
+                      end: comp.endRegDate3,
+                    }) ||
                     !userTeam ||
                     !isTeamLeader,
                 })}
@@ -170,8 +177,10 @@ async function FetchUserAvailableCompetitions() {
                   registeredCompetitions.length
                     ? true
                     : false ||
-                      currentDate < comp.startRegDate1 ||
-                      currentDate > comp.endRegDate3 ||
+                      !isWithinInterval(currentDate, {
+                        start: comp.startRegDate1,
+                        end: comp.endRegDate3,
+                      }) ||
                       !userTeam ||
                       !isTeamLeader
                 }
@@ -179,8 +188,10 @@ async function FetchUserAvailableCompetitions() {
                 <Link
                   href={
                     registeredCompetitions.length ||
-                    currentDate < comp.startRegDate1 ||
-                    currentDate > comp.endRegDate3 ||
+                    !isWithinInterval(currentDate, {
+                      start: comp.startRegDate1,
+                      end: comp.endRegDate3,
+                    }) ||
                     !userTeam ||
                     !isTeamLeader
                       ? ""

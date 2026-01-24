@@ -2,6 +2,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { competitions } from "./competition";
 import { CompetitionName } from "../../prisma/generated/prisma/enums";
+import { isWithinInterval } from "date-fns";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -9,22 +10,22 @@ export function cn(...inputs: ClassValue[]) {
 
 // For testing date
 // export const getCurrentDate = () => {
-  //     const now = new Date("2026-01-26T00:00:00");
-  
-  //     return now;
-  // };
-  
-  // Real date
-  export const getCurrentDate = () => {
-    const now = new Date();
-  
-    return now;
-  };
-  const currentDate = getCurrentDate();
+//     const now = new Date("2026-01-26T00:00:00");
+
+//     return now;
+// };
+
+// Real date
+export const getCurrentDate = () => {
+  const now = new Date();
+
+  return now;
+};
+const currentDate = getCurrentDate();
 
 export function getCompCaseDate(comp: CompetitionName) {
   if (comp === "BCC") {
-    return new Date("2026-02-23T00:00:00");
+    return new Date("2026-01-23T00:00:00");
   } else if (comp === "IPPC") return null;
   else if (comp === "PDC") {
     new Date("2026-02-01T00:00:00");
@@ -51,7 +52,12 @@ export function getCompFee(comp: string) {
   const compEndDate1 = competitions.find(
     (competition) => competition.abbreviation === comp.toUpperCase(),
   )?.endRegDate1 as Date;
-  if (compStartDate1 < currentDate && currentDate < compEndDate1) {
+  if (
+    isWithinInterval(currentDate, {
+      start: compStartDate1,
+      end: compEndDate1,
+    })
+  ) {
     const compFee = competitions.find(
       (competition) => competition.abbreviation === comp.toUpperCase(),
     )?.fee1 as number;

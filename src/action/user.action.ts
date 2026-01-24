@@ -27,6 +27,10 @@ export async function getUser() {
           team: true,
         },
       },
+      documents: true,
+      registration: true,
+      examSession: true,
+      eventRegistration: true,
     },
   });
 

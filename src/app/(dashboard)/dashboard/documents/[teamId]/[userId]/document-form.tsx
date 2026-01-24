@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import type { CompetitionName } from "../../../../../../../prisma/generated/prisma/enums";
 import { getTwibbonFormatLink } from "@/lib/utils";
 import { ArrowUpRightIcon } from "lucide-react";
+import { format } from "date-fns";
 
 function usePreventRefreshUserDuringUpload(isLoading: boolean) {
   useEffect(() => {
@@ -310,13 +311,10 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                         <span>
                           {`${
                             document.createdAt
-                              ? new Date(document.createdAt).toDateString()
-                              : ""
-                          } at ${
-                            document.createdAt
-                              ? new Date(
-                                  document.createdAt,
-                                ).toLocaleTimeString()
+                              ? format(
+                                  document.createdAt as Date,
+                                  "EEEE, d MMMM yyyy, HH:mm",
+                                )
                               : ""
                           }`}
                         </span>

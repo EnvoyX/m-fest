@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { BadgeCheckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCurrentDate } from "@/lib/utils";
+import { isAfter } from "date-fns";
 
 type TeamWithMembers = Prisma.TeamGetPayload<{
   include: {
@@ -17,7 +18,7 @@ type TeamWithMembers = Prisma.TeamGetPayload<{
 async function MemberList({ team }: { team: TeamWithMembers }) {
   const currentDate = getCurrentDate();
   const isDeadlinePassed = team.verificationDeadlineAt
-    ? new Date(team.verificationDeadlineAt) < currentDate
+    ? isAfter(currentDate, new Date(team.verificationDeadlineAt))
     : false;
   return (
     <div className="w-full">

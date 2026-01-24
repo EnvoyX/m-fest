@@ -6,6 +6,7 @@ import { db } from "@/server/db";
 import { redirect } from "next/navigation";
 import { env } from "@/env";
 import { getCurrentDate } from "@/lib/utils";
+import { isAfter } from "date-fns";
 
 export async function generateMetadata({
   params,
@@ -89,7 +90,7 @@ async function RenderDocumentsForm({
     redirect("/dashboard/team");
   }
   const isDeadlinePassed = team?.verificationDeadlineAt
-    ? new Date(team?.verificationDeadlineAt) < currentDate
+    ? isAfter(currentDate, new Date(team?.verificationDeadlineAt))
     : false;
   // console.log("Is Deadline Passed:", isDeadlinePassed);
   if (isDeadlinePassed) {

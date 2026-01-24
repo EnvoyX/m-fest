@@ -26,6 +26,7 @@ import { Input } from "@/components/ui/input";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTRPC } from "@/utils/trpc";
 import { getCompFee } from "@/lib/utils";
+import { trim } from "es-toolkit";
 
 function RegisterForm({
   comp,
@@ -480,14 +481,14 @@ function RegisterForm({
                   aria-invalid={fieldState.invalid}
                   placeholder="Insert payment proof link here"
                   onBlur={(e) => {
-                    e.target.value = e.target.value.trim();
+                    e.target.value = trim(e.target.value);
                   }}
                   onMouseLeave={(e) => {
                     const value = getValues("paymentProofUrl");
                     if (!value) {
                       return;
                     }
-                    setValue("paymentProofUrl", value.trim());
+                    setValue("paymentProofUrl", trim(value));
                   }}
                 />
                 {fieldState.invalid && (

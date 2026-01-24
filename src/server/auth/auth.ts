@@ -3,6 +3,8 @@ import { customSession } from "better-auth/plugins";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { db } from "../db";
 import { env } from "@/env";
+import { nextCookies } from "better-auth/next-js";
+
 const options = {
   appName: "Mechanical Festival 2026",
   database: prismaAdapter(db, {
@@ -47,6 +49,7 @@ const options = {
   },
   plugins: [
     //...plugins
+    nextCookies(),
   ],
 } satisfies BetterAuthOptions;
 
