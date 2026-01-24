@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description:
     "Mechanical Festival 2026 (M-Fest) is a festival held by ITB's undergraduate mechanical engineering students. M-Fest contains events and competitions around engineering innovation by discussing current problems and how to find the right solutions.",
 
-  metadataBase: new URL("https://localhost:3000"), //should be "baseUrl"
+  metadataBase: new URL(baseUrl),
 
   keywords: [
     "Mechanical Festival 2026",
