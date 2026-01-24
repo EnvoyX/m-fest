@@ -14,6 +14,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { SubmissionSkeleton } from "./CompFormSkeleton";
 import { getCurrentDate } from "@/lib/utils";
+import { format, isBefore } from "date-fns";
 
 export async function generateMetadata({
   params,
@@ -177,7 +178,7 @@ async function FetchCompForm({
   }
 
   return (
-    <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto sm:px-6 lg:px-8 py-6">
       <div className="p-6 flex flex-col sm:flex-row">
         <div className="border-r-0 sm:border-r p-4">
           <h1 className="text-3xl font-bold text-foreground">
@@ -232,10 +233,15 @@ async function FetchCompForm({
               </Button>
             </div>
             <p className="mt-3 text-destructive">
-              <span className="font-semibold">
+              <span className="font-medium">
                 {thisComp?.submissionContext}{" "}
-                {thisComp?.submissionDeadline?.toDateString()}
               </span>{" "}
+              <span className="font-bold">
+                {format(
+                  thisComp?.submissionDeadline as Date,
+                  "EEEE, d MMMM yyyy, HH:mm",
+                )}
+              </span>
             </p>
             <div className="mt-6 flex justify-center sm:justify-start">
               <CountdownClient
@@ -251,7 +257,7 @@ async function FetchCompForm({
             </div>
           </div>
         </div>
-        {submissionDeadline && currentDate < submissionDeadline && (
+        {submissionDeadline && isBefore(currentDate, submissionDeadline) && (
           <div className="p-6 bg-transparent ">
             <SubmitForm comp={comp} leaderUserId={team.leaderUserId} />
           </div>

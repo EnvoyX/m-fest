@@ -12,7 +12,7 @@ import type { CompetitionName } from "../../../../prisma/generated/prisma/enums"
 import type { TeamMember } from "../../../../prisma/generated/prisma/client";
 
 export const dashboardRouter = router({
-  getUser: protectedProcedure.query(async ({ ctx }) => {
+  getUser: protectedProcedure.query(async () => {
     const user = await getUser();
     return user;
   }),

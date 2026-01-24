@@ -32,15 +32,14 @@ export async function createTRPCContext(opts: {
   headers: Headers;
   req: NextRequest;
 }) {
-  const head = opts.headers;
   const session = await auth.api.getSession({
-    headers: head,
+    headers: opts.headers,
   });
 
   return {
     session,
     db,
-    ip: head.get("x-forwarded-for") ?? "unknown",
+    ip: opts.headers.get("x-forwarded-for") ?? "unknown",
     ...opts,
   };
 }

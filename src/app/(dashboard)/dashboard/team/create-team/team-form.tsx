@@ -5,7 +5,7 @@ import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -18,9 +18,11 @@ import { useQuery } from "@tanstack/react-query";
 import TeamFormSkeleton from "@/components/dashboard/edit-team/TeamFormSkeleton";
 import { useTRPC } from "@/utils/trpc";
 import { type User } from "@/types/types";
+import { trim } from "es-toolkit";
 
 function TeamForm() {
   const trpc = useTRPC();
+  const [isPending, startTransition] = useTransition();
   const {
     data: user,
     isLoading: isLoadingUser,
@@ -32,7 +34,6 @@ function TeamForm() {
     refetchOnReconnect: false,
   });
   const router = useRouter();
-  const [emailDuplicates, setEmailDuplicates] = useState<string[]>([]);
 
   useEffect(() => {
     if (isFetchedUser) {
@@ -44,7 +45,9 @@ function TeamForm() {
         !user?.major ||
         !user?.semester
       ) {
-        router.push("/dashboard/profile?notif=incomplete_profile");
+        startTransition(() => {
+          router.push("/dashboard/profile?notif=incomplete_profile");
+        });
       }
     }
   }, [isFetchedUser, user, router]);
@@ -71,7 +74,6 @@ function TeamForm() {
       .min(3, "Minimum 3 members required")
       .max(5, "Maximum 5 members allowed"),
   });
-
   type teamSchema = z.infer<typeof teamSchema>;
   const {
     handleSubmit,
@@ -79,6 +81,7 @@ function TeamForm() {
     reset,
     getValues,
     setValue,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<teamSchema>({
     resolver: zodResolver(teamSchema),
@@ -159,6 +162,29 @@ function TeamForm() {
       toast.error("You cannot have more than 5 members!");
       return;
     }
+    const members = formData.members;
+    const differentInstitution = members.filter(
+      (member) => member.institution !== formData.teamInstitution,
+    );
+    if (differentInstitution.length > 0) {
+      toast.dismiss("create-team");
+      setIsLoading(false);
+      toast.error("All members must be from the same institution!", {
+        description: `Members with different institution: ${differentInstitution
+          .map((member) => member.name)
+          .join(", ")} must match with team's institution`,
+        duration: 5000,
+      });
+      members.forEach((member, index) => {
+        if (differentInstitution.includes(member)) {
+          setError(`members.${index}.institution`, {
+            message: "All members must be from the same institution!",
+          });
+        }
+      });
+      return;
+    }
+
     try {
       const res = await fetch("/api/team/create-team", {
         method: "POST",
@@ -179,9 +205,9 @@ function TeamForm() {
         toast.dismiss("create-team");
         toast.success("Team created successfully!");
         router.refresh();
-        setTimeout(() => {
+        startTransition(() => {
           router.push("/dashboard/team");
-        }, 1000);
+        });
       } else {
         const { error, success } = await res.json();
         toast.dismiss("create-team");
@@ -221,14 +247,14 @@ function TeamForm() {
                     aria-invalid={fieldState.invalid}
                     className="mb-12"
                     onBlur={(e) => {
-                      e.target.value = e.target.value.trim();
+                      e.target.value = trim(e.target.value);
                     }}
                     onMouseLeave={() => {
                       const value = getValues("teamName");
                       if (!value) {
                         return;
                       }
-                      setValue("teamName", value.trim());
+                      setValue("teamName", trim(value));
                     }}
                   />
                   {fieldState.invalid && (
@@ -329,7 +355,7 @@ function TeamForm() {
                     >
                       <FieldContent>
                         <FieldLabel htmlFor="form-rhf">
-                          Team Institution
+                          Team Institution/School
                         </FieldLabel>
                       </FieldContent>
                       <Input
@@ -337,14 +363,14 @@ function TeamForm() {
                         id={field.name}
                         aria-invalid={fieldState.invalid}
                         onBlur={(e) => {
-                          e.target.value = e.target.value.trim();
+                          e.target.value = trim(e.target.value);
                         }}
                         onMouseLeave={() => {
                           const value = getValues("teamInstitution");
                           if (!value) {
                             return;
                           }
-                          setValue("teamInstitution", value.trim());
+                          setValue("teamInstitution", trim(value));
                         }}
                       />
                       {fieldState.invalid && (
@@ -377,14 +403,14 @@ function TeamForm() {
                         readOnly={index === 0}
                         disabled={index === 0}
                         onBlur={(e) => {
-                          e.target.value = e.target.value.trim();
+                          e.target.value = trim(e.target.value);
                         }}
                         onMouseLeave={() => {
                           const value = getValues(`members.${index}.name`);
                           if (!value) {
                             return;
                           }
-                          setValue(`members.${index}.name`, value.trim());
+                          setValue(`members.${index}.name`, trim(value));
                         }}
                       />
                       {fieldState.invalid && (
@@ -408,10 +434,11 @@ function TeamForm() {
                         readOnly={index === 0}
                         disabled={index === 0}
                         onBlur={async (event) => {
-                          const email = event.target.value.trim();
+                          event.target.value = trim(event.target.value);
+                          const email = trim(event.target.value);
                           if (email) {
                             try {
-                              toast.loading("Checking user...", {
+                              toast.loading("Checking member...", {
                                 id: "checking-user",
                               });
                               const res = await fetch(
@@ -421,22 +448,6 @@ function TeamForm() {
 
                               if (res.ok && user) {
                                 toast.dismiss("checking-user");
-                                if (
-                                  !user?.phoneNumber ||
-                                  !user?.domicile ||
-                                  !user?.institution ||
-                                  !user?.education ||
-                                  !user?.major ||
-                                  !user?.semester
-                                ) {
-                                  toast.error(
-                                    "User is not completed their profile yet!",
-                                    {
-                                      description: `Please make sure ${user.name} to complete their profile.`,
-                                    },
-                                  );
-                                  return;
-                                }
                                 const userName = user.name;
                                 const userInstitution = user.institution;
                                 toast.success(
@@ -451,17 +462,23 @@ function TeamForm() {
                                 reset(values);
                               } else {
                                 toast.dismiss("checking-user");
-                                toast.error(
-                                  `Email ${email} is not registered.`,
-                                );
+                                throw new Error(user.error);
                               }
                             } catch (error) {
                               toast.dismiss("checking-user");
-                              toast.error("Failed to check user", {
+                              toast.error("Failed to check member", {
                                 description: (error as Error).message,
+                                duration: 5000,
                               });
                             }
                           }
+                        }}
+                        onMouseLeave={(e) => {
+                          const value = getValues(`members.${index}.email`);
+                          if (!value) {
+                            return;
+                          }
+                          setValue(`members.${index}.email`, trim(value));
                         }}
                         onChange={(e) => {
                           const value = e.target.value;
@@ -484,14 +501,14 @@ function TeamForm() {
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel htmlFor={field.name}>
-                        Member&apos;s Institution
+                        Member&apos;s Institution/School
                       </FieldLabel>
                       <Input
                         {...field}
                         id={field.name}
                         aria-invalid={fieldState.invalid}
                         onBlur={(e) => {
-                          e.target.value = e.target.value.trim();
+                          e.target.value = trim(e.target.value);
                         }}
                         onMouseLeave={() => {
                           const value = getValues(
@@ -500,13 +517,8 @@ function TeamForm() {
                           if (!value) {
                             return;
                           }
-                          setValue(
-                            `members.${index}.institution`,
-                            value.trim(),
-                          );
+                          setValue(`members.${index}.institution`, trim(value));
                         }}
-                        readOnly={index === 0}
-                        disabled={index === 0}
                       />
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
@@ -581,10 +593,10 @@ function TeamForm() {
             className={`w-full max-w-lg mt-12 border text-white bg-white/10 hover:bg-white/25 ${
               isLoading ? "cursor-not-allowed" : "cursor-pointer"
             }`}
-            disabled={isSubmitting || fields.length < 3}
+            disabled={isSubmitting || fields.length < 3 || isPending}
             type="submit"
           >
-            {isSubmitting ? (
+            {isSubmitting || isPending ? (
               <div className="flex gap-2">
                 <span>Creating Team...</span>
                 <Loader2 className="animate-spin" />

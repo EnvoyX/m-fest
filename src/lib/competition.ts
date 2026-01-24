@@ -46,7 +46,6 @@ export const competitions: {
   submissionContext?: string;
   compOpenCase: Date | null;
   examOpen?: Date;
-  img: string;
 }[] = [
   {
     title: "Business Case Competition",
@@ -78,7 +77,6 @@ export const competitions: {
     submissionDeadline: getSubmissionDeadline("BCC"),
     submissionContext: "Submit your paper before:",
     compOpenCase: getCompCaseDate("BCC"),
-    img: "/competitions/image/bcc.png",
   },
 
   {
@@ -111,7 +109,6 @@ export const competitions: {
     submissionDeadline: getSubmissionDeadline("IPPC"),
     submissionContext: "Submit Extended Abstract before:",
     compOpenCase: null,
-    img: "/competitions/image/ippc.png",
   },
   {
     title: "Pipeline Design Competition",
@@ -144,7 +141,6 @@ export const competitions: {
     submissionDeadline: getSubmissionDeadline("PDC"),
     submissionContext: "Submit your work before:",
     compOpenCase: getCompCaseDate("PDC"),
-    img: "/competitions/image/pdc.png",
   },
   {
     title: "Science, Technology, Engineering, and Mathematics",
@@ -174,6 +170,5 @@ export const competitions: {
     submissionDeadline: null,
     compOpenCase: null,
     examOpen: getCompCaseDate("STEM") as Date,
-    img: "/competitions/image/stem.png",
   },
 ];

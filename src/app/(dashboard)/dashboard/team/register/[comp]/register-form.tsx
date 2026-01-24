@@ -5,7 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { Loader2 } from "lucide-react";
 import { competitions } from "@/lib/competition";
 import { type RegisterFormProps, type TeamMember } from "@/types/types";
@@ -26,6 +26,7 @@ import { Input } from "@/components/ui/input";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTRPC } from "@/utils/trpc";
 import { getCompFee } from "@/lib/utils";
+import { trim } from "es-toolkit";
 
 function RegisterForm({
   comp,
@@ -38,6 +39,7 @@ function RegisterForm({
   teamNames,
 }: RegisterFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isPending, startTransition] = useTransition();
   const [teamInstitution, setTeamInstitution] = useState<string>("");
   const [teamName, setTeamName] = useState<string>("");
   const router = useRouter();
@@ -80,8 +82,10 @@ function RegisterForm({
           comp,
         }),
       });
-      router.push("/dashboard/documents");
       router.refresh();
+      startTransition(() => {
+        router.push("/dashboard/documents");
+      });
     },
   });
 
@@ -131,23 +135,6 @@ function RegisterForm({
   });
   type registerSchema = z.infer<typeof registerSchema>;
 
-  // useEffect(() => {
-  //     if (isFetched) {
-  //         if (
-  //             !user?.phoneNumber ||
-  //             !user?.domicile ||
-  //             !user?.major ||
-  //             !user?.institution ||
-  //             !user?.education ||
-  //             !user?.major ||
-  //             !user?.semester
-  //         ) {
-  //             router.push("/dashboard/profile?notif=incomplete_profile");
-  //         }
-  //     }
-  // }, [isFetched, user, router]);
-  //
-  //
   const hasInitialized = useRef(false);
   useEffect(() => {
     if (!user || !comp.toUpperCase() || hasInitialized.current) return;
@@ -494,14 +481,14 @@ function RegisterForm({
                   aria-invalid={fieldState.invalid}
                   placeholder="Insert payment proof link here"
                   onBlur={(e) => {
-                    e.target.value = e.target.value.trim();
+                    e.target.value = trim(e.target.value);
                   }}
                   onMouseLeave={(e) => {
                     const value = getValues("paymentProofUrl");
                     if (!value) {
                       return;
                     }
-                    setValue("paymentProofUrl", value.trim());
+                    setValue("paymentProofUrl", trim(value));
                   }}
                 />
                 {fieldState.invalid && (
@@ -515,10 +502,10 @@ function RegisterForm({
           className={`w-full ${
             isLoading ? "cursor-not-allowed" : "cursor-pointer"
           }`}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isPending}
           type="submit"
         >
-          {isSubmitting ? (
+          {isSubmitting || isPending ? (
             <div className="flex gap-2">
               <span>Registering...</span>
               <Loader2 className="animate-spin" />

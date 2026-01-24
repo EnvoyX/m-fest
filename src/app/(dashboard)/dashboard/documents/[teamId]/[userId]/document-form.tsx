@@ -18,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import type { CompetitionName } from "../../../../../../../prisma/generated/prisma/enums";
 import { getTwibbonFormatLink } from "@/lib/utils";
 import { ArrowUpRightIcon } from "lucide-react";
+import { format } from "date-fns";
 
 function usePreventRefreshUserDuringUpload(isLoading: boolean) {
   useEffect(() => {
@@ -37,15 +38,10 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const trpc = useTRPC();
-  // const { data: user, isFetched } = useQuery(
-  //   trpc.dashboard.getUserById.queryOptions({ userId })
-  // );
 
-  const {
-    data,
-    isLoading: isLoadingUserDocuments,
-    isFetched: isFetchedUserDocuments,
-  } = useQuery(trpc.dashboard.getDocumentsByUserId.queryOptions({ userId }));
+  const { data, isLoading: isLoadingUserDocuments } = useQuery(
+    trpc.dashboard.getDocumentsByUserId.queryOptions({ userId }),
+  );
   const queryClient = useQueryClient();
   const { data: user } = useQuery(
     trpc.dashboard.getUserById.queryOptions({ userId }),
@@ -132,10 +128,6 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
 
   usePreventRefreshUserDuringUpload(isLoading);
 
-  if (isFetchedUserDocuments)
-    queryClient.invalidateQueries({
-      queryKey: trpc.dashboard.getDocumentsByUserId.queryKey({ userId }),
-    });
   if (isLoadingUserDocuments) return <DocumentFormSkeleton />;
 
   async function onSubmit(formData: documentsSchema) {
@@ -319,13 +311,10 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                         <span>
                           {`${
                             document.createdAt
-                              ? new Date(document.createdAt).toDateString()
-                              : ""
-                          } at ${
-                            document.createdAt
-                              ? new Date(
-                                  document.createdAt,
-                                ).toLocaleTimeString()
+                              ? format(
+                                  document.createdAt as Date,
+                                  "EEEE, d MMMM yyyy, HH:mm",
+                                )
                               : ""
                           }`}
                         </span>

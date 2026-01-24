@@ -54,6 +54,10 @@ async function CreateTeamPage() {
               institution appears to be typo or not correct, or not filled in
               automatically, you can change or fill it manually
             </p>
+            <p className="text-sm text-destructive text-start font-bold mt-2">
+              Please match your member&apos;s institution with your team&apos;s
+              institution/School (fullname).
+            </p>
           </div>
           <TeamForm />
         </div>

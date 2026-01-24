@@ -22,7 +22,7 @@ export default function EditTeamPage({
       <div className="bg-transparent backdrop-glass-lg m-auto h-fit w-full max-w-5xl overflow-hidden rounded-[calc(var(--radius)+.125rem)] border shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]">
         <div className="bg-transparent -m-px rounded-[calc(var(--radius)+.125rem)] border p-8 pb-6">
           <div className="text-center">
-            <h1 className="mb-1 mt-4 text-xl font-semibold text-start">
+            <h1 className="mb-1 mt-4 text-3xl font-semibold text-start">
               Edit Team
             </h1>
             <p className="text-sm text-destructive text-start font-bold mt-2">
@@ -46,6 +46,10 @@ export default function EditTeamPage({
               institution will automatically fill in. if their name and
               institution appears to be typo or not correct, or not filled in
               automatically, you can change or fill it manually
+            </p>
+            <p className="text-sm text-destructive text-start font-bold mt-2">
+              Please match your member&apos;s institution with your team&apos;s
+              institution/School (fullname).
             </p>
           </div>
           <Suspense fallback={<TeamFormSkeleton />}>

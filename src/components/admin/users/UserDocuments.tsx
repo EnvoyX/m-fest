@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -11,6 +10,7 @@ import DocumentFormSkeleton from "@/components/document/DocumentFormSkeleton";
 import { useTRPC } from "@/utils/trpc";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import { format } from "date-fns";
 
 export default function UserDocuments({ userId }: { userId: string }) {
   const trpc = useTRPC();
@@ -21,11 +21,9 @@ export default function UserDocuments({ userId }: { userId: string }) {
     trpc.dashboard.getUserById.queryOptions({ userId }),
   );
 
-  const {
-    data,
-    isLoading: isLoadingUserDocuments,
-    isFetched: isFetchedUserDocuments,
-  } = useQuery(trpc.dashboard.getDocumentsByUserId.queryOptions({ userId }));
+  const { data, isLoading: isLoadingUserDocuments } = useQuery(
+    trpc.dashboard.getDocumentsByUserId.queryOptions({ userId }),
+  );
 
   const approveAllDocuments = useMutation({
     ...trpc.admin.approveAllDocuments.mutationOptions(),
@@ -246,10 +244,6 @@ export default function UserDocuments({ userId }: { userId: string }) {
   const documents = data?.documents;
   const userVerificationStatus = data?.status;
 
-  if (isFetchedUserDocuments)
-    queryClient.invalidateQueries({
-      queryKey: trpc.dashboard.getDocumentsByUserId.queryKey({ userId }),
-    });
   if (isLoadingUserDocuments) return <DocumentFormSkeleton />;
 
   return (
@@ -381,13 +375,10 @@ export default function UserDocuments({ userId }: { userId: string }) {
                         <span>
                           {`${
                             document.createdAt
-                              ? new Date(document.createdAt).toDateString()
-                              : ""
-                          } at ${
-                            document.createdAt
-                              ? new Date(
-                                  document.createdAt,
-                                ).toLocaleTimeString()
+                              ? format(
+                                  document.createdAt as Date,
+                                  "EEEE, d MMMM yyyy, HH:mm",
+                                )
                               : ""
                           }`}
                         </span>

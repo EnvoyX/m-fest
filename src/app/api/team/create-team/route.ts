@@ -7,6 +7,8 @@ type Member = {
   email: string;
   institution: string;
   role: "Leader" | "Member";
+  teamId: string;
+  teamName: string;
 };
 
 export async function POST(req: Request) {
@@ -35,11 +37,11 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           error: `Too many requests, please try again after ${Math.ceil(
-            (reset - Date.now()) / 1000
+            (reset - Date.now()) / 1000,
           )} seconds`,
           resetAt: reset,
         },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -48,7 +50,7 @@ export async function POST(req: Request) {
     if (existingTeamName) {
       return NextResponse.json(
         { success: false, error: "This team name is already taken." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -142,7 +144,7 @@ export async function POST(req: Request) {
         userId: user.id,
       };
     });
-    // console.log("Member profiles: ", memberProfiles);
+    console.log("Member profiles: ", memberProfiles);
 
     // Create team
     const team = await db.team.create({
@@ -157,31 +159,44 @@ export async function POST(req: Request) {
     });
 
     // Create team members
-    const teamMembers = await db.teamMember.createMany({
+    const teamMembers = await db.teamMember.createManyAndReturn({
       data: members.map((member: Member) => ({
         name: member.name,
         email: member.email,
         institution: member.institution,
         teamId: team.id,
+        teamName: name,
         role: member.role,
         userId:
           member.role === "Leader"
             ? userId
             : member.role === "Member"
-            ? memberProfiles.find(
-                (memberProfile) => memberProfile.email === member.email
-              )?.userId
-            : undefined,
+              ? memberProfiles.find(
+                  (memberProfile) => memberProfile.email === member.email,
+                )?.userId
+              : undefined,
       })),
     });
 
-    // console.log("Team created: ", team);
-    // console.log("Team members created: ", teamMembers);
-    // console.log("Team Successfully created!");
+    console.log("Team created: ", team);
+    console.log("Team members created: ", teamMembers);
+    console.log("Team Successfully created!");
+
+    // Update user profiles based on submitted data
+    await Promise.all(
+      teamMembers.map((member) =>
+        db.user.update({
+          where: { id: member.userId },
+          data: {
+            institution: member.institution,
+          },
+        }),
+      ),
+    );
 
     return NextResponse.json(
       { success: true, teamId: team.id, teamMembers },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     // console.log(error);
@@ -191,7 +206,7 @@ export async function POST(req: Request) {
         error: "Something went wrong when creating team",
         message: error,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

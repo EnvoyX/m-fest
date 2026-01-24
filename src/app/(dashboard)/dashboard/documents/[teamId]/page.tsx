@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { BadgeCheckIcon, Calendar } from "lucide-react";
 import { getCurrentDate } from "@/lib/utils";
 import CompactCountdown from "./CompactCountdown";
+import { format, isAfter } from "date-fns";
 
 export async function generateMetadata({
   params,
@@ -87,8 +88,13 @@ async function FetchTeamMembers({
   }
 
   const isDeadlinePassed = team.verificationDeadlineAt
-    ? new Date(team.verificationDeadlineAt).getTime() < currentDate.getTime()
+    ? isAfter(currentDate, new Date(team.verificationDeadlineAt))
     : false;
+
+  const formattedDate = format(
+    team.verificationDeadlineAt as Date,
+    "EEEE, d MMMM yyyy, HH:mm",
+  );
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
@@ -116,9 +122,7 @@ async function FetchTeamMembers({
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
                 <Calendar className="hidden sm:block" />
-                {`Due: ${new Date(
-                  team.verificationDeadlineAt,
-                ).toLocaleString()}`}
+                {`Due: ${formattedDate}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -128,9 +132,7 @@ async function FetchTeamMembers({
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
                 <Calendar className="hidden sm:block" />
-                {`Due: ${new Date(
-                  team.verificationDeadlineAt,
-                ).toLocaleString()}`}
+                {`Due: ${formattedDate}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -146,9 +148,7 @@ async function FetchTeamMembers({
           >
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
-                {`Deadline Passed: ${new Date(
-                  team.verificationDeadlineAt,
-                ).toLocaleString()}`}
+                {`Deadline Passed: ${formattedDate}`}
               </span>
             ) : (
               "Verification Deadline: TBD"
@@ -157,9 +157,7 @@ async function FetchTeamMembers({
           <div className="flex flex-col items-center justify-center justify-self-center text-center text-sm rounded-full px-4 py-1 text-red-500 sm:hidden border-2 bg-transparent backdrop-glass-lg mt-1 mb-6 w-full max-w-xs">
             {team.verificationDeadlineAt ? (
               <span className="flex items-center gap-2">
-                {`Due passed: ${new Date(
-                  team.verificationDeadlineAt,
-                ).toLocaleString()}`}
+                {`Due passed: ${formattedDate}`}
               </span>
             ) : (
               "Verification Deadline: TBD"

@@ -5,7 +5,7 @@ import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { type Member, type Team, type User } from "@/types/types";
@@ -17,10 +17,11 @@ import {
 } from "@/components/ui/field";
 import { useQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/utils/trpc";
+import { trim } from "es-toolkit";
 
 function TeamForm({ team }: { team: Team }) {
+  const [isPending, startTransition] = useTransition();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [emailDuplicates, setEmailDuplicates] = useState<string[]>([]);
   const router = useRouter();
   const trpc = useTRPC();
   const { data: user } = useQuery({
@@ -57,6 +58,7 @@ function TeamForm({ team }: { team: Team }) {
     reset,
     getValues,
     setValue,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<teamSchema>({
     resolver: zodResolver(teamSchema),
@@ -64,10 +66,9 @@ function TeamForm({ team }: { team: Team }) {
       leaderName: (user?.name as string) ?? "",
       leaderEmail: (user?.email as string) ?? "",
       leaderPhoneNumber: (user?.phoneNumber as string) ?? "",
-      teamInstitution: (user?.institution as string) ?? "",
+      teamInstitution: (team.teamInstitution as string) ?? "",
       teamName: (team.name as string) ?? "",
       members: [
-        // @ts-expect-error members is exist if include members when prisma calls within Team Type
         ...team.members
           .sort((a: Member, b: Member) => (a.role === "Leader" ? -1 : 1))
           .map((member: Member) => {
@@ -94,10 +95,9 @@ function TeamForm({ team }: { team: Team }) {
       leaderName: (user?.name as string) ?? "",
       leaderEmail: (user?.email as string) ?? "",
       leaderPhoneNumber: user?.phoneNumber ?? "",
-      teamInstitution: user?.institution ?? "",
+      teamInstitution: team.teamInstitution ?? "",
       teamName: (team.name as string) ?? "",
       members: [
-        // @ts-expect-error members is exist if include members when prisma calls within Team Type
         ...team.members
           .sort((a: Member, b: Member) => (a.role === "Leader" ? -1 : 1))
           .map((member: Member) => {
@@ -141,6 +141,29 @@ function TeamForm({ team }: { team: Team }) {
       return;
     }
 
+    const members = formData.members;
+    const differentInstitution = members.filter(
+      (member) => member.institution !== formData.teamInstitution,
+    );
+    if (differentInstitution.length > 0) {
+      toast.dismiss("edit-team");
+      setIsLoading(false);
+      toast.error("All members must be from the same institution!", {
+        description: `Members with different institution: ${differentInstitution
+          .map((member) => member.name)
+          .join(", ")} must match with team's institution`,
+        duration: 5000,
+      });
+      members.forEach((member, index) => {
+        if (differentInstitution.includes(member)) {
+          setError(`members.${index}.institution`, {
+            message: "All members must be from the same institution!",
+          });
+        }
+      });
+      return;
+    }
+
     try {
       const res = await fetch("/api/team/edit-team", {
         method: "POST",
@@ -161,9 +184,9 @@ function TeamForm({ team }: { team: Team }) {
         toast.dismiss("edit-team");
         toast.success("Team edited successfully!");
         router.refresh();
-        setTimeout(() => {
+        startTransition(() => {
           router.push("/dashboard/team");
-        }, 1000);
+        });
       } else {
         const { error, success } = await res.json();
         toast.dismiss("edit-team");
@@ -203,14 +226,14 @@ function TeamForm({ team }: { team: Team }) {
                     aria-invalid={fieldState.invalid}
                     className="mb-12"
                     onBlur={(e) => {
-                      e.target.value = e.target.value.trim();
+                      e.target.value = trim(e.target.value);
                     }}
                     onMouseLeave={() => {
                       const value = getValues("teamName");
                       if (!value) {
                         return;
                       }
-                      setValue("teamName", value.trim());
+                      setValue("teamName", trim(value));
                     }}
                   />
                   {fieldState.invalid && (
@@ -312,7 +335,7 @@ function TeamForm({ team }: { team: Team }) {
                   >
                     <FieldContent>
                       <FieldLabel htmlFor="form-rhf">
-                        Team Institution
+                        Team Institution/School
                       </FieldLabel>
                     </FieldContent>
                     <Input
@@ -320,14 +343,14 @@ function TeamForm({ team }: { team: Team }) {
                       id={field.name}
                       aria-invalid={fieldState.invalid}
                       onBlur={(e) => {
-                        e.target.value = e.target.value.trim();
+                        e.target.value = trim(e.target.value);
                       }}
                       onMouseLeave={() => {
                         const value = getValues("teamInstitution");
                         if (!value) {
                           return;
                         }
-                        setValue("teamInstitution", value.trim());
+                        setValue("teamInstitution", trim(value));
                       }}
                     />
                     {fieldState.invalid && (
@@ -359,14 +382,14 @@ function TeamForm({ team }: { team: Team }) {
                         readOnly={index === 0}
                         disabled={index === 0}
                         onBlur={(e) => {
-                          e.target.value = e.target.value.trim();
+                          e.target.value = trim(e.target.value);
                         }}
                         onMouseLeave={() => {
                           const value = getValues(`members.${index}.name`);
                           if (!value) {
                             return;
                           }
-                          setValue(`members.${index}.name`, value.trim());
+                          setValue(`members.${index}.name`, trim(value));
                         }}
                       />
                       {fieldState.invalid && (
@@ -390,10 +413,11 @@ function TeamForm({ team }: { team: Team }) {
                         readOnly={index === 0}
                         disabled={index === 0}
                         onBlur={async (event) => {
-                          const email = event.target.value.trim();
+                          event.target.value = trim(event.target.value);
+                          const email = trim(event.target.value);
                           if (email) {
                             try {
-                              toast.loading("Checking user...", {
+                              toast.loading("Checking member...", {
                                 id: "checking-user",
                               });
                               const res = await fetch(
@@ -403,22 +427,6 @@ function TeamForm({ team }: { team: Team }) {
 
                               if (res.ok && user) {
                                 toast.dismiss("checking-user");
-                                if (
-                                  !user?.phoneNumber ||
-                                  !user?.domicile ||
-                                  !user?.institution ||
-                                  !user?.education ||
-                                  !user?.major ||
-                                  !user?.semester
-                                ) {
-                                  toast.error(
-                                    "User is not completed their profile yet!",
-                                    {
-                                      description: `Please ask ${user.name} to complete their profile. Then try again.`,
-                                    },
-                                  );
-                                  return;
-                                }
                                 const userName = user.name;
                                 const userInstitution = user.institution;
                                 toast.success(
@@ -433,17 +441,23 @@ function TeamForm({ team }: { team: Team }) {
                                 reset(values);
                               } else {
                                 toast.dismiss("checking-user");
-                                toast.error(
-                                  `Email ${email} is not registered.`,
-                                );
+                                throw new Error(user.error);
                               }
                             } catch (error) {
                               toast.dismiss("checking-user");
-                              toast.error("Failed to check user", {
+                              toast.error("Failed to check member", {
                                 description: (error as Error).message,
+                                duration: 5000,
                               });
                             }
                           }
+                        }}
+                        onMouseLeave={(e) => {
+                          const value = getValues(`members.${index}.email`);
+                          if (!value) {
+                            return;
+                          }
+                          setValue(`members.${index}.email`, trim(value));
                         }}
                         onChange={(e) => {
                           const value = e.target.value;
@@ -466,14 +480,14 @@ function TeamForm({ team }: { team: Team }) {
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel htmlFor={field.name}>
-                        Member&apos;s Institution
+                        Member&apos;s Institution/School
                       </FieldLabel>
                       <Input
                         {...field}
                         id={field.name}
                         aria-invalid={fieldState.invalid}
                         onBlur={(e) => {
-                          e.target.value = e.target.value.trim();
+                          e.target.value = trim(e.target.value);
                         }}
                         onMouseLeave={() => {
                           const value = getValues(
@@ -482,13 +496,8 @@ function TeamForm({ team }: { team: Team }) {
                           if (!value) {
                             return;
                           }
-                          setValue(
-                            `members.${index}.institution`,
-                            value.trim(),
-                          );
+                          setValue(`members.${index}.institution`, trim(value));
                         }}
-                        readOnly={index === 0}
-                        disabled={index === 0}
                       />
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
@@ -563,10 +572,10 @@ function TeamForm({ team }: { team: Team }) {
             className={`w-full max-w-lg mt-12 border text-white bg-white/10 hover:bg-white/25 ${
               isLoading ? "cursor-not-allowed" : "cursor-pointer"
             }`}
-            disabled={isSubmitting || fields.length < 3}
+            disabled={isSubmitting || fields.length < 3 || isPending}
             type="submit"
           >
-            {isSubmitting ? (
+            {isSubmitting || isPending ? (
               <div className="flex gap-2">
                 <span>Editing Team...</span>
                 <Loader2 className="animate-spin" />

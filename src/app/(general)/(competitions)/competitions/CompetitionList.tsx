@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { getCurrentDate } from "@/lib/utils";
+import { isAfter, isBefore, isWithinInterval } from "date-fns";
 
 export default function CompetitionsList() {
   const currentDate = getCurrentDate();
@@ -64,15 +65,17 @@ export default function CompetitionsList() {
               size="lg"
               className="rounded-lg text-base font-bold px-6 py-6"
               disabled={
-                competition.startRegDate1 > currentDate ||
-                competition.endRegDate3 < currentDate
+                !isWithinInterval(currentDate, {
+                  start: competition.startRegDate1,
+                  end: competition.endRegDate3,
+                })
               }
             >
-              {competition.startRegDate1 > currentDate ? (
+              {isBefore(currentDate, competition.startRegDate1) ? (
                 <span className="cursor-not-allowed opacity-50 flex items-center gap-2">
                   Coming Soon <Clock className="size-5" />
                 </span>
-              ) : competition.endRegDate3 < currentDate ? (
+              ) : isAfter(currentDate, competition.endRegDate3) ? (
                 <span className="cursor-not-allowed opacity-50">
                   Registration Closed
                 </span>

@@ -40,9 +40,6 @@ export const metadata: Metadata = {
 
 async function deleteTeam(teamId: string) {
   "use server";
-  await db.teamMember.deleteMany({
-    where: { teamId },
-  });
   await db.team.delete({
     where: { id: teamId },
   });
