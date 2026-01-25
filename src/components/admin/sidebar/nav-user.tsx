@@ -124,7 +124,7 @@ export function NavUser() {
                   setIsLoading(false);
                 }
               }}
-              disabled={isLoading}
+              disabled={isLoading || isPending}
             >
               <IconLogout />
               Log out
