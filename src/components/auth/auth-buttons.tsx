@@ -4,9 +4,12 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
+import { useSearchParams } from "next/navigation";
 
 function AuthButtons() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   return (
     <div className="flex flex-col gap-5 items-center justify-center">
       <div className="w-full">
@@ -23,7 +26,7 @@ function AuthButtons() {
             try {
               await authClient.signIn.social({
                 provider: "google",
-                callbackURL: "/dashboard",
+                callbackURL: callbackUrl,
               });
             } catch (error) {
               toast.error("Failed to sign in");
@@ -74,7 +77,7 @@ function AuthButtons() {
             try {
               await authClient.signIn.social({
                 provider: "discord",
-                callbackURL: "/dashboard",
+                callbackURL: callbackUrl,
               });
             } catch (error) {
               toast.error("Failed to sign in");
@@ -111,7 +114,7 @@ function AuthButtons() {
             try {
               await authClient.signIn.social({
                 provider: "github",
-                callbackURL: "/dashboard",
+                callbackURL: callbackUrl,
               });
             } catch (error) {
               toast.error("Failed to sign in");

@@ -69,7 +69,8 @@ enum EventType {
   M_RUN
   ETU
   KLINIK_MESIN
-  MEXPO_MTALKS
+  M_EXPO
+  M_TALKS
 }
 
 enum JerseySize {
@@ -101,6 +102,13 @@ enum KlinikActivity {
 enum Kategori {
   UMUM
   MAHASISWA
+}
+
+enum SourceInfo {
+  INSTAGRAM_MFEST_ITB
+  FRIEND
+  BANNER
+  OTHER
 }
 
 model CompRegistration {
@@ -140,39 +148,61 @@ model CompRegistration {
 }
 
 model EventRegistration {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  eventType EventType
-  gender          Gender?
-  usia            Int?
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  eventType       EventType
+
+  // General
+  participantName String?
+  activeEmail     String?
+  phoneNumber     String?
+  fullAddress     String?
+  emergencyContact  String?
+  emergencyContactName String?
+  isITB           Boolean?     @default(false)
+  nimITB          String?
+  majorITB        String?
+  sumberInfo      SourceInfo?
+
+  // M-Talks Specific
+  activeSocial    String?
+  reasonToParticipate String?
+  interestedTopic     String?
+
+  // M-Care Specific
+  gender            Gender?
+  aktivitasKlinik   KlinikActivity? // Donor/Mata/Both
+  memenuhiSyarat  Boolean?     @default(false) // Consent Klinik
+
+// M-Run Specifics
+  age            Int?
+  ktpUrl          String?
   kategori        Kategori?      // 5K, 10K, etc
   ukuranJersey    JerseySize?
+  isAlumniHMM     Boolean?     @default(false)
+  isHMM           Boolean?     @default(false)
+  nimHMM          String?      // Khusus verifikasi HMM
   golonganDarah   BloodType?
   rhesus          Rhesus?
   riwayatPenyakit Boolean?     @default(false)
   detailPenyakit  String?      // Kapan terakhir kambuh
-  alergi          String?
-  aktivitasKlinik KlinikActivity? // Donor/Mata/Both
+  alergi          Boolean?
+  detailAlergi    String?
+  siapLomba       Boolean?     @default(false) // Consent M-Run
+  buktiBayarUrl   String?
+
+  // ETU speficfics
   merekKendaraan  String?
   tahunBuat       Int?
   platNomor       String?
-  lastServiceDate DateTime?
-  isITB           Boolean?     @default(false) // Status ITB/Bukan
+  lastServiceDate String?
   nimOrNip        String?      // Buat ETU / Mexpo
-  kdNama          String?
-  kdTelepon       String?
-  sumberInfo      String?
-  ktpUrl          String?
-  buktiBayarUrl   String?
-  isAlumni        Boolean?     @default(false)
-  isHMM           Boolean?     @default(false)
-  nimHMM          String?      // Khusus verifikasi HMM
-  siapLomba       Boolean?     @default(false) // Consent M-Run
   isSopCompliant  Boolean?     @default(false) // Consent ETU
-  memenuhiSyarat  Boolean?     @default(false) // Consent Klinik
+
+
 
   @@index([userId])
   @@index([eventType])

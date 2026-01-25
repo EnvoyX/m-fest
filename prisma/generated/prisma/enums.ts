@@ -95,7 +95,8 @@ export const EventType = {
   M_RUN: 'M_RUN',
   ETU: 'ETU',
   KLINIK_MESIN: 'KLINIK_MESIN',
-  MEXPO_MTALKS: 'MEXPO_MTALKS'
+  M_EXPO: 'M_EXPO',
+  M_TALKS: 'M_TALKS'
 } as const
 
 export type EventType = (typeof EventType)[keyof typeof EventType]
@@ -145,3 +146,13 @@ export const Kategori = {
 } as const
 
 export type Kategori = (typeof Kategori)[keyof typeof Kategori]
+
+
+export const SourceInfo = {
+  INSTAGRAM_MFEST_ITB: 'INSTAGRAM_MFEST_ITB',
+  FRIEND: 'FRIEND',
+  BANNER: 'BANNER',
+  OTHER: 'OTHER'
+} as const
+
+export type SourceInfo = (typeof SourceInfo)[keyof typeof SourceInfo]
