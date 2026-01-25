@@ -18,6 +18,7 @@ export default async function proxy(request: NextRequest) {
     loginUrl.searchParams.set("callbackUrl", encodeURI(pathname));
     const response = NextResponse.redirect(loginUrl);
     response.headers.set("x-middleware-next", "1");
+    // response.headers.set("Cache-Control", "no-store, max-age=0");
     return response;
   }
 
