@@ -16,8 +16,9 @@ export default async function proxy(request: NextRequest) {
   if (isProtected && !session) {
     const loginUrl = new URL("/login", request.nextUrl.origin);
     loginUrl.searchParams.set("callbackUrl", encodeURI(pathname));
-
-    return NextResponse.redirect(loginUrl);
+    const response = NextResponse.redirect(loginUrl);
+    response.headers.set("x-middleware-next", "1");
+    return response;
   }
 
   if (
