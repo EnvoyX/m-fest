@@ -1,5 +1,6 @@
 import { teamEditLimiter } from "@/lib/ratelimit";
 import { db } from "@/server/db";
+import { difference } from "es-toolkit";
 import { NextResponse } from "next/server";
 
 type Member = {
@@ -88,10 +89,37 @@ export async function POST(req: Request) {
         existingSubmittedUsers,
       );
       if (existingSubmittedUsers.length !== submittedMemberEmails.length) {
-        return NextResponse.json(
-          { success: false, error: "All members must be registered" },
-          { status: 400 },
+        const notRegisteredMembers = difference(
+          submittedMemberEmails,
+          existingSubmittedUsers.map((user) => user.email),
         );
+        throw new Error("NOT_ALL_USERS_REGISTERED", {
+          cause: `Members with email ${notRegisteredMembers.join(
+            ", ",
+          )} are not logged in yet`,
+        });
+      }
+
+      const incompleteProfileMembers = existingSubmittedUsers.filter((user) => {
+        return (
+          !user.phoneNumber ||
+          !user.domicile ||
+          !user.institution ||
+          !user.education ||
+          !user.major ||
+          !user.semester
+        );
+      });
+
+      if (incompleteProfileMembers.length > 0) {
+        const incompleteProfileMemberEmails = incompleteProfileMembers.map(
+          (user) => user.email,
+        );
+        throw new Error("INCOMPLETE_USER_PROFILE", {
+          cause: `Members with email ${incompleteProfileMemberEmails.join(
+            ", ",
+          )} have incomplete profile`,
+        });
       }
 
       // if all member is registered, add userId to submitted members
@@ -259,7 +287,11 @@ export async function POST(req: Request) {
     const message =
       error.message === "TEAM_EXIST"
         ? "Team name has taken"
-        : "Something went wrong when editing team";
+        : error.message === "NOT_ALL_USERS_REGISTERED"
+          ? ` ${error.cause} | Please make sure all members logged in and complete their profile before adding them to your team.`
+          : error.message === "INCOMPLETE_USER_PROFILE"
+            ? ` ${error.cause} | Please make sure all members have completed their profile before adding them to your team.`
+            : "Something went wrong when editing team, please try again";
     return NextResponse.json(
       { success: false, error: message },
       { status: 500 },

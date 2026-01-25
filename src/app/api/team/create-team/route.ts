@@ -1,5 +1,6 @@
 import { teamCreationLimiter } from "@/lib/ratelimit";
 import { db } from "@/server/db";
+import { difference } from "es-toolkit";
 import { NextResponse } from "next/server";
 
 type Member = {
@@ -54,9 +55,46 @@ export async function POST(req: Request) {
       const submittedMemberEmails = members.map(
         (member: Member) => member.email,
       );
+      console.log("Submitted emails: ", submittedMemberEmails);
+
       const existingUsers = await tx.user.findMany({
         where: { email: { in: submittedMemberEmails } },
       });
+
+      console.log("Existing users: ", existingUsers);
+
+      const notRegisteredMembers = difference(
+        submittedMemberEmails,
+        existingUsers.map((user) => user.email),
+      );
+      if (notRegisteredMembers.length > 0) {
+        throw new Error("NOT_ALL_USERS_REGISTERED", {
+          cause: `Members with email ${notRegisteredMembers.join(
+            ", ",
+          )} are not logged in yet`,
+        });
+      }
+
+      const incompleteProfileMembers = existingUsers.filter((user) => {
+        return (
+          !user.phoneNumber ||
+          !user.domicile ||
+          !user.institution ||
+          !user.education ||
+          !user.major ||
+          !user.semester
+        );
+      });
+      if (incompleteProfileMembers.length > 0) {
+        const incompleteProfileMemberEmails = incompleteProfileMembers.map(
+          (user) => user.email,
+        );
+        throw new Error("INCOMPLETE_USER_PROFILE", {
+          cause: `Members with email ${incompleteProfileMemberEmails.join(
+            ", ",
+          )} have incomplete profile`,
+        });
+      }
 
       // Create team
       const team = await tx.team.create({
@@ -75,6 +113,11 @@ export async function POST(req: Request) {
         const matchingUser = existingUsers.find(
           (u) => u.email === member.email,
         );
+        if (!matchingUser) {
+          throw new Error("NOT_ALL_USERS_REGISTERED", {
+            cause: `Member with email ${member.email} is not logged in yet`,
+          });
+        }
         return {
           name: member.name,
           email: member.email,
@@ -87,7 +130,6 @@ export async function POST(req: Request) {
       });
 
       // Create team members
-      // Maybe this is where DO fails, need to double check it again later
       const createdMembers = await tx.teamMember.createManyAndReturn({
         data: membersToCreate,
       });
@@ -112,7 +154,11 @@ export async function POST(req: Request) {
     const message =
       error.message === "TEAM_EXIST"
         ? "Team name has taken"
-        : "Something went wrong when creating team";
+        : error.message === "NOT_ALL_USERS_REGISTERED"
+          ? ` ${error.cause} | Please make sure all members logged in and complete their profile before adding them to your team.`
+          : error.message === "INCOMPLETE_USER_PROFILE"
+            ? ` ${error.cause} | Please make sure all members have completed their profile before adding them to your team.`
+            : "Something went wrong when creating team, please try again";
     return NextResponse.json(
       { success: false, error: message },
       { status: 500 },
