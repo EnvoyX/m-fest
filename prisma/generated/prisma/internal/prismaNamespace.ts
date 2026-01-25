@@ -1304,33 +1304,43 @@ export const EventRegistrationScalarFieldEnum = {
   updatedAt: 'updatedAt',
   userId: 'userId',
   eventType: 'eventType',
+  participantName: 'participantName',
+  activeEmail: 'activeEmail',
+  phoneNumber: 'phoneNumber',
+  fullAddress: 'fullAddress',
+  emergencyContact: 'emergencyContact',
+  emergencyContactName: 'emergencyContactName',
+  isITB: 'isITB',
+  nimITB: 'nimITB',
+  majorITB: 'majorITB',
+  sumberInfo: 'sumberInfo',
+  activeSocial: 'activeSocial',
+  reasonToParticipate: 'reasonToParticipate',
+  interestedTopic: 'interestedTopic',
   gender: 'gender',
-  usia: 'usia',
+  aktivitasKlinik: 'aktivitasKlinik',
+  memenuhiSyarat: 'memenuhiSyarat',
+  age: 'age',
+  ktpUrl: 'ktpUrl',
   kategori: 'kategori',
   ukuranJersey: 'ukuranJersey',
+  isAlumniHMM: 'isAlumniHMM',
+  isHMM: 'isHMM',
+  nimHMM: 'nimHMM',
   golonganDarah: 'golonganDarah',
   rhesus: 'rhesus',
   riwayatPenyakit: 'riwayatPenyakit',
   detailPenyakit: 'detailPenyakit',
   alergi: 'alergi',
-  aktivitasKlinik: 'aktivitasKlinik',
+  detailAlergi: 'detailAlergi',
+  siapLomba: 'siapLomba',
+  buktiBayarUrl: 'buktiBayarUrl',
   merekKendaraan: 'merekKendaraan',
   tahunBuat: 'tahunBuat',
   platNomor: 'platNomor',
   lastServiceDate: 'lastServiceDate',
-  isITB: 'isITB',
   nimOrNip: 'nimOrNip',
-  kdNama: 'kdNama',
-  kdTelepon: 'kdTelepon',
-  sumberInfo: 'sumberInfo',
-  ktpUrl: 'ktpUrl',
-  buktiBayarUrl: 'buktiBayarUrl',
-  isAlumni: 'isAlumni',
-  isHMM: 'isHMM',
-  nimHMM: 'nimHMM',
-  siapLomba: 'siapLomba',
-  isSopCompliant: 'isSopCompliant',
-  memenuhiSyarat: 'memenuhiSyarat'
+  isSopCompliant: 'isSopCompliant'
 } as const
 
 export type EventRegistrationScalarFieldEnum = (typeof EventRegistrationScalarFieldEnum)[keyof typeof EventRegistrationScalarFieldEnum]
@@ -1631,6 +1641,20 @@ export type ListEnumEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
 
 
 /**
+ * Reference to a field of type 'SourceInfo'
+ */
+export type EnumSourceInfoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SourceInfo'>
+    
+
+
+/**
+ * Reference to a field of type 'SourceInfo[]'
+ */
+export type ListEnumSourceInfoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SourceInfo[]'>
+    
+
+
+/**
  * Reference to a field of type 'Gender'
  */
 export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
@@ -1641,6 +1665,20 @@ export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Gender[]'
  */
 export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+/**
+ * Reference to a field of type 'KlinikActivity'
+ */
+export type EnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity'>
+    
+
+
+/**
+ * Reference to a field of type 'KlinikActivity[]'
+ */
+export type ListEnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity[]'>
     
 
 
@@ -1697,20 +1735,6 @@ export type EnumRhesusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Rhesus[]'
  */
 export type ListEnumRhesusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Rhesus[]'>
-    
-
-
-/**
- * Reference to a field of type 'KlinikActivity'
- */
-export type EnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity'>
-    
-
-
-/**
- * Reference to a field of type 'KlinikActivity[]'
- */
-export type ListEnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity[]'>
     
 
 

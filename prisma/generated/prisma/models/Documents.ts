@@ -674,6 +674,10 @@ export type DocumentsUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentsUpdateToOneWithWhereWithoutUserInput, Prisma.DocumentsUpdateWithoutUserInput>, Prisma.DocumentsUncheckedUpdateWithoutUserInput>
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type NullableEnumDocumentStatusFieldUpdateOperationsInput = {
   set?: $Enums.DocumentStatus | null
 }
