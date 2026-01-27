@@ -8,7 +8,7 @@ export async function GET(req: Request) {
   if (!email) {
     return NextResponse.json(
       { error: `Missing email: ${email}` },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -19,11 +19,8 @@ export async function GET(req: Request) {
       name: true,
       email: true,
       institution: true,
-      image: true,
-      gender: true,
       phoneNumber: true,
       domicile: true,
-      birthDate: true,
       education: true,
       major: true,
       semester: true,
@@ -31,7 +28,25 @@ export async function GET(req: Request) {
   });
 
   if (!user) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
+    return NextResponse.json(
+      { error: `User with ${email} not found or not registered` },
+      { status: 404 },
+    );
+  }
+  if (
+    !user?.phoneNumber ||
+    !user?.domicile ||
+    !user?.institution ||
+    !user?.education ||
+    !user?.major ||
+    !user?.semester
+  ) {
+    return NextResponse.json(
+      {
+        error: `${user.email} | ${user.name}'s profile is not complete yet! please make sure all the required fields are filled.`,
+      },
+      { status: 404 },
+    );
   }
 
   return NextResponse.json(user, { status: 200 });

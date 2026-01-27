@@ -3,10 +3,13 @@ import { db } from "@/server/db";
 import { NextResponse } from "next/server";
 
 type Member = {
+  userId: string;
   name: string;
   email: string;
   institution: string;
   role: "Leader" | "Member";
+  teamId: string;
+  teamName: string;
 };
 
 export async function POST(req: Request) {
@@ -35,163 +38,84 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           error: `Too many requests, please try again after ${Math.ceil(
-            (reset - Date.now()) / 1000
+            (reset - Date.now()) / 1000,
           )} seconds`,
           resetAt: reset,
         },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
-    // Check if team name is already exist
-    const existingTeamName = await db.team.findUnique({ where: { name } });
-    if (existingTeamName) {
-      return NextResponse.json(
-        { success: false, error: "This team name is already taken." },
-        { status: 400 }
+    const result = await db.$transaction(async (tx) => {
+      // Check if team name is already exist
+      const existingTeamName = await tx.team.findUnique({ where: { name } });
+      if (existingTeamName) throw new Error("TEAM_EXIST");
+
+      const submittedMemberEmails = members.map(
+        (member: Member) => member.email,
       );
-    }
+      const existingUsers = await tx.user.findMany({
+        where: { email: { in: submittedMemberEmails } },
+      });
 
-    // !! Since every user can only have 1 registration, we don't need to check if creating a new team, must consist of many combination of users that are different from existing teams
-    // Check if all members are registered
-    // const submittedMemberEmails = members.map((member: Member) => member.email);
-    // console.log("Submitted emails: ", submittedMemberEmails);
+      // Create team
+      const team = await tx.team.create({
+        data: {
+          name,
+          leaderUserId: userId,
+          leaderName,
+          leaderEmail,
+          leaderPhoneNumber,
+          teamInstitution,
+        },
+      });
 
-    // const existingUsers = await db.user.findMany({
-    //   where: { email: { in: submittedMemberEmails } },
-    // });
-    // console.log("Existing users based on submitted emails: ", existingUsers);
-    // if (existingUsers.length !== members.length) {
-    //   return NextResponse.json(
-    //     { success: false, error: "All members must be registered" },
-    //     { status: 400 }
-    //   );
-    // }
+      // Prepare member data
+      const membersToCreate = members.map((member: Member) => {
+        const matchingUser = existingUsers.find(
+          (u) => u.email === member.email,
+        );
+        return {
+          name: member.name,
+          email: member.email,
+          institution: member.institution,
+          teamId: team.id,
+          teamName: name,
+          role: member.role,
+          userId: member.role === "Leader" ? userId : matchingUser?.id,
+        };
+      });
 
-    // const candidateTeams = await db.team.findMany({
-    //   where: {
-    //     members: {
-    //       some: {
-    //         email: {
-    //           in: submittedMemberEmails,
-    //         },
-    //       },
-    //     },
-    //   },
-    //   include: {
-    //     members: true,
-    //   },
-    // });
-    // console.log("Candidate teams: ", candidateTeams);
-    // console.log("Candidate teams total: ", candidateTeams.length);
+      // Create team members
+      // Maybe this is where DO fails, need to double check it again later
+      const createdMembers = await tx.teamMember.createManyAndReturn({
+        data: membersToCreate,
+      });
 
-    // const submittedMemberEmailsSet = new Set(submittedMemberEmails);
-
-    // const teamAlreadyExists = candidateTeams.some((team, index: number) => {
-    //   console.log("iteration: ", index);
-    //   console.log("Team: ", team);
-    //   console.log("Team Members: ", team.members);
-    //   console.log(
-    //     "Existing Team Members Emails: ",
-    //     team.members.map((member) => member.email)
-    //   );
-    //   console.log(
-    //     "Existing Team Members Emails Total: ",
-    //     team.members.map((member) => member.email).length
-    //   );
-    //   console.log("Submitted member emails: ", submittedMemberEmails);
-    //   console.log(
-    //     "Submitted member emails total: ",
-    //     submittedMemberEmails.length
-    //   );
-    //   const existingTeamMembersEmails = new Set(
-    //     team.members.map((member) => member.email)
-    //   );
-    //   if (existingTeamMembersEmails.size !== submittedMemberEmailsSet.size)
-    //     return false;
-    //   for (const email of existingTeamMembersEmails) {
-    //     if (!submittedMemberEmailsSet.has(email)) return false;
-    //   }
-    //   return true;
-    // });
-
-    // console.log("Team already exists or result of checks: ", teamAlreadyExists);
-
-    // if (teamAlreadyExists) {
-    //   console.log("Team already exists");
-    //   return NextResponse.json(
-    //     {
-    //       success: false,
-    //       error: "All these members are already in the same team.",
-    //     },
-    //     { status: 400 }
-    //   );
-    // }
-
-    // console.log("Team does not already exist, proceed to create team");
-
-    // Just creating some variables that are established from previous code
-    const submittedMemberEmails = members.map((member: Member) => member.email);
-    const existingUsers = await db.user.findMany({
-      where: { email: { in: submittedMemberEmails } },
+      // Update user profiles based on submitted data
+      await Promise.all(
+        createdMembers.map((member) => {
+          if (member.userId) {
+            return tx.user.update({
+              where: { id: member.userId },
+              data: { institution: member.institution },
+            });
+          }
+        }),
+      );
+      return { team, createdMembers };
     });
-
-    const memberProfiles = existingUsers.map((user) => {
-      return {
-        email: user.email,
-        userId: user.id,
-      };
-    });
-    // console.log("Member profiles: ", memberProfiles);
-
-    // Create team
-    const team = await db.team.create({
-      data: {
-        name,
-        leaderUserId: userId,
-        leaderName,
-        leaderEmail,
-        leaderPhoneNumber,
-        teamInstitution,
-      },
-    });
-
-    // Create team members
-    const teamMembers = await db.teamMember.createMany({
-      data: members.map((member: Member) => ({
-        name: member.name,
-        email: member.email,
-        institution: member.institution,
-        teamId: team.id,
-        role: member.role,
-        userId:
-          member.role === "Leader"
-            ? userId
-            : member.role === "Member"
-            ? memberProfiles.find(
-                (memberProfile) => memberProfile.email === member.email
-              )?.userId
-            : undefined,
-      })),
-    });
-
-    // console.log("Team created: ", team);
-    // console.log("Team members created: ", teamMembers);
-    // console.log("Team Successfully created!");
-
+    console.log("Success! Team and Members created.");
+    return NextResponse.json({ success: true, ...result }, { status: 200 });
+  } catch (error: any) {
+    console.error("Team Creation Error:", error);
+    const message =
+      error.message === "TEAM_EXIST"
+        ? "Team name has taken"
+        : "Something went wrong when creating team";
     return NextResponse.json(
-      { success: true, teamId: team.id, teamMembers },
-      { status: 200 }
-    );
-  } catch (error) {
-    // console.log(error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: "Something went wrong when creating team",
-        message: error,
-      },
-      { status: 500 }
+      { success: false, error: message },
+      { status: 500 },
     );
   }
 }

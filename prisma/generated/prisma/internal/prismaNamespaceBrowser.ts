@@ -70,12 +70,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
  * Enums
  */
 
-export const TransactionIsolationLevel = {
+export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
-} as const
+} as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
@@ -113,10 +113,47 @@ export type CompRegistrationScalarFieldEnum = (typeof CompRegistrationScalarFiel
 
 export const EventRegistrationScalarFieldEnum = {
   id: 'id',
-  event_name: 'event_name',
-  userId: 'userId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  eventType: 'eventType',
+  participantName: 'participantName',
+  activeEmail: 'activeEmail',
+  phoneNumber: 'phoneNumber',
+  fullAddress: 'fullAddress',
+  emergencyContact: 'emergencyContact',
+  emergencyContactName: 'emergencyContactName',
+  isITB: 'isITB',
+  nimITB: 'nimITB',
+  majorITB: 'majorITB',
+  sumberInfo: 'sumberInfo',
+  activeSocial: 'activeSocial',
+  reasonToParticipate: 'reasonToParticipate',
+  interestedTopic: 'interestedTopic',
+  gender: 'gender',
+  aktivitasKlinik: 'aktivitasKlinik',
+  memenuhiSyarat: 'memenuhiSyarat',
+  age: 'age',
+  ktpUrl: 'ktpUrl',
+  kategori: 'kategori',
+  ukuranJersey: 'ukuranJersey',
+  isAlumniHMM: 'isAlumniHMM',
+  isHMM: 'isHMM',
+  nimHMM: 'nimHMM',
+  golonganDarah: 'golonganDarah',
+  rhesus: 'rhesus',
+  riwayatPenyakit: 'riwayatPenyakit',
+  detailPenyakit: 'detailPenyakit',
+  alergi: 'alergi',
+  detailAlergi: 'detailAlergi',
+  siapLomba: 'siapLomba',
+  buktiBayarUrl: 'buktiBayarUrl',
+  merekKendaraan: 'merekKendaraan',
+  tahunBuat: 'tahunBuat',
+  platNomor: 'platNomor',
+  lastServiceDate: 'lastServiceDate',
+  nimOrNip: 'nimOrNip',
+  isSopCompliant: 'isSopCompliant'
 } as const
 
 export type EventRegistrationScalarFieldEnum = (typeof EventRegistrationScalarFieldEnum)[keyof typeof EventRegistrationScalarFieldEnum]
@@ -128,15 +165,12 @@ export const UserScalarFieldEnum = {
   email: 'email',
   emailVerified: 'emailVerified',
   image: 'image',
-  imageKey: 'imageKey',
-  gender: 'gender',
   phoneNumber: 'phoneNumber',
   domicile: 'domicile',
   institution: 'institution',
   major: 'major',
   education: 'education',
   semester: 'semester',
-  birthDate: 'birthDate',
   role: 'role',
   verified: 'verified',
   createdAt: 'createdAt',
@@ -291,7 +325,7 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
 export const JsonNullValueInput = {
-  JsonNull: 'JsonNull'
+  JsonNull: JsonNull
 } as const
 
 export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
@@ -314,9 +348,9 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 export const JsonNullValueFilter = {
-  DbNull: 'DbNull',
-  JsonNull: 'JsonNull',
-  AnyNull: 'AnyNull'
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]

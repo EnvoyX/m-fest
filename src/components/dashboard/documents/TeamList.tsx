@@ -2,12 +2,12 @@ import { getUser } from "@/action/user.action";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-    Empty,
-    EmptyContent,
-    EmptyDescription,
-    EmptyHeader,
-    EmptyMedia,
-    EmptyTitle,
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
 } from "@/components/ui/empty";
 import { cn } from "@/lib/utils";
 import { db } from "@/server/db";
@@ -18,141 +18,135 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 function TeamList() {
-    return (
-        <div className="w-full">
-            <Suspense
-                fallback={
-                    <div className="max-w-7xl justify-center items-center flex">
-                        <Loader2 className="animate-spin w-12 h-12 mt-12" />
-                    </div>
-                }
-            >
-                <FetchUserTeams />
-            </Suspense>
-        </div>
-    );
+  return (
+    <div className="w-full">
+      <Suspense
+        fallback={
+          <div className="max-w-7xl justify-center items-center flex">
+            <Loader2 className="animate-spin w-12 h-12 mt-12" />
+          </div>
+        }
+      >
+        <FetchUserTeams />
+      </Suspense>
+    </div>
+  );
 }
 
 export default TeamList;
 
 async function FetchUserTeams() {
-    const user = (await getUser()) as User;
-    const teams = await db.team.findMany({
-        where: {
-            members: {
-                some: {
-                    userId: user.id,
-                },
-            },
+  const user = (await getUser()) as User;
+  const teams = await db.team.findMany({
+    where: {
+      members: {
+        some: {
+          userId: user.id,
         },
-        select: {
-            id: true,
-            leaderUserId: true,
-            name: true,
-            competition: true,
-            members: true,
-            status: true,
-            teamStatus: true,
-            verificationDeadlineAt: true,
-        },
-    });
+      },
+    },
+    select: {
+      id: true,
+      leaderUserId: true,
+      name: true,
+      competition: true,
+      members: true,
+      status: true,
+      teamStatus: true,
+      verificationDeadlineAt: true,
+    },
+  });
 
-    if (!teams.length) {
-        return (
-            <Empty>
-                <EmptyHeader>
-                    <EmptyMedia variant="icon">
-                        <IconUsersGroup />
-                    </EmptyMedia>
-                    <EmptyTitle>No Teams Yet</EmptyTitle>
-                    <EmptyDescription>
-                        You haven&apos;t register any teams yet to verify
-                        documents.
-                    </EmptyDescription>
-                </EmptyHeader>
-                <EmptyContent>
-                    <div className="flex gap-2">
-                        <Button className="cursor-pointer" asChild>
-                            <Link href="team/" prefetch>
-                                Register team
-                            </Link>
-                        </Button>
-                    </div>
-                </EmptyContent>
-                <Button
-                    variant="link"
-                    asChild
-                    className="text-muted-foreground"
-                    size="sm"
-                ></Button>
-            </Empty>
-        );
-    }
+  if (!teams.length) {
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4 items-stretch my-2">
-            {teams.map((team) => (
-                <div
-                    key={team.id}
-                    className={cn(
-                        "p-6 border rounded-lg bg-white/5",
-                        team.competition ??
-                            "opacity-50 pointer-events-none cursor-not-allowed",
-                    )}
-                >
-                    <h3 className="text-xl font-bold">{team.name}</h3>
-                    <span>
-                        {team.teamStatus === "NOT_REGISTERED" ? (
-                            <Badge variant={"default"}>Not Registered</Badge>
-                        ) : team.teamStatus === "PENDING" ? (
-                            <Badge
-                                variant="secondary"
-                                className="bg-yellow-600 text-white"
-                            >
-                                Pending
-                            </Badge>
-                        ) : (
-                            <Badge
-                                variant="secondary"
-                                className="bg-blue-500 text-white dark:bg-blue-600"
-                            >
-                                <BadgeCheckIcon />
-                                Verified
-                            </Badge>
-                        )}
-                    </span>
-                    <h1 className="text-lg mt-2">
-                        {team.competition ? team.competition : "No competition"}
-                    </h1>
-                    <p className="text-muted-foreground">
-                        {team.members.length} members
-                    </p>
-                    <Button
-                        className={cn("mt-4 text-sm md:text-xs lg:text-sm", {
-                            "text-black bg-muted-foreground cursor-not-allowed pointer-events-none":
-                                user.id !== team.leaderUserId,
-                        })}
-                        size={"sm"}
-                        disabled={user.id !== team.leaderUserId}
-                        asChild
-                    >
-                        <Link
-                            // href={`/dashboard/documents/${team.name?.split(" ").join("-")}`}
-                            href={
-                                user.id === team.leaderUserId
-                                    ? `/dashboard/documents/${team.id}`
-                                    : ""
-                            }
-                            className=""
-                        >
-                            {user.id === team.leaderUserId
-                                ? team.teamStatus === "ACCEPTED"
-                                    ? "View Documents"
-                                    : "Verify Members"
-                                : "Leader Only"}
-                        </Link>
-                    </Button>
-                </div>
-            ))}
-        </div>
+      <Empty>
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <IconUsersGroup />
+          </EmptyMedia>
+          <EmptyTitle>No Teams Yet</EmptyTitle>
+          <EmptyDescription>
+            You haven&apos;t register any teams yet to verify documents.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <div className="flex gap-2">
+            <Button className="cursor-pointer" asChild>
+              <Link href="team/" prefetch>
+                Register team
+              </Link>
+            </Button>
+          </div>
+        </EmptyContent>
+        <Button
+          variant="link"
+          asChild
+          className="text-muted-foreground"
+          size="sm"
+        ></Button>
+      </Empty>
     );
+  }
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4 items-stretch my-2">
+      {teams.map((team) => (
+        <div
+          key={team.id}
+          className={cn(
+            "p-6 border rounded-lg bg-white/5",
+            team.competition ??
+              "opacity-50 pointer-events-none cursor-not-allowed",
+          )}
+        >
+          <h3 className="text-xl font-bold line-clamp-1">{team.name}</h3>
+          <span>
+            {team.teamStatus === "NOT_REGISTERED" ? (
+              <Badge variant={"default"}>Not Registered</Badge>
+            ) : team.teamStatus === "PENDING" ? (
+              <Badge variant="secondary" className="bg-yellow-600 text-white">
+                Pending
+              </Badge>
+            ) : (
+              <Badge
+                variant="secondary"
+                className="bg-blue-500 text-white dark:bg-blue-600"
+              >
+                <BadgeCheckIcon />
+                Verified
+              </Badge>
+            )}
+          </span>
+          <h1 className="text-lg mt-2">
+            {team.competition ? team.competition : "No competition"}
+          </h1>
+          <p className="text-muted-foreground">{team.members.length} members</p>
+          <Button
+            className={cn("mt-4 text-sm md:text-xs lg:text-sm", {
+              "text-black bg-muted-foreground cursor-not-allowed pointer-events-none":
+                user.id !== team.leaderUserId,
+            })}
+            size={"sm"}
+            disabled={user.id !== team.leaderUserId}
+            asChild
+          >
+            <Link
+              // href={`/dashboard/documents/${team.name?.split(" ").join("-")}`}
+              href={
+                user.id === team.leaderUserId
+                  ? `/dashboard/documents/${team.id}`
+                  : ""
+              }
+              className=""
+            >
+              {user.id === team.leaderUserId
+                ? team.teamStatus === "ACCEPTED"
+                  ? "View Documents"
+                  : "Verify Members"
+                : "Leader Only"}
+            </Link>
+          </Button>
+        </div>
+      ))}
+    </div>
+  );
 }

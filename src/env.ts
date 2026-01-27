@@ -3,26 +3,23 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    GITHUB_CLIENT_ID: z.string().min(1).optional(),
-    GITHUB_CLIENT_SECRET: z.string().min(1).optional(),
-    GOOGLE_CLIENT_ID: z.string().min(1).optional(),
-    GOOGLE_CLIENT_SECRET: z.string().min(1).optional(),
-    DISCORD_CLIENT_ID: z.string().min(1).optional(),
-    DISCORD_CLIENT_SECRET: z.string().min(1).optional(),
-    BETTER_AUTH_URL: z.string().min(1).optional(),
-    BETTER_AUTH_SECRET: z.string().min(1).optional(),
-    DATABASE_URL: z.url().optional(),
+    GITHUB_CLIENT_ID: z.string().min(1),
+    GITHUB_CLIENT_SECRET: z.string().min(1),
+    GOOGLE_CLIENT_ID: z.string().min(1),
+    GOOGLE_CLIENT_SECRET: z.string().min(1),
+    DISCORD_CLIENT_ID: z.string().min(1),
+    DISCORD_CLIENT_SECRET: z.string().min(1),
+    BETTER_AUTH_URL: z.string().min(1),
+    BETTER_AUTH_SECRET: z.string().min(1),
+    DATABASE_URL: z.url(),
     DIRECT_URL: z.url().optional(),
-    NODE_ENV: z
-      .enum(["development", "production"])
-      .default("development")
-      .optional(),
-    UPLOADTHING_TOKEN: z.string().min(1).optional(),
-    UPLOADTHING_API: z.string().min(1).optional(),
-    UPLOADTHING_APP_ID: z.string().min(1).optional(),
+    NODE_ENV: z.enum(["development", "production"]).default("development"),
+    UPLOADTHING_TOKEN: z.string().min(1),
+    UPLOADTHING_API: z.string().min(1),
+    UPLOADTHING_APP_ID: z.string().min(1),
   },
   client: {
-    NEXT_PUBLIC_BASE_URL: z.string().min(1).optional(),
+    NEXT_PUBLIC_BASE_URL: z.string().min(1),
   },
   // If you're using Next.js < 13.4.4, you'll need to specify the runtimeEnv manually
   runtimeEnv: {

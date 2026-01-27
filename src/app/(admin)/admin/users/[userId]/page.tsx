@@ -269,7 +269,8 @@ async function FetchUserAdditionalInfo({ userId }: { userId: string }) {
       icon: IconUsersGroup,
       label: "Registered Team",
       value:
-        user?.team_member[0]?.team?.teamStatus === "ACCEPTED"
+        user?.team_member[0]?.team?.teamStatus === "ACCEPTED" ||
+        user?.team_member[0]?.team?.teamStatus === "PENDING"
           ? user?.team_member[0]?.team?.name
           : "Not a member of any registered team",
     },
@@ -277,7 +278,8 @@ async function FetchUserAdditionalInfo({ userId }: { userId: string }) {
       icon: IconListDetails,
       label: "Competition",
       value:
-        user?.team_member[0]?.team?.teamStatus === "ACCEPTED"
+        user?.team_member[0]?.team?.teamStatus === "ACCEPTED" ||
+        user?.team_member[0]?.team?.teamStatus === "PENDING"
           ? user?.team_member[0]?.team?.competition
           : "Not a registered to any competition",
     },

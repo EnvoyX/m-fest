@@ -1,23 +1,29 @@
+import { cn } from "@/lib/utils";
+
 interface SponsorItemProps {
   icon: string;
-  iconName: string;
   alt: string;
+  src: string;
   height: number;
   invert?: boolean;
+  className?: string;
 }
 
 function SponsorItem({
   icon,
-  iconName,
   alt,
+  src,
   height,
   invert,
+  className,
 }: SponsorItemProps) {
   return (
     <div className="flex">
       <img
-        className={`mx-auto w-fit h-${height} mb-12 ${invert ? "invert" : ""}`}
-        src={`https://api.iconify.design/${icon}/${iconName}.svg?color=%23fff`}
+        className={cn(
+          `h-${height}  mb-12 ${invert ? "invert" : ""} ${className ?? ""}`,
+        )}
+        src={src}
         alt={alt}
         width="auto"
       />

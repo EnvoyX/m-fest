@@ -3,6 +3,8 @@ import Link from "next/link";
 import AuthButtons from "@/components/auth/auth-buttons";
 import { type Metadata } from "next";
 import LoginErrorHandler from "./LoginErrorHandler";
+import { Suspense } from "react";
+import { AuthButtonsSkeleton } from "@/components/auth/auth-buttons-skeleton";
 
 export const metadata: Metadata = {
   title: "Login | Mechanical Festival 2026",
@@ -35,7 +37,9 @@ function LoginPage() {
             </span>
             <hr className="border-dashed" />
           </div>
-          <AuthButtons />
+          <Suspense fallback={<AuthButtonsSkeleton />}>
+            <AuthButtons />
+          </Suspense>
         </div>
       </div>
     </section>

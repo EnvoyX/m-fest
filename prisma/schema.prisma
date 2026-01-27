@@ -65,6 +65,52 @@ enum QuizTypes {
   ESSAY
 }
 
+enum EventType {
+  M_RUN
+  ETU
+  KLINIK_MESIN
+  M_EXPO
+  M_TALKS
+}
+
+enum JerseySize {
+  S
+  M
+  L
+  XL
+  XXL
+}
+
+enum BloodType {
+  A
+  B
+  AB
+  O
+}
+
+enum Rhesus {
+  POSITIVE
+  NEGATIVE
+}
+
+enum KlinikActivity {
+  DONOR
+  EYE_CHECK
+  BOTH
+}
+
+enum Kategori {
+  UMUM
+  MAHASISWA
+}
+
+enum SourceInfo {
+  INSTAGRAM_MFEST_ITB
+  FRIEND
+  BANNER
+  OTHER
+}
+
 model CompRegistration {
   id                      String          @id @default(uuid())
   userId                  String
@@ -102,15 +148,64 @@ model CompRegistration {
 }
 
 model EventRegistration {
-  id         String   @id @default(uuid())
-  event_name String
-  userId     String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  eventType       EventType
+
+  // General
+  participantName String?
+  activeEmail     String?
+  phoneNumber     String?
+  fullAddress     String?
+  emergencyContact  String?
+  emergencyContactName String?
+  isITB           Boolean?     @default(false)
+  nimITB          String?
+  majorITB        String?
+  sumberInfo      SourceInfo?
+
+  // M-Talks Specific
+  activeSocial    String?
+  reasonToParticipate String?
+  interestedTopic     String?
+
+  // M-Care Specific
+  gender            Gender?
+  aktivitasKlinik   KlinikActivity? // Donor/Mata/Both
+  memenuhiSyarat  Boolean?     @default(false) // Consent Klinik
+
+// M-Run Specifics
+  age            Int?
+  ktpUrl          String?
+  kategori        Kategori?      // 5K, 10K, etc
+  ukuranJersey    JerseySize?
+  isAlumniHMM     Boolean?     @default(false)
+  isHMM           Boolean?     @default(false)
+  nimHMM          String?      // Khusus verifikasi HMM
+  golonganDarah   BloodType?
+  rhesus          Rhesus?
+  riwayatPenyakit Boolean?     @default(false)
+  detailPenyakit  String?      // Kapan terakhir kambuh
+  alergi          Boolean?
+  detailAlergi    String?
+  siapLomba       Boolean?     @default(false) // Consent M-Run
+  buktiBayarUrl   String?
+
+  // ETU speficfics
+  merekKendaraan  String?
+  tahunBuat       Int?
+  platNomor       String?
+  lastServiceDate String?
+  nimOrNip        String?      // Buat ETU / Mexpo
+  isSopCompliant  Boolean?     @default(false) // Consent ETU
+
+
 
   @@index([userId])
-  @@map("event_registration")
+  @@index([eventType])
 }
 
 model User {
@@ -119,15 +214,12 @@ model User {
   email             String              @unique
   emailVerified     Boolean
   image             String?
-  imageKey          String?
-  gender            Gender?
   phoneNumber       String?
   domicile          String?
   institution       String?
   major             String?
   education         Education?
   semester          Int?
-  birthDate         DateTime?
   role              Role                @default(USER)
   verified          Boolean             @default(false)
   createdAt         DateTime            @default(now())

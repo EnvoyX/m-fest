@@ -5,23 +5,34 @@ import { db } from "@/server/db";
 import { headers } from "next/headers";
 
 export async function getUserSession() {
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-    if (!session) {
-        console.warn("⚠️ No valid user session found");
-        return null;
-    }
+  if (!session) {
+    console.warn("⚠️ No valid user session found");
+    return null;
+  }
 
-    return session;
+  return session;
 }
 
 export async function getUser() {
-    const session = await getUserSession();
-    const user = await db.user.findUnique({
-        where: { id: session?.user.id as string },
-    });
+  const session = await getUserSession();
+  const user = await db.user.findUnique({
+    where: { id: session?.user.id as string },
+    include: {
+      team_member: {
+        include: {
+          team: true,
+        },
+      },
+      documents: true,
+      registration: true,
+      examSession: true,
+      eventRegistration: true,
+    },
+  });
 
-    return user;
+  return user;
 }

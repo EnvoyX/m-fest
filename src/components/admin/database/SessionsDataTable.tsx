@@ -13,7 +13,7 @@ import {
     useReactTable,
     type VisibilityState,
 } from "@tanstack/react-table";
-import { Loader2, MoreHorizontal, RefreshCw } from "lucide-react";
+import { ListFilter, Loader2, MoreHorizontal, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -43,6 +43,12 @@ import Image from "next/image";
 import { useTRPC } from "@/utils/trpc";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { IconFileExport, IconTableExport } from "@tabler/icons-react";
+import {
+    exportAllToXlsx,
+    exportCurrentPageToXlsx,
+    exportFilteredRowsToXlsx,
+} from "@/utils/xlsx";
 
 export default function SessionsDataTable() {
     const trpc = useTRPC();
@@ -416,7 +422,8 @@ export default function SessionsDataTable() {
                                     variant="outline"
                                     className="w-fit cursor-pointer"
                                 >
-                                    <span className="">Filter by column:</span>
+                                    <ListFilter />
+                                    <span className="">Filter:</span>
                                     <span className="capitalize">
                                         {filterColumn}
                                     </span>
@@ -506,6 +513,57 @@ export default function SessionsDataTable() {
                             })}
                         />
                     </Button>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="relative cursor-pointer"
+                                disabled={isFetching}
+                            >
+                                <IconTableExport />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            className="bg-transparent backdrop-glass-xl"
+                            align="end"
+                        >
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:bg-white/20!"
+                                onClick={() => {
+                                    exportCurrentPageToXlsx(
+                                        table,
+                                        "sessions.xlsx",
+                                    );
+                                }}
+                            >
+                                <IconFileExport />
+                                Export current rows to .xlsx
+                            </DropdownMenuItem>
+                            {table.getFilteredSelectedRowModel().rows.length ? (
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        exportFilteredRowsToXlsx(
+                                            table,
+                                            "sessions.xlsx",
+                                        );
+                                    }}
+                                >
+                                    <IconFileExport />
+                                    Export selected to .xlsx
+                                </DropdownMenuItem>
+                            ) : null}
+                            <DropdownMenuItem
+                                className="cursor-pointer hover:bg-white/20!"
+                                onClick={() => {
+                                    exportAllToXlsx(table, "sessions.xlsx");
+                                }}
+                            >
+                                <IconFileExport />
+                                Export all rows to .xlsx
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                     {table.getFilteredSelectedRowModel().rows.length ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -544,6 +602,18 @@ export default function SessionsDataTable() {
                             >
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        exportFilteredRowsToXlsx(
+                                            table,
+                                            "sessions.xlsx",
+                                        );
+                                    }}
+                                >
+                                    <IconFileExport />
+                                    Export selected to .xlsx
+                                </DropdownMenuItem>
                                 <DropdownMenuItem
                                     variant="destructive"
                                     className="cursor-pointer"

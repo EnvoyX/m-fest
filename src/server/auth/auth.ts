@@ -3,8 +3,11 @@ import { customSession } from "better-auth/plugins";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { db } from "../db";
 import { env } from "@/env";
+import { nextCookies } from "better-auth/next-js";
+
 const options = {
   appName: "Mechanical Festival 2026",
+  baseURL: env.NEXT_PUBLIC_BASE_URL,
   database: prismaAdapter(db, {
     provider: "postgresql", // or "mysql", "postgresql", ...etc
   }),
@@ -34,9 +37,11 @@ const options = {
   secret: env.BETTER_AUTH_SECRET,
   trustedOrigins: [
     "http://localhost:3000",
+    "http://localhost:8080",
     "https://m-fest-xi.vercel.app",
-    "https://mfest-itb.com/",
+    "https://mfest-itb.com",
     "https://mfest2026-jg5xl.ondigitalocean.app",
+    "https://m-fest-staging.up.railway.app",
   ],
   rateLimit: {
     // in development is disabled by default
@@ -47,6 +52,7 @@ const options = {
   },
   plugins: [
     //...plugins
+    nextCookies(),
   ],
 } satisfies BetterAuthOptions;
 
@@ -67,3 +73,5 @@ export const auth = betterAuth({
     }, options),
   ],
 });
+
+export type Session = typeof auth.$Infer.Session;
