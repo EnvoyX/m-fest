@@ -1,4 +1,16 @@
-export default function MExpoPage() {
+export default function ComingSoon() {
+   return (
+    <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
+      <div className="bg-trasnparent backdrop-glass-lg m-auto h-fit w-full max-w-xl verflow-hidden rounded-[calc(var(--radius)+.125rem)] border-2 shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)] py-4">
+        <h1 className="text-center text-4xl lg:text-6xl font-bold">
+          COMING SOON
+        </h1>
+      </div>
+    </section>
+  );
+}
+
+/*export default function MExpoPage() {
   return (
     <main className="text-white min-h-screen flex justify-center pt-10 md:pt-20 py-10 px-4 font-sans overflow-x-hidden">
       <div className="w-full max-w-5xl space-y-16">
@@ -116,4 +128,4 @@ function CompanyItem({ name }: { name: string }) {
       <div className="w-28 h-28 md:w-40 md:h-40 bg-gray-600 rounded-lg bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-80 shrink-0 border border-gray-500"></div>
     </div>
   );
-}
+}*/

@@ -1,4 +1,17 @@
-export default function CeremonyPage() {
+export default function ComingSoon() {
+   return (
+    <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
+      <div className="bg-trasnparent backdrop-glass-lg m-auto h-fit w-full max-w-xl verflow-hidden rounded-[calc(var(--radius)+.125rem)] border-2 shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)] py-4">
+        {/*<EventForm event={event} />*/}
+        <h1 className="text-center text-4xl lg:text-6xl font-bold">
+          COMING SOON
+        </h1>
+      </div>
+    </section>
+  );
+}
+
+/*export default function CeremonyPage() {
   const lineup = [
     {
       id: 1,
@@ -90,4 +103,4 @@ export default function CeremonyPage() {
       </div>
     </main>
   );
-}
+}*/

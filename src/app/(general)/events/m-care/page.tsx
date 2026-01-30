@@ -1,9 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { getCurrentDate } from "@/lib/utils";
+import { isAfter, isBefore, isWithinInterval } from "date-fns";
+import { SegmentBoundaryTriggerNode } from "next/dist/next-devtools/userspace/app/segment-explorer-node";
 
 export default function MCare() {
+  const currentDate = getCurrentDate();
+  const startRegDate = new Date("2026-02-06T00:00:00")
+  const endRegDate = new Date("2026-02-13T23:59:59")
+
   return (
     <div className="w-full overflow-x-hidden">
 
@@ -12,11 +19,11 @@ export default function MCare() {
           Klinik Mesin
         </h1>
         <Image
-          src="/mcareimage1.png"
+          src="/events/card/mcare.JPG"
           alt="mcareimage1"
           height={1388}
           width={925}
-          className="mx-auto w-full max-w-[925px] h-auto"
+          className="mx-auto w-full max-w-[925px] h-auto grayscale rounded-xl"
         />
 
         <div className="max-w-3xl mx-auto mt-8 text-center">
@@ -51,14 +58,30 @@ export default function MCare() {
         </p>
         
       <div className="flex justify-center">
-        <Link href="/#">
-          <Button 
+        
+          <Button
+          asChild 
           size="lg"
-          className="rounded-xl text-base md:text-lg font-bold px-8 py-6 md:px-10 md:py-8 shadow-lg"
+          className="rounded-xl text-base object-fill md:text-lg font-bold px-8 py-6 md:px-10 md:py-8 shadow-lg"
+          disabled={!isWithinInterval(currentDate, {start: startRegDate, end: endRegDate})}
           >
-            Register Now <ChevronRight className="ml-2 h-4 w-4" />
+            
+              {isBefore(currentDate,startRegDate) ? (
+                <span className="cursor-not-allowed opacity-50 flex items-center gap-2">
+                    Coming Soon <Clock className="size-5" />
+                </span>
+              ) : isAfter(currentDate,endRegDate) ? (
+                <span className="cursor-not-allowed opacity-50">
+                    Registration Closed
+                </span>
+              ) : (
+                <Link href="/#">
+                  <span className="flex">Register Now <ChevronRight className="size-5 my-auto" /> </span>
+                </Link>
+                  )
+              }
           </Button>
-        </Link>
+        
       </div>
 
       <div className="pt-12 lg:pt-16 px-4">
