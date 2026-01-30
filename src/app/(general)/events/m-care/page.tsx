@@ -5,11 +5,8 @@ import Link from "next/link";
 
 export default function MCare() {
   return (
-    // Added overflow-x-hidden to prevent horizontal scrolling issues
     <div className="w-full overflow-x-hidden">
- 
 
-      {/* Klinik Mesin Section */}
       <div className="pt-20 py-12 lg:py-16 w-full px-4">
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold text-center pb-8 lg:pb-16">
           Klinik Mesin
@@ -19,10 +16,9 @@ export default function MCare() {
           alt="mcareimage1"
           height={1388}
           width={925}
-          // Added w-full max-w... h-auto for responsive scaling
           className="mx-auto w-full max-w-[925px] h-auto"
         />
-        {/* Replaced mx-80 with max-w container and padding */}
+
         <div className="max-w-3xl mx-auto mt-8 text-center">
           <h1 className="text-lg lg:text-xl">
             One of our event consisting free eye check-up and blood donation
@@ -30,8 +26,6 @@ export default function MCare() {
         </div>
       </div>
 
-      {/* Requirements Section */}
-      {/* Replaced mx-24 with responsive padding */}
       <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
         <h1 className="font-semibold text-3xl md:text-4xl lg:text-5xl mb-8 lg:mb-12">
           Donor Requirements
@@ -56,7 +50,6 @@ export default function MCare() {
           No requirement for those attending only the eye check-up
         </p>
         
-      {/* Bottom Button */}
       <div className="flex justify-center">
         <Link href="/#">
           <Button 
@@ -68,7 +61,6 @@ export default function MCare() {
         </Link>
       </div>
 
-      {/* Hari Main Bersama Section */}
       <div className="pt-12 lg:pt-16 px-4">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-center">
           Hari Main Bersama
@@ -85,8 +77,7 @@ export default function MCare() {
             className="mx-auto w-full max-w-[925px] h-auto"
           />
         </div>
-        
-        {/* Replaced mx-80 with max-w container */}
+
         <div className="max-w-4xl mx-auto text-center px-4">
           <h1 className="text-base md:text-lg lg:text-xl font-thin leading-relaxed">
             Melihat Lebih Baik, Memberi Lebih Banyak. Tema ini mencerminkan
@@ -97,7 +88,6 @@ export default function MCare() {
         </div>
       </div>
 
-      {/* Timeline Section */}
       <div className="py-12 lg:py-16 px-4">
         <Image
           src="/mcaretimeline.png"

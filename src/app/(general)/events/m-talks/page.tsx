@@ -26,8 +26,6 @@ export default function MTalksPage() {
 
   return (
     <main className="min-h-screen text-white w-full overflow-x-hidden">
-      
-      {/* Hero Section */}
       <div className="pt-20 py-12 lg:py-16 w-full px-4">
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold text-center pb-8 lg:pb-16">
           M-Talks
@@ -41,7 +39,6 @@ export default function MTalksPage() {
           />
         </div>
 
-        {/* Intro Text - Increased to match MCare Requirements list size */}
         <div className="max-w-4xl mx-auto mt-12 text-center space-y-8">
           <p className="text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed">
             Automation, digital simulation, and the energy transition are reshaping how engineers work and how industries evolve. In this changing landscape, engineers must not only master technology, but also adapt, lead, and stay resilient.
@@ -57,9 +54,7 @@ export default function MTalksPage() {
         </div>
       </div>
 
-      {/* Speakers Section */}
       <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto py-8">
-        {/* Header increased to match 'Donor Requirements' header */}
         <h2 className="font-semibold text-3xl md:text-4xl lg:text-5xl mb-8 lg:mb-12 flex flex-col md:flex-row items-center justify-center gap-3 text-center">
           <span>Day-1</span>
           <span className="hidden md:inline">-</span>
@@ -76,7 +71,6 @@ export default function MTalksPage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Speaker text increased */}
               <p className="font-bold text-2xl md:text-3xl mb-1">{speaker.name}</p>
               <p className="text-lg md:text-xl text-gray-400">{speaker.role}</p>
             </div>
@@ -84,7 +78,6 @@ export default function MTalksPage() {
         </div>
       </div>
 
-      {/* Countdown & Info Section */}
       <div className="pt-12 lg:pt-16 px-4 pb-16">
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-10">
           
@@ -106,7 +99,6 @@ export default function MTalksPage() {
         </div>
       </div>
 
-      {/* Register Button */}
       <div className="flex justify-center pb-20">
         <Link href="/#">
           <Button 

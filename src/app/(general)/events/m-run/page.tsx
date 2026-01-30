@@ -5,12 +5,8 @@ import { ChevronRight } from "lucide-react";
 
 export default function ETUPages() {
   return (
-    // Added overflow-hidden to prevent accidental horizontal scrolling
     <div className="w-full overflow-x-hidden">
-
-      {/* Main Intro */}
       <div className="py-12 lg:py-16 w-full px-4">
-        {/* Matched Header Size: 4xl -> 6xl -> 7xl */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center">
           M-Run
         </h1>
@@ -23,7 +19,6 @@ export default function ETUPages() {
         />
         
         <div className="max-w-4xl mx-auto text-center space-y-8 mt-8">
-          {/* Matched Body Text: lg -> xl -> 2xl */}
           <h1 className="text-lg md:text-xl lg:text-2xl leading-relaxed">
             Ever felt your heart pounding like a powerful engine, your breath
             flowing like a perfectly tuned air intake system, and your legs
@@ -36,15 +31,12 @@ export default function ETUPages() {
         </div>
       </div>
 
-      {/* Countdown Section */}
       <div className="max-w-4xl mx-auto px-4 text-center pb-12">
         <h1 className="text-lg md:text-xl lg:text-2xl">The race will be on going on</h1>
         <h1 className="text-3xl md:text-5xl font-bold mt-2">From now, that is roughly</h1>
       </div>
 
-      {/* Grand Prize Section */}
       <div className="py-12 lg:py-16">
-        {/* Matched Header Size */}
         <h1 className="text-center text-4xl md:text-6xl lg:text-7xl font-bold px-4 leading-tight">
           With the Grand Prize Totalling...
         </h1>
@@ -59,13 +51,10 @@ export default function ETUPages() {
         </div>
       </div>
 
-      {/* Info Section */}
       <div className="max-w-4xl mx-auto px-6 md:px-12">
-        {/* Matched Sub-Header Size */}
         <h1 className="text-3xl md:text-4xl lg:text-5xl pb-8 lg:pb-12 font-semibold">
           Other Information
         </h1>
-        {/* Matched Body/List Size: lg -> xl -> 2xl */}
         <div className="space-y-4 text-lg md:text-xl lg:text-2xl">
           <p>Distance: 5km</p>
           <p>Route: Institut Teknologi Bandung</p>
@@ -80,7 +69,6 @@ export default function ETUPages() {
         </div>
       </div>
 
-      {/* Throttle Section */}
       <div className="py-16 px-4 text-center">
         <div className="space-y-2 mb-8">
           <h1 className="text-3xl md:text-5xl lg:text-6xl">Ready to operate at</h1>
@@ -95,7 +83,6 @@ export default function ETUPages() {
         />
       </div>
 
-      {/* Register Button - Matched Style */}
       <div className="flex justify-center pb-16">
         <Link href="/#">
           <Button 
@@ -107,7 +94,6 @@ export default function ETUPages() {
         </Link>
       </div>
 
-      {/* Timeline Section */}
       <div className="px-4 pb-8">
         <Image
           src="/mruntimeline.png"
