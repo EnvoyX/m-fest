@@ -192,6 +192,7 @@ function TeamForm({ team }: { team: Team }) {
         toast.dismiss("edit-team");
         toast.error("Failed to edit team", {
           description: error,
+          duration: 5000,
         });
         // console.log(error);
       }
@@ -200,6 +201,7 @@ function TeamForm({ team }: { team: Team }) {
       toast.dismiss("edit-team");
       toast.error("Failed to edit team", {
         description: (error as Error).message,
+        duration: 5000,
       });
     }
   }
@@ -413,8 +415,10 @@ function TeamForm({ team }: { team: Team }) {
                         readOnly={index === 0}
                         disabled={index === 0}
                         onBlur={async (event) => {
-                          event.target.value = trim(event.target.value);
-                          const email = trim(event.target.value);
+                          event.target.value = trim(
+                            event.target.value,
+                          ).toLowerCase();
+                          const email = trim(event.target.value).toLowerCase();
                           if (email) {
                             try {
                               toast.loading("Checking member...", {
@@ -457,7 +461,10 @@ function TeamForm({ team }: { team: Team }) {
                           if (!value) {
                             return;
                           }
-                          setValue(`members.${index}.email`, trim(value));
+                          setValue(
+                            `members.${index}.email`,
+                            trim(value).toLowerCase(),
+                          );
                         }}
                         onChange={(e) => {
                           const value = e.target.value;
@@ -533,7 +540,7 @@ function TeamForm({ team }: { team: Team }) {
                   </p>
                 )}
 
-                <div className="flex justify-between items-center w-full mt-5">
+                <div className="flex justify-between items-center w-full mt-5 max-sm:flex-col gap-4">
                   {fields.length < 5 && index === fields.length - 1 && (
                     <Button
                       type="button"

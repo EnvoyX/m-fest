@@ -413,7 +413,9 @@ export const Navbar = () => {
                             className="text-destructive focus:bg-destructive/10 cursor-pointer"
                           >
                             <LogOut className="text-white mr-2 size-4" />
-                            {isLoading ? "Logging out..." : "Logout"}
+                            {isLoading || isTransition
+                              ? "Logging out..."
+                              : "Logout"}
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -423,11 +425,11 @@ export const Navbar = () => {
                         className={`md:hidden ${
                           isLoading ? "cursor-not-allowed" : "cursor-pointer"
                         }`}
-                        disabled={isLoading}
+                        disabled={isLoading || isTransition}
                         type="button"
                         onClick={handleLogout}
                       >
-                        {isLoading ? (
+                        {isLoading || isTransition ? (
                           <div className="flex">
                             <Loader2 className="animate-spin size-5" />
                           </div>
