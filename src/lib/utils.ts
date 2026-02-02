@@ -3,6 +3,10 @@ import { twMerge } from "tailwind-merge";
 import { competitions } from "./competition";
 import { CompetitionName } from "../../prisma/generated/prisma/enums";
 import { isWithinInterval } from "date-fns";
+import { fromZonedTime } from "date-fns-tz";
+import { eventsList } from "./eventDashboard";
+
+const WIB_TZ = "Asia/Jakarta";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -22,6 +26,10 @@ export const getCurrentDate = () => {
   return now;
 };
 const currentDate = getCurrentDate();
+
+export function wibToUTC(date: Date) {
+  return fromZonedTime(date, WIB_TZ);
+}
 
 export function getCompCaseDate(comp: CompetitionName) {
   if (comp === "BCC") {
@@ -83,4 +91,41 @@ export function getTwibbonFormatLink(comp: CompetitionName) {
     case CompetitionName.STEM:
       return "https://drive.google.com/drive/folders/1IfVYRpYq67Vk5Sgwnpvrr5eUKpKgNlng?usp=sharing";
   }
+}
+
+export function getMRUNBatchInfo(currentDate: Date) {
+  const mRunInfo = eventsList.find((event) => event.id === "M-RUN");
+  if (
+    isWithinInterval(currentDate, {
+      start: mRunInfo?.Batch1StartRegDate as Date,
+      end: mRunInfo?.Batch1EndRegDate as Date,
+    })
+  ) {
+    return {
+      batch: "1",
+      price: mRunInfo?.price1,
+      startRegDate: mRunInfo?.Batch1StartRegDate,
+      endRegDate: mRunInfo?.Batch1EndRegDate,
+    };
+  }
+  if (
+    isWithinInterval(currentDate, {
+      start: mRunInfo?.Batch2StartRegDate as Date,
+      end: mRunInfo?.Batch2EndRegDate as Date,
+    })
+  ) {
+    return {
+      batch: "2",
+      price: mRunInfo?.price2,
+      startRegDate: mRunInfo?.Batch2StartRegDate,
+      endRegDate: mRunInfo?.Batch2EndRegDate,
+    };
+  }
+  // Return hard-coded info or default info
+  return {
+    batch: "1",
+    price: mRunInfo?.price1,
+    startRegDate: mRunInfo?.Batch2StartRegDate,
+    endRegDate: mRunInfo?.Batch2EndRegDate,
+  };
 }
