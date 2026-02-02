@@ -135,7 +135,7 @@ export const competitions: {
     fee1: 200001, // Early Bird
     fee2: 250001, // Regular
     guideBook:
-      "https://drive.google.com/drive/folders/1Thuhb-0Chb1_AFApqvzldrXVg1PweYMh?usp=drive_link",
+      "https://drive.google.com/drive/folders/17ADXN7Iom5nPJXJHEw2oQZvRRvf9q4fP?usp=sharing",
     isOpen: true,
     icon: "Lock",
     uploadThingRoute: "submitFilePDC",
