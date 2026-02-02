@@ -94,7 +94,7 @@ export type QuizTypes = (typeof QuizTypes)[keyof typeof QuizTypes]
 export const EventType = {
   M_RUN: 'M_RUN',
   ETU: 'ETU',
-  KLINIK_MESIN: 'KLINIK_MESIN',
+  M_CARE: 'M_CARE',
   M_EXPO: 'M_EXPO',
   M_TALKS: 'M_TALKS'
 } as const
@@ -125,16 +125,16 @@ export type BloodType = (typeof BloodType)[keyof typeof BloodType]
 
 export const Rhesus = {
   POSITIVE: 'POSITIVE',
-  NEGATIVE: 'NEGATIVE'
+  NEGATIVE: 'NEGATIVE',
+  NOT_KNOWN: 'NOT_KNOWN'
 } as const
 
 export type Rhesus = (typeof Rhesus)[keyof typeof Rhesus]
 
 
 export const KlinikActivity = {
-  DONOR: 'DONOR',
-  EYE_CHECK: 'EYE_CHECK',
-  BOTH: 'BOTH'
+  DONATE_BLOOD: 'DONATE_BLOOD',
+  EYE_CHECK: 'EYE_CHECK'
 } as const
 
 export type KlinikActivity = (typeof KlinikActivity)[keyof typeof KlinikActivity]

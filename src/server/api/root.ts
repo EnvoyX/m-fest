@@ -3,12 +3,14 @@ import { adminRouter } from "../../app/api/routers/admin";
 import { dashboardRouter } from "@/app/api/routers/dashboard";
 import { stemRouter } from "@/app/api/routers/stem-exam";
 import { registerRouter } from "@/app/api/routers/register";
+import { eventRouter } from "@/app/api/routers/event";
 
 export const appRouter = router({
   admin: adminRouter,
   dashboard: dashboardRouter,
   stemExam: stemRouter,
   register: registerRouter,
+  event: eventRouter,
 });
 
 export const createCaller = createCallerFactory(appRouter);

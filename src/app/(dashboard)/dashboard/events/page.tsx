@@ -1,55 +1,23 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Events | Mechanical Festival 2026",
-    description: "Mechanical Festival 2026",
+  title: "Events | Mechanical Festival 2026",
+  description: "Mechanical Festival 2026",
 };
 
-import { IconConfetti } from "@tabler/icons-react";
-import { ArrowUpRightIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-    Empty,
-    EmptyContent,
-    EmptyDescription,
-    EmptyHeader,
-    EmptyMedia,
-    EmptyTitle,
-} from "@/components/ui/empty";
-import Link from "next/link";
+import RegisteredEventsList from "@/components/dashboard/events/RegisteredEventsList";
+import EventsListDashboard from "@/components/dashboard/events/EventsListDashboard";
 
 function EventsPage() {
-    return (
-        <Empty>
-            <EmptyHeader>
-                <EmptyMedia variant="icon">
-                    <IconConfetti />
-                </EmptyMedia>
-                <EmptyTitle>No Events Yet</EmptyTitle>
-                <EmptyDescription>
-                    You haven&apos;t registered any events yet. Get registered
-                    by clicking the button below.
-                </EmptyDescription>
-            </EmptyHeader>
-            <EmptyContent>
-                <div className="flex gap-2">
-                    <Button className="cursor-pointer" disabled>
-                        Coming Soon
-                    </Button>
-                </div>
-            </EmptyContent>
-            <Button
-                variant="link"
-                asChild
-                className="text-muted-foreground"
-                size="sm"
-            >
-                <Link href="/events" prefetch>
-                    Learn More <ArrowUpRightIcon />
-                </Link>
-            </Button>
-        </Empty>
-    );
+  return (
+    <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="flex justify-between ">
+        <h3 className="text-3xl font-bold text-foreground">Events</h3>
+      </div>
+      <EventsListDashboard />
+      <RegisteredEventsList />
+    </section>
+  );
 }
 
 export default EventsPage;

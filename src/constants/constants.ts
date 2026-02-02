@@ -1,7 +1,6 @@
 import {
   IconConfetti,
   IconDashboard,
-  IconDashboardFilled,
   IconDatabase,
   IconFileAnalytics,
   IconFileText,
