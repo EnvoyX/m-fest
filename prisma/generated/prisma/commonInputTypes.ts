@@ -210,13 +210,6 @@ export type EnumGenderNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
 }
 
-export type EnumKlinikActivityNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.KlinikActivity | Prisma.EnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  in?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumKlinikActivityNullableFilter<$PrismaModel> | $Enums.KlinikActivity | null
-}
-
 export type IntNullableFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
@@ -292,16 +285,6 @@ export type EnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumGenderNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumGenderNullableFilter<$PrismaModel>
-}
-
-export type EnumKlinikActivityNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.KlinikActivity | Prisma.EnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  in?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumKlinikActivityNullableWithAggregatesFilter<$PrismaModel> | $Enums.KlinikActivity | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumKlinikActivityNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumKlinikActivityNullableFilter<$PrismaModel>
 }
 
 export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -764,13 +747,6 @@ export type NestedEnumGenderNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
 }
 
-export type NestedEnumKlinikActivityNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.KlinikActivity | Prisma.EnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  in?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumKlinikActivityNullableFilter<$PrismaModel> | $Enums.KlinikActivity | null
-}
-
 export type NestedEnumKategoriNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.Kategori | Prisma.EnumKategoriFieldRefInput<$PrismaModel> | null
   in?: $Enums.Kategori[] | Prisma.ListEnumKategoriFieldRefInput<$PrismaModel> | null
@@ -835,16 +811,6 @@ export type NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumGenderNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumGenderNullableFilter<$PrismaModel>
-}
-
-export type NestedEnumKlinikActivityNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.KlinikActivity | Prisma.EnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  in?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumKlinikActivityNullableWithAggregatesFilter<$PrismaModel> | $Enums.KlinikActivity | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumKlinikActivityNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumKlinikActivityNullableFilter<$PrismaModel>
 }
 
 export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {

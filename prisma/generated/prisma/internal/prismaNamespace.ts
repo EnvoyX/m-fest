@@ -1314,20 +1314,20 @@ export const EventRegistrationScalarFieldEnum = {
   nimITB: 'nimITB',
   majorITB: 'majorITB',
   sumberInfo: 'sumberInfo',
+  gender: 'gender',
   activeSocial: 'activeSocial',
   reasonToParticipate: 'reasonToParticipate',
   interestedTopic: 'interestedTopic',
-  gender: 'gender',
-  aktivitasKlinik: 'aktivitasKlinik',
+  clinicActivity: 'clinicActivity',
   memenuhiSyarat: 'memenuhiSyarat',
   age: 'age',
   ktpUrl: 'ktpUrl',
-  kategori: 'kategori',
-  ukuranJersey: 'ukuranJersey',
+  category: 'category',
+  jerseySize: 'jerseySize',
   isAlumniHMM: 'isAlumniHMM',
   isHMM: 'isHMM',
   nimHMM: 'nimHMM',
-  golonganDarah: 'golonganDarah',
+  bloodType: 'bloodType',
   rhesus: 'rhesus',
   riwayatPenyakit: 'riwayatPenyakit',
   detailPenyakit: 'detailPenyakit',
@@ -1669,16 +1669,16 @@ export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
 
 
 /**
- * Reference to a field of type 'KlinikActivity'
+ * Reference to a field of type 'KlinikActivity[]'
  */
-export type EnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity'>
+export type ListEnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity[]'>
     
 
 
 /**
- * Reference to a field of type 'KlinikActivity[]'
+ * Reference to a field of type 'KlinikActivity'
  */
-export type ListEnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity[]'>
+export type EnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity'>
     
 
 

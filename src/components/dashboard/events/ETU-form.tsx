@@ -1,0 +1,311 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { etuSchema } from "@/lib/event-schema";
+import { useEffect, useRef } from "react";
+
+export default function EtuForm() {
+  const form = useForm<etuSchema>({
+    resolver: zodResolver(etuSchema),
+    defaultValues: {
+      participantName: "",
+      phoneNumber: "",
+      isITB: false,
+      nimOrNip: "",
+      merekKendaraan: "",
+      platNomor: "",
+      isSopCompliant: false,
+    },
+  });
+
+  const hasInitialized = useRef(false);
+  useEffect(() => {
+    if (hasInitialized.current) return;
+    hasInitialized.current = true;
+  });
+
+  const onSubmit = (data: etuSchema) => console.log(data);
+
+  return (
+    <div className="min-h-screen flex items-center justify-center p-4 py-12 ">
+      <div className="w-full max-w-2xl p-8 rounded-[2rem] border border-white/10 bg-white/5 backdrop-glass-lg shadow-2xl">
+        <div className="mb-10 text-center">
+          <h2 className="text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500">
+            ENGINE TUNE UP
+          </h2>
+          <p className="text-slate-400 mt-2 font-medium">
+            Keep your engine running at peak performance.
+          </p>
+        </div>
+
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="participantName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-slate-300">
+                      Nama Lengkap
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Ichigo Kurosaki"
+                        {...field}
+                        className="bg-white/5 border-white/10 text-white focus:border-cyan-500"
+                      />
+                    </FormControl>
+                    <FormMessage className="md:hidden" />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="phoneNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-slate-300">
+                      Phone Number
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="081234567890"
+                        {...field}
+                        className="bg-white/5 border-white/10 text-white"
+                      />
+                    </FormControl>
+                    <FormMessage className="md:hidden" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
+              {form.formState.errors.participantName ? (
+                <p className="text-destructive text-sm -mt-4">
+                  {form.formState.errors.participantName.message}
+                </p>
+              ) : (
+                <p></p>
+              )}
+              {form.formState.errors.phoneNumber ? (
+                <p className="text-destructive text-sm -mt-4">
+                  {form.formState.errors.phoneNumber.message}
+                </p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+
+            <FormField
+              control={form.control}
+              name="isITB"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center justify-between rounded-xl border border-white/10 p-4 bg-white/5">
+                  <div className="space-y-0.5">
+                    <FormLabel className="text-slate-200">
+                      ITB Academic Member
+                    </FormLabel>
+                    <FormDescription className="text-xs text-slate-500">
+                      Check if you are a student or staff.
+                    </FormDescription>
+                  </div>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={(value) => {
+                        field.onChange(value);
+                        form.setValue("nimOrNip", "");
+                      }}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {form.watch("isITB") && (
+              <FormField
+                control={form.control}
+                name="nimOrNip"
+                render={({ field }) => (
+                  <FormItem className="animate-in slide-in-from-left-2 duration-300">
+                    <FormLabel className="text-slate-300">NIM / NIP</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="NIM/NIP Anda"
+                        {...field}
+                        className="bg-white/5 border-white/10 text-white"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+            <div className="pt-4 border-t border-white/5">
+              <h3 className="text-sm font-bold text-cyan-500 mb-4 uppercase tracking-widest">
+                Informasi Motor
+              </h3>
+              <div className="grid grid-cols-1 gap-4">
+                <div className="md:col-span-1">
+                  <FormField
+                    control={form.control}
+                    name="merekKendaraan"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-slate-300 text-xs">
+                          Merek Kendaraan
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Vario 125"
+                            {...field}
+                            className="bg-white/5 border-white/10 text-white"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <FormField
+                    control={form.control}
+                    name="tahunBuat"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-slate-300 text-xs">
+                          Tahun Pembuatan (Sesuai STNK)
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            placeholder="2003"
+                            {...field}
+                            className="bg-white/5 border-white/10 text-white"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="md:col-span-1">
+                  <FormField
+                    control={form.control}
+                    name="platNomor"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-slate-300 text-xs">
+                          Nomor Polisi (Plat Kendaraan)
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="M 1312 ETU"
+                            {...field}
+                            className="bg-white/5 border-white/10 text-white uppercase"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <FormField
+              control={form.control}
+              name="lastServiceDate"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-slate-300">
+                    Terakhir kali Servis?
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                        <SelectValue placeholder="Kapan terakhir kali servis?" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent className="bg-slate-900 border-white/10 text-white">
+                      <SelectItem value="< 3 bulan">
+                        Kurang dari 3 bulan yang lalu
+                      </SelectItem>
+                      <SelectItem value="3-6 bulan">
+                        3 - 6 bulan yang lalu
+                      </SelectItem>
+                      <SelectItem value="6 bulan - 1 tahun">
+                        6 bulan - 1 tahun yang lalu
+                      </SelectItem>
+                      <SelectItem value="> 1 tahun">
+                        Lebih dari 1 tahun yang lalu
+                      </SelectItem>
+                      <SelectItem value="Tidak Ingat">Tidak Ingat</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="isSopCompliant"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border border-dashed border-white/20 p-4 bg-white/5">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel className="text-slate-300 text-sm">
+                      Apakah Anda setuju dengan SOP yang diberikan? (SOP)
+                    </FormLabel>
+                    <FormDescription className="text-xs text-slate-500 italic">
+                      Tune-up results depend on initial vehicle condition.
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+
+            <Button
+              type="submit"
+              className="w-full h-12 bg-linear-to-r from-teal-500 to-blue-600 hover:opacity-90 text-white font-bold transition-all shadow-lg shadow-teal-500/20"
+            >
+              Submit
+            </Button>
+          </form>
+        </Form>
+      </div>
+    </div>
+  );
+}

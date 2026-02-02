@@ -68,7 +68,7 @@ enum QuizTypes {
 enum EventType {
   M_RUN
   ETU
-  KLINIK_MESIN
+  M_CARE
   M_EXPO
   M_TALKS
 }
@@ -91,12 +91,12 @@ enum BloodType {
 enum Rhesus {
   POSITIVE
   NEGATIVE
+  NOT_KNOWN
 }
 
 enum KlinikActivity {
-  DONOR
+  DONATE_BLOOD
   EYE_CHECK
-  BOTH
 }
 
 enum Kategori {
@@ -166,26 +166,27 @@ model EventRegistration {
   nimITB          String?
   majorITB        String?
   sumberInfo      SourceInfo?
+  gender            Gender?
+
 
   // M-Talks Specific
-  activeSocial    String?
+  activeSocial        String?
   reasonToParticipate String?
   interestedTopic     String?
 
   // M-Care Specific
-  gender            Gender?
-  aktivitasKlinik   KlinikActivity? // Donor/Mata/Both
-  memenuhiSyarat  Boolean?     @default(false) // Consent Klinik
+  clinicActivity   KlinikActivity[] 
+  memenuhiSyarat    Boolean?     @default(false) // Consent Klinik
 
 // M-Run Specifics
-  age            Int?
+  age             Int?
   ktpUrl          String?
-  kategori        Kategori?      // 5K, 10K, etc
-  ukuranJersey    JerseySize?
+  category        Kategori?      // 5K, 10K, etc
+  jerseySize      JerseySize?
   isAlumniHMM     Boolean?     @default(false)
   isHMM           Boolean?     @default(false)
   nimHMM          String?      // Khusus verifikasi HMM
-  golonganDarah   BloodType?
+  bloodType   BloodType?
   rhesus          Rhesus?
   riwayatPenyakit Boolean?     @default(false)
   detailPenyakit  String?      // Kapan terakhir kambuh
