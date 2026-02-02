@@ -44,6 +44,7 @@ export const competitions: {
   submissionDeadline: Date | null;
   submissionDetails?: string;
   submissionContext?: string;
+  caseLink?: string;
   compOpenCase: Date | null;
   examOpen?: Date;
 }[] = [
@@ -134,13 +135,15 @@ export const competitions: {
     fee1: 200001, // Early Bird
     fee2: 250001, // Regular
     guideBook:
-      "https://drive.google.com/drive/folders/17ADXN7Iom5nPJXJHEw2oQZvRRvf9q4fP?usp=sharing",
+      "https://drive.google.com/drive/folders/1Thuhb-0Chb1_AFApqvzldrXVg1PweYMh?usp=drive_link",
     isOpen: true,
     icon: "Lock",
     uploadThingRoute: "submitFilePDC",
     submissionDeadline: getSubmissionDeadline("PDC"),
     submissionContext: "Submit your work before:",
     compOpenCase: getCompCaseDate("PDC"),
+    caseLink:
+      "https://drive.google.com/drive/folders/1Thuhb-0Chb1_AFApqvzldrXVg1PweYMh?usp=drive_link",
   },
   {
     title: "Science, Technology, Engineering, and Mathematics",

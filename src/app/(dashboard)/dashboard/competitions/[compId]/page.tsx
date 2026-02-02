@@ -231,6 +231,24 @@ async function FetchCompForm({
                   Guidebook
                 </LinkPreview>
               </Button>
+              {(competitions.find(
+                (competition) =>
+                  competition.abbreviation === comp.toUpperCase(),
+              )?.caseLink as string) && (
+                <Button asChild>
+                  <LinkPreview
+                    url={
+                      competitions.find(
+                        (competition) =>
+                          competition.abbreviation === comp.toUpperCase(),
+                      )?.caseLink as string
+                    }
+                    className="font-bold bg-transparent border-3 hover:bg-white/20"
+                  >
+                    Case
+                  </LinkPreview>
+                </Button>
+              )}
             </div>
             <p className="mt-3 text-destructive">
               <span className="font-medium">
