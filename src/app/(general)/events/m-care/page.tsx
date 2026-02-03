@@ -23,7 +23,7 @@ export default function MCare() {
           alt="mcareimage1"
           height={1388}
           width={925}
-          className="mx-auto w-full max-w-[925px] h-auto grayscale rounded-xl"
+          className="mx-auto w-full max-w-[925px] h-auto rounded-xl"
         />
 
         <div className="max-w-3xl mx-auto mt-8 text-center">
@@ -97,7 +97,7 @@ export default function MCare() {
             alt="image2"
             width={925}
             height={1388}
-            className="mx-auto w-full max-w-[925px] h-auto"
+            className="mx-auto w-full max-w-[925px] h-auto rounded-xl"
           />
         </div>
 
