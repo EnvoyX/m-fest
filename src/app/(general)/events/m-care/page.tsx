@@ -38,8 +38,8 @@ export default function MCare() {
           Donor Requirements
         </h1>
         <ul className="list-disc list-inside space-y-3 lg:space-y-5 text-lg md:text-xl lg:text-2xl pl-2 lg:pl-5 mb-8 lg:mb-12">
-          <li>18 years or older</li>
-          <li>Ideal body weight, minimum body weight of 50kg</li>
+          <li>18 tahun keatas</li>
+          <li>Berat badan ideal dengan minimum 50 kg</li>
           <li>
             Memiliki kondisi kesehatan yang baik / tidak sedang dalam pengobatan
           </li>
@@ -54,7 +54,7 @@ export default function MCare() {
           </li>
         </ul>
         <p className="text-lg lg:text-xl mb-8">
-          No requirement for those attending only the eye check-up
+          Tidak ada ketentuan bagi yang hanya mengikuti cek kesehatan mata
         </p>
         
       <div className="flex justify-center">
@@ -93,7 +93,7 @@ export default function MCare() {
         </h1>
         <div className="mt-8 lg:mt-16 mb-6">
           <Image
-            src="/mcareimg2.png"
+            src="/events/page/image.png"
             alt="image2"
             width={925}
             height={1388}
