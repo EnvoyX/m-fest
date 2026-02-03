@@ -74,6 +74,96 @@ export const ourFileRouter = {
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
     }),
 
+  uploadKTPorStudentCard: f({
+    image: {
+      maxFileSize: "4MB",
+      maxFileCount: 1,
+    },
+    "application/pdf": {
+      maxFileSize: "4MB",
+      maxFileCount: 1,
+    },
+  })
+    .input(
+      z.object({
+        targetUserId: z.string(),
+      }),
+    )
+    .middleware(async ({ input, req }) => {
+      const session = await auth.api.getSession({
+        headers: req.headers,
+      });
+      const user = await db.user.findUnique({
+        where: { id: input.targetUserId },
+      });
+      if (!session) {
+        console.log("Unauthorized user tried to upload");
+        throw new UploadThingError("Unauthorized");
+      }
+      if (!user) {
+        console.log("User not found");
+        throw new UploadThingError("User not found");
+      }
+      return {
+        userId: user?.id,
+        name: user?.name,
+        email: user?.email,
+      };
+    })
+    .onUploadComplete(async ({ metadata, file }) => {
+      return {
+        userId: metadata.userId,
+        name: metadata.name,
+        email: metadata.email,
+        fileUrl: file.ufsUrl,
+        fileKey: file.key,
+      };
+    }),
+  uploadPaymentProofUrl: f({
+    image: {
+      maxFileSize: "4MB",
+      maxFileCount: 1,
+    },
+    "application/pdf": {
+      maxFileSize: "4MB",
+      maxFileCount: 1,
+    },
+  })
+    .input(
+      z.object({
+        targetUserId: z.string(),
+      }),
+    )
+    .middleware(async ({ input, req }) => {
+      const session = await auth.api.getSession({
+        headers: req.headers,
+      });
+      const user = await db.user.findUnique({
+        where: { id: input.targetUserId },
+      });
+      if (!session) {
+        console.log("Unauthorized user tried to upload");
+        throw new UploadThingError("Unauthorized");
+      }
+      if (!user) {
+        console.log("User not found");
+        throw new UploadThingError("User not found");
+      }
+      return {
+        userId: user?.id,
+        name: user?.name,
+        email: user?.email,
+      };
+    })
+    .onUploadComplete(async ({ metadata, file }) => {
+      return {
+        userId: metadata.userId,
+        name: metadata.name,
+        email: metadata.email,
+        fileUrl: file.ufsUrl,
+        fileKey: file.key,
+      };
+    }),
   identityCard: f({
     image: {
       maxFileSize: "16MB",

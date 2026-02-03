@@ -1313,7 +1313,7 @@ export const EventRegistrationScalarFieldEnum = {
   isITB: 'isITB',
   nimITB: 'nimITB',
   majorITB: 'majorITB',
-  sumberInfo: 'sumberInfo',
+  sourceInfo: 'sourceInfo',
   gender: 'gender',
   activeSocial: 'activeSocial',
   reasonToParticipate: 'reasonToParticipate',

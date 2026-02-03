@@ -8,8 +8,10 @@ import {
 } from "lucide-react";
 import type { ForwardRefExoticComponent, RefAttributes } from "react";
 
+type EventId = "M-CARE" | "M-RUN" | "ETU" | "M-TALKS";
+
 export type Event = {
-  id: string;
+  id: EventId;
   title: string;
   desc: string;
   logo: ForwardRefExoticComponent<

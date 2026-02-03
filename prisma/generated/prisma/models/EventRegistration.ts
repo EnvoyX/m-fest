@@ -20,20 +20,8 @@ export type EventRegistrationModel = runtime.Types.Result.DefaultSelection<Prism
 
 export type AggregateEventRegistration = {
   _count: EventRegistrationCountAggregateOutputType | null
-  _avg: EventRegistrationAvgAggregateOutputType | null
-  _sum: EventRegistrationSumAggregateOutputType | null
   _min: EventRegistrationMinAggregateOutputType | null
   _max: EventRegistrationMaxAggregateOutputType | null
-}
-
-export type EventRegistrationAvgAggregateOutputType = {
-  age: number | null
-  tahunBuat: number | null
-}
-
-export type EventRegistrationSumAggregateOutputType = {
-  age: number | null
-  tahunBuat: number | null
 }
 
 export type EventRegistrationMinAggregateOutputType = {
@@ -51,13 +39,13 @@ export type EventRegistrationMinAggregateOutputType = {
   isITB: boolean | null
   nimITB: string | null
   majorITB: string | null
-  sumberInfo: $Enums.SourceInfo | null
+  sourceInfo: $Enums.SourceInfo | null
   gender: $Enums.Gender | null
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
   memenuhiSyarat: boolean | null
-  age: number | null
+  age: string | null
   ktpUrl: string | null
   category: $Enums.Kategori | null
   jerseySize: $Enums.JerseySize | null
@@ -73,7 +61,7 @@ export type EventRegistrationMinAggregateOutputType = {
   siapLomba: boolean | null
   buktiBayarUrl: string | null
   merekKendaraan: string | null
-  tahunBuat: number | null
+  tahunBuat: string | null
   platNomor: string | null
   lastServiceDate: string | null
   nimOrNip: string | null
@@ -95,13 +83,13 @@ export type EventRegistrationMaxAggregateOutputType = {
   isITB: boolean | null
   nimITB: string | null
   majorITB: string | null
-  sumberInfo: $Enums.SourceInfo | null
+  sourceInfo: $Enums.SourceInfo | null
   gender: $Enums.Gender | null
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
   memenuhiSyarat: boolean | null
-  age: number | null
+  age: string | null
   ktpUrl: string | null
   category: $Enums.Kategori | null
   jerseySize: $Enums.JerseySize | null
@@ -117,7 +105,7 @@ export type EventRegistrationMaxAggregateOutputType = {
   siapLomba: boolean | null
   buktiBayarUrl: string | null
   merekKendaraan: string | null
-  tahunBuat: number | null
+  tahunBuat: string | null
   platNomor: string | null
   lastServiceDate: string | null
   nimOrNip: string | null
@@ -139,7 +127,7 @@ export type EventRegistrationCountAggregateOutputType = {
   isITB: number
   nimITB: number
   majorITB: number
-  sumberInfo: number
+  sourceInfo: number
   gender: number
   activeSocial: number
   reasonToParticipate: number
@@ -171,16 +159,6 @@ export type EventRegistrationCountAggregateOutputType = {
 }
 
 
-export type EventRegistrationAvgAggregateInputType = {
-  age?: true
-  tahunBuat?: true
-}
-
-export type EventRegistrationSumAggregateInputType = {
-  age?: true
-  tahunBuat?: true
-}
-
 export type EventRegistrationMinAggregateInputType = {
   id?: true
   createdAt?: true
@@ -196,7 +174,7 @@ export type EventRegistrationMinAggregateInputType = {
   isITB?: true
   nimITB?: true
   majorITB?: true
-  sumberInfo?: true
+  sourceInfo?: true
   gender?: true
   activeSocial?: true
   reasonToParticipate?: true
@@ -240,7 +218,7 @@ export type EventRegistrationMaxAggregateInputType = {
   isITB?: true
   nimITB?: true
   majorITB?: true
-  sumberInfo?: true
+  sourceInfo?: true
   gender?: true
   activeSocial?: true
   reasonToParticipate?: true
@@ -284,7 +262,7 @@ export type EventRegistrationCountAggregateInputType = {
   isITB?: true
   nimITB?: true
   majorITB?: true
-  sumberInfo?: true
+  sourceInfo?: true
   gender?: true
   activeSocial?: true
   reasonToParticipate?: true
@@ -353,18 +331,6 @@ export type EventRegistrationAggregateArgs<ExtArgs extends runtime.Types.Extensi
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: EventRegistrationAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: EventRegistrationSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: EventRegistrationMinAggregateInputType
@@ -395,8 +361,6 @@ export type EventRegistrationGroupByArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   _count?: EventRegistrationCountAggregateInputType | true
-  _avg?: EventRegistrationAvgAggregateInputType
-  _sum?: EventRegistrationSumAggregateInputType
   _min?: EventRegistrationMinAggregateInputType
   _max?: EventRegistrationMaxAggregateInputType
 }
@@ -416,14 +380,14 @@ export type EventRegistrationGroupByOutputType = {
   isITB: boolean | null
   nimITB: string | null
   majorITB: string | null
-  sumberInfo: $Enums.SourceInfo | null
+  sourceInfo: $Enums.SourceInfo | null
   gender: $Enums.Gender | null
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
   clinicActivity: $Enums.KlinikActivity[]
   memenuhiSyarat: boolean | null
-  age: number | null
+  age: string | null
   ktpUrl: string | null
   category: $Enums.Kategori | null
   jerseySize: $Enums.JerseySize | null
@@ -439,14 +403,12 @@ export type EventRegistrationGroupByOutputType = {
   siapLomba: boolean | null
   buktiBayarUrl: string | null
   merekKendaraan: string | null
-  tahunBuat: number | null
+  tahunBuat: string | null
   platNomor: string | null
   lastServiceDate: string | null
   nimOrNip: string | null
   isSopCompliant: boolean | null
   _count: EventRegistrationCountAggregateOutputType | null
-  _avg: EventRegistrationAvgAggregateOutputType | null
-  _sum: EventRegistrationSumAggregateOutputType | null
   _min: EventRegistrationMinAggregateOutputType | null
   _max: EventRegistrationMaxAggregateOutputType | null
 }
@@ -484,14 +446,14 @@ export type EventRegistrationWhereInput = {
   isITB?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   nimITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   majorITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
-  sumberInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableFilter<"EventRegistration"> | $Enums.Gender | null
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   clinicActivity?: Prisma.EnumKlinikActivityNullableListFilter<"EventRegistration">
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
-  age?: Prisma.IntNullableFilter<"EventRegistration"> | number | null
+  age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableFilter<"EventRegistration"> | $Enums.JerseySize | null
@@ -507,7 +469,7 @@ export type EventRegistrationWhereInput = {
   siapLomba?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   buktiBayarUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   merekKendaraan?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
-  tahunBuat?: Prisma.IntNullableFilter<"EventRegistration"> | number | null
+  tahunBuat?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   lastServiceDate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   nimOrNip?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -530,7 +492,7 @@ export type EventRegistrationOrderByWithRelationInput = {
   isITB?: Prisma.SortOrderInput | Prisma.SortOrder
   nimITB?: Prisma.SortOrderInput | Prisma.SortOrder
   majorITB?: Prisma.SortOrderInput | Prisma.SortOrder
-  sumberInfo?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceInfo?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   activeSocial?: Prisma.SortOrderInput | Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -579,14 +541,14 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   isITB?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   nimITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   majorITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
-  sumberInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableFilter<"EventRegistration"> | $Enums.Gender | null
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   clinicActivity?: Prisma.EnumKlinikActivityNullableListFilter<"EventRegistration">
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
-  age?: Prisma.IntNullableFilter<"EventRegistration"> | number | null
+  age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableFilter<"EventRegistration"> | $Enums.JerseySize | null
@@ -602,7 +564,7 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   siapLomba?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   buktiBayarUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   merekKendaraan?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
-  tahunBuat?: Prisma.IntNullableFilter<"EventRegistration"> | number | null
+  tahunBuat?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   lastServiceDate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   nimOrNip?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -625,7 +587,7 @@ export type EventRegistrationOrderByWithAggregationInput = {
   isITB?: Prisma.SortOrderInput | Prisma.SortOrder
   nimITB?: Prisma.SortOrderInput | Prisma.SortOrder
   majorITB?: Prisma.SortOrderInput | Prisma.SortOrder
-  sumberInfo?: Prisma.SortOrderInput | Prisma.SortOrder
+  sourceInfo?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   activeSocial?: Prisma.SortOrderInput | Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -654,10 +616,8 @@ export type EventRegistrationOrderByWithAggregationInput = {
   nimOrNip?: Prisma.SortOrderInput | Prisma.SortOrder
   isSopCompliant?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EventRegistrationCountOrderByAggregateInput
-  _avg?: Prisma.EventRegistrationAvgOrderByAggregateInput
   _max?: Prisma.EventRegistrationMaxOrderByAggregateInput
   _min?: Prisma.EventRegistrationMinOrderByAggregateInput
-  _sum?: Prisma.EventRegistrationSumOrderByAggregateInput
 }
 
 export type EventRegistrationScalarWhereWithAggregatesInput = {
@@ -678,14 +638,14 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   isITB?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   nimITB?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   majorITB?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
-  sumberInfo?: Prisma.EnumSourceInfoNullableWithAggregatesFilter<"EventRegistration"> | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.EnumSourceInfoNullableWithAggregatesFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"EventRegistration"> | $Enums.Gender | null
   activeSocial?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   clinicActivity?: Prisma.EnumKlinikActivityNullableListFilter<"EventRegistration">
   memenuhiSyarat?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
-  age?: Prisma.IntNullableWithAggregatesFilter<"EventRegistration"> | number | null
+  age?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableWithAggregatesFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableWithAggregatesFilter<"EventRegistration"> | $Enums.JerseySize | null
@@ -701,7 +661,7 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   siapLomba?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   buktiBayarUrl?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   merekKendaraan?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
-  tahunBuat?: Prisma.IntNullableWithAggregatesFilter<"EventRegistration"> | number | null
+  tahunBuat?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   lastServiceDate?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   nimOrNip?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
@@ -722,14 +682,14 @@ export type EventRegistrationCreateInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
-  sumberInfo?: $Enums.SourceInfo | null
+  sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
   clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: boolean | null
-  age?: number | null
+  age?: string | null
   ktpUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -745,7 +705,7 @@ export type EventRegistrationCreateInput = {
   siapLomba?: boolean | null
   buktiBayarUrl?: string | null
   merekKendaraan?: string | null
-  tahunBuat?: number | null
+  tahunBuat?: string | null
   platNomor?: string | null
   lastServiceDate?: string | null
   nimOrNip?: string | null
@@ -768,14 +728,14 @@ export type EventRegistrationUncheckedCreateInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
-  sumberInfo?: $Enums.SourceInfo | null
+  sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
   clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: boolean | null
-  age?: number | null
+  age?: string | null
   ktpUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -791,7 +751,7 @@ export type EventRegistrationUncheckedCreateInput = {
   siapLomba?: boolean | null
   buktiBayarUrl?: string | null
   merekKendaraan?: string | null
-  tahunBuat?: number | null
+  tahunBuat?: string | null
   platNomor?: string | null
   lastServiceDate?: string | null
   nimOrNip?: string | null
@@ -812,14 +772,14 @@ export type EventRegistrationUpdateInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sumberInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -835,7 +795,7 @@ export type EventRegistrationUpdateInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tahunBuat?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -858,14 +818,14 @@ export type EventRegistrationUncheckedUpdateInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sumberInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -881,7 +841,7 @@ export type EventRegistrationUncheckedUpdateInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tahunBuat?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -903,14 +863,14 @@ export type EventRegistrationCreateManyInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
-  sumberInfo?: $Enums.SourceInfo | null
+  sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
   clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: boolean | null
-  age?: number | null
+  age?: string | null
   ktpUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -926,7 +886,7 @@ export type EventRegistrationCreateManyInput = {
   siapLomba?: boolean | null
   buktiBayarUrl?: string | null
   merekKendaraan?: string | null
-  tahunBuat?: number | null
+  tahunBuat?: string | null
   platNomor?: string | null
   lastServiceDate?: string | null
   nimOrNip?: string | null
@@ -947,14 +907,14 @@ export type EventRegistrationUpdateManyMutationInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sumberInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -970,7 +930,7 @@ export type EventRegistrationUpdateManyMutationInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tahunBuat?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -992,14 +952,14 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sumberInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -1015,7 +975,7 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tahunBuat?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1045,7 +1005,7 @@ export type EventRegistrationCountOrderByAggregateInput = {
   isITB?: Prisma.SortOrder
   nimITB?: Prisma.SortOrder
   majorITB?: Prisma.SortOrder
-  sumberInfo?: Prisma.SortOrder
+  sourceInfo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
@@ -1075,11 +1035,6 @@ export type EventRegistrationCountOrderByAggregateInput = {
   isSopCompliant?: Prisma.SortOrder
 }
 
-export type EventRegistrationAvgOrderByAggregateInput = {
-  age?: Prisma.SortOrder
-  tahunBuat?: Prisma.SortOrder
-}
-
 export type EventRegistrationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1095,7 +1050,7 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   isITB?: Prisma.SortOrder
   nimITB?: Prisma.SortOrder
   majorITB?: Prisma.SortOrder
-  sumberInfo?: Prisma.SortOrder
+  sourceInfo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
@@ -1139,7 +1094,7 @@ export type EventRegistrationMinOrderByAggregateInput = {
   isITB?: Prisma.SortOrder
   nimITB?: Prisma.SortOrder
   majorITB?: Prisma.SortOrder
-  sumberInfo?: Prisma.SortOrder
+  sourceInfo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
@@ -1166,11 +1121,6 @@ export type EventRegistrationMinOrderByAggregateInput = {
   lastServiceDate?: Prisma.SortOrder
   nimOrNip?: Prisma.SortOrder
   isSopCompliant?: Prisma.SortOrder
-}
-
-export type EventRegistrationSumOrderByAggregateInput = {
-  age?: Prisma.SortOrder
-  tahunBuat?: Prisma.SortOrder
 }
 
 export type EventRegistrationListRelationFilter = {
@@ -1206,14 +1156,6 @@ export type NullableEnumGenderFieldUpdateOperationsInput = {
 export type EventRegistrationUpdateclinicActivityInput = {
   set?: $Enums.KlinikActivity[]
   push?: $Enums.KlinikActivity | $Enums.KlinikActivity[]
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type NullableEnumKategoriFieldUpdateOperationsInput = {
@@ -1288,14 +1230,14 @@ export type EventRegistrationCreateWithoutUserInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
-  sumberInfo?: $Enums.SourceInfo | null
+  sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
   clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: boolean | null
-  age?: number | null
+  age?: string | null
   ktpUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -1311,7 +1253,7 @@ export type EventRegistrationCreateWithoutUserInput = {
   siapLomba?: boolean | null
   buktiBayarUrl?: string | null
   merekKendaraan?: string | null
-  tahunBuat?: number | null
+  tahunBuat?: string | null
   platNomor?: string | null
   lastServiceDate?: string | null
   nimOrNip?: string | null
@@ -1332,14 +1274,14 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
-  sumberInfo?: $Enums.SourceInfo | null
+  sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
   clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: boolean | null
-  age?: number | null
+  age?: string | null
   ktpUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -1355,7 +1297,7 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   siapLomba?: boolean | null
   buktiBayarUrl?: string | null
   merekKendaraan?: string | null
-  tahunBuat?: number | null
+  tahunBuat?: string | null
   platNomor?: string | null
   lastServiceDate?: string | null
   nimOrNip?: string | null
@@ -1406,14 +1348,14 @@ export type EventRegistrationScalarWhereInput = {
   isITB?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   nimITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   majorITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
-  sumberInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableFilter<"EventRegistration"> | $Enums.Gender | null
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   clinicActivity?: Prisma.EnumKlinikActivityNullableListFilter<"EventRegistration">
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
-  age?: Prisma.IntNullableFilter<"EventRegistration"> | number | null
+  age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableFilter<"EventRegistration"> | $Enums.JerseySize | null
@@ -1429,7 +1371,7 @@ export type EventRegistrationScalarWhereInput = {
   siapLomba?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   buktiBayarUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   merekKendaraan?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
-  tahunBuat?: Prisma.IntNullableFilter<"EventRegistration"> | number | null
+  tahunBuat?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   lastServiceDate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   nimOrNip?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -1450,14 +1392,14 @@ export type EventRegistrationCreateManyUserInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
-  sumberInfo?: $Enums.SourceInfo | null
+  sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
   clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: boolean | null
-  age?: number | null
+  age?: string | null
   ktpUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -1473,7 +1415,7 @@ export type EventRegistrationCreateManyUserInput = {
   siapLomba?: boolean | null
   buktiBayarUrl?: string | null
   merekKendaraan?: string | null
-  tahunBuat?: number | null
+  tahunBuat?: string | null
   platNomor?: string | null
   lastServiceDate?: string | null
   nimOrNip?: string | null
@@ -1494,14 +1436,14 @@ export type EventRegistrationUpdateWithoutUserInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sumberInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -1517,7 +1459,7 @@ export type EventRegistrationUpdateWithoutUserInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tahunBuat?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1538,14 +1480,14 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sumberInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -1561,7 +1503,7 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tahunBuat?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1582,14 +1524,14 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sumberInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
+  sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -1605,7 +1547,7 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tahunBuat?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1629,7 +1571,7 @@ export type EventRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Int
   isITB?: boolean
   nimITB?: boolean
   majorITB?: boolean
-  sumberInfo?: boolean
+  sourceInfo?: boolean
   gender?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
@@ -1675,7 +1617,7 @@ export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   isITB?: boolean
   nimITB?: boolean
   majorITB?: boolean
-  sumberInfo?: boolean
+  sourceInfo?: boolean
   gender?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
@@ -1721,7 +1663,7 @@ export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   isITB?: boolean
   nimITB?: boolean
   majorITB?: boolean
-  sumberInfo?: boolean
+  sourceInfo?: boolean
   gender?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
@@ -1767,7 +1709,7 @@ export type EventRegistrationSelectScalar = {
   isITB?: boolean
   nimITB?: boolean
   majorITB?: boolean
-  sumberInfo?: boolean
+  sourceInfo?: boolean
   gender?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
@@ -1797,7 +1739,7 @@ export type EventRegistrationSelectScalar = {
   isSopCompliant?: boolean
 }
 
-export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sumberInfo" | "gender" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "buktiBayarUrl" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant", ExtArgs["result"]["eventRegistration"]>
+export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "buktiBayarUrl" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant", ExtArgs["result"]["eventRegistration"]>
 export type EventRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -1828,14 +1770,14 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     isITB: boolean | null
     nimITB: string | null
     majorITB: string | null
-    sumberInfo: $Enums.SourceInfo | null
+    sourceInfo: $Enums.SourceInfo | null
     gender: $Enums.Gender | null
     activeSocial: string | null
     reasonToParticipate: string | null
     interestedTopic: string | null
     clinicActivity: $Enums.KlinikActivity[]
     memenuhiSyarat: boolean | null
-    age: number | null
+    age: string | null
     ktpUrl: string | null
     category: $Enums.Kategori | null
     jerseySize: $Enums.JerseySize | null
@@ -1851,7 +1793,7 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     siapLomba: boolean | null
     buktiBayarUrl: string | null
     merekKendaraan: string | null
-    tahunBuat: number | null
+    tahunBuat: string | null
     platNomor: string | null
     lastServiceDate: string | null
     nimOrNip: string | null
@@ -2294,14 +2236,14 @@ export interface EventRegistrationFieldRefs {
   readonly isITB: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly nimITB: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly majorITB: Prisma.FieldRef<"EventRegistration", 'String'>
-  readonly sumberInfo: Prisma.FieldRef<"EventRegistration", 'SourceInfo'>
+  readonly sourceInfo: Prisma.FieldRef<"EventRegistration", 'SourceInfo'>
   readonly gender: Prisma.FieldRef<"EventRegistration", 'Gender'>
   readonly activeSocial: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly reasonToParticipate: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly interestedTopic: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly clinicActivity: Prisma.FieldRef<"EventRegistration", 'KlinikActivity[]'>
   readonly memenuhiSyarat: Prisma.FieldRef<"EventRegistration", 'Boolean'>
-  readonly age: Prisma.FieldRef<"EventRegistration", 'Int'>
+  readonly age: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly ktpUrl: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly category: Prisma.FieldRef<"EventRegistration", 'Kategori'>
   readonly jerseySize: Prisma.FieldRef<"EventRegistration", 'JerseySize'>
@@ -2317,7 +2259,7 @@ export interface EventRegistrationFieldRefs {
   readonly siapLomba: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly buktiBayarUrl: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly merekKendaraan: Prisma.FieldRef<"EventRegistration", 'String'>
-  readonly tahunBuat: Prisma.FieldRef<"EventRegistration", 'Int'>
+  readonly tahunBuat: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly platNomor: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly lastServiceDate: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly nimOrNip: Prisma.FieldRef<"EventRegistration", 'String'>

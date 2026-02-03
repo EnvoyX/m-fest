@@ -214,6 +214,9 @@ export type Document = {
 };
 
 export type UploadThingRoute = "identityCard" | "twibbon" | "followIg";
+export type UploadThingEventRoute =
+  | "uploadKTPorStudentCard"
+  | "uploadPaymentProofUrl";
 export type UploadDocumentProps = {
   isLoading: boolean;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -226,6 +229,39 @@ export type UploadDocumentProps = {
     identityCard: string;
     twibbon: string;
     followIg: string;
+  }>;
+  userId: string;
+};
+
+export type UploadEventProps = {
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  id: number;
+  title: string;
+  uploadThingRoute: UploadThingEventRoute;
+  setValue: UseFormSetValue<{
+    participantName: string;
+    gender: "Male" | "Female";
+    age: string;
+    phoneNumber: string;
+    activeEmail: string;
+    fullAddress: string;
+    emergencyContact: string;
+    emergencyContactName: string;
+    category: "UMUM" | "MAHASISWA";
+    jerseySize: "S" | "M" | "L" | "XL" | "XXL";
+    bloodType: "A" | "B" | "AB" | "O";
+    rhesus: "POSITIVE" | "NEGATIVE" | "NOT_KNOWN";
+    siapLomba: boolean;
+    ktpUrl: string;
+    buktiBayarUrl: string;
+    isAlumniHMM?: boolean | undefined;
+    isHMM?: boolean | undefined;
+    nimHMM?: string | undefined;
+    riwayatPenyakit?: boolean | undefined;
+    detailPenyakit?: string | undefined;
+    alergi?: boolean | undefined;
+    detailAlergi?: string | undefined;
   }>;
   userId: string;
 };

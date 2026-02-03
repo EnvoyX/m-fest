@@ -218,3 +218,17 @@ export const mRunSchema = z
   });
 
 export type mRunSchema = z.infer<typeof mRunSchema>;
+
+export const eventsInputProcedureSchema = z.discriminatedUnion(
+  "registrationType",
+  [
+    mCareSchema.extend({ registrationType: z.literal("M-CARE") }),
+    mTalksSchema.extend({ registrationType: z.literal("M-TALKS") }),
+    etuSchema.extend({ registrationType: z.literal("ETU") }),
+    mRunSchema.extend({ registrationType: z.literal("M-RUN") }),
+  ],
+);
+
+export type eventsInputProcedureSchema = z.infer<
+  typeof eventsInputProcedureSchema
+>;

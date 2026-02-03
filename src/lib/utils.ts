@@ -4,7 +4,7 @@ import { competitions } from "./competition";
 import { CompetitionName } from "../../prisma/generated/prisma/enums";
 import { isWithinInterval } from "date-fns";
 import { fromZonedTime } from "date-fns-tz";
-import { eventsList } from "./eventDashboard";
+import { eventsList, type Event } from "./eventDashboard";
 
 const WIB_TZ = "Asia/Jakarta";
 
@@ -128,4 +128,12 @@ export function getMRUNBatchInfo(currentDate: Date) {
     startRegDate: mRunInfo?.Batch2StartRegDate,
     endRegDate: mRunInfo?.Batch2EndRegDate,
   };
+}
+
+export function isEventOpen(event: Event, now: Date) {
+  if (!event.startRegDate1 || !event.endRegDate1) return false;
+  return isWithinInterval(now, {
+    start: event.startRegDate1,
+    end: event.endRegDate1,
+  });
 }

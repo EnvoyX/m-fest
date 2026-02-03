@@ -148,6 +148,7 @@ model CompRegistration {
 }
 
 model EventRegistration {
+  // Mandatory Fields
   id              String   @id @default(cuid())
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -165,7 +166,7 @@ model EventRegistration {
   isITB           Boolean?     @default(false)
   nimITB          String?
   majorITB        String?
-  sumberInfo      SourceInfo?
+  sourceInfo      SourceInfo?
   gender            Gender?
 
 
@@ -179,7 +180,7 @@ model EventRegistration {
   memenuhiSyarat    Boolean?     @default(false) // Consent Klinik
 
 // M-Run Specifics
-  age             Int?
+  age             String?
   ktpUrl          String?
   category        Kategori?      // 5K, 10K, etc
   jerseySize      JerseySize?
@@ -197,7 +198,7 @@ model EventRegistration {
 
   // ETU speficfics
   merekKendaraan  String?
-  tahunBuat       Int?
+  tahunBuat       String?
   platNomor       String?
   lastServiceDate String?
   nimOrNip        String?      // Buat ETU / Mexpo
@@ -207,6 +208,7 @@ model EventRegistration {
 
   @@index([userId])
   @@index([eventType])
+  @@map("event_registration")
 }
 
 model User {

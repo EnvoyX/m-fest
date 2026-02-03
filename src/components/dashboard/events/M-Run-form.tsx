@@ -26,12 +26,19 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { mRunSchema } from "@/lib/event-schema";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useEffect, useRef } from "react";
-import { validateToken } from "better-auth";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { getCurrentDate, getMRUNBatchInfo } from "@/lib/utils";
+import UploadEventDialog from "./UploadEventDialog";
+import { authClient } from "@/lib/auth-client";
+import { useTRPC } from "@/utils/trpc";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 export default function MRunForm() {
   const currentDate = getCurrentDate();
+  const session = authClient.useSession();
   const batchInfo = getMRUNBatchInfo(currentDate);
   const form = useForm<mRunSchema>({
     resolver: zodResolver(mRunSchema),
@@ -53,7 +60,47 @@ export default function MRunForm() {
     hasInitialized.current = true;
   });
 
-  const onSubmit = (data: mRunSchema) => console.log(data);
+  const trpc = useTRPC();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const registerEvent = useMutation({
+    ...trpc.event.registerEvent.mutationOptions(),
+    onMutate: (data) => {
+      setIsLoading(true);
+      console.log("Registering event...", data);
+      toast.loading("Registering event...", {
+        id: "registering-event",
+      });
+    },
+    onSuccess: () => {
+      setIsLoading(false);
+      toast.dismiss("registering-event");
+      toast.success("Event registered");
+    },
+    onError: (error, variables) => {
+      setIsLoading(false);
+      toast.dismiss("registering-event");
+      toast.error("Failed to register event", {
+        description: error.message,
+      });
+    },
+    onSettled: () => {
+      console.log(`Registered event M-Run`);
+      // startTransition(() => {
+      //   router.push("/dashboard/events");
+      // });
+    },
+  });
+
+  const onSubmit = (data: mRunSchema) => {
+    console.log("Form Submitted: ", data);
+    registerEvent.mutate({
+      registrationType: "M-RUN",
+      ...data,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-transparent backdrop-glass-lg flex items-center justify-center p-4 py-16">
@@ -399,7 +446,7 @@ export default function MRunForm() {
                 </span>
               </h3>
 
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <FormField
                   control={form.control}
                   name="bloodType"
@@ -562,10 +609,20 @@ export default function MRunForm() {
                     <FormLabel className="text-slate-300">
                       Link Foto KTP
                     </FormLabel>
+                    <UploadEventDialog
+                      id={1}
+                      userId={session.data?.user.id as string}
+                      title="KTP/Kartu Pelajar"
+                      isLoading={isLoading}
+                      setIsLoading={setIsLoading}
+                      uploadThingRoute="uploadKTPorStudentCard"
+                      setValue={form.setValue}
+                    />
                     <FormControl>
                       <Input
-                        placeholder="Put your KTP link here"
                         {...field}
+                        disabled
+                        readOnly
                         className="bg-white/5 border-white/10 text-white"
                       />
                     </FormControl>
@@ -584,10 +641,20 @@ export default function MRunForm() {
                     <FormLabel className="text-slate-300">
                       Link Bukti Pembayaran
                     </FormLabel>
+                    <UploadEventDialog
+                      id={2}
+                      userId={session.data?.user.id as string}
+                      title="Bukti Pembayaran"
+                      isLoading={isLoading}
+                      setIsLoading={setIsLoading}
+                      uploadThingRoute="uploadPaymentProofUrl"
+                      setValue={form.setValue}
+                    />
                     <FormControl>
                       <Input
-                        placeholder="Put your payment receipt link here"
                         {...field}
+                        disabled
+                        readOnly
                         className="bg-white/5 border-white/10 text-white"
                       />
                     </FormControl>
@@ -628,9 +695,14 @@ export default function MRunForm() {
             )}
             <Button
               type="submit"
+              disabled={isLoading || form.formState.isSubmitting || isPending}
               className="w-full h-12 bg-linear-to-r from-teal-500 to-blue-600 hover:opacity-90 text-white font-bold transition-all shadow-lg shadow-teal-500/20"
             >
-              Submit
+              {isLoading || form.formState.isSubmitting || isPending ? (
+                <Loader2 className="animate-spin size-6" />
+              ) : (
+                "Register"
+              )}
             </Button>
           </form>
         </Form>

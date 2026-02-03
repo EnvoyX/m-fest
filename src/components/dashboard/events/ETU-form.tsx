@@ -24,7 +24,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { etuSchema } from "@/lib/event-schema";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
+import { useTRPC } from "@/utils/trpc";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 export default function EtuForm() {
   const form = useForm<etuSchema>({
@@ -46,7 +51,47 @@ export default function EtuForm() {
     hasInitialized.current = true;
   });
 
-  const onSubmit = (data: etuSchema) => console.log(data);
+  const trpc = useTRPC();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const registerEvent = useMutation({
+    ...trpc.event.registerEvent.mutationOptions(),
+    onMutate: (data) => {
+      setIsLoading(true);
+      console.log("Registering event...", data);
+      toast.loading("Registering event...", {
+        id: "registering-event",
+      });
+    },
+    onSuccess: () => {
+      setIsLoading(false);
+      toast.dismiss("registering-event");
+      toast.success("Event registered");
+    },
+    onError: (error, variables) => {
+      setIsLoading(false);
+      toast.dismiss("registering-event");
+      toast.error("Failed to register event", {
+        description: error.message,
+      });
+    },
+    onSettled: () => {
+      // console.log(`Registered event ETU`);
+      startTransition(() => {
+        router.push("/dashboard/events");
+      });
+    },
+  });
+
+  const onSubmit = (data: etuSchema) => {
+    // console.log("Form Submitted: ", data);
+    registerEvent.mutate({
+      registrationType: "ETU",
+      ...data,
+    });
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 py-12 ">
@@ -299,9 +344,14 @@ export default function EtuForm() {
 
             <Button
               type="submit"
+              disabled={isLoading || form.formState.isSubmitting || isPending}
               className="w-full h-12 bg-linear-to-r from-teal-500 to-blue-600 hover:opacity-90 text-white font-bold transition-all shadow-lg shadow-teal-500/20"
             >
-              Submit
+              {isLoading || form.formState.isSubmitting || isPending ? (
+                <Loader2 className="animate-spin size-6" />
+              ) : (
+                "Register"
+              )}
             </Button>
           </form>
         </Form>
