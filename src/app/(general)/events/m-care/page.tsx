@@ -14,7 +14,7 @@ export default function MCare() {
   return (
     <div className="w-full overflow-x-hidden">
       <div className="pt-20 py-12 lg:py-16 w-full px-4">
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold text-center pb-8 lg:pb-16">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold text-center pb-8 lg:pb-16 lg:pt-10">
           Klinik Mesin
         </h1>
         <Image
@@ -27,7 +27,7 @@ export default function MCare() {
 
         <div className="max-w-3xl mx-auto mt-8 text-center">
           <h1 className="text-lg lg:text-xl">
-            One of our event consisting free eye check-up and blood donation
+            Salah satu event kami yang berisi cek kesehatan mata dan donor darah
           </h1>
         </div>
       </div>
@@ -37,7 +37,7 @@ export default function MCare() {
         id="syarat-ketentuan"
       >
         <h1 className="font-semibold text-3xl md:text-4xl lg:text-5xl mb-8 lg:mb-12">
-          Donor Requirements
+          Syarat Donor
         </h1>
         <ul className="list-disc list-inside space-y-3 lg:space-y-5 text-lg md:text-xl lg:text-2xl pl-2 lg:pl-5 mb-8 lg:mb-12">
           <li>18 tahun keatas</li>
@@ -117,16 +117,48 @@ export default function MCare() {
           </div>
         </div>
 
-        <div className="py-12 lg:py-16 px-4">
+      <div className="py-12 lg:py-16 px-4">
+        <Image
+          src="/timelinemcare.png"
+          alt="M-Care Timeline"
+          height={900}
+          width={770}
+          className="mx-auto w-full max-w-[770px] h-auto object-contain"
+        />
+      </div>
+
+      <section className="pb-5">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold text-center pb-8 lg:pb-16">
+          Our Collaborators
+        </h1>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-4 max-w-6xl mx-auto">
           <Image
-            src="/mcaretimeline.png"
-            alt="M-Care Timeline"
-            height={900}
-            width={770}
-            className="mx-auto w-full max-w-[770px] h-auto object-contain"
+            src="/events/page/logo_rshs.png"
+            alt="logo rshs"
+            height={469 / 2}
+            width={1602 / 2}
+            className="h-auto w-auto max-h-24 object-contain"
+            unoptimized
+          />
+          <Image
+            src="/events/page/logo_sosmas.png"
+            alt="logo sosmas"
+            height={469 / 2}
+            width={489 / 2}
+            className="h-auto w-auto max-h-24 object-contain"
+            unoptimized
+          />
+          <Image
+            src="/events/page/logo_bec.png"
+            alt="logo bec"
+            height={469 / 2}
+            width={1826 / 2}
+            className="h-auto w-auto max-h-24 object-contain"
+            unoptimized
           />
         </div>
-      </div>
+      </section>
     </div>
+  </div>
   );
 }
