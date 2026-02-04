@@ -44,6 +44,7 @@ export type EventRegistrationMinAggregateOutputType = {
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
+  clinicActivity: $Enums.KlinikActivity | null
   memenuhiSyarat: boolean | null
   age: string | null
   ktpUrl: string | null
@@ -88,6 +89,7 @@ export type EventRegistrationMaxAggregateOutputType = {
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
+  clinicActivity: $Enums.KlinikActivity | null
   memenuhiSyarat: boolean | null
   age: string | null
   ktpUrl: string | null
@@ -179,6 +181,7 @@ export type EventRegistrationMinAggregateInputType = {
   activeSocial?: true
   reasonToParticipate?: true
   interestedTopic?: true
+  clinicActivity?: true
   memenuhiSyarat?: true
   age?: true
   ktpUrl?: true
@@ -223,6 +226,7 @@ export type EventRegistrationMaxAggregateInputType = {
   activeSocial?: true
   reasonToParticipate?: true
   interestedTopic?: true
+  clinicActivity?: true
   memenuhiSyarat?: true
   age?: true
   ktpUrl?: true
@@ -385,7 +389,7 @@ export type EventRegistrationGroupByOutputType = {
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
-  clinicActivity: $Enums.KlinikActivity[]
+  clinicActivity: $Enums.KlinikActivity | null
   memenuhiSyarat: boolean | null
   age: string | null
   ktpUrl: string | null
@@ -451,7 +455,7 @@ export type EventRegistrationWhereInput = {
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
-  clinicActivity?: Prisma.EnumKlinikActivityNullableListFilter<"EventRegistration">
+  clinicActivity?: Prisma.EnumKlinikActivityNullableFilter<"EventRegistration"> | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -497,7 +501,7 @@ export type EventRegistrationOrderByWithRelationInput = {
   activeSocial?: Prisma.SortOrderInput | Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrderInput | Prisma.SortOrder
   interestedTopic?: Prisma.SortOrderInput | Prisma.SortOrder
-  clinicActivity?: Prisma.SortOrder
+  clinicActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   memenuhiSyarat?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   ktpUrl?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -546,7 +550,7 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
-  clinicActivity?: Prisma.EnumKlinikActivityNullableListFilter<"EventRegistration">
+  clinicActivity?: Prisma.EnumKlinikActivityNullableFilter<"EventRegistration"> | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -592,7 +596,7 @@ export type EventRegistrationOrderByWithAggregationInput = {
   activeSocial?: Prisma.SortOrderInput | Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrderInput | Prisma.SortOrder
   interestedTopic?: Prisma.SortOrderInput | Prisma.SortOrder
-  clinicActivity?: Prisma.SortOrder
+  clinicActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   memenuhiSyarat?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   ktpUrl?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -643,7 +647,7 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   activeSocial?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
-  clinicActivity?: Prisma.EnumKlinikActivityNullableListFilter<"EventRegistration">
+  clinicActivity?: Prisma.EnumKlinikActivityNullableWithAggregatesFilter<"EventRegistration"> | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
@@ -687,7 +691,7 @@ export type EventRegistrationCreateInput = {
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
-  clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
@@ -733,7 +737,7 @@ export type EventRegistrationUncheckedCreateInput = {
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
-  clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
@@ -777,7 +781,7 @@ export type EventRegistrationUpdateInput = {
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -823,7 +827,7 @@ export type EventRegistrationUncheckedUpdateInput = {
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -868,7 +872,7 @@ export type EventRegistrationCreateManyInput = {
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
-  clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
@@ -912,7 +916,7 @@ export type EventRegistrationUpdateManyMutationInput = {
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -957,7 +961,7 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -980,14 +984,6 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSopCompliant?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-}
-
-export type EnumKlinikActivityNullableListFilter<$PrismaModel = never> = {
-  equals?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  has?: $Enums.KlinikActivity | Prisma.EnumKlinikActivityFieldRefInput<$PrismaModel> | null
-  hasEvery?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel>
-  hasSome?: $Enums.KlinikActivity[] | Prisma.ListEnumKlinikActivityFieldRefInput<$PrismaModel>
-  isEmpty?: boolean
 }
 
 export type EventRegistrationCountOrderByAggregateInput = {
@@ -1055,6 +1051,7 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
   interestedTopic?: Prisma.SortOrder
+  clinicActivity?: Prisma.SortOrder
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
   ktpUrl?: Prisma.SortOrder
@@ -1099,6 +1096,7 @@ export type EventRegistrationMinOrderByAggregateInput = {
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
   interestedTopic?: Prisma.SortOrder
+  clinicActivity?: Prisma.SortOrder
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
   ktpUrl?: Prisma.SortOrder
@@ -1133,10 +1131,6 @@ export type EventRegistrationOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type EventRegistrationCreateclinicActivityInput = {
-  set: $Enums.KlinikActivity[]
-}
-
 export type EnumEventTypeFieldUpdateOperationsInput = {
   set?: $Enums.EventType
 }
@@ -1153,9 +1147,8 @@ export type NullableEnumGenderFieldUpdateOperationsInput = {
   set?: $Enums.Gender | null
 }
 
-export type EventRegistrationUpdateclinicActivityInput = {
-  set?: $Enums.KlinikActivity[]
-  push?: $Enums.KlinikActivity | $Enums.KlinikActivity[]
+export type NullableEnumKlinikActivityFieldUpdateOperationsInput = {
+  set?: $Enums.KlinikActivity | null
 }
 
 export type NullableEnumKategoriFieldUpdateOperationsInput = {
@@ -1235,7 +1228,7 @@ export type EventRegistrationCreateWithoutUserInput = {
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
-  clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
@@ -1279,7 +1272,7 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
-  clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
@@ -1353,7 +1346,7 @@ export type EventRegistrationScalarWhereInput = {
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
-  clinicActivity?: Prisma.EnumKlinikActivityNullableListFilter<"EventRegistration">
+  clinicActivity?: Prisma.EnumKlinikActivityNullableFilter<"EventRegistration"> | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -1397,7 +1390,7 @@ export type EventRegistrationCreateManyUserInput = {
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
-  clinicActivity?: Prisma.EventRegistrationCreateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
@@ -1441,7 +1434,7 @@ export type EventRegistrationUpdateWithoutUserInput = {
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1485,7 +1478,7 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1529,7 +1522,7 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  clinicActivity?: Prisma.EventRegistrationUpdateclinicActivityInput | $Enums.KlinikActivity[]
+  clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1775,7 +1768,7 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     activeSocial: string | null
     reasonToParticipate: string | null
     interestedTopic: string | null
-    clinicActivity: $Enums.KlinikActivity[]
+    clinicActivity: $Enums.KlinikActivity | null
     memenuhiSyarat: boolean | null
     age: string | null
     ktpUrl: string | null
@@ -2241,7 +2234,7 @@ export interface EventRegistrationFieldRefs {
   readonly activeSocial: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly reasonToParticipate: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly interestedTopic: Prisma.FieldRef<"EventRegistration", 'String'>
-  readonly clinicActivity: Prisma.FieldRef<"EventRegistration", 'KlinikActivity[]'>
+  readonly clinicActivity: Prisma.FieldRef<"EventRegistration", 'KlinikActivity'>
   readonly memenuhiSyarat: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly age: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly ktpUrl: Prisma.FieldRef<"EventRegistration", 'String'>

@@ -22,13 +22,14 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { useTRPC } from "@/utils/trpc";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { router } from "better-auth/api";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 const CLINIC_OPTIONS = [
   { id: "DONATE_BLOOD", label: "Donor Darah" },
   { id: "EYE_CHECK", label: "Cek Kesehatan Mata" },
+  { id: "BOTH", label: "Keduanya" },
 ] as const;
 
 export default function MCareForm() {
@@ -40,7 +41,6 @@ export default function MCareForm() {
       fullAddress: "",
       emergencyContact: "",
       emergencyContactName: "",
-      clinicActivity: [],
       memenuhiSyarat: false,
     },
   });
@@ -98,10 +98,10 @@ export default function MCareForm() {
       <div className="w-full max-w-2xl p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl">
         <header className="mb-10 text-center">
           <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500">
-            M-CARE Registration
+            M-CARE
           </h2>
           <p className="text-slate-400 mt-2">
-            Health services & Blood donation registration
+            Cek Kesehatan Mata & Donor Darah
           </p>
         </header>
 
@@ -147,7 +147,7 @@ export default function MCareForm() {
                             <RadioGroupItem value="Male" />
                           </FormControl>
                           <FormLabel className="font-normal text-slate-300">
-                            Male
+                            Pria
                           </FormLabel>
                         </FormItem>
                         <FormItem className="flex items-center space-x-2 space-y-0">
@@ -155,7 +155,7 @@ export default function MCareForm() {
                             <RadioGroupItem value="Female" />
                           </FormControl>
                           <FormLabel className="font-normal text-slate-300">
-                            Female
+                            Wanita
                           </FormLabel>
                         </FormItem>
                       </RadioGroup>
@@ -198,7 +198,7 @@ export default function MCareForm() {
                     <Textarea
                       placeholder="Jl. Ganesha 10 Coblong, Kota Bandung, Jawa Barat, 40132"
                       {...field}
-                      className="bg-white/5 border-white/10 text-white min-h-[100px]"
+                      className="bg-white/5 border-white/10 text-white min-h-25"
                     />
                   </FormControl>
                   <FormMessage />
@@ -208,7 +208,7 @@ export default function MCareForm() {
 
             <div className="p-4 rounded-xl border border-dashed border-white/20 bg-white/5 space-y-4">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-teal-400">
-                Emergency Contact
+                Kontak Darurat
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormField
@@ -271,54 +271,37 @@ export default function MCareForm() {
             <FormField
               control={form.control}
               name="clinicActivity"
-              render={() => (
-                <FormItem>
-                  <div className="mb-4">
+              render={({ field }) => (
+                <FormItem className="space-y-3">
+                  <div>
                     <FormLabel className="text-slate-200">
                       Aktivitas Klinik
                     </FormLabel>
                     <FormDescription className="text-slate-400">
-                      Kegiatan yang Akan Diikuti.
+                      Pilih salah satu kegiatan yang akan diikuti.
                     </FormDescription>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {CLINIC_OPTIONS.map((item) => (
-                      <FormField
-                        key={item.id}
-                        control={form.control}
-                        name="clinicActivity"
-                        render={({ field }) => {
-                          return (
-                            <FormItem
-                              key={item.id}
-                              className="flex flex-row items-center space-x-3 space-y-0"
-                            >
-                              <FormControl>
-                                <Checkbox
-                                  checked={field.value?.includes(item.id)}
-                                  onCheckedChange={(checked) => {
-                                    return checked
-                                      ? field.onChange([
-                                          ...field.value,
-                                          item.id,
-                                        ])
-                                      : field.onChange(
-                                          field.value?.filter(
-                                            (value) => value !== item.id,
-                                          ),
-                                        );
-                                  }}
-                                />
-                              </FormControl>
-                              <FormLabel className="text-sm font-normal text-slate-300 cursor-pointer">
-                                {item.label}
-                              </FormLabel>
-                            </FormItem>
-                          );
-                        }}
-                      />
-                    ))}
-                  </div>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                    >
+                      {CLINIC_OPTIONS.map((item) => (
+                        <FormItem
+                          key={item.id}
+                          className="flex items-center space-x-3 space-y-0 cursor-pointer"
+                        >
+                          <FormControl>
+                            <RadioGroupItem value={item.id} />
+                          </FormControl>
+                          <FormLabel className="font-normal text-slate-300 cursor-pointer w-full">
+                            {item.label}
+                          </FormLabel>
+                        </FormItem>
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -337,7 +320,15 @@ export default function MCareForm() {
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel className="text-slate-300">
-                      Apakah Syarat dan Ketentuan Sudah Terpenuhi?.
+                      Apakah{" "}
+                      <Link
+                        href="/events/m-care#syarat-ketentuan"
+                        target="_blank"
+                        className="italic underline font-bold"
+                      >
+                        Syarat dan Ketentuan
+                      </Link>{" "}
+                      Sudah Terpenuhi?
                     </FormLabel>
                   </div>
                 </FormItem>

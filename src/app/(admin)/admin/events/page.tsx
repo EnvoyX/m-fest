@@ -1,13 +1,9 @@
-import { CompsDataTable } from "@/components/admin/competitions/CompsDataTable";
-import AccountsDataTable from "@/components/admin/database/AccountsDataTable";
-import SessionsDataTable from "@/components/admin/database/SessionsDataTable";
-import { TeamsDataTable } from "@/components/admin/teams/TeamsDataTable";
-import { UsersDataTable } from "@/components/admin/users/UsersDataTable";
-import { DocumentsDataTable } from "@/components/admin/documents/DocumentsDataTable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { Metadata } from "next";
-import { ExamDataTable } from "@/components/admin/exam/ExamDataTable";
 import MCareDataTable from "@/components/admin/events/MCareDataTable";
+import MTalks_MExpoDataTable from "@/components/admin/events/MTalks_MExpoDataTable";
+import ETUDataTable from "@/components/admin/events/EtuDataTable";
+import MRunDataTable from "@/components/admin/events/MRunDataTable";
 
 export const metadata: Metadata = {
   title: "Events Management | Admin Panel",
@@ -44,17 +40,17 @@ export default function DatabasePage() {
         </TabsContent>
         <TabsContent value="m-run">
           <div className="mt-8">
-            <SessionsDataTable />
+            <MRunDataTable />
           </div>
         </TabsContent>
         <TabsContent value="etu">
           <div className="mt-8">
-            <DocumentsDataTable />
+            <ETUDataTable />
           </div>
         </TabsContent>
         <TabsContent value="m-talks_m-expo">
           <div className="mt-8">
-            <UsersDataTable />
+            <MTalks_MExpoDataTable />
           </div>
         </TabsContent>
       </Tabs>

@@ -87,15 +87,15 @@ export default function MRunForm() {
       });
     },
     onSettled: () => {
-      console.log(`Registered event M-Run`);
-      // startTransition(() => {
-      //   router.push("/dashboard/events");
-      // });
+      // console.log(`Registered event M-Run`);
+      startTransition(() => {
+        router.push("/dashboard/events");
+      });
     },
   });
 
   const onSubmit = (data: mRunSchema) => {
-    console.log("Form Submitted: ", data);
+    // console.log("Form Submitted: ", data);
     registerEvent.mutate({
       registrationType: "M-RUN",
       ...data,
@@ -109,9 +109,9 @@ export default function MRunForm() {
           <h2 className="text-5xl font-black tracking-tight text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 italic">
             M-RUN
           </h2>
-          <p className="text-slate-400 mt-2">
+          {/* <p className="text-slate-400 mt-2">
             Push your limits. Secure your spot in the race.
-          </p>
+          </p> */}
         </div>
 
         <Form {...form}>
@@ -195,8 +195,8 @@ export default function MRunForm() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className="bg-slate-900 border-white/10 text-white">
-                          <SelectItem value="Male">Male</SelectItem>
-                          <SelectItem value="Female">Female</SelectItem>
+                          <SelectItem value="Male">Pria</SelectItem>
+                          <SelectItem value="Female">Wanita</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -606,9 +606,9 @@ export default function MRunForm() {
                 name="ktpUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-300">
+                    {/* <FormLabel className="text-slate-300">
                       Link Foto KTP
-                    </FormLabel>
+                    </FormLabel> */}
                     <UploadEventDialog
                       id={1}
                       userId={session.data?.user.id as string}
@@ -638,9 +638,9 @@ export default function MRunForm() {
                 name="buktiBayarUrl"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-300">
+                    {/* <FormLabel className="text-slate-300">
                       Link Bukti Pembayaran
-                    </FormLabel>
+                    </FormLabel> */}
                     <UploadEventDialog
                       id={2}
                       userId={session.data?.user.id as string}

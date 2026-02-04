@@ -133,6 +133,7 @@ export type Rhesus = (typeof Rhesus)[keyof typeof Rhesus]
 
 
 export const KlinikActivity = {
+  BOTH: 'BOTH',
   DONATE_BLOOD: 'DONATE_BLOOD',
   EYE_CHECK: 'EYE_CHECK'
 } as const

@@ -3,6 +3,7 @@ import { router, adminProcedure, superAdminProcedure } from "@/server/api/trpc";
 import { z } from "zod";
 import { deleteFiles } from "@/action/uploadthing.action";
 import { TRPCError } from "@trpc/server";
+import { EventType } from "../../../../prisma/generated/prisma/enums";
 
 export const adminRouter = router({
   getUsers: adminProcedure.query(async () => {
@@ -1208,14 +1209,23 @@ export const adminRouter = router({
         },
       });
     }),
-  getEvents: adminProcedure.query(async ({ ctx }) => {
-    const events = await ctx.db.eventRegistration.findMany({
-      include: {
-        user: true,
-      },
-    });
-    return events;
-  }),
+  getEvents: adminProcedure
+    .input(
+      z.object({
+        eventType: z.enum(EventType),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      const events = await ctx.db.eventRegistration.findMany({
+        where: {
+          eventType: input.eventType,
+        },
+        include: {
+          user: true,
+        },
+      });
+      return events;
+    }),
   deleteEvent: adminProcedure
     .input(
       z.object({

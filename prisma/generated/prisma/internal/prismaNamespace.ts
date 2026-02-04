@@ -1669,16 +1669,16 @@ export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
 
 
 /**
- * Reference to a field of type 'KlinikActivity[]'
+ * Reference to a field of type 'KlinikActivity'
  */
-export type ListEnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity[]'>
+export type EnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity'>
     
 
 
 /**
- * Reference to a field of type 'KlinikActivity'
+ * Reference to a field of type 'KlinikActivity[]'
  */
-export type EnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity'>
+export type ListEnumKlinikActivityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KlinikActivity[]'>
     
 
 

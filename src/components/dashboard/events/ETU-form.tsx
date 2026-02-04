@@ -100,9 +100,9 @@ export default function EtuForm() {
           <h2 className="text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500">
             ENGINE TUNE UP
           </h2>
-          <p className="text-slate-400 mt-2 font-medium">
+          {/* <p className="text-slate-400 mt-2 font-medium">
             Keep your engine running at peak performance.
-          </p>
+          </p> */}
         </div>
 
         <Form {...form}>
@@ -133,7 +133,7 @@ export default function EtuForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-slate-300">
-                      Phone Number
+                      Nomor Telepon
                     </FormLabel>
                     <FormControl>
                       <Input
@@ -171,10 +171,11 @@ export default function EtuForm() {
                 <FormItem className="flex flex-row items-center justify-between rounded-xl border border-white/10 p-4 bg-white/5">
                   <div className="space-y-0.5">
                     <FormLabel className="text-slate-200">
-                      ITB Academic Member
+                      Apakah Anda Civitas Akademika ITB?
                     </FormLabel>
-                    <FormDescription className="text-xs text-slate-500">
-                      Check if you are a student or staff.
+                    <FormDescription className="text-xs text-slate-400">
+                      Anda bisa abaikan pilihan ini jika bukan Civitas Akademika
+                      ITB.
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -199,6 +200,7 @@ export default function EtuForm() {
                     <FormLabel className="text-slate-300">NIM / NIP</FormLabel>
                     <FormControl>
                       <Input
+                        type="number"
                         placeholder="NIM/NIP Anda"
                         {...field}
                         className="bg-white/5 border-white/10 text-white"
@@ -323,22 +325,25 @@ export default function EtuForm() {
               control={form.control}
               name="isSopCompliant"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border border-dashed border-white/20 p-4 bg-white/5">
-                  <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormLabel className="text-slate-300 text-sm">
-                      Apakah Anda setuju dengan SOP yang diberikan? (SOP)
-                    </FormLabel>
-                    <FormDescription className="text-xs text-slate-500 italic">
-                      Tune-up results depend on initial vehicle condition.
-                    </FormDescription>
-                  </div>
-                </FormItem>
+                <>
+                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border border-dashed border-white/20 p-4 bg-white/5">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <div className="space-y-1 leading-none">
+                      <FormLabel className="text-slate-300 text-sm">
+                        Apakah Anda setuju dengan SOP yang diberikan? (SOP)
+                      </FormLabel>
+                      <FormDescription className="text-xs text-slate-400 italic">
+                        Hasil tune-up tergantung pada kondisi awal motor.
+                      </FormDescription>
+                    </div>
+                  </FormItem>
+                  <FormMessage />
+                </>
               )}
             />
 

@@ -149,7 +149,9 @@ export default function UploadEventDialog({
   });
   return (
     <div className="grid w-full max-w-sm items-center gap-3">
-      <Label htmlFor={title}>Upload {title}</Label>
+      <Label className="text-slate-300" htmlFor={title}>
+        Upload {title}
+      </Label>
 
       <Dialog
         open={activeDialog === id}
@@ -164,7 +166,7 @@ export default function UploadEventDialog({
       >
         <DialogTrigger asChild>
           <Button
-            className=""
+            className="hover:cursor-pointer"
             variant={"outline"}
             onClick={() => {
               setUploadThingRouteUpload(

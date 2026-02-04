@@ -92,13 +92,13 @@ export default function MTalksForm() {
   return (
     <div className="w-full max-w-lg p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl">
       <div className="mb-8 space-y-2">
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 tracking-tight">
+        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 tracking-tight text-center">
           M-TALKS Registration
         </h2>
-        <p className="text-slate-400">
+        {/* <p className="text-slate-400">
           Join the World of Mechanical Engineering Exhibitions. Please fill in
           your details.
-        </p>
+        </p> */}
       </div>
 
       <Form {...form}>
@@ -224,9 +224,9 @@ export default function MTalksForm() {
                     <SelectItem value="INSTAGRAM_MFEST_ITB">
                       Instagram M-Fest
                     </SelectItem>
-                    <SelectItem value="FRIEND">Friend</SelectItem>
+                    <SelectItem value="FRIEND">Teman</SelectItem>
                     <SelectItem value="BANNER">Banner</SelectItem>
-                    <SelectItem value="OTHER">Other</SelectItem>
+                    <SelectItem value="OTHER">Lainnya</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />

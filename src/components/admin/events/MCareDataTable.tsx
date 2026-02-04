@@ -62,13 +62,12 @@ export default function MCareDataTable() {
   const [rowSelection, setRowSelection] = React.useState({});
   const [filterColumn, setFilterColumn] = React.useState<string>("id");
   const {
-    data: datas,
+    data: events,
     isLoading,
     isFetching,
   } = useQuery({
-    ...trpc.admin.getEvents.queryOptions(),
+    ...trpc.admin.getEvents.queryOptions({ eventType: "M_CARE" }),
   });
-  const events = datas?.filter((data) => data.eventType === "M_CARE");
   const unified = React.useMemo(() => {
     if (!events) return [];
 
@@ -299,9 +298,7 @@ export default function MCareDataTable() {
       header: ({ column }) => {
         return <DataTableColumnHeader column={column} title="Full Address" />;
       },
-      cell: ({ row }) => (
-        <span className="lowercase">{row.getValue("fullAddress")}</span>
-      ),
+      cell: ({ row }) => <span>{row.getValue("fullAddress")}</span>,
       filterFn: "includesString",
     },
     {
@@ -544,16 +541,6 @@ export default function MCareDataTable() {
                   }}
                 >
                   Clinic Activity
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="cursor-pointer hover:bg-white/20!"
-                  onClick={() => {
-                    setFilterColumn("memenuhiSyarat");
-                    table.getColumn("memenuhiSyarat")?.setFilterValue("");
-                    table.resetColumnFilters();
-                  }}
-                >
-                  Memenuhi Syarat
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

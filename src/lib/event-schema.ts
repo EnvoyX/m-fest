@@ -11,10 +11,9 @@ export const mCareSchema = z.object({
   fullAddress: z.string().min(1, "Alamat Lengkap asal (Domisili) wajib diisi."),
   emergencyContact: z.string().min(1, "Kontak Darurat wajib diisi."),
   emergencyContactName: z.string().min(1, "Nama Kontak Darurat wajib diisi."),
-  clinicActivity: z
-    .array(z.enum(["DONATE_BLOOD", "EYE_CHECK"]))
-    .min(1, "Pilih minimal 1 aktivitas.")
-    .max(2, "Maksimal pilih 2 aktivitas."),
+  clinicActivity: z.enum(["DONATE_BLOOD", "EYE_CHECK", "BOTH"], {
+    error: "Aktivitas Klinik wajib diisi.",
+  }),
   memenuhiSyarat: z.boolean().refine((val) => val === true, {
     message: "Anda harus menyetujui syarat donor darah.",
   }),
@@ -89,14 +88,12 @@ export const etuSchema = z
     }),
   })
   .superRefine((values, ctx) => {
-    if (values.isITB) {
-      if (!values.nimOrNip) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "NIM/NIP wajib diisi.",
-          path: ["nimOrNip"],
-        });
-      }
+    if (values.isITB && !values.nimOrNip) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "NIM/NIP wajib diisi.",
+        path: ["nimOrNip"],
+      });
     }
   });
 
@@ -154,16 +151,24 @@ export const mRunSchema = z
       })
       .optional(),
     nimHMM: z.string().optional(),
-    riwayatPenyakit: z.boolean().optional(),
-    detailPenyakit: z.string().optional(),
     bloodType: z.enum(["A", "B", "AB", "O"], {
       error: "Golongan Darah wajib diisi.",
     }),
     rhesus: z.enum(["POSITIVE", "NEGATIVE", "NOT_KNOWN"], {
       error: "Informasi Rhesus wajib diisi.",
     }),
+    riwayatPenyakit: z.boolean().optional(),
+    detailPenyakit: z.string().optional(),
     alergi: z.boolean().optional(),
     detailAlergi: z.string().optional(),
+    ktpUrl: z
+      .string()
+      .min(1, "Foto KTP wajib diisi.")
+      .url("Tautan Foto KTP tidak valid."),
+    buktiBayarUrl: z
+      .string()
+      .min(1, "Tautan Bukti Pembayaran wajib diisi.")
+      .url("Tautan Bukti Pembayaran tidak valid."),
     siapLomba: z
       .boolean({
         error: "Pernyataan Persetujuan Lomba wajib diisi.",
@@ -171,15 +176,6 @@ export const mRunSchema = z
       .refine((val) => val === true, {
         message: "Anda harus menyetujui persetujuan siap lomba.",
       }),
-    ktpUrl: z
-      .string()
-      .min(1, "Foto KTP wajib diisi.")
-      .url("Tautan Foto KTP tidak valid."),
-
-    buktiBayarUrl: z
-      .string()
-      .min(1, "Tautan Bukti Pembayaran wajib diisi.")
-      .url("Tautan Bukti Pembayaran tidak valid."),
   })
   .superRefine((values, ctx) => {
     if (values.riwayatPenyakit && !values.detailPenyakit) {

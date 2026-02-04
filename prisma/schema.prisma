@@ -8,8 +8,6 @@ datasource db {
   provider = "postgresql"
 }
 
-
-
 enum Role {
   USER
   ADMIN
@@ -95,6 +93,7 @@ enum Rhesus {
 }
 
 enum KlinikActivity {
+  BOTH
   DONATE_BLOOD
   EYE_CHECK
 }
@@ -176,7 +175,7 @@ model EventRegistration {
   interestedTopic     String?
 
   // M-Care Specific
-  clinicActivity   KlinikActivity[] 
+  clinicActivity   KlinikActivity?
   memenuhiSyarat    Boolean?     @default(false) // Consent Klinik
 
 // M-Run Specifics
