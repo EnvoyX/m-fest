@@ -20,6 +20,7 @@ export const educations = [
   { key: "S1", label: "S1" },
 ];
 
+export const eventIds = ["M_CARE", "M_RUN", "ETU", "M_TALKS"];
 export const validExtensions = ["png", "jpeg", "jpg", "webp", "pdf"];
 export const validSubmissionExtensions = ["pdf", "zip"];
 export const maxFileSize = 4 * 1024 * 1024; // 4 MB

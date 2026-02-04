@@ -120,14 +120,14 @@ export function Competitions() {
             <div className="flex items-start max-sm:flex-col max-sm:items-center max-sm:justify-center gap-3 flex-1">
               <Trophy className="w-5 h-5 text-primary mt-0.5 shrink-0" />
               <div>
-                <h4 className="font-medium text-foreground">
+                <h4 className="font-medium text-foreground text-center">
                   {
                     competitions.find(
                       (c) => c.abbreviation === comp?.competitionName,
                     )?.title
                   }
                 </h4>
-                <p className="text-xs text-muted-foreground mt-1 max-sm:text-center">
+                <p className="text-sm text-muted-foreground mt-1 max-sm:text-center">
                   {totalCompPartcitipants} participants
                 </p>
               </div>
