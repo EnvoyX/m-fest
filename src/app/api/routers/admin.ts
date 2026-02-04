@@ -1208,4 +1208,42 @@ export const adminRouter = router({
         },
       });
     }),
+  getEvents: adminProcedure.query(async ({ ctx }) => {
+    const events = await ctx.db.eventRegistration.findMany({
+      include: {
+        user: true,
+      },
+    });
+    return events;
+  }),
+  deleteEvent: adminProcedure
+    .input(
+      z.object({
+        eventId: z.string(),
+        userId: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.eventRegistration.delete({
+        where: {
+          id: input.eventId,
+          userId: input.userId,
+        },
+      });
+    }),
+  deleteEventByMany: adminProcedure
+    .input(
+      z.object({
+        eventIds: z.array(z.string()),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.eventRegistration.deleteMany({
+        where: {
+          id: {
+            in: input.eventIds,
+          },
+        },
+      });
+    }),
 });

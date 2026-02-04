@@ -1,13 +1,11 @@
 import { protectedProcedure, router } from "@/server/api/trpc";
-import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { CompetitionName } from "../../../../prisma/generated/prisma/enums";
 import { getCurrentDate } from "@/lib/utils";
 import { eventsInputProcedureSchema } from "@/lib/event-schema";
-import type { get } from "http";
 
 export const eventRouter = router({
-  getEventRegistration: protectedProcedure.query(async ({ ctx }) => {
+  getEventRegistrationByUserId: protectedProcedure.query(async ({ ctx }) => {
     const eventRegistrations = await ctx.db.eventRegistration.findMany({
       where: {
         userId: ctx.session.user.id as string,
