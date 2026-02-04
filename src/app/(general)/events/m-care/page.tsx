@@ -132,30 +132,36 @@ export default function MCare() {
           Our Collaborators
         </h1>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-4 max-w-6xl mx-auto">
-          <Image
-            src="/events/page/logo_rshs.png"
-            alt="logo rshs"
-            height={469 / 2}
-            width={1602 / 2}
-            className="h-auto w-auto max-h-24 object-contain"
-            unoptimized
-          />
-          <Image
-            src="/events/page/logo_sosmas.png"
-            alt="logo sosmas"
-            height={469 / 2}
-            width={489 / 2}
-            className="h-auto w-auto max-h-24 object-contain"
-            unoptimized
-          />
-          <Image
-            src="/events/page/logo_bec.png"
-            alt="logo bec"
-            height={469 / 2}
-            width={1826 / 2}
-            className="h-auto w-auto max-h-24 object-contain"
-            unoptimized
-          />
+          <Link className="hover:-translate-y-1" href="https://web.rshs.go.id/" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/events/page/logo_rshs.png"
+              alt="logo rshs"
+              height={469 / 2}
+              width={1602 / 2}
+              className="h-auto w-auto max-h-24 object-contain"
+              unoptimized
+            />
+          </Link>
+          <Link className="hover:-translate-y-1" href="https://www.instagram.com/sosmas_hmmitb?igsh=MWY2ZHE5cmdmdTA0Mg==" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/events/page/logo_sosmas.png"
+              alt="logo sosmas"
+              height={469 / 2}
+              width={489 / 2}
+              className="h-auto w-auto max-h-24 object-contain"
+              unoptimized
+            />
+          </Link>
+          <Link className="hover:-translate-y-1" href="https://bandungeyecenter.co.id/" target="_blank" rel="noopener noreferrer">
+            <Image
+              src="/events/page/logo_bec.png"
+              alt="logo bec"
+              height={469 / 2}
+              width={1826 / 2}
+              className="h-auto w-auto max-h-24 object-contain"
+              unoptimized
+            />
+          </Link>
         </div>
       </section>
     </div>
