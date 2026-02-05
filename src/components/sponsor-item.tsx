@@ -1,19 +1,17 @@
 import { cn } from "@/lib/utils";
 
 interface SponsorItemProps {
-  icon: string;
   alt: string;
   src: string;
-  height: number;
+  width: number;
   invert?: boolean;
   className?: string;
 }
 
 function SponsorItem({
-  icon,
   alt,
   src,
-  height,
+  width,
   invert,
   className,
 }: SponsorItemProps) {
@@ -21,11 +19,11 @@ function SponsorItem({
     <div className="flex">
       <img
         className={cn(
-          `h-${height}  mb-12 ${invert ? "invert" : ""} ${className ?? ""}`,
+          `w-${width}  mb-12 ${invert ? "invert" : ""} ${className ?? ""}`,
         )}
         src={src}
         alt={alt}
-        width="auto"
+        height="auto"
       />
     </div>
   );
