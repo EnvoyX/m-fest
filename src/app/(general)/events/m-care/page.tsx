@@ -2,16 +2,14 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { getCurrentDate } from "@/lib/utils";
+import { getCurrentDate, wibToUTC} from "@/lib/utils";
 import { isAfter, isBefore, isWithinInterval } from "date-fns";
 import { SegmentBoundaryTriggerNode } from "next/dist/next-devtools/userspace/app/segment-explorer-node";
 
 export default function MCare() {
   const currentDate = getCurrentDate();
-  //for testing
-  const startRegDate = new Date("2026-02-06T12:45:00");
-  //const startRegDate = new Date("2026-02-07T09:00:00");
-  const endRegDate = new Date("2026-02-13T23:59:59");
+  const startRegDate = wibToUTC(new Date("2026-02-07T09:00:00"));
+  const endRegDate = wibToUTC(new Date("2026-02-13T23:59:59"));
 
   return (
     <div className="w-full overflow-x-hidden">
@@ -82,7 +80,7 @@ export default function MCare() {
                 Registration Closed
               </span>
             ) : (
-              <Link href="/#">
+              <Link href="/dashboard/events/register/M-CARE">
                 <span className="flex">
                   Register Now <ChevronRight className="size-5 my-auto" />{" "}
                 </span>

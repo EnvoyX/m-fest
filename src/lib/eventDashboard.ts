@@ -42,10 +42,7 @@ export const eventsList: Event[] = [
         href: "events/m-care",
         eventDate: "Sabtu, 14 Februari 2026 (07.00 - 12.00)",
         location: "Institut Teknologi Bandung Ganesha (RKB FTMD)",
-        
-        //for testing
-        startRegDate1: new Date("2026-02-06T12:45:00"),
-        //startRegDate1: new Date("2026-02-07T09:00:00"),
+        startRegDate1: new Date("2026-02-07T09:00:00"),
         endRegDate1: new Date("2026-02-13T23:59:59"),
     },
     {
