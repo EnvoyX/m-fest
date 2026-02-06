@@ -9,7 +9,7 @@ import { SegmentBoundaryTriggerNode } from "next/dist/next-devtools/userspace/ap
 export default function MCare() {
   const currentDate = getCurrentDate();
   //for testing
-  const startRegDate = new Date("2026-02-06T19:45:00");
+  const startRegDate = new Date("2026-02-06T12:45:00");
   //const startRegDate = new Date("2026-02-07T09:00:00");
   const endRegDate = new Date("2026-02-13T23:59:59");
 
