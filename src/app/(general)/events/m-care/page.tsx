@@ -40,20 +40,19 @@ export default function MCare() {
           Syarat Donor
         </h1>
         <ul className="list-disc list-inside space-y-3 lg:space-y-5 text-lg md:text-xl lg:text-2xl pl-2 lg:pl-5 mb-8 lg:mb-12">
-          <li>18 tahun keatas</li>
-          <li>Berat badan ideal dengan minimum 50 kg</li>
-          <li>
-            Memiliki kondisi kesehatan yang baik / tidak sedang dalam pengobatan
-          </li>
-          <li>Tidak melakukan prosedur pembedahan</li>
-          <li>Tidur dengan cukup sebelum prosedur minimal 5 jam</li>
-          <li>Tidak mengkonsumsi alkohol/obat paracetamol/antibiotik</li>
-          <li>
-            Tidak mengkonsumsi makanan dengan kandungan tinggi lemak jenuh
-          </li>
-          <li>
-            Tidak ada riwayat penyakit menular seperti heptatitis, TB, HIV/AIDS
-          </li>
+          <li>Berusia 18-60 tahun</li>
+          <li>Memiliki berat badan ideal, minimal 45 kg</li>
+          <li>Suhu tubuh 36,6 - 37,5 Derajat Celcius</li>
+          <li>Tekanan darah harus berada di angka 100-160 untuk sistolik dan 70-100 untuk diastolik.</li>
+          <li>Saat pemeriksaan, denyut nadi harus sekitar 50-100 kali per menit.</li>
+          <li>Kadar hemoglobin minimal 12 gr/dl untuk wanita, dan minimal 12,5 gr/dl untuk pria.</li>
+          <li>Tidak sedang mengonsumsi antibiotik</li>
+          <li>Tidak sedang menstruasi</li>
+          <li>Tidak baru melakukan prosedur tindik atau tato</li>
+          <li>Tidak mengonsumsi alkohol dan/atau kafein</li>
+          <li>Tidak mengonsumsi makanan dengan kandungan tinggi lemak jenuh</li>
+          <li>Tidak ada riwayat penyakit menular seperti hepatitis, TB, HIV/AIDS</li>
+          <li>Tidak memiliki gangguan pembekuan darah</li>
         </ul>
         <p className="text-lg lg:text-xl mb-8">
           Tidak ada ketentuan bagi yang hanya mengikuti cek kesehatan mata
