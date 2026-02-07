@@ -120,6 +120,16 @@ async function FetchCompForm({
     teamNames,
   } = await getRegisteredTeams();
 
+  const stats = await db.compRegistration.groupBy({
+    by: ['competitionName'],
+    _count: { _all: true }
+  });
+
+  const countsMap = stats.reduce((acc, curr) => {
+    acc[curr.competitionName] = curr._count._all;
+    return acc;
+  }, {} as Record<string, number>);
+
   return (
     <>
       <div className="text-center">
@@ -194,6 +204,8 @@ async function FetchCompForm({
         allTeamMembersDatas={allTeamMembersDatas as TeamMember[]}
         userAsLeaderTeams={userAsLeaderTeams as Team[]}
         teamNames={teamNames as (string | null)[]}
+        currentCount={countsMap[comp.toUpperCase()] || 0}
+        maxQuota={thisComp?.maxQuota as number}
       />
     </>
   );

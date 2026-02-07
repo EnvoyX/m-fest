@@ -37,6 +37,8 @@ function RegisterForm({
   allTeamMembersDatas,
   userAsLeaderTeams,
   teamNames,
+  currentCount,
+  maxQuota,
 }: RegisterFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPending, startTransition] = useTransition();
@@ -183,6 +185,11 @@ function RegisterForm({
   }
 
   async function onSubmit(formData: registerSchema) {
+    if (currentCount >= maxQuota) {
+    toast.error("Maaf, kuota pendaftaran sudah penuh!");
+    return;
+    }
+
     setIsLoading(true);
     toast.loading("Registering team...", { id: "register-team" });
 
@@ -278,6 +285,8 @@ function RegisterForm({
     setIsLoading(false);
     return;
   }
+
+  const isQuotaFull = currentCount >= maxQuota;
 
   return (
     <>
@@ -502,10 +511,12 @@ function RegisterForm({
           className={`w-full ${
             isLoading ? "cursor-not-allowed" : "cursor-pointer"
           }`}
-          disabled={isSubmitting || isPending}
+          disabled={isSubmitting || isPending || isQuotaFull}
           type="submit"
         >
-          {isSubmitting || isPending ? (
+          {isQuotaFull ? (
+            "Quota Full"
+          ) :  isSubmitting || isPending ? (
             <div className="flex gap-2">
               <span>Registering...</span>
               <Loader2 className="animate-spin" />

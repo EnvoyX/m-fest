@@ -40,6 +40,19 @@ export default function RegisteredCompetitionList() {
 async function FetchUserAvailableCompetitions() {
   const currentDate = getCurrentDate();
   const user = (await getUser()) as User;
+
+  const stats = await db.compRegistration.groupBy({
+    by: ["competitionName"],
+    _count: { competitionName: true },
+  });
+
+  const counts = stats.reduce((acc, curr) => {
+    acc[curr.competitionName] = curr._count.competitionName;
+    return acc;
+  }, {} as Record<string, number>);
+  
+  console.log("Competition counts: ", counts);
+
   const registeredCompetitions = await db.compRegistration.findMany({
     where: {
       team: {
@@ -73,6 +86,8 @@ async function FetchUserAvailableCompetitions() {
   const competitionsList = competitions.filter(
     (comp) => !registeredCompetitionNames.includes(comp.abbreviation),
   );
+
+  
   if (!competitionsList.length) {
     return (
       <div className="flex flex-col items-center justify-center py-16">
@@ -101,7 +116,11 @@ async function FetchUserAvailableCompetitions() {
   // console.log("Registered competitions: ", competitionsList);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4 items-stretch my-2">
-      {competitionsList.map((comp) => (
+      {competitionsList.map((comp) => {
+        const currentParticipants = counts[comp.abbreviation] || 0;
+        const maxQuota = comp.maxQuota;
+        const isFull = currentParticipants >= maxQuota;
+        return (
         <Card
           key={comp.abbreviation}
           className="w-full max-w-sm bg-white/5 flex flex-col backdrop-glass-sm"
@@ -147,6 +166,7 @@ async function FetchUserAvailableCompetitions() {
             />
           </CardContent>
           <CardFooter className="flex flex-col justify-center mt-auto">
+            <span className="text-sm mb-5">Quota: {currentParticipants}/{maxQuota}</span>
             {!userTeam ? (
               <Button
                 asChild
@@ -182,7 +202,8 @@ async function FetchUserAvailableCompetitions() {
                         end: comp.endRegDate3,
                       }) ||
                       !userTeam ||
-                      !isTeamLeader
+                      !isTeamLeader ||
+                      isFull
                 }
               >
                 <Link
@@ -200,14 +221,15 @@ async function FetchUserAvailableCompetitions() {
                   prefetch
                   className="flex items-center gap-2"
                 >
-                  <span>Register</span>
+                  <span>{isFull ? "Quota Full" : "Register"}</span>
                   <ChevronRight className="size-4" />
                 </Link>
               </Button>
             )}
           </CardFooter>
         </Card>
-      ))}
+        );
+      })}
     </div>
   );
 }

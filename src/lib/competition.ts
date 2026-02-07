@@ -48,6 +48,7 @@ export const competitions: {
     caseLink?: string;
     compOpenCase: Date | null;
     examOpen?: Date;
+    maxQuota?: number;
 }[] = [
         {
             title: "Business Case Competition",
@@ -79,6 +80,7 @@ export const competitions: {
             submissionDeadline: getSubmissionDeadline("BCC"),
             submissionContext: "Submit your paper before:",
             compOpenCase: getCompCaseDate("BCC"),
+            maxQuota: 150,
         },
 
         {
@@ -111,6 +113,7 @@ export const competitions: {
             submissionDeadline: getSubmissionDeadline("IPPC"),
             submissionContext: "Submit Extended Abstract before:",
             compOpenCase: null,
+            maxQuota: 200,
         },
         {
             title: "Pipeline Design Competition",
@@ -128,12 +131,12 @@ export const competitions: {
             reg2: "25 January - 15 February 2026", // Regular
             reg3: "16 Ferbuary - 22 February 2026", // Extended Regular
             // Closed Reg for PDC
-            startRegDate1: new Date("2026-01-01T14:00:00"),
-            startRegDate2: new Date("2026-01-01T00:00:00"),
-            startRegDate3: new Date("2026-01-01T00:00:00"),
-            endRegDate1: new Date("2026-01-02T23:59:59"),
-            endRegDate2: new Date("2026-01-02T23:59:59"),
-            endRegDate3: new Date("2026-01-02T23:59:59"),
+            startRegDate1,
+            startRegDate2,
+            startRegDate3,
+            endRegDate1,
+            endRegDate2,
+            endRegDate3,
             fee1: 200001, // Early Bird
             fee2: 250001, // Regular
             guideBook:
@@ -146,6 +149,7 @@ export const competitions: {
             compOpenCase: getCompCaseDate("PDC"),
             caseLink:
                 "https://drive.google.com/drive/folders/1Thuhb-0Chb1_AFApqvzldrXVg1PweYMh?usp=drive_link",
+            maxQuota: 1,
         },
         {
             title: "Science, Technology, Engineering, and Mathematics",
@@ -161,12 +165,12 @@ export const competitions: {
             reg2: "25 January - 15 February 2026", // Regular
             reg3: "16 Ferbuary - 22 February 2026", // Extended Regular
            // Closed Reg for STEM
-            startRegDate1: new Date("2026-01-01T14:00:00"),
-            startRegDate2: new Date("2026-01-01T00:00:00"),
-            startRegDate3: new Date("2026-01-01T00:00:00"),
-            endRegDate1: new Date("2026-01-02T23:59:59"),
-            endRegDate2: new Date("2026-01-07T23:59:59"),
-            endRegDate3: new Date("2026-01-02T23:59:59"),
+            startRegDate1,
+            startRegDate2,
+            startRegDate3,
+            endRegDate1,
+            endRegDate2,
+            endRegDate3,
             fee1: 120001, // Early Bird
             fee2: 180001, // Regular
             guideBook:
@@ -176,5 +180,6 @@ export const competitions: {
             submissionDeadline: null,
             compOpenCase: null,
             examOpen: getCompCaseDate("STEM") as Date,
+            maxQuota: 300,
         },
     ];
