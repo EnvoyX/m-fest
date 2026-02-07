@@ -165,7 +165,7 @@ export const competitions: {
             startRegDate2: new Date("2026-01-01T00:00:00"),
             startRegDate3: new Date("2026-01-01T00:00:00"),
             endRegDate1: new Date("2026-01-02T23:59:59"),
-            endRegDate2: new Date("2026-01-02T23:59:59"),
+            endRegDate2: new Date("2026-02-07T23:59:59"),
             endRegDate3: new Date("2026-01-02T23:59:59"),
             fee1: 120001, // Early Bird
             fee2: 180001, // Regular
