@@ -149,7 +149,7 @@ export const competitions: {
             compOpenCase: getCompCaseDate("PDC"),
             caseLink:
                 "https://drive.google.com/drive/folders/1Thuhb-0Chb1_AFApqvzldrXVg1PweYMh?usp=drive_link",
-            maxQuota: 1,
+            maxQuota: 50,
         },
         {
             title: "Science, Technology, Engineering, and Mathematics",
@@ -164,7 +164,7 @@ export const competitions: {
             reg1: "18 January - 24 January 2026", // Early Bird
             reg2: "25 January - 15 February 2026", // Regular
             reg3: "16 Ferbuary - 22 February 2026", // Extended Regular
-           // Closed Reg for STEM
+            // Closed Reg for STEM
             startRegDate1,
             startRegDate2,
             startRegDate3,
