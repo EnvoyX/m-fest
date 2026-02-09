@@ -9,7 +9,6 @@ import {
 import { competitions } from "@/lib/competition";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { type User } from "@/types/types";
 import { getUser } from "@/action/user.action";
@@ -25,10 +24,9 @@ import {
     EmptyTitle,
 } from "@/components/ui/empty";
 import { IconListDetails } from "@tabler/icons-react";
-import { cn, getCurrentDate } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { isBefore, isWithinInterval } from "date-fns";
 import QuotaTrack from "../QuotaTrack";
+import StatusComp from "../StatusComp";
+import ButtonComp from "../ButtonComp";
 
 export default function RegisteredCompetitionList() {
     return (
@@ -39,7 +37,6 @@ export default function RegisteredCompetitionList() {
 }
 
 async function FetchUserAvailableCompetitions() {
-    const currentDate = getCurrentDate();
     const user = (await getUser()) as User;
 
     // Check current quota
@@ -78,6 +75,7 @@ async function FetchUserAvailableCompetitions() {
             },
         },
     });
+
     const isTeamLeader = userTeam?.leaderUserId === user?.id;
 
     // console.log("Registered competitions: ", registeredCompetitions);
@@ -134,28 +132,7 @@ async function FetchUserAvailableCompetitions() {
                             <CardDescription className="text-center text-sm line-clamp-1">
                                 {comp.title}
                             </CardDescription>
-                            {isBefore(currentDate, comp.startRegDate1) ? (
-                                <Badge variant={"default"}>Not Started</Badge>
-                            ) : isWithinInterval(currentDate, {
-                                start: comp.startRegDate1,
-                                end: comp.endRegDate1,
-                            }) && !isQuotaFull ? (
-                                <Badge
-                                    variant={"secondary"}
-                                    className="bg-blue-500 text-white dark:bg-blue-600"
-                                >
-                                    Early Bird
-                                </Badge>
-                            ) : isWithinInterval(currentDate, {
-                                start: comp.startRegDate2,
-                                end: comp.endRegDate3,
-                            }) && !isQuotaFull ? (
-                                <Badge variant="secondary" className="bg-green-600 text-white">
-                                    Regular
-                                </Badge>
-                            ) : (
-                                <Badge variant="destructive">Closed</Badge>
-                            )}
+                            <StatusComp comp={comp} fetchedCurrentQuota={currentQuota} maxQuota={maxQuota} />
                         </CardHeader>
                         <CardContent className="flex justify-center items-center grow my-auto">
                             <Image
@@ -170,65 +147,7 @@ async function FetchUserAvailableCompetitions() {
                         <CardFooter className="flex flex-col justify-center mt-auto">
                             <QuotaTrack comp={comp.abbreviation} fetchedCurrentQuota={currentQuota} maxQuota={maxQuota} />
 
-                            {!userTeam ? (
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    size="sm"
-                                    className="gap-1 pr-1.5"
-                                >
-                                    <Link href="/dashboard/team/create-team">
-                                        <span>Create Team</span>
-                                        <Plus className="size-4" />
-                                    </Link>
-                                </Button>
-                            ) : (
-                                <Button
-                                    variant="default"
-                                    size="sm"
-                                    className={cn("gap-1 pr-1.5 cursor-pointer", {
-                                        "bg-muted-foreground pointer-events-none cursor-not-allowed":
-                                            registeredCompetitions.length ||
-                                            !isWithinInterval(currentDate, {
-                                                start: comp.startRegDate1,
-                                                end: comp.endRegDate3,
-                                            }) ||
-                                            !userTeam ||
-                                            !isTeamLeader,
-                                    })}
-                                    disabled={
-                                        registeredCompetitions.length
-                                            ? true
-                                            : false ||
-                                            !isWithinInterval(currentDate, {
-                                                start: comp.startRegDate1,
-                                                end: comp.endRegDate3,
-                                            }) ||
-                                            !userTeam ||
-                                            !isTeamLeader ||
-                                            isQuotaFull
-                                    }
-                                >
-                                    <Link
-                                        href={
-                                            registeredCompetitions.length ||
-                                                !isWithinInterval(currentDate, {
-                                                    start: comp.startRegDate1,
-                                                    end: comp.endRegDate3,
-                                                }) ||
-                                                !userTeam ||
-                                                !isTeamLeader
-                                                ? ""
-                                                : `/dashboard/team/register/${comp.abbreviation}`
-                                        }
-                                        prefetch
-                                        className="flex items-center gap-2"
-                                    >
-                                        <span>{isQuotaFull ? "Quota Full" : "Register"}</span>
-                                        <ChevronRight className="size-4" />
-                                    </Link>
-                                </Button>
-                            )}
+                            <ButtonComp comp={comp} fetchedCurrentQuota={currentQuota} maxQuota={maxQuota} isTeamLeader={isTeamLeader} registeredCompetitions={registeredCompetitions} userTeam={userTeam} />
                         </CardFooter>
                     </Card>
                 );

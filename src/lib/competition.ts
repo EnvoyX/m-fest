@@ -15,6 +15,42 @@ const endRegDate1 = new Date("2026-01-24T23:59:59");
 const endRegDate2 = new Date("2026-02-15T23:59:59");
 const endRegDate3 = new Date("2026-02-22T23:59:59");
 
+export type competition = {
+    title: string;
+    logo: string;
+    desc: string;
+    regLink: string;
+    abbreviation: CompetitionName;
+    cover: string;
+    isOpen?: boolean;
+    prize1: string; // 1st Place
+    prize2: string; // 2nd Place
+    prize3: string; // 3rd Place
+    prize4?: string;
+    prize5?: string;
+    reg1: string;
+    reg2: string;
+    reg3: string;
+    startRegDate1: Date;
+    startRegDate2: Date;
+    startRegDate3: Date;
+    endRegDate1: Date;
+    endRegDate2: Date;
+    endRegDate3: Date;
+    fee1: number;
+    fee2: number;
+    guideBook: string;
+    icon: string;
+    uploadThingRoute: string;
+    submissionDeadline: Date | null;
+    submissionDetails?: string;
+    submissionContext?: string;
+    caseLink?: string;
+    compOpenCase: Date | null;
+    examOpen?: Date;
+    maxQuota?: number;
+}
+
 export const competitions: {
     title: string;
     logo: string;
