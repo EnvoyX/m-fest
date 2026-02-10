@@ -145,7 +145,7 @@ async function FetchUserAvailableCompetitions() {
                             />
                         </CardContent>
                         <CardFooter className="flex flex-col justify-center mt-auto">
-                            <QuotaTrack comp={comp.abbreviation} fetchedCurrentQuota={currentQuota} maxQuota={maxQuota} />
+                            {comp.abbreviation === "IPPC" && <QuotaTrack comp={comp.abbreviation} fetchedCurrentQuota={currentQuota} maxQuota={maxQuota} />}
 
                             <ButtonComp comp={comp} fetchedCurrentQuota={currentQuota} maxQuota={maxQuota} isTeamLeader={isTeamLeader} registeredCompetitions={registeredCompetitions} userTeam={userTeam} />
                         </CardFooter>
