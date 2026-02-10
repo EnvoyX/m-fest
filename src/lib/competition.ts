@@ -149,7 +149,7 @@ export const competitions: {
             submissionDeadline: getSubmissionDeadline("IPPC"),
             submissionContext: "Submit Extended Abstract before:",
             compOpenCase: null,
-            maxQuota: 60,
+            maxQuota: 1,
         },
         {
             title: "Pipeline Design Competition",
@@ -167,12 +167,12 @@ export const competitions: {
             reg2: "25 January - 15 February 2026", // Regular
             reg3: "16 Ferbuary - 22 February 2026", // Extended Regular
             // Closed Reg for PDC
-            startRegDate1,
-            startRegDate2,
-            startRegDate3,
-            endRegDate1,
-            endRegDate2,
-            endRegDate3,
+            startRegDate1: new Date("2026-01-01T14:00:00"),
+            startRegDate2: new Date("2026-01-01T00:00:00"),
+            startRegDate3: new Date("2026-01-01T00:00:00"),
+            endRegDate1: new Date("2026-01-02T23:59:59"),
+            endRegDate2: new Date("2026-01-02T23:59:59"),
+            endRegDate3: new Date("2026-01-02T23:59:59"),
             fee1: 200001, // Early Bird
             fee2: 250001, // Regular
             guideBook:
@@ -200,13 +200,13 @@ export const competitions: {
             reg1: "18 January - 24 January 2026", // Early Bird
             reg2: "25 January - 15 February 2026", // Regular
             reg3: "16 Ferbuary - 22 February 2026", // Extended Regular
-            // Closed Reg for STEM
-            startRegDate1,
-            startRegDate2,
-            startRegDate3,
-            endRegDate1,
-            endRegDate2,
-            endRegDate3,
+           // Closed Reg for STEM
+            startRegDate1: new Date("2026-01-01T14:00:00"),
+            startRegDate2: new Date("2026-01-01T00:00:00"),
+            startRegDate3: new Date("2026-01-01T00:00:00"),
+            endRegDate1: new Date("2026-01-02T23:59:59"),
+            endRegDate2: new Date("2026-01-02T23:59:59"),
+            endRegDate3: new Date("2026-01-02T23:59:59"),
             fee1: 120001, // Early Bird
             fee2: 180001, // Regular
             guideBook:
