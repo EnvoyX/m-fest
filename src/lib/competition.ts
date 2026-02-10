@@ -15,6 +15,42 @@ const endRegDate1 = new Date("2026-01-24T23:59:59");
 const endRegDate2 = new Date("2026-02-15T23:59:59");
 const endRegDate3 = new Date("2026-02-22T23:59:59");
 
+export type competition = {
+    title: string;
+    logo: string;
+    desc: string;
+    regLink: string;
+    abbreviation: CompetitionName;
+    cover: string;
+    isOpen?: boolean;
+    prize1: string; // 1st Place
+    prize2: string; // 2nd Place
+    prize3: string; // 3rd Place
+    prize4?: string;
+    prize5?: string;
+    reg1: string;
+    reg2: string;
+    reg3: string;
+    startRegDate1: Date;
+    startRegDate2: Date;
+    startRegDate3: Date;
+    endRegDate1: Date;
+    endRegDate2: Date;
+    endRegDate3: Date;
+    fee1: number;
+    fee2: number;
+    guideBook: string;
+    icon: string;
+    uploadThingRoute: string;
+    submissionDeadline: Date | null;
+    submissionDetails?: string;
+    submissionContext?: string;
+    caseLink?: string;
+    compOpenCase: Date | null;
+    examOpen?: Date;
+    maxQuota?: number;
+}
+
 export const competitions: {
     title: string;
     logo: string;
@@ -48,6 +84,7 @@ export const competitions: {
     caseLink?: string;
     compOpenCase: Date | null;
     examOpen?: Date;
+    maxQuota?: number;
 }[] = [
         {
             title: "Business Case Competition",
@@ -130,12 +167,12 @@ export const competitions: {
             reg2: "25 January - 15 February 2026", // Regular
             reg3: "16 Ferbuary - 22 February 2026", // Extended Regular
             // Closed Reg for PDC
-            startRegDate1: new Date("2026-01-01T14:00:00"),
-            startRegDate2: new Date("2026-01-01T00:00:00"),
-            startRegDate3: new Date("2026-01-01T00:00:00"),
-            endRegDate1: new Date("2026-01-02T23:59:59"),
-            endRegDate2: new Date("2026-01-02T23:59:59"),
-            endRegDate3: new Date("2026-01-02T23:59:59"),
+            startRegDate1,
+            startRegDate2,
+            startRegDate3,
+            endRegDate1,
+            endRegDate2,
+            endRegDate3,
             fee1: 200001, // Early Bird
             fee2: 250001, // Regular
             guideBook:
@@ -163,13 +200,13 @@ export const competitions: {
             reg1: "18 January - 24 January 2026", // Early Bird
             reg2: "25 January - 15 February 2026", // Regular
             reg3: "16 Ferbuary - 22 February 2026", // Extended Regular
-           // Closed Reg for STEM
-            startRegDate1: new Date("2026-01-01T14:00:00"),
-            startRegDate2: new Date("2026-01-01T00:00:00"),
-            startRegDate3: new Date("2026-01-01T00:00:00"),
-            endRegDate1: new Date("2026-01-02T23:59:59"),
-            endRegDate2: new Date("2026-01-07T23:59:59"),
-            endRegDate3: new Date("2026-01-02T23:59:59"),
+            // Closed Reg for STEM
+            startRegDate1,
+            startRegDate2,
+            startRegDate3,
+            endRegDate1,
+            endRegDate2,
+            endRegDate3,
             fee1: 120001, // Early Bird
             fee2: 180001, // Regular
             guideBook:

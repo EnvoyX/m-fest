@@ -20,9 +20,9 @@ export function UserAvatar({
             <AvatarFallback className="bg-gradient-accent text-foreground font-bold">
                 {(alt as string)
                     ? (alt as string)
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")
                     : ""}
             </AvatarFallback>
         </Avatar>

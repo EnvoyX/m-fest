@@ -4,95 +4,95 @@ import { type ForwardRefExoticComponent, type RefAttributes } from "react";
 import { type LucideProps } from "lucide-react";
 
 export enum Role {
-  USER = "USER",
-  ADMIN = "ADMIN",
-  SUPERADMIN = "SUPERADMIN",
+    USER = "USER",
+    ADMIN = "ADMIN",
+    SUPERADMIN = "SUPERADMIN",
 }
 
 export enum Education {
-  SMA = "SMA",
-  SMK = "SMK",
-  D3 = "D3",
-  D4 = "D4",
-  S1 = "S1",
+    SMA = "SMA",
+    SMK = "SMK",
+    D3 = "D3",
+    D4 = "D4",
+    S1 = "S1",
 }
 
 export enum CompetitionName {
-  PDC = "PDC",
-  IPPC = "IPPC",
-  BCC = "BCC",
-  STEM = "STEM",
+    PDC = "PDC",
+    IPPC = "IPPC",
+    BCC = "BCC",
+    STEM = "STEM",
 }
 
 export enum TeamRole {
-  Leader = "Leader",
-  Member = "Member",
+    Leader = "Leader",
+    Member = "Member",
 }
 
 export enum DocumentStatus {
-  AWAITING_UPLOAD = "AWAITING_UPLOAD",
-  PENDING = "PENDING",
-  VERIFIED = "VERIFIED",
+    AWAITING_UPLOAD = "AWAITING_UPLOAD",
+    PENDING = "PENDING",
+    VERIFIED = "VERIFIED",
 }
 
 export enum VerificationStatus {
-  NOT_SUBMITTED = "NOT_SUBMITTED",
-  PENDING = "PENDING",
-  ACCEPTED = "ACCEPTED",
+    NOT_SUBMITTED = "NOT_SUBMITTED",
+    PENDING = "PENDING",
+    ACCEPTED = "ACCEPTED",
 }
 
 export enum TeamStatus {
-  NOT_REGISTERED = "NOT_REGISTERED",
-  PENDING = "PENDING",
-  ACCEPTED = "ACCEPTED",
+    NOT_REGISTERED = "NOT_REGISTERED",
+    PENDING = "PENDING",
+    ACCEPTED = "ACCEPTED",
 }
 
 export type DocumentType = "identityCard" | "twibbon" | "followIg";
 
 export type User = {
-  id: string;
-  name: string | null;
-  email: string;
-  emailVerified: boolean | null;
-  image: string | null;
+    id: string;
+    name: string | null;
+    email: string;
+    emailVerified: boolean | null;
+    image: string | null;
 
-  phoneNumber: string | null;
-  domicile: string | null;
-  institution: string | null;
-  major: string | null;
-  education: Education | null;
-  semester: number | null;
-  role: Role;
+    phoneNumber: string | null;
+    domicile: string | null;
+    institution: string | null;
+    major: string | null;
+    education: Education | null;
+    semester: number | null;
+    role: Role;
 
-  error?: string;
+    error?: string;
 
-  verified: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+    verified: boolean;
+    createdAt: Date;
+    updatedAt: Date;
 };
 
 export type CompRegistration = {
-  id: string;
-  userId: string;
-  leaderUserId: string;
-  leaderEmail: string;
-  leaderName: string;
-  leaderPhoneNumber: string;
-  teamInstitution: string;
-  teamName: string | null;
-  teamId: string | null;
-  paymentId: string;
-  statusOrder: string | null;
-  teamStatus: TeamStatus;
-  competitionName: CompetitionName;
-  submissionFileUrl: string | null;
-  submissionFileKey: string | null;
-  submissionFileCreatedAt: Date | null;
-  submissionFileUploaded: boolean | null;
-  submissionFileSubmitted: boolean | null;
-  mentor: string | null;
-  createdAt: Date;
-  updatedAt: Date;
+    id: string;
+    userId: string;
+    leaderUserId: string;
+    leaderEmail: string;
+    leaderName: string;
+    leaderPhoneNumber: string;
+    teamInstitution: string;
+    teamName: string | null;
+    teamId: string | null;
+    paymentId: string;
+    statusOrder: string | null;
+    teamStatus: TeamStatus;
+    competitionName: CompetitionName;
+    submissionFileUrl: string | null;
+    submissionFileKey: string | null;
+    submissionFileCreatedAt: Date | null;
+    submissionFileUploaded: boolean | null;
+    submissionFileSubmitted: boolean | null;
+    mentor: string | null;
+    createdAt: Date;
+    updatedAt: Date;
 };
 
 export type Competition = {
@@ -129,201 +129,203 @@ export type Competition = {
 }
 
 export type Team = {
-  id: string;
-  status: string | null;
-  teamStatus: TeamStatus;
-  name: string | null;
-  leaderUserId: string | null;
-  leaderEmail: string | null;
-  leaderName: string | null;
-  leaderPhoneNumber: string | null;
-  teamInstitution: string | null;
-  paymentId: string | null;
-  members: TeamMember[];
-  createdAt: Date;
-  updatedAt: Date;
-  competition: CompetitionName | null;
+    id: string;
+    status: string | null;
+    teamStatus: TeamStatus;
+    name: string | null;
+    leaderUserId: string | null;
+    leaderEmail: string | null;
+    leaderName: string | null;
+    leaderPhoneNumber: string | null;
+    teamInstitution: string | null;
+    paymentId: string | null;
+    members: TeamMember[];
+    createdAt: Date;
+    updatedAt: Date;
+    competition: CompetitionName | null;
 };
 
 export type TeamMember = {
-  name: string | null;
-  email: string | null;
-  userId: string;
-  teamId: string;
-  institution: string | null;
-  role: TeamRole | null;
-  joinDate: Date | null;
-  verified: boolean | null;
+    name: string | null;
+    email: string | null;
+    userId: string;
+    teamId: string;
+    institution: string | null;
+    role: TeamRole | null;
+    joinDate: Date | null;
+    verified: boolean | null;
 };
 
 export type Member = {
-  name: string;
-  email: string;
-  userId: string;
-  institution: string;
-  role: "Leader" | "Member";
+    name: string;
+    email: string;
+    userId: string;
+    institution: string;
+    role: "Leader" | "Member";
 };
 
 export type Invoices = {
-  id: string;
-  userId: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-  orderId: string;
-  status: string | null;
-  competition: string | null;
-  amount: number;
-  paymentUrl: string | null;
-  referenceDuitku: string | null;
+    id: string;
+    userId: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    orderId: string;
+    status: string | null;
+    competition: string | null;
+    amount: number;
+    paymentUrl: string | null;
+    referenceDuitku: string | null;
 }[];
 
 export type Documents = {
-  id: string;
-  userId: string;
-  IdentityCardImageUrl: string | null;
-  twibbonImageUrl: string | null;
-  followIgImageUrl: string | null;
-  IdentityCardImageKey: string | null;
-  twibbonImageKey: string | null;
-  followIgImageKey: string | null;
-  IdentityCardCreatedAt: Date | null;
-  twibbonCreatedAt: Date | null;
-  followIgCreatedAt: Date | null;
-  IdentityCardStatus: DocumentStatus | null;
-  twibbonStatus: DocumentStatus | null;
-  followIgStatus: DocumentStatus | null;
-  IdentityCardVerified: boolean | null;
-  twibbonVerified: boolean | null;
-  followIgVerified: boolean | null;
-  status: VerificationStatus;
-  createdAt: Date;
-  updatedAt: Date;
+    id: string;
+    userId: string;
+    IdentityCardImageUrl: string | null;
+    twibbonImageUrl: string | null;
+    followIgImageUrl: string | null;
+    IdentityCardImageKey: string | null;
+    twibbonImageKey: string | null;
+    followIgImageKey: string | null;
+    IdentityCardCreatedAt: Date | null;
+    twibbonCreatedAt: Date | null;
+    followIgCreatedAt: Date | null;
+    IdentityCardStatus: DocumentStatus | null;
+    twibbonStatus: DocumentStatus | null;
+    followIgStatus: DocumentStatus | null;
+    IdentityCardVerified: boolean | null;
+    twibbonVerified: boolean | null;
+    followIgVerified: boolean | null;
+    status: VerificationStatus;
+    createdAt: Date;
+    updatedAt: Date;
 };
 
 export type Document = {
-  id: number;
-  title: string;
-  type: DocumentType;
-  submissionDetail: string;
-  acceptedFiles: string[];
-  uploadThingRoute: string;
-  imageUrl: string | null;
-  imageKey: string | null;
-  createdAt: Date | null;
-  status: "AWAITING_UPLOAD" | "PENDING" | "VERIFIED" | null;
-  verified: boolean | null;
+    id: number;
+    title: string;
+    type: DocumentType;
+    submissionDetail: string;
+    acceptedFiles: string[];
+    uploadThingRoute: string;
+    imageUrl: string | null;
+    imageKey: string | null;
+    createdAt: Date | null;
+    status: "AWAITING_UPLOAD" | "PENDING" | "VERIFIED" | null;
+    verified: boolean | null;
 };
 
 export type UploadThingRoute = "identityCard" | "twibbon" | "followIg";
 export type UploadThingEventRoute =
-  | "uploadKTPorStudentCard"
-  | "uploadPaymentProofUrl";
+    | "uploadKTPorStudentCard"
+    | "uploadPaymentProofUrl";
 export type UploadDocumentProps = {
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  id: number;
-  title: string;
-  type: UploadThingRoute;
-  uploadThingRoute: UploadThingRoute;
-  setValue: UseFormSetValue<{
+    isLoading: boolean;
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    id: number;
+    title: string;
+    type: UploadThingRoute;
+    uploadThingRoute: UploadThingRoute;
+    setValue: UseFormSetValue<{
+        userId: string;
+        identityCard: string;
+        twibbon: string;
+        followIg: string;
+    }>;
     userId: string;
-    identityCard: string;
-    twibbon: string;
-    followIg: string;
-  }>;
-  userId: string;
 };
 
 export type UploadEventProps = {
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  id: number;
-  title: string;
-  uploadThingRoute: UploadThingEventRoute;
-  setValue: UseFormSetValue<{
-    participantName: string;
-    gender: "Male" | "Female";
-    age: string;
-    phoneNumber: string;
-    activeEmail: string;
-    fullAddress: string;
-    emergencyContact: string;
-    emergencyContactName: string;
-    category: "UMUM" | "MAHASISWA";
-    jerseySize: "S" | "M" | "L" | "XL" | "XXL";
-    bloodType: "A" | "B" | "AB" | "O";
-    rhesus: "POSITIVE" | "NEGATIVE" | "NOT_KNOWN";
-    siapLomba: boolean;
-    ktpUrl: string;
-    buktiBayarUrl: string;
-    isAlumniHMM?: boolean | undefined;
-    isHMM?: boolean | undefined;
-    nimHMM?: string | undefined;
-    riwayatPenyakit?: boolean | undefined;
-    detailPenyakit?: string | undefined;
-    alergi?: boolean | undefined;
-    detailAlergi?: string | undefined;
-  }>;
-  userId: string;
+    isLoading: boolean;
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    id: number;
+    title: string;
+    uploadThingRoute: UploadThingEventRoute;
+    setValue: UseFormSetValue<{
+        participantName: string;
+        gender: "Male" | "Female";
+        age: string;
+        phoneNumber: string;
+        activeEmail: string;
+        fullAddress: string;
+        emergencyContact: string;
+        emergencyContactName: string;
+        category: "UMUM" | "MAHASISWA";
+        jerseySize: "S" | "M" | "L" | "XL" | "XXL";
+        bloodType: "A" | "B" | "AB" | "O";
+        rhesus: "POSITIVE" | "NEGATIVE" | "NOT_KNOWN";
+        siapLomba: boolean;
+        ktpUrl: string;
+        buktiBayarUrl: string;
+        isAlumniHMM?: boolean | undefined;
+        isHMM?: boolean | undefined;
+        nimHMM?: string | undefined;
+        riwayatPenyakit?: boolean | undefined;
+        detailPenyakit?: string | undefined;
+        alergi?: boolean | undefined;
+        detailAlergi?: string | undefined;
+    }>;
+    userId: string;
 };
 
 export type UploadDialogProps = {
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+    isLoading: boolean;
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type SuccessPageProps = {
-  searchParams: Promise<{
-    merchantOrderId: string;
-    reference: string;
-    resultCode: string;
-  }>;
+    searchParams: Promise<{
+        merchantOrderId: string;
+        reference: string;
+        resultCode: string;
+    }>;
 };
 
 export type ImageCropperDocumentProps = {
-  title: string;
-  updateImgUrl: (imgSrc: string) => void;
-  updateImgFile: (file: File) => void;
-  updateUploadCroppedFile: (file: File) => void;
-  isLoading: boolean;
-  isProfilePicture?: boolean;
+    title: string;
+    updateImgUrl: (imgSrc: string) => void;
+    updateImgFile: (file: File) => void;
+    updateUploadCroppedFile: (file: File) => void;
+    isLoading: boolean;
+    isProfilePicture?: boolean;
 };
 
 export type ImageCropperProps = {
-  title: string;
-  updateImgUrl: (imgSrc: string) => void;
-  updateImgFile: (file: File) => void;
-  updateUploadCroppedFile: (file: File) => void;
-  isLoading: boolean;
-  isUploading: boolean;
-  isProfilePicture?: boolean;
+    title: string;
+    updateImgUrl: (imgSrc: string) => void;
+    updateImgFile: (file: File) => void;
+    updateUploadCroppedFile: (file: File) => void;
+    isLoading: boolean;
+    isUploading: boolean;
+    isProfilePicture?: boolean;
 };
 
 export type RegisterFormProps = {
-  comp: CompetitionName;
-  userTeams: Team[];
-  userRegisteredCompetitions: CompRegistration[];
-  allTeamsDatas: Team[];
-  allRegisteredTeamDatas: CompRegistration[];
-  allTeamMembersDatas: TeamMember[];
-  userAsLeaderTeams: Team[];
-  teamNames: (string | null)[];
+    comp: CompetitionName;
+    userTeams: Team[];
+    userRegisteredCompetitions: CompRegistration[];
+    allTeamsDatas: Team[];
+    allRegisteredTeamDatas: CompRegistration[];
+    allTeamMembersDatas: TeamMember[];
+    userAsLeaderTeams: Team[];
+    teamNames: (string | null)[];
+    currentCount: number,
+    maxQuota: number,
 };
 
 export type NavMainProps = {
-  items: (
-    | {
-        title: string;
-        url: string;
-        icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
-      }
-    | {
-        title: string;
-        url: string;
-        icon: ForwardRefExoticComponent<
-          Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-        >;
-      }
-  )[];
+    items: (
+        | {
+            title: string;
+            url: string;
+            icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+        }
+        | {
+            title: string;
+            url: string;
+            icon: ForwardRefExoticComponent<
+                Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+            >;
+        }
+    )[];
 };
