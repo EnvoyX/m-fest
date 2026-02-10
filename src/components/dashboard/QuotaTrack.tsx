@@ -37,7 +37,7 @@ export default function QuotaTrack({ comp, fetchedCurrentQuota, maxQuota }: Quot
 
     return (
         <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5">
-            <span className="text-sm">Quota: {currentQuotas}/{maxQuota}</span>
+            <span className="text-sm">{maxQuota - currentQuotas <= 0 ? "No Slots Left" : `${maxQuota - currentQuotas} Slots Left`}</span>
         </Badge>
     )
 }
