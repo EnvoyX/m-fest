@@ -149,7 +149,7 @@ export const competitions: {
             submissionDeadline: getSubmissionDeadline("IPPC"),
             submissionContext: "Submit Extended Abstract before:",
             compOpenCase: null,
-            maxQuota: 60,
+            maxQuota: 1,
         },
         {
             title: "Pipeline Design Competition",
