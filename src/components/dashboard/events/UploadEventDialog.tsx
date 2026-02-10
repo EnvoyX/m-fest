@@ -132,8 +132,8 @@ export default function UploadEventDialog({
       toast.error("Supported types: jpg, jpeg, png, webp, & pdf");
       return;
     }
-    const maxSize = 4 * 1024 * 1024;
-    const limitLabel = "4MB";
+    const maxSize = 8 * 1024 * 1024;
+    const limitLabel = "8MB";
 
     if (fileSize && fileSize > maxSize) {
       toast.error(`File size must be less than ${limitLabel}`);

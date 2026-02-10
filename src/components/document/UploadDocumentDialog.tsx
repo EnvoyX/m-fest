@@ -126,28 +126,24 @@ export default function UploadDocumentDialog({
 
         const isImage = fileType?.startsWith("image/");
         const isPdf = fileType === "application/pdf";
+        
+    if (!isImage && !isPdf) {
+      toast.error("Only Image or PDF file are allowed");
+      return;
+    }
 
-        if (!isImage && !isPdf && type === "twibbon") {
-            toast.error("Only Image or PDF file are allowed");
-            return;
-        }
+    if (!extension || !validExtensions.includes(extension)) {
+      toast.error("Supported types: jpg, jpeg, png, webp, & pdf");
+      return;
+    }
+    const maxSize = 8 * 1024 * 1024;
+    const limitLabel = "8MB";
 
-        if (!isImage && type !== "twibbon") {
-            toast.error("Only Image file are allowed");
-            return;
-        }
+    if (fileSize && fileSize > maxSize) {
+      toast.error(`File size must be less than ${limitLabel}`);
+      return;
+    }
 
-        if (!extension || !validExtensions.includes(extension)) {
-            toast.error("Supported types: jpg, jpeg, png, webp, & pdf");
-            return;
-        }
-        const maxSize = type === "twibbon" ? 8 * 1024 * 1024 : 4 * 1024 * 1024;
-        const limitLabel = type === "twibbon" ? "8MB" : "4MB";
-
-        if (fileSize && fileSize > maxSize) {
-            toast.error(`File size must be less than ${limitLabel}`);
-            return;
-        }
 
         setFiles(acceptedFiles);
     }, []);

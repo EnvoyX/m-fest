@@ -79,6 +79,7 @@ export const competitions: {
             submissionDeadline: getSubmissionDeadline("BCC"),
             submissionContext: "Submit your paper before:",
             compOpenCase: getCompCaseDate("BCC"),
+            maxQuota: 60,
         },
 
         {
@@ -111,6 +112,7 @@ export const competitions: {
             submissionDeadline: getSubmissionDeadline("IPPC"),
             submissionContext: "Submit Extended Abstract before:",
             compOpenCase: null,
+            maxQuota: 60,
         },
         {
             title: "Pipeline Design Competition",
@@ -146,6 +148,7 @@ export const competitions: {
             compOpenCase: getCompCaseDate("PDC"),
             caseLink:
                 "https://drive.google.com/drive/folders/1Thuhb-0Chb1_AFApqvzldrXVg1PweYMh?usp=drive_link",
+            maxQuota: 47,
         },
         {
             title: "Science, Technology, Engineering, and Mathematics",
@@ -176,5 +179,6 @@ export const competitions: {
             submissionDeadline: null,
             compOpenCase: null,
             examOpen: getCompCaseDate("STEM") as Date,
+            maxQuota: 81,
         },
     ];

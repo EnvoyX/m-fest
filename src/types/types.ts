@@ -125,7 +125,8 @@ export type Competition = {
   submissionDeadline: Date | null;
   compOpenCase: Date | null;
   examOpen?: Date;
-};
+  maxQuota?: number;
+}
 
 export type Team = {
   id: string;

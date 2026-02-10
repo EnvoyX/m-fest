@@ -191,7 +191,7 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                 </div>
                 <h3 className="text-muted-foreground">Submission Detail</h3>
                 <div className="flex justify-start gap-5">
-                  <p>{submissionDetail}</p>
+                  <p>{team?.competition === "BCC" && type === "followIg" ? "Participants are required to have an Instagram account and must follow social media @mfestitb, @hmm_itb & @strativate.id and upload the proof here." : submissionDetail}</p>
                 </div>
                 {type === "twibbon" && (
                   <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-2 my-4">
@@ -226,6 +226,23 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                       </Link>
                     </Button>
                   </div>
+                )}
+                {team?.competition === "BCC" && type === "followIg" && (
+                   <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="rounded-lg text-base font-bold max-sm:w-full max-sm:max-w-sm mt-4 bg-white/15"
+                    >
+                      <Link
+                        href={`https://drive.google.com/file/d/1OkNvaEgxXt1hEQbqu-S-R9DZD3Km4RzP/view?usp=sharing`}
+                        target="_blank"
+                        className="flex items-center"
+                      >
+                        <span className="underline">Example</span>{" "}
+                        <ArrowUpRightIcon />
+                      </Link>
+                    </Button>
                 )}
               </div>
               <div className="grid grid-cols-1">
@@ -294,9 +311,7 @@ function DocumentsForm({ userId, teamId }: { userId: string; teamId: string }) {
                   />
                 </div>
                 <h3 className="mt-6 text-muted-foreground">
-                  {document.type === "twibbon"
-                    ? "Accepted File Types (Max 8MB):"
-                    : "Accepted File Types (Max 4MB):"}
+                  Accepted File Types (Max 8MB)
                 </h3>
                 <p className="mt-2">{acceptedFiles.join(", ")}</p>
 
