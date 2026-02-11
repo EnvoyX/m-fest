@@ -1256,4 +1256,36 @@ export const adminRouter = router({
         },
       });
     }),
+  addPresenceParticipant: adminProcedure
+    .input(
+      z.object({
+        eventId: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.eventRegistration.update({
+        where: {
+          id: input.eventId,
+        },
+        data: {
+          isPresence: true,
+        },
+      });
+    }),
+  removePresenceParticipant: adminProcedure
+    .input(
+      z.object({
+        eventId: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db.eventRegistration.update({
+        where: {
+          id: input.eventId,
+        },
+        data: {
+          isPresence: false,
+        },
+      });
+    }),
 });

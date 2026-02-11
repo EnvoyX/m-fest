@@ -76,6 +76,55 @@ export default function ETUDataTable() {
 
     type Unified = (typeof unified)[number];
 
+      const addPresence = useMutation({
+        ...trpc.admin.addPresenceParticipant.mutationOptions(),
+        onMutate: () => {
+          toast.loading("Adding presence...", {
+            id: "add-presence",
+          });
+        },
+        onError: (error) => {
+          toast.dismiss("add-presence");
+          toast.error("Failed to add presence", {
+            description: error.message,
+          });
+          // console.log(error.message);
+        },
+        onSuccess() {
+          toast.dismiss("add-presence");
+          toast.success(`Presence added successfully`);
+        },
+        onSettled: () => {
+          queryClient.invalidateQueries({
+            queryKey: trpc.admin.getEvents.queryKey(),
+          });
+        },
+      });
+      const removePresence = useMutation({
+        ...trpc.admin.removePresenceParticipant.mutationOptions(),
+        onMutate: () => {
+          toast.loading("Removing presence...", {
+            id: "remove-presence",
+          });
+        },
+        onError: (error) => {
+          toast.dismiss("remove-presence");
+          toast.error("Failed to remove presence", {
+            description: error.message,
+          });
+          // console.log(error.message);
+        },
+        onSuccess() {
+          toast.dismiss("remove-presence");
+          toast.success(`Presence removed successfully`);
+        },
+        onSettled: () => {
+          queryClient.invalidateQueries({
+            queryKey: trpc.admin.getEvents.queryKey(),
+          });
+        },
+      });
+
     const deleteEvent = useMutation({
         ...trpc.admin.deleteEvent.mutationOptions(),
         onMutate: () => {
@@ -170,6 +219,25 @@ export default function ETUDataTable() {
                         >
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
                             <DropdownMenuSeparator />
+                             <DropdownMenuItem
+                                            className="cursor-pointer text-green-500 hover:text-green-500! hover:bg-green-900/60!"
+                                            onClick={() =>
+                                              addPresence.mutate({ eventId: item.id })
+                                            }
+                                          >
+                                            Add presence
+                                          </DropdownMenuItem>
+                                          <DropdownMenuItem
+                                            variant="destructive"
+                                            className="cursor-pointer"
+                                            onClick={() =>
+                                              removePresence.mutate({
+                                                eventId: item.id,
+                                              })
+                                            }
+                                          >
+                                            Remove presence
+                                          </DropdownMenuItem>
                             <DropdownMenuItem
                                 variant="destructive"
                                 className="cursor-pointer"
@@ -209,7 +277,19 @@ export default function ETUDataTable() {
                 return <DataTableColumnHeader column={column} title="User Id" />;
             },
             cell: ({ row }) => <div className="">{row.getValue("userId")}</div>,
+            filterFn: "includesString",
         },
+        {
+              accessorKey: "isPresent",
+              accessorFn: (row) => (row.isPresence ? "Present" : "Absent"),
+              header: ({ column }) => {
+                return (
+                  <DataTableColumnHeader column={column} title="Presence Status" />
+                );
+              },
+              cell: ({ row }) => <div className="">{row.getValue("isPresent")}</div>,
+              filterFn: "includesString",
+            },
         {
             accessorKey: "userName",
             accessorFn: (row) => row.user.name,
@@ -217,6 +297,7 @@ export default function ETUDataTable() {
                 return <DataTableColumnHeader column={column} title="User Name" />;
             },
             cell: ({ row }) => <div className="">{row.getValue("userName")}</div>,
+            filterFn: "includesString",
         },
         {
             accessorKey: "userEmail",
@@ -225,6 +306,7 @@ export default function ETUDataTable() {
                 return <DataTableColumnHeader column={column} title="User Email" />;
             },
             cell: ({ row }) => <div className="">{row.getValue("userEmail")}</div>,
+            filterFn: "includesString",
         },
 
         {
@@ -268,6 +350,7 @@ export default function ETUDataTable() {
             cell: ({ row }) => (
                 <div className="">{row.getValue("participantName")}</div>
             ),
+            filterFn: "includesString",
         },
         {
             accessorKey: "isITB",
@@ -445,6 +528,16 @@ export default function ETUDataTable() {
                                 >
                                     User Id
                                 </DropdownMenuItem>
+                                 <DropdownMenuItem
+                                                  className="cursor-pointer hover:bg-white/20!"
+                                                  onClick={() => {
+                                                    setFilterColumn("isPresent");
+                                                    table.getColumn("isPresent")?.setFilterValue("");
+                                                    table.resetColumnFilters();
+                                                  }}
+                                                >
+                                                  Presence
+                                                </DropdownMenuItem>
                                 <DropdownMenuItem
                                     className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {

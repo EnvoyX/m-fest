@@ -166,7 +166,8 @@ model EventRegistration {
   nimITB          String?
   majorITB        String?
   sourceInfo      SourceInfo?
-  gender            Gender?
+  gender          Gender?
+  isPresence      Boolean?     @default(false)
 
 
   // M-Talks Specific

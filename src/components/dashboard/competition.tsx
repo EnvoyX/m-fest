@@ -1,9 +1,5 @@
-"use client";
-
 import { Trophy } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useTRPC } from "@/utils/trpc";
-import { useQuery } from "@tanstack/react-query";
 import type { CompetitionName } from "../../../prisma/generated/prisma/enums";
 import { IconListDetails, IconUsersGroup } from "@tabler/icons-react";
 import { Avatar } from "@heroui/react";
@@ -13,76 +9,75 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Skeleton } from "../ui/skeleton";
+import { db } from "@/server/db";
+import { getUser } from "@/action/user.action";
+import type { TeamMember } from "../../../prisma/generated/prisma/client";
+import { Suspense } from "react";
 
-export function Competitions() {
-  const trpc = useTRPC();
-  const { data: comp, isLoading: isLoadingComp } = useQuery({
-    ...trpc.dashboard.getUserComp.queryOptions(),
-  });
+export default function Competitions() {
+  return (
+    <>
+      <Suspense
+        fallback={
+          <div className="glass p-6">
+            <Skeleton className="h-7 w-32 mb-6" />
 
-  const {
-    data: totalCompPartcitipants,
-    isLoading: isLoadingTotalCompPartcitipants,
-  } = useQuery({
-    ...trpc.dashboard.getTotalParticipantsComp.queryOptions({
-      comp: comp?.competitionName as CompetitionName,
-    }),
-    enabled: comp ? true : false,
-  });
+            <div className="space-y-4 border-2 rounded-lg bg-transparent backdrop-glass-lg">
+              <div className="glass-sm p-4">
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex items-start gap-3 flex-1">
+                    <Skeleton className="w-5 h-5 mt-0.5 shrink-0 rounded-md" />
 
-  const { data: team, isLoading: isLoadingTeam } = useQuery({
-    ...trpc.dashboard.getTeamById.queryOptions({
-      teamId: comp?.teamId as string,
-    }),
-    enabled: comp ? true : false,
-  });
+                    <div className="space-y-2 w-full">
+                      <Skeleton className="h-5 w-[70%]" />
+                      <Skeleton className="h-3 w-[40%]" />
+                    </div>
+                  </div>
 
-  const getStatusColor = (status: boolean) => {
-    return status
-      ? "bg-green-600 text-white border-muted/50"
-      : "bg-yellow-500 text-white border-accent/50";
-  };
-
-  if (isLoadingComp || isLoadingTotalCompPartcitipants || isLoadingTeam) {
-    return (
-      <div className="glass p-6">
-        <Skeleton className="h-7 w-32 mb-6" />
-
-        <div className="space-y-4 border-2 rounded-lg bg-transparent backdrop-glass-lg">
-          <div className="glass-sm p-4">
-            <div className="flex items-start justify-between gap-4 mb-3">
-              <div className="flex items-start gap-3 flex-1">
-                <Skeleton className="w-5 h-5 mt-0.5 shrink-0 rounded-md" />
-
-                <div className="space-y-2 w-full">
-                  <Skeleton className="h-5 w-[70%]" />
-                  <Skeleton className="h-3 w-[40%]" />
+                  <Skeleton className="h-6 w-20 rounded-full" />
                 </div>
-              </div>
 
-              <Skeleton className="h-6 w-20 rounded-full" />
-            </div>
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-border/20">
+                  <div className="flex items-center gap-2">
+                    <Skeleton className="w-5 h-5 rounded-md" />
+                    <Skeleton className="h-5 w-24" />
+                  </div>
 
-            <div className="flex items-center justify-between mt-3 pt-3 border-t border-border/20">
-              <div className="flex items-center gap-2">
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="h-5 w-24" />
-              </div>
-
-              <div className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <Skeleton
-                    key={i}
-                    className="h-10 w-10 rounded-full ring-2 ring-card"
-                  />
-                ))}
+                  <div className="flex -space-x-2">
+                    {[1, 2, 3].map((i) => (
+                      <Skeleton
+                        key={i}
+                        className="h-10 w-10 rounded-full ring-2 ring-card"
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    );
-  }
+        }
+      >
+        <FetchCompInfo />
+      </Suspense>
+      ;
+    </>
+  );
+}
+
+async function FetchCompInfo() {
+  const user = await getUser();
+
+  const comp = await db.compRegistration.findFirst({
+    where: {
+      team: {
+        members: {
+          some: {
+            userId: user?.id,
+          },
+        },
+      },
+    },
+  });
 
   if (!comp) {
     return (
@@ -108,6 +103,43 @@ export function Competitions() {
       </div>
     );
   }
+
+  const totalRegisteredComp = await db.compRegistration.findMany({
+    where: {
+      competitionName: comp?.competitionName,
+    },
+    include: {
+      team: {
+        include: {
+          members: true,
+        },
+      },
+    },
+  });
+  const team = await db.team.findUnique({
+    where: { id: comp?.teamId as string },
+    include: {
+      members: {
+        include: {
+          user: true,
+        },
+      },
+    },
+  });
+
+  const compMembers = totalRegisteredComp.map(
+    (comp) => comp.team?.members as TeamMember[],
+  );
+  const totalCompPartcitipants = compMembers.reduce(
+    (acc, curr: TeamMember[]) => acc + curr?.length,
+    0,
+  );
+
+  const getStatusColor = (status: boolean) => {
+    return status
+      ? "bg-green-600 text-white border-muted/50"
+      : "bg-yellow-500 text-white border-accent/50";
+  };
 
   return (
     <div className="glass p-6">
@@ -137,7 +169,7 @@ export function Competitions() {
                 comp?.isVerified as boolean,
               )} border`}
             >
-              {comp?.isVerified ? "Verified" : "Pending"}
+              {comp?.isVerified ? "Payment Verified" : "Payment Pending"}
             </Badge>
           </div>
           <div className="flex items-center justify-between max-sm:flex-col max-sm:justify-center max-sm:gap-4 mt-3 pt-3 border-t border-border/20">

@@ -41,6 +41,7 @@ export type EventRegistrationMinAggregateOutputType = {
   majorITB: string | null
   sourceInfo: $Enums.SourceInfo | null
   gender: $Enums.Gender | null
+  isPresence: boolean | null
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
@@ -86,6 +87,7 @@ export type EventRegistrationMaxAggregateOutputType = {
   majorITB: string | null
   sourceInfo: $Enums.SourceInfo | null
   gender: $Enums.Gender | null
+  isPresence: boolean | null
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
@@ -131,6 +133,7 @@ export type EventRegistrationCountAggregateOutputType = {
   majorITB: number
   sourceInfo: number
   gender: number
+  isPresence: number
   activeSocial: number
   reasonToParticipate: number
   interestedTopic: number
@@ -178,6 +181,7 @@ export type EventRegistrationMinAggregateInputType = {
   majorITB?: true
   sourceInfo?: true
   gender?: true
+  isPresence?: true
   activeSocial?: true
   reasonToParticipate?: true
   interestedTopic?: true
@@ -223,6 +227,7 @@ export type EventRegistrationMaxAggregateInputType = {
   majorITB?: true
   sourceInfo?: true
   gender?: true
+  isPresence?: true
   activeSocial?: true
   reasonToParticipate?: true
   interestedTopic?: true
@@ -268,6 +273,7 @@ export type EventRegistrationCountAggregateInputType = {
   majorITB?: true
   sourceInfo?: true
   gender?: true
+  isPresence?: true
   activeSocial?: true
   reasonToParticipate?: true
   interestedTopic?: true
@@ -386,6 +392,7 @@ export type EventRegistrationGroupByOutputType = {
   majorITB: string | null
   sourceInfo: $Enums.SourceInfo | null
   gender: $Enums.Gender | null
+  isPresence: boolean | null
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
@@ -452,6 +459,7 @@ export type EventRegistrationWhereInput = {
   majorITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   sourceInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableFilter<"EventRegistration"> | $Enums.Gender | null
+  isPresence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -498,6 +506,7 @@ export type EventRegistrationOrderByWithRelationInput = {
   majorITB?: Prisma.SortOrderInput | Prisma.SortOrder
   sourceInfo?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPresence?: Prisma.SortOrderInput | Prisma.SortOrder
   activeSocial?: Prisma.SortOrderInput | Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrderInput | Prisma.SortOrder
   interestedTopic?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -547,6 +556,7 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   majorITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   sourceInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableFilter<"EventRegistration"> | $Enums.Gender | null
+  isPresence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -593,6 +603,7 @@ export type EventRegistrationOrderByWithAggregationInput = {
   majorITB?: Prisma.SortOrderInput | Prisma.SortOrder
   sourceInfo?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  isPresence?: Prisma.SortOrderInput | Prisma.SortOrder
   activeSocial?: Prisma.SortOrderInput | Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrderInput | Prisma.SortOrder
   interestedTopic?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -644,6 +655,7 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   majorITB?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   sourceInfo?: Prisma.EnumSourceInfoNullableWithAggregatesFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"EventRegistration"> | $Enums.Gender | null
+  isPresence?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   activeSocial?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
@@ -688,6 +700,7 @@ export type EventRegistrationCreateInput = {
   majorITB?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
+  isPresence?: boolean | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
@@ -734,6 +747,7 @@ export type EventRegistrationUncheckedCreateInput = {
   majorITB?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
+  isPresence?: boolean | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
@@ -778,6 +792,7 @@ export type EventRegistrationUpdateInput = {
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -824,6 +839,7 @@ export type EventRegistrationUncheckedUpdateInput = {
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -869,6 +885,7 @@ export type EventRegistrationCreateManyInput = {
   majorITB?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
+  isPresence?: boolean | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
@@ -913,6 +930,7 @@ export type EventRegistrationUpdateManyMutationInput = {
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -958,6 +976,7 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1003,6 +1022,7 @@ export type EventRegistrationCountOrderByAggregateInput = {
   majorITB?: Prisma.SortOrder
   sourceInfo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  isPresence?: Prisma.SortOrder
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
   interestedTopic?: Prisma.SortOrder
@@ -1048,6 +1068,7 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   majorITB?: Prisma.SortOrder
   sourceInfo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  isPresence?: Prisma.SortOrder
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
   interestedTopic?: Prisma.SortOrder
@@ -1093,6 +1114,7 @@ export type EventRegistrationMinOrderByAggregateInput = {
   majorITB?: Prisma.SortOrder
   sourceInfo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
+  isPresence?: Prisma.SortOrder
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
   interestedTopic?: Prisma.SortOrder
@@ -1225,6 +1247,7 @@ export type EventRegistrationCreateWithoutUserInput = {
   majorITB?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
+  isPresence?: boolean | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
@@ -1269,6 +1292,7 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   majorITB?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
+  isPresence?: boolean | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
@@ -1343,6 +1367,7 @@ export type EventRegistrationScalarWhereInput = {
   majorITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   sourceInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableFilter<"EventRegistration"> | $Enums.Gender | null
+  isPresence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -1387,6 +1412,7 @@ export type EventRegistrationCreateManyUserInput = {
   majorITB?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
+  isPresence?: boolean | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
@@ -1431,6 +1457,7 @@ export type EventRegistrationUpdateWithoutUserInput = {
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1475,6 +1502,7 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1519,6 +1547,7 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1566,6 +1595,7 @@ export type EventRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Int
   majorITB?: boolean
   sourceInfo?: boolean
   gender?: boolean
+  isPresence?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
   interestedTopic?: boolean
@@ -1612,6 +1642,7 @@ export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   majorITB?: boolean
   sourceInfo?: boolean
   gender?: boolean
+  isPresence?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
   interestedTopic?: boolean
@@ -1658,6 +1689,7 @@ export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   majorITB?: boolean
   sourceInfo?: boolean
   gender?: boolean
+  isPresence?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
   interestedTopic?: boolean
@@ -1704,6 +1736,7 @@ export type EventRegistrationSelectScalar = {
   majorITB?: boolean
   sourceInfo?: boolean
   gender?: boolean
+  isPresence?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
   interestedTopic?: boolean
@@ -1732,7 +1765,7 @@ export type EventRegistrationSelectScalar = {
   isSopCompliant?: boolean
 }
 
-export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "buktiBayarUrl" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant", ExtArgs["result"]["eventRegistration"]>
+export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "buktiBayarUrl" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant", ExtArgs["result"]["eventRegistration"]>
 export type EventRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -1765,6 +1798,7 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     majorITB: string | null
     sourceInfo: $Enums.SourceInfo | null
     gender: $Enums.Gender | null
+    isPresence: boolean | null
     activeSocial: string | null
     reasonToParticipate: string | null
     interestedTopic: string | null
@@ -2231,6 +2265,7 @@ export interface EventRegistrationFieldRefs {
   readonly majorITB: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly sourceInfo: Prisma.FieldRef<"EventRegistration", 'SourceInfo'>
   readonly gender: Prisma.FieldRef<"EventRegistration", 'Gender'>
+  readonly isPresence: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly activeSocial: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly reasonToParticipate: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly interestedTopic: Prisma.FieldRef<"EventRegistration", 'String'>
