@@ -59,7 +59,6 @@ export default function Competitions() {
       >
         <FetchCompInfo />
       </Suspense>
-      ;
     </>
   );
 }
