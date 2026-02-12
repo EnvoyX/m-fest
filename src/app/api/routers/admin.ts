@@ -59,15 +59,7 @@ export const adminRouter = router({
     }),
   getTeams: adminProcedure.query(async () => {
     const teams = await db.team.findMany({
-      select: {
-        id: true,
-        name: true,
-        competition: true,
-        leaderUserId: true,
-        leaderName: true,
-        leaderEmail: true,
-        leaderPhoneNumber: true,
-        teamInstitution: true,
+      include: {
         members: {
           include: {
             user: {
@@ -77,12 +69,6 @@ export const adminRouter = router({
             },
           },
         },
-        status: true,
-        teamStatus: true,
-        paymentId: true,
-        paymentProofUrl: true,
-        createdAt: true,
-        verificationDeadlineAt: true,
       },
     });
     return teams;
@@ -1285,6 +1271,43 @@ export const adminRouter = router({
         },
         data: {
           isPresence: false,
+        },
+      });
+    }),
+  updateVerificationDeadline: adminProcedure
+    .input(
+      z.object({
+        teamId: z.string(),
+        newVerificationDate: z.date(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      if (!input.newVerificationDate && !input.teamId) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Team ID and new verification date is required",
+          cause: "Team ID and new verification date have no input value",
+        });
+      } else if (!input.newVerificationDate) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "New verification date is required",
+          cause: "New verification date is have no input value",
+        });
+      } else if (!input.teamId) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Team ID is required",
+          cause: "Team ID have no input value",
+        });
+      }
+
+      await ctx.db.team.update({
+        where: {
+          id: input.teamId,
+        },
+        data: {
+          verificationDeadlineAt: input.newVerificationDate,
         },
       });
     }),
