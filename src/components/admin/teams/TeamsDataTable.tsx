@@ -435,15 +435,41 @@ export function TeamsDataTable() {
       filterFn: "includesString",
     },
     {
-      accessorKey: "paymentId",
+      accessorKey: "verificationDeadlineAt",
       accessorFn: (row) => {
         const team = teams?.find((team) => team.id === row.id);
-        return team?.paymentId ?? "Not paid yet";
+        return team?.verificationDeadlineAt
+          ? format(
+              team.verificationDeadlineAt as Date,
+              "EEEE, d MMMM yyyy, HH:mm",
+            )
+          : "Not set";
       },
       header: ({ column }) => {
-        return <DataTableColumnHeader column={column} title="Payment Id" />;
+        return (
+          <DataTableColumnHeader
+            column={column}
+            title="Verification Deadline"
+          />
+        );
       },
-      cell: ({ row }) => <span>{row.getValue("paymentId")}</span>,
+      cell: ({ row }) => {
+        return (
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size={"sm"}
+              className="cursor-pointer"
+              onClick={(e) => {
+                setActiveDialog(row.original.id);
+              }}
+            >
+              <Edit className="w-4 h-4 text-slate-400 cursor-pointer hover:text-slate-300" />
+            </Button>
+            <span>{row.getValue("verificationDeadlineAt")}</span>
+          </div>
+        );
+      },
       filterFn: "includesString",
     },
     {
@@ -743,44 +769,6 @@ export function TeamsDataTable() {
         );
       },
       cell: ({ row }) => <span>{row.getValue("teamInstitution")}</span>,
-      filterFn: "includesString",
-    },
-    {
-      accessorKey: "verificationDeadlineAt",
-      accessorFn: (row) => {
-        const team = teams?.find((team) => team.id === row.id);
-        return team?.verificationDeadlineAt
-          ? format(
-              team.verificationDeadlineAt as Date,
-              "EEEE, d MMMM yyyy, HH:mm",
-            )
-          : "Not set";
-      },
-      header: ({ column }) => {
-        return (
-          <DataTableColumnHeader
-            column={column}
-            title="Verification Deadline"
-          />
-        );
-      },
-      cell: ({ row }) => {
-        return (
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size={"sm"}
-              className="cursor-pointer"
-              onClick={(e) => {
-                setActiveDialog(row.original.id);
-              }}
-            >
-              <Edit className="w-4 h-4 text-slate-400 cursor-pointer hover:text-slate-300" />
-            </Button>
-            <span>{row.getValue("verificationDeadlineAt")}</span>
-          </div>
-        );
-      },
       filterFn: "includesString",
     },
     {
