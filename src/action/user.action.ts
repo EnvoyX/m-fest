@@ -31,6 +31,7 @@ export async function getUser() {
       registration: true,
       examSession: true,
       eventRegistration: true,
+      accounts: true,
     },
   });
 
