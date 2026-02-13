@@ -27,8 +27,6 @@ import { cn, getCurrentDate, wibToUTC } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { isBefore, isWithinInterval, isAfter } from "date-fns";
 import { eventsList, type Event } from "@/lib/eventDashboard";
-import QuotaTrack from "../QuotaTrack";
-import QuotaTrackMcare from "../QuotaTrackMcare";
 
 export default function EventsListDashboard() {
   return (
@@ -41,11 +39,6 @@ export default function EventsListDashboard() {
 async function FetchUserAvailableEvents() {
   const currentDate = getCurrentDate();
   const user = (await getUser()) as User;
-
-  const count = await db.eventRegistration.count({
-    where:{clinicActivity: "EYE_CHECK"}
-  })
-
   const registeredEvents = await db.eventRegistration.findMany({
     where: {
       userId: user.id,
@@ -133,10 +126,6 @@ async function FetchUserAvailableEvents() {
                 <event.logo className="size-24" />
               </CardContent>
               <CardFooter className="flex flex-col justify-center mt-auto">
-                
-                {event.id === "M-CARE" && <div className="text-sm font-medium mb-2">Slots For Eye Check Only</div>}
-                {event.id === "M-CARE" && <QuotaTrack comp={event.id} fetchedCurrentQuota={0} maxQuota={event.maxQuota} />}
-            
                 <Button
                   variant="default"
                   size="sm"

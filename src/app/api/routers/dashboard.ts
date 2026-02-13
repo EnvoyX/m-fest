@@ -573,15 +573,5 @@ export const dashboardRouter = router({
         const currentCompQuota = counts[input.comp.toUpperCase()] || 0;
 
         return currentCompQuota
-    }),
-    getCurrentQuotaEyeCheckUp: protectedProcedure
-    .query(async ({ ctx, }) => {
-      const count = await ctx.db.eventRegistration.count({
-        where: {
-          clinicActivity: "EYE_CHECK",
-        },
-      });
-
-      return count; // Returns a raw number for the component
-    }),
+    })
 });

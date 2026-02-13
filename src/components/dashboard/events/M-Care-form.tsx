@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { eventsList, type Event } from "@/lib/eventDashboard";
+
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -32,9 +32,7 @@ const CLINIC_OPTIONS = [
     { id: "BOTH", label: "Keduanya" },
 ] as const;
 
-const MaxQuota = 50;
-
-export default function MCareForm({ fetchedcurrentQuotas }: { fetchedcurrentQuotas: number }) {
+export default function MCareForm() {
     const form = useForm<mCareSchema>({
         resolver: zodResolver(mCareSchema),
         defaultValues: {
@@ -64,25 +62,7 @@ export default function MCareForm({ fetchedcurrentQuotas }: { fetchedcurrentQuot
     const mCareEvent = events?.filter((e) => e.eventType === "M_CARE")
     if (mCareEvent?.length) router.push("/dashboard/events");
 
-    const { data: liveQuotas } = useQuery({
-        ...trpc.dashboard.getCurrentQuotaEyeCheckUp.queryOptions(),
-        
-        //enabled: fetchedcurrentQuotas < MaxQuota,
-        enabled: true,
 
-        refetchInterval: (query) => {
-            const data = query.state.data
-            // Optimization: stop polling if data exists and we hit/exceed max
-            return typeof data === 'number' && data >= MaxQuota ? false : 2000
-        },
-
-        staleTime: 30_000,
-        gcTime: 5 * 60_000,
-        refetchOnWindowFocus: false,
-        refetchOnReconnect: true,
-    })
-
-    const isEyeCheckFull = (liveQuotas ?? fetchedcurrentQuotas) >= MaxQuota;
 
     const registerEvent = useMutation({
         ...trpc.event.registerEvent.mutationOptions(),
@@ -315,23 +295,19 @@ export default function MCareForm({ fetchedcurrentQuotas }: { fetchedcurrentQuot
                                             defaultValue={field.value}
                                             className="grid grid-cols-1 md:grid-cols-3 gap-4"
                                         >
-                                            {CLINIC_OPTIONS.map((item) => {
-                                            const isDisabled = item.id === "EYE_CHECK" && isEyeCheckFull;
-
-                                            return (
+                                            {CLINIC_OPTIONS.map((item) => (
                                                 <FormItem
                                                     key={item.id}
-                                                    className={`flex items-center space-x-3 space-y-0 cursor-pointer ${isDisabled ? "opacity-50" : ""}`}
+                                                    className="flex items-center space-x-3 space-y-0 cursor-pointer"
                                                 >
                                                     <FormControl>
-                                                        <RadioGroupItem value={item.id} disabled={isDisabled} />
+                                                        <RadioGroupItem value={item.id} />
                                                     </FormControl>
-                                                    <FormLabel className={`font-normal ${isDisabled ? "text-slate-500" : "text-slate-300"}`}>
-                                                        {item.label} {isDisabled && "(Full)"}
+                                                    <FormLabel className="font-normal text-slate-300 cursor-pointer w-full">
+                                                        {item.label}
                                                     </FormLabel>
                                                 </FormItem>
-                                            );
-                                        })}
+                                            ))}
                                         </RadioGroup>
                                     </FormControl>
                                     <FormMessage />

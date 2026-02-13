@@ -30,7 +30,6 @@ export type Event = {
     Batch2EndRegDate?: Date;
     price1?: number;
     price2?: number;
-    maxQuota?: number;
 };
 
 export const eventsList: Event[] = [
@@ -45,7 +44,6 @@ export const eventsList: Event[] = [
         location: "Institut Teknologi Bandung Ganesha (RKB FTMD)",
         startRegDate1: new Date("2026-02-07T09:00:00"),
         endRegDate1: new Date("2026-02-13T21:00:00"),
-        maxQuota: 50,
     },
     {
         id: "M-RUN",
