@@ -43,7 +43,7 @@ export const eventsList: Event[] = [
         eventDate: "Sabtu, 14 Februari 2026 (07.00 - 12.00)",
         location: "Institut Teknologi Bandung Ganesha (RKB FTMD)",
         startRegDate1: new Date("2026-02-07T09:00:00"),
-        endRegDate1: new Date("2026-02-13T23:59:59"),
+        endRegDate1: new Date("2026-02-13T21:00:00"),
     },
     {
         id: "M-RUN",
