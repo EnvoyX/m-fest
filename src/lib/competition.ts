@@ -116,7 +116,7 @@ export const competitions: {
             submissionDeadline: getSubmissionDeadline("BCC"),
             submissionContext: "Submit your paper before:",
             compOpenCase: getCompCaseDate("BCC"),
-            maxQuota: 80,
+            maxQuota: 1000,
         },
 
         {
