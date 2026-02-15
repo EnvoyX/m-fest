@@ -49,7 +49,7 @@ export const eventsList: Event[] = [
         id: "M-RUN",
         dbId: "M_RUN",
         title: "M-Run",
-        desc: "5km Campus Run",
+        desc: "5KM Campus Run",
         logo: ActivityIcon,
         href: "events/m-run",
         eventDate: "Minggu, 3 Mei 2026",
