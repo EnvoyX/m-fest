@@ -72,7 +72,8 @@ export default function ButtonComp({ comp, fetchedCurrentQuota, maxQuota, isTeam
                                 end: comp.endRegDate3,
                             }) ||
                             !userTeam ||
-                            !isTeamLeader,
+                            !isTeamLeader ||
+                            isQuotaFull
                     })}
                     disabled={
                         registeredCompetitions.length
@@ -96,6 +97,8 @@ export default function ButtonComp({ comp, fetchedCurrentQuota, maxQuota, isTeam
                                 }) ||
                                 !userTeam ||
                                 !isTeamLeader
+                                ||
+                                isQuotaFull
                                 ? ""
                                 : `/dashboard/team/register/${comp.abbreviation}`
                         }
