@@ -27,6 +27,7 @@ import { IconListDetails } from "@tabler/icons-react";
 import QuotaTrack from "../QuotaTrack";
 import StatusComp from "../StatusComp";
 import ButtonComp from "../ButtonComp";
+import { Badge } from "@/components/ui/badge";
 
 export default function RegisteredCompetitionList() {
     return (
@@ -145,7 +146,7 @@ async function FetchUserAvailableCompetitions() {
                             />
                         </CardContent>
                         <CardFooter className="flex flex-col justify-center mt-auto">
-                            {comp.abbreviation === "IPPC" && <QuotaTrack comp={comp.abbreviation} fetchedCurrentQuota={currentQuota} maxQuota={maxQuota} />}
+                            {comp.abbreviation === "BCC" ? <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5 text-sm">Unlimited Slots</Badge> : <QuotaTrack comp={comp.abbreviation} fetchedCurrentQuota={currentQuota} maxQuota={maxQuota} />}
 
                             <ButtonComp comp={comp} fetchedCurrentQuota={currentQuota} maxQuota={maxQuota} isTeamLeader={isTeamLeader} registeredCompetitions={registeredCompetitions} userTeam={userTeam} />
                         </CardFooter>

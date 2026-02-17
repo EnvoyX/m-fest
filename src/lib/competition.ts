@@ -10,9 +10,9 @@ enum CompetitionName {
 // Default values for all competitions
 const startRegDate1 = new Date("2026-01-18T14:00:00");
 const startRegDate2 = new Date("2026-01-25T00:00:00");
-const startRegDate3 = new Date("2026-02-16T00:00:00");
+const startRegDate3 = new Date("2026-02-17T20:00:00");
 const endRegDate1 = new Date("2026-01-24T23:59:59");
-const endRegDate2 = new Date("2026-02-15T23:59:59");
+const endRegDate2 = new Date("2026-02-17T20:00:00");
 const endRegDate3 = new Date("2026-02-22T23:59:59");
 
 export type competition = {
@@ -103,11 +103,11 @@ export const competitions: {
             reg3: "16 Ferbuary - 22 February 2026", // Extended Regular
             startRegDate1,
             startRegDate2,
-            startRegDate3,
+            startRegDate3: new Date("2026-01-25T00:00:00"),
             endRegDate1,
             endRegDate2,
             endRegDate3,
-            fee1: 150001, // Early bird
+            fee1: 150001, // Early birds
             fee2: 200001, // Regular
             guideBook:
                 "https://drive.google.com/drive/folders/1BWJJ8mOQbO8S1psZmvJ_00pAr6ejR1G-?usp=sharing",
@@ -166,18 +166,17 @@ export const competitions: {
             reg1: "18 January - 24 January 2026", // Early Bird
             reg2: "25 January - 15 February 2026", // Regular
             reg3: "16 Ferbuary - 22 February 2026", // Extended Regular
-            // Closed Reg for PDC
             startRegDate1: new Date("2026-01-01T14:00:00"),
             startRegDate2: new Date("2026-01-01T00:00:00"),
-            startRegDate3: new Date("2026-01-01T00:00:00"),
-            endRegDate1: new Date("2026-01-02T23:59:59"),
-            endRegDate2: new Date("2026-01-02T23:59:59"),
-            endRegDate3: new Date("2026-01-02T23:59:59"),
+            startRegDate3,
+            endRegDate1: new Date("2026-01-01T23:59:59"),
+            endRegDate2: new Date("2026-01-01T23:59:59"),
+            endRegDate3,
             fee1: 200001, // Early Bird
             fee2: 250001, // Regular
             guideBook:
                 "https://drive.google.com/drive/folders/17ADXN7Iom5nPJXJHEw2oQZvRRvf9q4fP?usp=sharing",
-            isOpen: true,
+            isOpen: false,
             icon: "Lock",
             uploadThingRoute: "submitFilePDC",
             submissionDeadline: getSubmissionDeadline("PDC"),
@@ -185,7 +184,7 @@ export const competitions: {
             compOpenCase: getCompCaseDate("PDC"),
             caseLink:
                 "https://drive.google.com/drive/folders/1Thuhb-0Chb1_AFApqvzldrXVg1PweYMh?usp=drive_link",
-            maxQuota: 47,
+            maxQuota: 46,
         },
         {
             title: "Science, Technology, Engineering, and Mathematics",
@@ -203,10 +202,10 @@ export const competitions: {
            // Closed Reg for STEM
             startRegDate1: new Date("2026-01-01T14:00:00"),
             startRegDate2: new Date("2026-01-01T00:00:00"),
-            startRegDate3: new Date("2026-01-01T00:00:00"),
+            startRegDate3,
             endRegDate1: new Date("2026-01-02T23:59:59"),
             endRegDate2: new Date("2026-01-02T23:59:59"),
-            endRegDate3: new Date("2026-01-02T23:59:59"),
+            endRegDate3,
             fee1: 120001, // Early Bird
             fee2: 180001, // Regular
             guideBook:
@@ -216,6 +215,6 @@ export const competitions: {
             submissionDeadline: null,
             compOpenCase: null,
             examOpen: getCompCaseDate("STEM") as Date,
-            maxQuota: 81,
+            maxQuota: 80,
         },
     ];
