@@ -56,10 +56,17 @@ export default function StatusComp({ comp, fetchedCurrentQuota, maxQuota }: Stat
                 </Badge>
             ) : isWithinInterval(currentDate, {
                 start: comp.startRegDate2,
-                end: comp.endRegDate3,
+                end: comp.endRegDate2,
             }) && !isQuotaFull ? (
                 <Badge variant="secondary" className="bg-green-600 text-white">
                     Regular
+                </Badge>
+            ) : isWithinInterval(currentDate, {
+                start: comp.startRegDate3,
+                end: comp.endRegDate3,
+            }) && !isQuotaFull ? (
+                <Badge variant="secondary" className="bg-yellow-500 text-white">
+                    Extended
                 </Badge>
             ) : (
                 <Badge variant="destructive">Closed</Badge>

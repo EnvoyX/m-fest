@@ -68,7 +68,7 @@ export default function ButtonComp({ comp, fetchedCurrentQuota, maxQuota, isTeam
                         "bg-muted-foreground pointer-events-none cursor-not-allowed":
                             registeredCompetitions.length ||
                             !isWithinInterval(currentDate, {
-                                start: comp.startRegDate1,
+                                start: comp.startRegDate3,
                                 end: comp.endRegDate3,
                             }) ||
                             !userTeam ||
@@ -79,7 +79,7 @@ export default function ButtonComp({ comp, fetchedCurrentQuota, maxQuota, isTeam
                             ? true
                             : false ||
                             !isWithinInterval(currentDate, {
-                                start: comp.startRegDate1,
+                                start: comp.startRegDate3,
                                 end: comp.endRegDate3,
                             }) ||
                             !userTeam ||
