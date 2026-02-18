@@ -3,12 +3,12 @@ import { getCurrentDate } from "@/lib/utils";
 import { isBefore, isWithinInterval } from "date-fns";
 import { Badge } from "../ui/badge";
 import type { CompetitionName } from "../../../prisma/generated/prisma/enums";
-import type { competition } from "@/lib/competition";
+import type { Competition } from "@/lib/competition";
 import { useTRPC } from "@/utils/trpc";
 import { useQuery } from "@tanstack/react-query";
 
 type StatusCompProps = {
-    comp: competition;
+    comp: Competition;
     fetchedCurrentQuota: number,
     maxQuota: number;
 };
