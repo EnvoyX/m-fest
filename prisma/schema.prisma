@@ -111,34 +111,42 @@ enum SourceInfo {
 }
 
 model CompRegistration {
-  id                      String          @id @default(uuid())
-  userId                  String
-  leaderUserId            String?
-  leaderEmail             String?
-  leaderName              String?
-  leaderPhoneNumber       String?
-  teamInstitution         String?
-  teamName                String?
-  teamId                  String?          @unique
-  paymentId               String          @unique
-  paymentFee              Int
-  paymentProofUrl         String
-  statusOrder             String?         @default("PENDING")
-  teamStatus              TeamStatus?
-  competitionName         CompetitionName
-  submissionFileName      String?
-  submissionFileUrl       String?
-  submissionFileKey       String?
-  submissionFileCreatedAt DateTime        @default(now())
-  submissionFileUploaded  Boolean         @default(false)
-  submissionFileSubmitted Boolean         @default(false)
-  mentor                  String?
-  createdAt               DateTime        @default(now())
-  updatedAt               DateTime        @updatedAt
-  team                    Team?           @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  user                    User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String          @id @default(uuid())
+  userId            String
+  leaderUserId      String?
+  leaderEmail       String?
+  leaderName        String?
+  leaderPhoneNumber String?
+  teamInstitution   String?
+  teamName          String?
+  teamId            String?         @unique
+  paymentId         String          @unique
+  paymentFee        Int
+  paymentProofUrl   String
+  statusOrder       String?         @default("PENDING")
+  teamStatus        TeamStatus?
+  competitionName   CompetitionName
 
-  isVerified              Boolean         @default(false)
+  // Should've create an entire seperate model for submission file
+  submissionFileName       String?
+  submissionFileUrl        String?
+  submissionFileKey        String?
+  submissionFileCreatedAt  DateTime @default(now())
+  submissionFileUploaded   Boolean  @default(false)
+  submissionFileSubmitted  Boolean  @default(false)
+  submissionFileName2      String?
+  submissionFileUrl2       String?
+  submissionFileKey2       String?
+  submissionFileCreatedAt2 DateTime @default(now())
+  submissionFileUploaded2  Boolean  @default(false)
+  submissionFileSubmitted2 Boolean  @default(false)
+  mentor                   String?
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+  team                     Team?    @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user                     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  isVerified Boolean @default(false)
 
   @@index([userId])
   @@index([teamId])
@@ -148,27 +156,26 @@ model CompRegistration {
 
 model EventRegistration {
   // Mandatory Fields
-  id              String   @id @default(cuid())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  userId          String
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  eventType       EventType
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  eventType EventType
 
   // General
-  participantName String?
-  activeEmail     String?
-  phoneNumber     String?
-  fullAddress     String?
-  emergencyContact  String?
+  participantName      String?
+  activeEmail          String?
+  phoneNumber          String?
+  fullAddress          String?
+  emergencyContact     String?
   emergencyContactName String?
-  isITB           Boolean?     @default(false)
-  nimITB          String?
-  majorITB        String?
-  sourceInfo      SourceInfo?
-  gender          Gender?
-  isPresence      Boolean?     @default(false)
-
+  isITB                Boolean?    @default(false)
+  nimITB               String?
+  majorITB             String?
+  sourceInfo           SourceInfo?
+  gender               Gender?
+  isPresence           Boolean?    @default(false)
 
   // M-Talks Specific
   activeSocial        String?
@@ -176,24 +183,24 @@ model EventRegistration {
   interestedTopic     String?
 
   // M-Care Specific
-  clinicActivity   KlinikActivity?
-  memenuhiSyarat    Boolean?     @default(false) // Consent Klinik
+  clinicActivity KlinikActivity?
+  memenuhiSyarat Boolean?        @default(false) // Consent Klinik
 
-// M-Run Specifics
+  // M-Run Specifics
   age             String?
   ktpUrl          String?
-  category        Kategori?      // 5K, 10K, etc
+  category        Kategori? // 5K, 10K, etc
   jerseySize      JerseySize?
-  isAlumniHMM     Boolean?     @default(false)
-  isHMM           Boolean?     @default(false)
-  nimHMM          String?      // Khusus verifikasi HMM
-  bloodType   BloodType?
+  isAlumniHMM     Boolean?    @default(false)
+  isHMM           Boolean?    @default(false)
+  nimHMM          String? // Khusus verifikasi HMM
+  bloodType       BloodType?
   rhesus          Rhesus?
-  riwayatPenyakit Boolean?     @default(false)
-  detailPenyakit  String?      // Kapan terakhir kambuh
+  riwayatPenyakit Boolean?    @default(false)
+  detailPenyakit  String? // Kapan terakhir kambuh
   alergi          Boolean?
   detailAlergi    String?
-  siapLomba       Boolean?     @default(false) // Consent M-Run
+  siapLomba       Boolean?    @default(false) // Consent M-Run
   buktiBayarUrl   String?
 
   // ETU speficfics
@@ -201,10 +208,8 @@ model EventRegistration {
   tahunBuat       String?
   platNomor       String?
   lastServiceDate String?
-  nimOrNip        String?      // Buat ETU / Mexpo
-  isSopCompliant  Boolean?     @default(false) // Consent ETU
-
-
+  nimOrNip        String? // Buat ETU / Mexpo
+  isSopCompliant  Boolean? @default(false) // Consent ETU
 
   @@index([userId])
   @@index([eventType])
@@ -372,18 +377,17 @@ model ExamSession {
   createdAt DateTime @default(now())
 }
 
-
 model quizResult {
-  id                  String    @id @default(cuid())
-  userId              String
-  score               Int
-  totalQuestions      Int
-  timeSpent           Int
-  answers             Json
-  essayAnswer         String?
-  essayAnswerFileUrl  String?
-  essayAnswerFileKey  String?
-  createdAt           DateTime  @default(now())
-  type                QuizTypes
-  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                 String    @id @default(cuid())
+  userId             String
+  score              Int
+  totalQuestions     Int
+  timeSpent          Int
+  answers            Json
+  essayAnswer        String?
+  essayAnswerFileUrl String?
+  essayAnswerFileKey String?
+  createdAt          DateTime  @default(now())
+  type               QuizTypes
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
