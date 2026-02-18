@@ -354,6 +354,24 @@ export const dashboardRouter = router({
                 });
             }
 
+            if (input.type && input.type === "full-paper") {
+                console.log("Uploading full paper from TRPC")
+                await ctx.db.compRegistration.update({
+                    where: {
+                        teamId: thisRegisteredCompUser?.teamId as string,
+                    },
+                    data: {
+                        submissionFileName2: input.fileName,
+                        submissionFileUrl2: input.fileUrl,
+                        submissionFileUploaded2: true,
+                        submissionFileCreatedAt2: new Date(),
+                        submissionFileSubmitted2: true,
+                    },
+                });
+                return
+            }
+
+            console.log("Uploading preliminary from TRPC")
             await ctx.db.compRegistration.update({
                 where: {
                     teamId: thisRegisteredCompUser?.teamId as string,
@@ -441,7 +459,7 @@ export const dashboardRouter = router({
                     title: "Follow Ig",
                     submissionDetail:
                         "Participants are required to have an Instagram account and must follow social media @mfestitb and upload proof on the registration form provided.",
-                    acceptedFiles: [".png", ".jpeg", ".jpg", ".webp",".pdf"],
+                    acceptedFiles: [".png", ".jpeg", ".jpg", ".webp", ".pdf"],
                     uploadThingRoute: "followIg",
                     imageUrl: userDocuments?.followIgImageUrl ?? null,
                     imageKey: userDocuments?.followIgImageKey ?? null,

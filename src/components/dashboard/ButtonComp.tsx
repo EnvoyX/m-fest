@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { cn, getCurrentDate } from "@/lib/utils";
 import { isWithinInterval } from "date-fns";
 import { ChevronRight, Plus } from "lucide-react";
-import type { competition } from "@/lib/competition";
+import type { Competition } from "@/lib/competition";
 import { useTRPC } from "@/utils/trpc";
 import { useQuery } from "@tanstack/react-query";
 import type { RegisteredCompetitionsList, UserTeam } from "@/types/prisma";
@@ -12,7 +12,7 @@ import type { RegisteredCompetitionsList, UserTeam } from "@/types/prisma";
 export type ButtonCompProps = {
     fetchedCurrentQuota: number;
     maxQuota: number;
-    comp: competition;
+    comp: Competition;
     isTeamLeader: boolean;
     userTeam: UserTeam;
     registeredCompetitions: RegisteredCompetitionsList;
