@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.4.0
- * Query Engine version: ab56fe763f921d033a6c195e7ddeb3e255bdbb57
+ * Prisma Client JS version: 7.3.0
+ * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.4.0",
-  engine: "ab56fe763f921d033a6c195e7ddeb3e255bdbb57"
+  client: "7.3.0",
+  engine: "9d6ad21cbbceab97458517b147a6a09ff43aa735"
 }
 
 /**
@@ -1289,12 +1289,6 @@ export const CompRegistrationScalarFieldEnum = {
   submissionFileCreatedAt: 'submissionFileCreatedAt',
   submissionFileUploaded: 'submissionFileUploaded',
   submissionFileSubmitted: 'submissionFileSubmitted',
-  submissionFileName2: 'submissionFileName2',
-  submissionFileUrl2: 'submissionFileUrl2',
-  submissionFileKey2: 'submissionFileKey2',
-  submissionFileCreatedAt2: 'submissionFileCreatedAt2',
-  submissionFileUploaded2: 'submissionFileUploaded2',
-  submissionFileSubmitted2: 'submissionFileSubmitted2',
   mentor: 'mentor',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
