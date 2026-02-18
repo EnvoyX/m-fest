@@ -177,7 +177,6 @@ export function CompsDataTable() {
                                         compRegistrationId: item.id,
                                         teamId: item.teamId as string,
                                         fileKey: item.submissionFileKey as string,
-                                        fileKey2: item.submissionFileKey2 ? item.submissionFileKey2 : undefined,
                                     });
                                 }}
                             >
@@ -646,90 +645,6 @@ export function CompsDataTable() {
             cell: ({ row }) => {
                 const submissionFileSubmitted = row.getValue(
                     "submissionFileSubmitted",
-                ) as boolean;
-                return (
-                    <>{submissionFileSubmitted ? <span>Yes</span> : <span>No</span>}</>
-                );
-            },
-        },
-        {
-            accessorKey: "submissionFileUrl2",
-            accessorFn: (row) => {
-                const registration = registrations?.find(
-                    (regis) => regis.id === row.id,
-                );
-                return registration?.submissionFileUrl2 ?? "";
-            },
-            header: ({ column }) => {
-                return (
-                    <DataTableColumnHeader column={column} title="Submission File 2" />
-                );
-            },
-            cell: ({ row }) => {
-                const submissionFileUrl = row.getValue("submissionFileUrl2") as string;
-                return (
-                    <>
-                        {submissionFileUrl ? (
-                            <Link
-                                href={(submissionFileUrl as string) ?? ""}
-                                className={cn(
-                                    submissionFileUrl ? "underline italic font-bold" : "",
-                                )}
-                                target="_blank"
-                            >
-                                {submissionFileUrl ? "View" : "No File"}
-                            </Link>
-                        ) : (
-                            <span>No File</span>
-                        )}
-                    </>
-                );
-            },
-        },
-        {
-            accessorKey: "submissionFileUploaded2",
-            accessorFn: (row) => {
-                const registration = registrations?.find(
-                    (regis) => regis.id === row.id,
-                );
-                return registration?.submissionFileUploaded2 ?? false;
-            },
-            header: ({ column }) => {
-                return (
-                    <DataTableColumnHeader
-                        column={column}
-                        title="Submission File Uploaded 2"
-                    />
-                );
-            },
-            cell: ({ row }) => {
-                const submissionFileUploaded = row.getValue(
-                    "submissionFileUploaded2",
-                ) as boolean | null;
-                return (
-                    <>{submissionFileUploaded ? <span>Yes</span> : <span>No</span>}</>
-                );
-            },
-        },
-        {
-            accessorKey: "submissionFileSubmitted2",
-            accessorFn: (row) => {
-                const registration = registrations?.find(
-                    (regis) => regis.id === row.id,
-                );
-                return registration?.submissionFileSubmitted2 ?? false;
-            },
-            header: ({ column }) => {
-                return (
-                    <DataTableColumnHeader
-                        column={column}
-                        title="Submission File Submitted 2"
-                    />
-                );
-            },
-            cell: ({ row }) => {
-                const submissionFileSubmitted = row.getValue(
-                    "submissionFileSubmitted2",
                 ) as boolean;
                 return (
                     <>{submissionFileSubmitted ? <span>Yes</span> : <span>No</span>}</>
