@@ -97,7 +97,7 @@ cd m-fest
 ### 2. Install dependancies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 3. Setup enviroment variables
@@ -128,6 +128,9 @@ UPLOADTHING_TOKEN=''
 UPLOADTHING_API=""
 UPLOADTHING_APP_ID=""
 
+
+UPSTASH_REDIS_REST_URL=""
+UPSTASH_REDIS_REST_TOKEN=""
 ```
 
 ### 4 Initialize Prisma
@@ -135,6 +138,9 @@ UPLOADTHING_APP_ID=""
 ```bash
 npx prisma db push
 npx prisma generate
+
+pnpm dlx prisma db push
+pnpm dlx prisma generate
 ```
 
 ### 5. Run the development server (using bun for faster dev server)
