@@ -56,6 +56,12 @@ export type CompRegistrationMinAggregateOutputType = {
   submissionFileCreatedAt: Date | null
   submissionFileUploaded: boolean | null
   submissionFileSubmitted: boolean | null
+  submissionFileName2: string | null
+  submissionFileUrl2: string | null
+  submissionFileKey2: string | null
+  submissionFileCreatedAt2: Date | null
+  submissionFileUploaded2: boolean | null
+  submissionFileSubmitted2: boolean | null
   mentor: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -84,6 +90,12 @@ export type CompRegistrationMaxAggregateOutputType = {
   submissionFileCreatedAt: Date | null
   submissionFileUploaded: boolean | null
   submissionFileSubmitted: boolean | null
+  submissionFileName2: string | null
+  submissionFileUrl2: string | null
+  submissionFileKey2: string | null
+  submissionFileCreatedAt2: Date | null
+  submissionFileUploaded2: boolean | null
+  submissionFileSubmitted2: boolean | null
   mentor: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -112,6 +124,12 @@ export type CompRegistrationCountAggregateOutputType = {
   submissionFileCreatedAt: number
   submissionFileUploaded: number
   submissionFileSubmitted: number
+  submissionFileName2: number
+  submissionFileUrl2: number
+  submissionFileKey2: number
+  submissionFileCreatedAt2: number
+  submissionFileUploaded2: number
+  submissionFileSubmitted2: number
   mentor: number
   createdAt: number
   updatedAt: number
@@ -150,6 +168,12 @@ export type CompRegistrationMinAggregateInputType = {
   submissionFileCreatedAt?: true
   submissionFileUploaded?: true
   submissionFileSubmitted?: true
+  submissionFileName2?: true
+  submissionFileUrl2?: true
+  submissionFileKey2?: true
+  submissionFileCreatedAt2?: true
+  submissionFileUploaded2?: true
+  submissionFileSubmitted2?: true
   mentor?: true
   createdAt?: true
   updatedAt?: true
@@ -178,6 +202,12 @@ export type CompRegistrationMaxAggregateInputType = {
   submissionFileCreatedAt?: true
   submissionFileUploaded?: true
   submissionFileSubmitted?: true
+  submissionFileName2?: true
+  submissionFileUrl2?: true
+  submissionFileKey2?: true
+  submissionFileCreatedAt2?: true
+  submissionFileUploaded2?: true
+  submissionFileSubmitted2?: true
   mentor?: true
   createdAt?: true
   updatedAt?: true
@@ -206,6 +236,12 @@ export type CompRegistrationCountAggregateInputType = {
   submissionFileCreatedAt?: true
   submissionFileUploaded?: true
   submissionFileSubmitted?: true
+  submissionFileName2?: true
+  submissionFileUrl2?: true
+  submissionFileKey2?: true
+  submissionFileCreatedAt2?: true
+  submissionFileUploaded2?: true
+  submissionFileSubmitted2?: true
   mentor?: true
   createdAt?: true
   updatedAt?: true
@@ -321,6 +357,12 @@ export type CompRegistrationGroupByOutputType = {
   submissionFileCreatedAt: Date
   submissionFileUploaded: boolean
   submissionFileSubmitted: boolean
+  submissionFileName2: string | null
+  submissionFileUrl2: string | null
+  submissionFileKey2: string | null
+  submissionFileCreatedAt2: Date
+  submissionFileUploaded2: boolean
+  submissionFileSubmitted2: boolean
   mentor: string | null
   createdAt: Date
   updatedAt: Date
@@ -372,6 +414,12 @@ export type CompRegistrationWhereInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
   submissionFileUploaded?: Prisma.BoolFilter<"CompRegistration"> | boolean
   submissionFileSubmitted?: Prisma.BoolFilter<"CompRegistration"> | boolean
+  submissionFileName2?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
+  submissionFileUrl2?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
+  submissionFileKey2?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
+  submissionFileUploaded2?: Prisma.BoolFilter<"CompRegistration"> | boolean
+  submissionFileSubmitted2?: Prisma.BoolFilter<"CompRegistration"> | boolean
   mentor?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
@@ -402,6 +450,12 @@ export type CompRegistrationOrderByWithRelationInput = {
   submissionFileCreatedAt?: Prisma.SortOrder
   submissionFileUploaded?: Prisma.SortOrder
   submissionFileSubmitted?: Prisma.SortOrder
+  submissionFileName2?: Prisma.SortOrderInput | Prisma.SortOrder
+  submissionFileUrl2?: Prisma.SortOrderInput | Prisma.SortOrder
+  submissionFileKey2?: Prisma.SortOrderInput | Prisma.SortOrder
+  submissionFileCreatedAt2?: Prisma.SortOrder
+  submissionFileUploaded2?: Prisma.SortOrder
+  submissionFileSubmitted2?: Prisma.SortOrder
   mentor?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -435,6 +489,12 @@ export type CompRegistrationWhereUniqueInput = Prisma.AtLeast<{
   submissionFileCreatedAt?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
   submissionFileUploaded?: Prisma.BoolFilter<"CompRegistration"> | boolean
   submissionFileSubmitted?: Prisma.BoolFilter<"CompRegistration"> | boolean
+  submissionFileName2?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
+  submissionFileUrl2?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
+  submissionFileKey2?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
+  submissionFileUploaded2?: Prisma.BoolFilter<"CompRegistration"> | boolean
+  submissionFileSubmitted2?: Prisma.BoolFilter<"CompRegistration"> | boolean
   mentor?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
@@ -465,6 +525,12 @@ export type CompRegistrationOrderByWithAggregationInput = {
   submissionFileCreatedAt?: Prisma.SortOrder
   submissionFileUploaded?: Prisma.SortOrder
   submissionFileSubmitted?: Prisma.SortOrder
+  submissionFileName2?: Prisma.SortOrderInput | Prisma.SortOrder
+  submissionFileUrl2?: Prisma.SortOrderInput | Prisma.SortOrder
+  submissionFileKey2?: Prisma.SortOrderInput | Prisma.SortOrder
+  submissionFileCreatedAt2?: Prisma.SortOrder
+  submissionFileUploaded2?: Prisma.SortOrder
+  submissionFileSubmitted2?: Prisma.SortOrder
   mentor?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -501,6 +567,12 @@ export type CompRegistrationScalarWhereWithAggregatesInput = {
   submissionFileCreatedAt?: Prisma.DateTimeWithAggregatesFilter<"CompRegistration"> | Date | string
   submissionFileUploaded?: Prisma.BoolWithAggregatesFilter<"CompRegistration"> | boolean
   submissionFileSubmitted?: Prisma.BoolWithAggregatesFilter<"CompRegistration"> | boolean
+  submissionFileName2?: Prisma.StringNullableWithAggregatesFilter<"CompRegistration"> | string | null
+  submissionFileUrl2?: Prisma.StringNullableWithAggregatesFilter<"CompRegistration"> | string | null
+  submissionFileKey2?: Prisma.StringNullableWithAggregatesFilter<"CompRegistration"> | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeWithAggregatesFilter<"CompRegistration"> | Date | string
+  submissionFileUploaded2?: Prisma.BoolWithAggregatesFilter<"CompRegistration"> | boolean
+  submissionFileSubmitted2?: Prisma.BoolWithAggregatesFilter<"CompRegistration"> | boolean
   mentor?: Prisma.StringNullableWithAggregatesFilter<"CompRegistration"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CompRegistration"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CompRegistration"> | Date | string
@@ -527,6 +599,12 @@ export type CompRegistrationCreateInput = {
   submissionFileCreatedAt?: Date | string
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: string | null
+  submissionFileUrl2?: string | null
+  submissionFileKey2?: string | null
+  submissionFileCreatedAt2?: Date | string
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -557,6 +635,12 @@ export type CompRegistrationUncheckedCreateInput = {
   submissionFileCreatedAt?: Date | string
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: string | null
+  submissionFileUrl2?: string | null
+  submissionFileKey2?: string | null
+  submissionFileCreatedAt2?: Date | string
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -583,6 +667,12 @@ export type CompRegistrationUpdateInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissionFileUploaded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submissionFileSubmitted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileName2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileUrl2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileKey2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submissionFileUploaded2?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileSubmitted2?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mentor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -613,6 +703,12 @@ export type CompRegistrationUncheckedUpdateInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissionFileUploaded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submissionFileSubmitted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileName2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileUrl2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileKey2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submissionFileUploaded2?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileSubmitted2?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mentor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -641,6 +737,12 @@ export type CompRegistrationCreateManyInput = {
   submissionFileCreatedAt?: Date | string
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: string | null
+  submissionFileUrl2?: string | null
+  submissionFileKey2?: string | null
+  submissionFileCreatedAt2?: Date | string
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -667,6 +769,12 @@ export type CompRegistrationUpdateManyMutationInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissionFileUploaded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submissionFileSubmitted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileName2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileUrl2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileKey2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submissionFileUploaded2?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileSubmitted2?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mentor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -695,6 +803,12 @@ export type CompRegistrationUncheckedUpdateManyInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissionFileUploaded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submissionFileSubmitted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileName2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileUrl2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileKey2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submissionFileUploaded2?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileSubmitted2?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mentor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -723,6 +837,12 @@ export type CompRegistrationCountOrderByAggregateInput = {
   submissionFileCreatedAt?: Prisma.SortOrder
   submissionFileUploaded?: Prisma.SortOrder
   submissionFileSubmitted?: Prisma.SortOrder
+  submissionFileName2?: Prisma.SortOrder
+  submissionFileUrl2?: Prisma.SortOrder
+  submissionFileKey2?: Prisma.SortOrder
+  submissionFileCreatedAt2?: Prisma.SortOrder
+  submissionFileUploaded2?: Prisma.SortOrder
+  submissionFileSubmitted2?: Prisma.SortOrder
   mentor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -755,6 +875,12 @@ export type CompRegistrationMaxOrderByAggregateInput = {
   submissionFileCreatedAt?: Prisma.SortOrder
   submissionFileUploaded?: Prisma.SortOrder
   submissionFileSubmitted?: Prisma.SortOrder
+  submissionFileName2?: Prisma.SortOrder
+  submissionFileUrl2?: Prisma.SortOrder
+  submissionFileKey2?: Prisma.SortOrder
+  submissionFileCreatedAt2?: Prisma.SortOrder
+  submissionFileUploaded2?: Prisma.SortOrder
+  submissionFileSubmitted2?: Prisma.SortOrder
   mentor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -783,6 +909,12 @@ export type CompRegistrationMinOrderByAggregateInput = {
   submissionFileCreatedAt?: Prisma.SortOrder
   submissionFileUploaded?: Prisma.SortOrder
   submissionFileSubmitted?: Prisma.SortOrder
+  submissionFileName2?: Prisma.SortOrder
+  submissionFileUrl2?: Prisma.SortOrder
+  submissionFileKey2?: Prisma.SortOrder
+  submissionFileCreatedAt2?: Prisma.SortOrder
+  submissionFileUploaded2?: Prisma.SortOrder
+  submissionFileSubmitted2?: Prisma.SortOrder
   mentor?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -934,6 +1066,12 @@ export type CompRegistrationCreateWithoutUserInput = {
   submissionFileCreatedAt?: Date | string
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: string | null
+  submissionFileUrl2?: string | null
+  submissionFileKey2?: string | null
+  submissionFileCreatedAt2?: Date | string
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -962,6 +1100,12 @@ export type CompRegistrationUncheckedCreateWithoutUserInput = {
   submissionFileCreatedAt?: Date | string
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: string | null
+  submissionFileUrl2?: string | null
+  submissionFileKey2?: string | null
+  submissionFileCreatedAt2?: Date | string
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1019,6 +1163,12 @@ export type CompRegistrationScalarWhereInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
   submissionFileUploaded?: Prisma.BoolFilter<"CompRegistration"> | boolean
   submissionFileSubmitted?: Prisma.BoolFilter<"CompRegistration"> | boolean
+  submissionFileName2?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
+  submissionFileUrl2?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
+  submissionFileKey2?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
+  submissionFileUploaded2?: Prisma.BoolFilter<"CompRegistration"> | boolean
+  submissionFileSubmitted2?: Prisma.BoolFilter<"CompRegistration"> | boolean
   mentor?: Prisma.StringNullableFilter<"CompRegistration"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CompRegistration"> | Date | string
@@ -1045,6 +1195,12 @@ export type CompRegistrationCreateWithoutTeamInput = {
   submissionFileCreatedAt?: Date | string
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: string | null
+  submissionFileUrl2?: string | null
+  submissionFileKey2?: string | null
+  submissionFileCreatedAt2?: Date | string
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1073,6 +1229,12 @@ export type CompRegistrationUncheckedCreateWithoutTeamInput = {
   submissionFileCreatedAt?: Date | string
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: string | null
+  submissionFileUrl2?: string | null
+  submissionFileKey2?: string | null
+  submissionFileCreatedAt2?: Date | string
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1115,6 +1277,12 @@ export type CompRegistrationUpdateWithoutTeamInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissionFileUploaded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submissionFileSubmitted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileName2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileUrl2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileKey2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submissionFileUploaded2?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileSubmitted2?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mentor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1143,6 +1311,12 @@ export type CompRegistrationUncheckedUpdateWithoutTeamInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissionFileUploaded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submissionFileSubmitted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileName2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileUrl2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileKey2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submissionFileUploaded2?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileSubmitted2?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mentor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1170,6 +1344,12 @@ export type CompRegistrationCreateManyUserInput = {
   submissionFileCreatedAt?: Date | string
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: string | null
+  submissionFileUrl2?: string | null
+  submissionFileKey2?: string | null
+  submissionFileCreatedAt2?: Date | string
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1196,6 +1376,12 @@ export type CompRegistrationUpdateWithoutUserInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissionFileUploaded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submissionFileSubmitted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileName2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileUrl2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileKey2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submissionFileUploaded2?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileSubmitted2?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mentor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1224,6 +1410,12 @@ export type CompRegistrationUncheckedUpdateWithoutUserInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissionFileUploaded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submissionFileSubmitted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileName2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileUrl2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileKey2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submissionFileUploaded2?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileSubmitted2?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mentor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1251,6 +1443,12 @@ export type CompRegistrationUncheckedUpdateManyWithoutUserInput = {
   submissionFileCreatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissionFileUploaded?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submissionFileSubmitted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileName2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileUrl2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileKey2?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submissionFileCreatedAt2?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  submissionFileUploaded2?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionFileSubmitted2?: Prisma.BoolFieldUpdateOperationsInput | boolean
   mentor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1281,6 +1479,12 @@ export type CompRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Inte
   submissionFileCreatedAt?: boolean
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: boolean
+  submissionFileUrl2?: boolean
+  submissionFileKey2?: boolean
+  submissionFileCreatedAt2?: boolean
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1311,6 +1515,12 @@ export type CompRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   submissionFileCreatedAt?: boolean
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: boolean
+  submissionFileUrl2?: boolean
+  submissionFileKey2?: boolean
+  submissionFileCreatedAt2?: boolean
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1341,6 +1551,12 @@ export type CompRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   submissionFileCreatedAt?: boolean
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: boolean
+  submissionFileUrl2?: boolean
+  submissionFileKey2?: boolean
+  submissionFileCreatedAt2?: boolean
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1371,13 +1587,19 @@ export type CompRegistrationSelectScalar = {
   submissionFileCreatedAt?: boolean
   submissionFileUploaded?: boolean
   submissionFileSubmitted?: boolean
+  submissionFileName2?: boolean
+  submissionFileUrl2?: boolean
+  submissionFileKey2?: boolean
+  submissionFileCreatedAt2?: boolean
+  submissionFileUploaded2?: boolean
+  submissionFileSubmitted2?: boolean
   mentor?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isVerified?: boolean
 }
 
-export type CompRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "leaderUserId" | "leaderEmail" | "leaderName" | "leaderPhoneNumber" | "teamInstitution" | "teamName" | "teamId" | "paymentId" | "paymentFee" | "paymentProofUrl" | "statusOrder" | "teamStatus" | "competitionName" | "submissionFileName" | "submissionFileUrl" | "submissionFileKey" | "submissionFileCreatedAt" | "submissionFileUploaded" | "submissionFileSubmitted" | "mentor" | "createdAt" | "updatedAt" | "isVerified", ExtArgs["result"]["compRegistration"]>
+export type CompRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "leaderUserId" | "leaderEmail" | "leaderName" | "leaderPhoneNumber" | "teamInstitution" | "teamName" | "teamId" | "paymentId" | "paymentFee" | "paymentProofUrl" | "statusOrder" | "teamStatus" | "competitionName" | "submissionFileName" | "submissionFileUrl" | "submissionFileKey" | "submissionFileCreatedAt" | "submissionFileUploaded" | "submissionFileSubmitted" | "submissionFileName2" | "submissionFileUrl2" | "submissionFileKey2" | "submissionFileCreatedAt2" | "submissionFileUploaded2" | "submissionFileSubmitted2" | "mentor" | "createdAt" | "updatedAt" | "isVerified", ExtArgs["result"]["compRegistration"]>
 export type CompRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   team?: boolean | Prisma.CompRegistration$teamArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1419,6 +1641,12 @@ export type $CompRegistrationPayload<ExtArgs extends runtime.Types.Extensions.In
     submissionFileCreatedAt: Date
     submissionFileUploaded: boolean
     submissionFileSubmitted: boolean
+    submissionFileName2: string | null
+    submissionFileUrl2: string | null
+    submissionFileKey2: string | null
+    submissionFileCreatedAt2: Date
+    submissionFileUploaded2: boolean
+    submissionFileSubmitted2: boolean
     mentor: string | null
     createdAt: Date
     updatedAt: Date
@@ -1869,6 +2097,12 @@ export interface CompRegistrationFieldRefs {
   readonly submissionFileCreatedAt: Prisma.FieldRef<"CompRegistration", 'DateTime'>
   readonly submissionFileUploaded: Prisma.FieldRef<"CompRegistration", 'Boolean'>
   readonly submissionFileSubmitted: Prisma.FieldRef<"CompRegistration", 'Boolean'>
+  readonly submissionFileName2: Prisma.FieldRef<"CompRegistration", 'String'>
+  readonly submissionFileUrl2: Prisma.FieldRef<"CompRegistration", 'String'>
+  readonly submissionFileKey2: Prisma.FieldRef<"CompRegistration", 'String'>
+  readonly submissionFileCreatedAt2: Prisma.FieldRef<"CompRegistration", 'DateTime'>
+  readonly submissionFileUploaded2: Prisma.FieldRef<"CompRegistration", 'Boolean'>
+  readonly submissionFileSubmitted2: Prisma.FieldRef<"CompRegistration", 'Boolean'>
   readonly mentor: Prisma.FieldRef<"CompRegistration", 'String'>
   readonly createdAt: Prisma.FieldRef<"CompRegistration", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"CompRegistration", 'DateTime'>
