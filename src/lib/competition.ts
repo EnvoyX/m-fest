@@ -85,6 +85,7 @@ export const competitions: Competition[] = [
         submissionContext: "Submit your paper before:",
         compOpenCase: getCompCaseDate("BCC"),
         maxQuota: 1000,
+        caseLink: "https://drive.google.com/drive/folders/1FrS8ZJSK3R4vHvje40F9REUGrrip1k6G",
     },
 
     {
