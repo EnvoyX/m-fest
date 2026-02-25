@@ -110,6 +110,13 @@ enum SourceInfo {
   OTHER
 }
 
+enum KodeSoal {
+  A
+  B
+  C
+  TECHMEET
+}
+
 model CompRegistration {
   id                String          @id @default(uuid())
   userId            String
@@ -310,6 +317,7 @@ model TeamMember {
   joinDate    DateTime? @default(now())
   verified    Boolean   @default(false)
   teamName    String?
+  kodeSoal    KodeSoal?
   team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 

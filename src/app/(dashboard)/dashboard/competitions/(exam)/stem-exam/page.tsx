@@ -42,6 +42,15 @@ export default async function StemExamPage({
     },
   });
 
+  const teamMember = await db.teamMember.findFirst({
+    where: {
+      userId: user?.id,
+    },
+    include: {
+      team: true,
+    },
+  });
+
   if (
     user?.registration[0]?.competitionName !== "STEM" &&
     user?.id === user?.team_member[0]?.team.leaderUserId
@@ -71,5 +80,5 @@ export default async function StemExamPage({
     redirect("entry-exam");
   }
 
-  return <ExamClient user={user as User} />;
+  return <ExamClient user={user as User} teamMember={teamMember as any} />;
 }

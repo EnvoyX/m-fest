@@ -157,3 +157,13 @@ export const SourceInfo = {
 } as const
 
 export type SourceInfo = (typeof SourceInfo)[keyof typeof SourceInfo]
+
+
+export const KodeSoal = {
+  A: 'A',
+  B: 'B',
+  C: 'C',
+  TECHMEET: 'TECHMEET'
+} as const
+
+export type KodeSoal = (typeof KodeSoal)[keyof typeof KodeSoal]

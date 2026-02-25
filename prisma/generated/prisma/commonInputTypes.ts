@@ -477,6 +477,13 @@ export type EnumTeamRoleNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumTeamRoleNullableFilter<$PrismaModel> | $Enums.TeamRole | null
 }
 
+export type EnumKodeSoalNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.KodeSoal | Prisma.EnumKodeSoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.KodeSoal[] | Prisma.ListEnumKodeSoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.KodeSoal[] | Prisma.ListEnumKodeSoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumKodeSoalNullableFilter<$PrismaModel> | $Enums.KodeSoal | null
+}
+
 export type EnumTeamRoleNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.TeamRole | Prisma.EnumTeamRoleFieldRefInput<$PrismaModel> | null
   in?: $Enums.TeamRole[] | Prisma.ListEnumTeamRoleFieldRefInput<$PrismaModel> | null
@@ -485,6 +492,16 @@ export type EnumTeamRoleNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTeamRoleNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTeamRoleNullableFilter<$PrismaModel>
+}
+
+export type EnumKodeSoalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.KodeSoal | Prisma.EnumKodeSoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.KodeSoal[] | Prisma.ListEnumKodeSoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.KodeSoal[] | Prisma.ListEnumKodeSoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumKodeSoalNullableWithAggregatesFilter<$PrismaModel> | $Enums.KodeSoal | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumKodeSoalNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumKodeSoalNullableFilter<$PrismaModel>
 }
 
 export type JsonFilter<$PrismaModel = never> =
@@ -1031,6 +1048,13 @@ export type NestedEnumTeamRoleNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumTeamRoleNullableFilter<$PrismaModel> | $Enums.TeamRole | null
 }
 
+export type NestedEnumKodeSoalNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.KodeSoal | Prisma.EnumKodeSoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.KodeSoal[] | Prisma.ListEnumKodeSoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.KodeSoal[] | Prisma.ListEnumKodeSoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumKodeSoalNullableFilter<$PrismaModel> | $Enums.KodeSoal | null
+}
+
 export type NestedEnumTeamRoleNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.TeamRole | Prisma.EnumTeamRoleFieldRefInput<$PrismaModel> | null
   in?: $Enums.TeamRole[] | Prisma.ListEnumTeamRoleFieldRefInput<$PrismaModel> | null
@@ -1039,6 +1063,16 @@ export type NestedEnumTeamRoleNullableWithAggregatesFilter<$PrismaModel = never>
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTeamRoleNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTeamRoleNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumKodeSoalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.KodeSoal | Prisma.EnumKodeSoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.KodeSoal[] | Prisma.ListEnumKodeSoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.KodeSoal[] | Prisma.ListEnumKodeSoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumKodeSoalNullableWithAggregatesFilter<$PrismaModel> | $Enums.KodeSoal | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumKodeSoalNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumKodeSoalNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumQuizTypesFilter<$PrismaModel = never> = {

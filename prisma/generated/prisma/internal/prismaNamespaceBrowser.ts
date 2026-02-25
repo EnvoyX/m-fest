@@ -243,7 +243,8 @@ export const TeamMemberScalarFieldEnum = {
   role: 'role',
   joinDate: 'joinDate',
   verified: 'verified',
-  teamName: 'teamName'
+  teamName: 'teamName',
+  kodeSoal: 'kodeSoal'
 } as const
 
 export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]

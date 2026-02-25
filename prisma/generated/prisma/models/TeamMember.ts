@@ -34,6 +34,7 @@ export type TeamMemberMinAggregateOutputType = {
   joinDate: Date | null
   verified: boolean | null
   teamName: string | null
+  kodeSoal: $Enums.KodeSoal | null
 }
 
 export type TeamMemberMaxAggregateOutputType = {
@@ -46,6 +47,7 @@ export type TeamMemberMaxAggregateOutputType = {
   joinDate: Date | null
   verified: boolean | null
   teamName: string | null
+  kodeSoal: $Enums.KodeSoal | null
 }
 
 export type TeamMemberCountAggregateOutputType = {
@@ -58,6 +60,7 @@ export type TeamMemberCountAggregateOutputType = {
   joinDate: number
   verified: number
   teamName: number
+  kodeSoal: number
   _all: number
 }
 
@@ -72,6 +75,7 @@ export type TeamMemberMinAggregateInputType = {
   joinDate?: true
   verified?: true
   teamName?: true
+  kodeSoal?: true
 }
 
 export type TeamMemberMaxAggregateInputType = {
@@ -84,6 +88,7 @@ export type TeamMemberMaxAggregateInputType = {
   joinDate?: true
   verified?: true
   teamName?: true
+  kodeSoal?: true
 }
 
 export type TeamMemberCountAggregateInputType = {
@@ -96,6 +101,7 @@ export type TeamMemberCountAggregateInputType = {
   joinDate?: true
   verified?: true
   teamName?: true
+  kodeSoal?: true
   _all?: true
 }
 
@@ -181,6 +187,7 @@ export type TeamMemberGroupByOutputType = {
   joinDate: Date | null
   verified: boolean
   teamName: string | null
+  kodeSoal: $Enums.KodeSoal | null
   _count: TeamMemberCountAggregateOutputType | null
   _min: TeamMemberMinAggregateOutputType | null
   _max: TeamMemberMaxAggregateOutputType | null
@@ -214,6 +221,7 @@ export type TeamMemberWhereInput = {
   joinDate?: Prisma.DateTimeNullableFilter<"TeamMember"> | Date | string | null
   verified?: Prisma.BoolFilter<"TeamMember"> | boolean
   teamName?: Prisma.StringNullableFilter<"TeamMember"> | string | null
+  kodeSoal?: Prisma.EnumKodeSoalNullableFilter<"TeamMember"> | $Enums.KodeSoal | null
   team?: Prisma.XOR<Prisma.TeamScalarRelationFilter, Prisma.TeamWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -228,6 +236,7 @@ export type TeamMemberOrderByWithRelationInput = {
   joinDate?: Prisma.SortOrderInput | Prisma.SortOrder
   verified?: Prisma.SortOrder
   teamName?: Prisma.SortOrderInput | Prisma.SortOrder
+  kodeSoal?: Prisma.SortOrderInput | Prisma.SortOrder
   team?: Prisma.TeamOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -246,6 +255,7 @@ export type TeamMemberWhereUniqueInput = Prisma.AtLeast<{
   joinDate?: Prisma.DateTimeNullableFilter<"TeamMember"> | Date | string | null
   verified?: Prisma.BoolFilter<"TeamMember"> | boolean
   teamName?: Prisma.StringNullableFilter<"TeamMember"> | string | null
+  kodeSoal?: Prisma.EnumKodeSoalNullableFilter<"TeamMember"> | $Enums.KodeSoal | null
   team?: Prisma.XOR<Prisma.TeamScalarRelationFilter, Prisma.TeamWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "userId_teamId">
@@ -260,6 +270,7 @@ export type TeamMemberOrderByWithAggregationInput = {
   joinDate?: Prisma.SortOrderInput | Prisma.SortOrder
   verified?: Prisma.SortOrder
   teamName?: Prisma.SortOrderInput | Prisma.SortOrder
+  kodeSoal?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TeamMemberCountOrderByAggregateInput
   _max?: Prisma.TeamMemberMaxOrderByAggregateInput
   _min?: Prisma.TeamMemberMinOrderByAggregateInput
@@ -278,6 +289,7 @@ export type TeamMemberScalarWhereWithAggregatesInput = {
   joinDate?: Prisma.DateTimeNullableWithAggregatesFilter<"TeamMember"> | Date | string | null
   verified?: Prisma.BoolWithAggregatesFilter<"TeamMember"> | boolean
   teamName?: Prisma.StringNullableWithAggregatesFilter<"TeamMember"> | string | null
+  kodeSoal?: Prisma.EnumKodeSoalNullableWithAggregatesFilter<"TeamMember"> | $Enums.KodeSoal | null
 }
 
 export type TeamMemberCreateInput = {
@@ -288,6 +300,7 @@ export type TeamMemberCreateInput = {
   joinDate?: Date | string | null
   verified?: boolean
   teamName?: string | null
+  kodeSoal?: $Enums.KodeSoal | null
   team: Prisma.TeamCreateNestedOneWithoutMembersInput
   user: Prisma.UserCreateNestedOneWithoutTeam_memberInput
 }
@@ -302,6 +315,7 @@ export type TeamMemberUncheckedCreateInput = {
   joinDate?: Date | string | null
   verified?: boolean
   teamName?: string | null
+  kodeSoal?: $Enums.KodeSoal | null
 }
 
 export type TeamMemberUpdateInput = {
@@ -312,6 +326,7 @@ export type TeamMemberUpdateInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
   team?: Prisma.TeamUpdateOneRequiredWithoutMembersNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutTeam_memberNestedInput
 }
@@ -326,6 +341,7 @@ export type TeamMemberUncheckedUpdateInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
 }
 
 export type TeamMemberCreateManyInput = {
@@ -338,6 +354,7 @@ export type TeamMemberCreateManyInput = {
   joinDate?: Date | string | null
   verified?: boolean
   teamName?: string | null
+  kodeSoal?: $Enums.KodeSoal | null
 }
 
 export type TeamMemberUpdateManyMutationInput = {
@@ -348,6 +365,7 @@ export type TeamMemberUpdateManyMutationInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
 }
 
 export type TeamMemberUncheckedUpdateManyInput = {
@@ -360,6 +378,7 @@ export type TeamMemberUncheckedUpdateManyInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
 }
 
 export type TeamMemberListRelationFilter = {
@@ -387,6 +406,7 @@ export type TeamMemberCountOrderByAggregateInput = {
   joinDate?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   teamName?: Prisma.SortOrder
+  kodeSoal?: Prisma.SortOrder
 }
 
 export type TeamMemberMaxOrderByAggregateInput = {
@@ -399,6 +419,7 @@ export type TeamMemberMaxOrderByAggregateInput = {
   joinDate?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   teamName?: Prisma.SortOrder
+  kodeSoal?: Prisma.SortOrder
 }
 
 export type TeamMemberMinOrderByAggregateInput = {
@@ -411,6 +432,7 @@ export type TeamMemberMinOrderByAggregateInput = {
   joinDate?: Prisma.SortOrder
   verified?: Prisma.SortOrder
   teamName?: Prisma.SortOrder
+  kodeSoal?: Prisma.SortOrder
 }
 
 export type TeamMemberCreateNestedManyWithoutUserInput = {
@@ -501,6 +523,10 @@ export type NullableEnumTeamRoleFieldUpdateOperationsInput = {
   set?: $Enums.TeamRole | null
 }
 
+export type NullableEnumKodeSoalFieldUpdateOperationsInput = {
+  set?: $Enums.KodeSoal | null
+}
+
 export type TeamMemberCreateWithoutUserInput = {
   name?: string | null
   email?: string | null
@@ -509,6 +535,7 @@ export type TeamMemberCreateWithoutUserInput = {
   joinDate?: Date | string | null
   verified?: boolean
   teamName?: string | null
+  kodeSoal?: $Enums.KodeSoal | null
   team: Prisma.TeamCreateNestedOneWithoutMembersInput
 }
 
@@ -521,6 +548,7 @@ export type TeamMemberUncheckedCreateWithoutUserInput = {
   joinDate?: Date | string | null
   verified?: boolean
   teamName?: string | null
+  kodeSoal?: $Enums.KodeSoal | null
 }
 
 export type TeamMemberCreateOrConnectWithoutUserInput = {
@@ -562,6 +590,7 @@ export type TeamMemberScalarWhereInput = {
   joinDate?: Prisma.DateTimeNullableFilter<"TeamMember"> | Date | string | null
   verified?: Prisma.BoolFilter<"TeamMember"> | boolean
   teamName?: Prisma.StringNullableFilter<"TeamMember"> | string | null
+  kodeSoal?: Prisma.EnumKodeSoalNullableFilter<"TeamMember"> | $Enums.KodeSoal | null
 }
 
 export type TeamMemberCreateWithoutTeamInput = {
@@ -572,6 +601,7 @@ export type TeamMemberCreateWithoutTeamInput = {
   joinDate?: Date | string | null
   verified?: boolean
   teamName?: string | null
+  kodeSoal?: $Enums.KodeSoal | null
   user: Prisma.UserCreateNestedOneWithoutTeam_memberInput
 }
 
@@ -584,6 +614,7 @@ export type TeamMemberUncheckedCreateWithoutTeamInput = {
   joinDate?: Date | string | null
   verified?: boolean
   teamName?: string | null
+  kodeSoal?: $Enums.KodeSoal | null
 }
 
 export type TeamMemberCreateOrConnectWithoutTeamInput = {
@@ -621,6 +652,7 @@ export type TeamMemberCreateManyUserInput = {
   joinDate?: Date | string | null
   verified?: boolean
   teamName?: string | null
+  kodeSoal?: $Enums.KodeSoal | null
 }
 
 export type TeamMemberUpdateWithoutUserInput = {
@@ -631,6 +663,7 @@ export type TeamMemberUpdateWithoutUserInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
   team?: Prisma.TeamUpdateOneRequiredWithoutMembersNestedInput
 }
 
@@ -643,6 +676,7 @@ export type TeamMemberUncheckedUpdateWithoutUserInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
 }
 
 export type TeamMemberUncheckedUpdateManyWithoutUserInput = {
@@ -654,6 +688,7 @@ export type TeamMemberUncheckedUpdateManyWithoutUserInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
 }
 
 export type TeamMemberCreateManyTeamInput = {
@@ -665,6 +700,7 @@ export type TeamMemberCreateManyTeamInput = {
   joinDate?: Date | string | null
   verified?: boolean
   teamName?: string | null
+  kodeSoal?: $Enums.KodeSoal | null
 }
 
 export type TeamMemberUpdateWithoutTeamInput = {
@@ -675,6 +711,7 @@ export type TeamMemberUpdateWithoutTeamInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
   user?: Prisma.UserUpdateOneRequiredWithoutTeam_memberNestedInput
 }
 
@@ -687,6 +724,7 @@ export type TeamMemberUncheckedUpdateWithoutTeamInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
 }
 
 export type TeamMemberUncheckedUpdateManyWithoutTeamInput = {
@@ -698,6 +736,7 @@ export type TeamMemberUncheckedUpdateManyWithoutTeamInput = {
   joinDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   teamName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kodeSoal?: Prisma.NullableEnumKodeSoalFieldUpdateOperationsInput | $Enums.KodeSoal | null
 }
 
 
@@ -712,6 +751,7 @@ export type TeamMemberSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   joinDate?: boolean
   verified?: boolean
   teamName?: boolean
+  kodeSoal?: boolean
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teamMember"]>
@@ -726,6 +766,7 @@ export type TeamMemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   joinDate?: boolean
   verified?: boolean
   teamName?: boolean
+  kodeSoal?: boolean
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teamMember"]>
@@ -740,6 +781,7 @@ export type TeamMemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   joinDate?: boolean
   verified?: boolean
   teamName?: boolean
+  kodeSoal?: boolean
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["teamMember"]>
@@ -754,9 +796,10 @@ export type TeamMemberSelectScalar = {
   joinDate?: boolean
   verified?: boolean
   teamName?: boolean
+  kodeSoal?: boolean
 }
 
-export type TeamMemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "teamId" | "name" | "email" | "institution" | "role" | "joinDate" | "verified" | "teamName", ExtArgs["result"]["teamMember"]>
+export type TeamMemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "teamId" | "name" | "email" | "institution" | "role" | "joinDate" | "verified" | "teamName" | "kodeSoal", ExtArgs["result"]["teamMember"]>
 export type TeamMemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -786,6 +829,7 @@ export type $TeamMemberPayload<ExtArgs extends runtime.Types.Extensions.Internal
     joinDate: Date | null
     verified: boolean
     teamName: string | null
+    kodeSoal: $Enums.KodeSoal | null
   }, ExtArgs["result"]["teamMember"]>
   composites: {}
 }
@@ -1220,6 +1264,7 @@ export interface TeamMemberFieldRefs {
   readonly joinDate: Prisma.FieldRef<"TeamMember", 'DateTime'>
   readonly verified: Prisma.FieldRef<"TeamMember", 'Boolean'>
   readonly teamName: Prisma.FieldRef<"TeamMember", 'String'>
+  readonly kodeSoal: Prisma.FieldRef<"TeamMember", 'KodeSoal'>
 }
     
 

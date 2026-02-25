@@ -1430,7 +1430,8 @@ export const TeamMemberScalarFieldEnum = {
   role: 'role',
   joinDate: 'joinDate',
   verified: 'verified',
-  teamName: 'teamName'
+  teamName: 'teamName',
+  kodeSoal: 'kodeSoal'
 } as const
 
 export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]
@@ -1812,6 +1813,20 @@ export type EnumTeamRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'TeamRole[]'
  */
 export type ListEnumTeamRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TeamRole[]'>
+    
+
+
+/**
+ * Reference to a field of type 'KodeSoal'
+ */
+export type EnumKodeSoalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KodeSoal'>
+    
+
+
+/**
+ * Reference to a field of type 'KodeSoal[]'
+ */
+export type ListEnumKodeSoalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KodeSoal[]'>
     
 
 
