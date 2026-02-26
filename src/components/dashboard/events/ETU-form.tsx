@@ -30,6 +30,7 @@ import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
 
 export default function EtuForm() {
     const form = useForm<etuSchema>({
@@ -342,7 +343,16 @@ export default function EtuForm() {
                                         </FormControl>
                                         <div className="space-y-1 leading-none">
                                             <FormLabel className="text-slate-300 text-sm">
-                                                Apakah Anda setuju dengan SOP yang diberikan? (SOP)
+                                                Apakah Anda setuju dengan SOP yang diberikan?
+                                                <Link 
+                                                href="/events/engine-tune-up#sop" 
+                                                onClick={(e) => e.stopPropagation()}
+                                                className="text-cyan-400 hover:text-cyan-300 underline inline-flex"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                >
+                                                    SOP
+                                                </Link>
                                             </FormLabel>
                                             <FormDescription className="text-xs text-slate-400 italic">
                                                 Hasil tune-up tergantung pada kondisi awal motor.

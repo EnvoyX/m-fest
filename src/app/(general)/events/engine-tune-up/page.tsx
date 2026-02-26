@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -18,7 +19,7 @@ import { useState, useEffect } from "react";
 }*/
 
 function Countdown() {
-  const targetDate = new Date('2026-03-07T08:00:00');
+  const targetDate = new Date('2026-03-07T08:30:00');
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -115,7 +116,7 @@ export default function EngineTuneUpPage() {
             Only for automatic motorcycles with <span className="font-bold text-white">160cc or less engines or 150cc or less for manual motorcycles.</span>
           </p>
           <p>
-            The event will be held at <span className="font-bold text-white">March 7th 2026, 8:00 - 16:30</span>
+            The event will be held at <span className="font-bold text-white">March 7th 2026, 8:30 - 17:00</span>
           </p>
         </div>
 
@@ -126,7 +127,7 @@ export default function EngineTuneUpPage() {
 
         <div className="w-full max-w-5xl mx-auto text-left">
           
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-12 text-center tracking-tight">
+          <h2 id="sop" className="text-4xl md:text-6xl lg:text-7xl font-bold mb-12 text-center tracking-tight">
             Standard Operating Procedures
           </h2>
           
@@ -234,6 +235,22 @@ export default function EngineTuneUpPage() {
               </Button>
           </div>
         </div>
+
+        <section className="pt-10">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-semibold text-center lg:pb-10">
+            Our Collaborators
+          </h1>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 px-4 max-w-6xl mx-auto">
+              <Image
+                src="/events/page/logo_shell.png"
+                alt="logo shell"
+                height={469/2}
+                width={469/2}
+                className="h-auto w-auto object-contain"
+                unoptimized
+              />
+          </div>
+        </section>
 
       </div>
     </div>
