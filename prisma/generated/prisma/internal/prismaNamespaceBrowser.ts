@@ -160,7 +160,8 @@ export const EventRegistrationScalarFieldEnum = {
   platNomor: 'platNomor',
   lastServiceDate: 'lastServiceDate',
   nimOrNip: 'nimOrNip',
-  isSopCompliant: 'isSopCompliant'
+  isSopCompliant: 'isSopCompliant',
+  motorType: 'motorType'
 } as const
 
 export type EventRegistrationScalarFieldEnum = (typeof EventRegistrationScalarFieldEnum)[keyof typeof EventRegistrationScalarFieldEnum]

@@ -1347,7 +1347,8 @@ export const EventRegistrationScalarFieldEnum = {
   platNomor: 'platNomor',
   lastServiceDate: 'lastServiceDate',
   nimOrNip: 'nimOrNip',
-  isSopCompliant: 'isSopCompliant'
+  isSopCompliant: 'isSopCompliant',
+  motorType: 'motorType'
 } as const
 
 export type EventRegistrationScalarFieldEnum = (typeof EventRegistrationScalarFieldEnum)[keyof typeof EventRegistrationScalarFieldEnum]
@@ -1743,6 +1744,20 @@ export type EnumRhesusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Rhesus[]'
  */
 export type ListEnumRhesusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Rhesus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MotorType'
+ */
+export type EnumMotorTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MotorType'>
+    
+
+
+/**
+ * Reference to a field of type 'MotorType[]'
+ */
+export type ListEnumMotorTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MotorType[]'>
     
 
 

@@ -30,6 +30,8 @@ export type Event = {
     Batch2EndRegDate?: Date;
     price1?: number;
     price2?: number;
+    slotmatic?: number;
+    slotmanual?: number;
 };
 
 export const eventsList: Event[] = [
@@ -76,6 +78,8 @@ export const eventsList: Event[] = [
         eventDate: "Sabtu, 7 Maret 2026 (8:00 - 16:30)",
         startRegDate1: new Date("2026-02-26T19:00:00"),
         endRegDate1: new Date("2026-03-06T23:59:59"),
+        slotmanual: 60,
+        slotmatic: 90,
 
     },
     {

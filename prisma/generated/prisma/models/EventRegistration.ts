@@ -68,6 +68,7 @@ export type EventRegistrationMinAggregateOutputType = {
   lastServiceDate: string | null
   nimOrNip: string | null
   isSopCompliant: boolean | null
+  motorType: $Enums.MotorType | null
 }
 
 export type EventRegistrationMaxAggregateOutputType = {
@@ -114,6 +115,7 @@ export type EventRegistrationMaxAggregateOutputType = {
   lastServiceDate: string | null
   nimOrNip: string | null
   isSopCompliant: boolean | null
+  motorType: $Enums.MotorType | null
 }
 
 export type EventRegistrationCountAggregateOutputType = {
@@ -160,6 +162,7 @@ export type EventRegistrationCountAggregateOutputType = {
   lastServiceDate: number
   nimOrNip: number
   isSopCompliant: number
+  motorType: number
   _all: number
 }
 
@@ -208,6 +211,7 @@ export type EventRegistrationMinAggregateInputType = {
   lastServiceDate?: true
   nimOrNip?: true
   isSopCompliant?: true
+  motorType?: true
 }
 
 export type EventRegistrationMaxAggregateInputType = {
@@ -254,6 +258,7 @@ export type EventRegistrationMaxAggregateInputType = {
   lastServiceDate?: true
   nimOrNip?: true
   isSopCompliant?: true
+  motorType?: true
 }
 
 export type EventRegistrationCountAggregateInputType = {
@@ -300,6 +305,7 @@ export type EventRegistrationCountAggregateInputType = {
   lastServiceDate?: true
   nimOrNip?: true
   isSopCompliant?: true
+  motorType?: true
   _all?: true
 }
 
@@ -419,6 +425,7 @@ export type EventRegistrationGroupByOutputType = {
   lastServiceDate: string | null
   nimOrNip: string | null
   isSopCompliant: boolean | null
+  motorType: $Enums.MotorType | null
   _count: EventRegistrationCountAggregateOutputType | null
   _min: EventRegistrationMinAggregateOutputType | null
   _max: EventRegistrationMaxAggregateOutputType | null
@@ -486,6 +493,7 @@ export type EventRegistrationWhereInput = {
   lastServiceDate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   nimOrNip?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   isSopCompliant?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  motorType?: Prisma.EnumMotorTypeNullableFilter<"EventRegistration"> | $Enums.MotorType | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -533,6 +541,7 @@ export type EventRegistrationOrderByWithRelationInput = {
   lastServiceDate?: Prisma.SortOrderInput | Prisma.SortOrder
   nimOrNip?: Prisma.SortOrderInput | Prisma.SortOrder
   isSopCompliant?: Prisma.SortOrderInput | Prisma.SortOrder
+  motorType?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -583,6 +592,7 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   lastServiceDate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   nimOrNip?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   isSopCompliant?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  motorType?: Prisma.EnumMotorTypeNullableFilter<"EventRegistration"> | $Enums.MotorType | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
@@ -630,6 +640,7 @@ export type EventRegistrationOrderByWithAggregationInput = {
   lastServiceDate?: Prisma.SortOrderInput | Prisma.SortOrder
   nimOrNip?: Prisma.SortOrderInput | Prisma.SortOrder
   isSopCompliant?: Prisma.SortOrderInput | Prisma.SortOrder
+  motorType?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EventRegistrationCountOrderByAggregateInput
   _max?: Prisma.EventRegistrationMaxOrderByAggregateInput
   _min?: Prisma.EventRegistrationMinOrderByAggregateInput
@@ -682,6 +693,7 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   lastServiceDate?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   nimOrNip?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   isSopCompliant?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
+  motorType?: Prisma.EnumMotorTypeNullableWithAggregatesFilter<"EventRegistration"> | $Enums.MotorType | null
 }
 
 export type EventRegistrationCreateInput = {
@@ -727,6 +739,7 @@ export type EventRegistrationCreateInput = {
   lastServiceDate?: string | null
   nimOrNip?: string | null
   isSopCompliant?: boolean | null
+  motorType?: $Enums.MotorType | null
   user: Prisma.UserCreateNestedOneWithoutEventRegistrationInput
 }
 
@@ -774,6 +787,7 @@ export type EventRegistrationUncheckedCreateInput = {
   lastServiceDate?: string | null
   nimOrNip?: string | null
   isSopCompliant?: boolean | null
+  motorType?: $Enums.MotorType | null
 }
 
 export type EventRegistrationUpdateInput = {
@@ -819,6 +833,7 @@ export type EventRegistrationUpdateInput = {
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSopCompliant?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  motorType?: Prisma.NullableEnumMotorTypeFieldUpdateOperationsInput | $Enums.MotorType | null
   user?: Prisma.UserUpdateOneRequiredWithoutEventRegistrationNestedInput
 }
 
@@ -866,6 +881,7 @@ export type EventRegistrationUncheckedUpdateInput = {
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSopCompliant?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  motorType?: Prisma.NullableEnumMotorTypeFieldUpdateOperationsInput | $Enums.MotorType | null
 }
 
 export type EventRegistrationCreateManyInput = {
@@ -912,6 +928,7 @@ export type EventRegistrationCreateManyInput = {
   lastServiceDate?: string | null
   nimOrNip?: string | null
   isSopCompliant?: boolean | null
+  motorType?: $Enums.MotorType | null
 }
 
 export type EventRegistrationUpdateManyMutationInput = {
@@ -957,6 +974,7 @@ export type EventRegistrationUpdateManyMutationInput = {
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSopCompliant?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  motorType?: Prisma.NullableEnumMotorTypeFieldUpdateOperationsInput | $Enums.MotorType | null
 }
 
 export type EventRegistrationUncheckedUpdateManyInput = {
@@ -1003,6 +1021,7 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSopCompliant?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  motorType?: Prisma.NullableEnumMotorTypeFieldUpdateOperationsInput | $Enums.MotorType | null
 }
 
 export type EventRegistrationCountOrderByAggregateInput = {
@@ -1049,6 +1068,7 @@ export type EventRegistrationCountOrderByAggregateInput = {
   lastServiceDate?: Prisma.SortOrder
   nimOrNip?: Prisma.SortOrder
   isSopCompliant?: Prisma.SortOrder
+  motorType?: Prisma.SortOrder
 }
 
 export type EventRegistrationMaxOrderByAggregateInput = {
@@ -1095,6 +1115,7 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   lastServiceDate?: Prisma.SortOrder
   nimOrNip?: Prisma.SortOrder
   isSopCompliant?: Prisma.SortOrder
+  motorType?: Prisma.SortOrder
 }
 
 export type EventRegistrationMinOrderByAggregateInput = {
@@ -1141,6 +1162,7 @@ export type EventRegistrationMinOrderByAggregateInput = {
   lastServiceDate?: Prisma.SortOrder
   nimOrNip?: Prisma.SortOrder
   isSopCompliant?: Prisma.SortOrder
+  motorType?: Prisma.SortOrder
 }
 
 export type EventRegistrationListRelationFilter = {
@@ -1187,6 +1209,10 @@ export type NullableEnumBloodTypeFieldUpdateOperationsInput = {
 
 export type NullableEnumRhesusFieldUpdateOperationsInput = {
   set?: $Enums.Rhesus | null
+}
+
+export type NullableEnumMotorTypeFieldUpdateOperationsInput = {
+  set?: $Enums.MotorType | null
 }
 
 export type EventRegistrationCreateNestedManyWithoutUserInput = {
@@ -1274,6 +1300,7 @@ export type EventRegistrationCreateWithoutUserInput = {
   lastServiceDate?: string | null
   nimOrNip?: string | null
   isSopCompliant?: boolean | null
+  motorType?: $Enums.MotorType | null
 }
 
 export type EventRegistrationUncheckedCreateWithoutUserInput = {
@@ -1319,6 +1346,7 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   lastServiceDate?: string | null
   nimOrNip?: string | null
   isSopCompliant?: boolean | null
+  motorType?: $Enums.MotorType | null
 }
 
 export type EventRegistrationCreateOrConnectWithoutUserInput = {
@@ -1394,6 +1422,7 @@ export type EventRegistrationScalarWhereInput = {
   lastServiceDate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   nimOrNip?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   isSopCompliant?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  motorType?: Prisma.EnumMotorTypeNullableFilter<"EventRegistration"> | $Enums.MotorType | null
 }
 
 export type EventRegistrationCreateManyUserInput = {
@@ -1439,6 +1468,7 @@ export type EventRegistrationCreateManyUserInput = {
   lastServiceDate?: string | null
   nimOrNip?: string | null
   isSopCompliant?: boolean | null
+  motorType?: $Enums.MotorType | null
 }
 
 export type EventRegistrationUpdateWithoutUserInput = {
@@ -1484,6 +1514,7 @@ export type EventRegistrationUpdateWithoutUserInput = {
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSopCompliant?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  motorType?: Prisma.NullableEnumMotorTypeFieldUpdateOperationsInput | $Enums.MotorType | null
 }
 
 export type EventRegistrationUncheckedUpdateWithoutUserInput = {
@@ -1529,6 +1560,7 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSopCompliant?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  motorType?: Prisma.NullableEnumMotorTypeFieldUpdateOperationsInput | $Enums.MotorType | null
 }
 
 export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
@@ -1574,6 +1606,7 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   lastServiceDate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nimOrNip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSopCompliant?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  motorType?: Prisma.NullableEnumMotorTypeFieldUpdateOperationsInput | $Enums.MotorType | null
 }
 
 
@@ -1622,6 +1655,7 @@ export type EventRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Int
   lastServiceDate?: boolean
   nimOrNip?: boolean
   isSopCompliant?: boolean
+  motorType?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["eventRegistration"]>
 
@@ -1669,6 +1703,7 @@ export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   lastServiceDate?: boolean
   nimOrNip?: boolean
   isSopCompliant?: boolean
+  motorType?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["eventRegistration"]>
 
@@ -1716,6 +1751,7 @@ export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   lastServiceDate?: boolean
   nimOrNip?: boolean
   isSopCompliant?: boolean
+  motorType?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["eventRegistration"]>
 
@@ -1763,9 +1799,10 @@ export type EventRegistrationSelectScalar = {
   lastServiceDate?: boolean
   nimOrNip?: boolean
   isSopCompliant?: boolean
+  motorType?: boolean
 }
 
-export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "buktiBayarUrl" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant", ExtArgs["result"]["eventRegistration"]>
+export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "buktiBayarUrl" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant" | "motorType", ExtArgs["result"]["eventRegistration"]>
 export type EventRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -1825,6 +1862,7 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     lastServiceDate: string | null
     nimOrNip: string | null
     isSopCompliant: boolean | null
+    motorType: $Enums.MotorType | null
   }, ExtArgs["result"]["eventRegistration"]>
   composites: {}
 }
@@ -2292,6 +2330,7 @@ export interface EventRegistrationFieldRefs {
   readonly lastServiceDate: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly nimOrNip: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly isSopCompliant: Prisma.FieldRef<"EventRegistration", 'Boolean'>
+  readonly motorType: Prisma.FieldRef<"EventRegistration", 'MotorType'>
 }
     
 

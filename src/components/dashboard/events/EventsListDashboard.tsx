@@ -39,6 +39,17 @@ export default function EventsListDashboard() {
 async function FetchUserAvailableEvents() {
   const currentDate = getCurrentDate();
   const user = (await getUser()) as User;
+
+  const stats = await db.eventRegistration.groupBy({
+          by: ["motorType"],
+          _count: { motorType: true },
+      });
+  
+    const counts = stats.reduce((acc, curr) => {
+        acc[curr.motorType] = curr._count.motorType;
+        return acc;
+    }, {} as Record<string, number>);
+
   const registeredEvents = await db.eventRegistration.findMany({
     where: {
       userId: user.id,

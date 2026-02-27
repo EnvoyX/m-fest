@@ -167,3 +167,11 @@ export const KodeSoal = {
 } as const
 
 export type KodeSoal = (typeof KodeSoal)[keyof typeof KodeSoal]
+
+
+export const MotorType = {
+  MATIC: 'MATIC',
+  MANUAL: 'MANUAL'
+} as const
+
+export type MotorType = (typeof MotorType)[keyof typeof MotorType]
