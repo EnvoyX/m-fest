@@ -228,7 +228,7 @@ export default function EngineTuneUpPage() {
                 size="lg"
                 className="rounded-xl text-lg md:text-xl font-bold px-10 py-6 md:px-12 md:py-8 shadow-lg"
             >
-                <Link href='/dashboard/events' target="_blank">
+                <Link href='/dashboard/events/register/ETU' target="_blank">
                     <span>Register Now</span>
                     <ChevronRight className="ml-2 w-6 h-6" />
                 </Link>
