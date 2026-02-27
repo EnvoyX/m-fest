@@ -8,7 +8,7 @@ import { type Document } from "@/types/types";
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { documentsSchema, profileSchema, submitFileSchema } from "@/lib/schema";
-import type { CompetitionName } from "../../../../prisma/generated/prisma/enums";
+import type { CompetitionName, MotorType } from "../../../../prisma/generated/prisma/enums";
 import type { TeamMember } from "../../../../prisma/generated/prisma/client";
 
 export const dashboardRouter = router({
@@ -591,5 +591,17 @@ export const dashboardRouter = router({
         const currentCompQuota = counts[input.comp.toUpperCase()] || 0;
 
         return currentCompQuota
+    }),
+    getCurrentMotorTypeQuota: protectedProcedure.query(async ({ ctx }) => {
+        const stats = await ctx.db.eventRegistration.groupBy({
+            by: ["motorType"],
+            _count: { motorType: true },
+        });
+        const currentMotorTypeQuota = {
+            "MATIC": stats.find((stat) => stat.motorType === "MATIC")?._count.motorType ?? 0,
+            "MANUAL": stats.find((stat) => stat.motorType === "MANUAL")?._count.motorType ?? 0,
+        }
+
+        return currentMotorTypeQuota
     })
 });
