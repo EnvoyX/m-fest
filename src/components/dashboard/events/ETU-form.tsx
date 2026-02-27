@@ -31,6 +31,12 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
+const MOTORTYPES_OPTIONS = [
+    { id: "MATIC", label: "Matic" },
+    { id: "MANUAL", label: "Manual" },
+] as const;
 
 export default function EtuForm() {
     const form = useForm<etuSchema>({
@@ -227,6 +233,44 @@ export default function EtuForm() {
                                 <div className="md:col-span-1">
                                     <FormField
                                         control={form.control}
+                                        name="motorType"
+                                        render={({ field }) => (
+                                            <FormItem className="space-y-1">
+                                                <div>
+                                                    <FormLabel className="text-slate-300">
+                                                        Tipe Motor
+                                                    </FormLabel>
+                                                    <FormDescription className="text-slate-400 mt-1">
+                                                        Pilih tipe motor yang anda miliki.
+                                                    </FormDescription>
+                                                </div>
+                                                <FormControl>
+                                                    <RadioGroup
+                                                        onValueChange={field.onChange}
+                                                        defaultValue={field.value}
+                                                        className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3"
+                                                    >
+                                                        {MOTORTYPES_OPTIONS.map((item) => (
+                                                            <FormItem
+                                                                key={item.id}
+                                                                className="flex items-center space-x-3 space-y-0 cursor-pointer"
+                                                            >
+                                                                <FormControl>
+                                                                    <RadioGroupItem value={item.id} />
+                                                                </FormControl>
+                                                                <FormLabel className="font-normal text-slate-300 cursor-pointer w-full">
+                                                                    {item.label}
+                                                                </FormLabel>
+                                                            </FormItem>
+                                                        ))}
+                                                    </RadioGroup>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
                                         name="merekKendaraan"
                                         render={({ field }) => (
                                             <FormItem>
@@ -344,12 +388,12 @@ export default function EtuForm() {
                                         <div className="space-y-1 leading-none">
                                             <FormLabel className="text-slate-300 text-sm">
                                                 Apakah Anda setuju dengan SOP yang diberikan?
-                                                <Link 
-                                                href="/events/engine-tune-up#sop" 
-                                                onClick={(e) => e.stopPropagation()}
-                                                className="text-cyan-400 hover:text-cyan-300 underline inline-flex"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
+                                                <Link
+                                                    href="/events/engine-tune-up#sop"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="text-cyan-400 hover:text-cyan-300 underline inline-flex"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                 >
                                                     SOP
                                                 </Link>

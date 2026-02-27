@@ -76,54 +76,54 @@ export default function ETUDataTable() {
 
     type Unified = (typeof unified)[number];
 
-      const addPresence = useMutation({
+    const addPresence = useMutation({
         ...trpc.admin.addPresenceParticipant.mutationOptions(),
         onMutate: () => {
-          toast.loading("Adding presence...", {
-            id: "add-presence",
-          });
+            toast.loading("Adding presence...", {
+                id: "add-presence",
+            });
         },
         onError: (error) => {
-          toast.dismiss("add-presence");
-          toast.error("Failed to add presence", {
-            description: error.message,
-          });
-          // console.log(error.message);
+            toast.dismiss("add-presence");
+            toast.error("Failed to add presence", {
+                description: error.message,
+            });
+            // console.log(error.message);
         },
         onSuccess() {
-          toast.dismiss("add-presence");
-          toast.success(`Presence added successfully`);
+            toast.dismiss("add-presence");
+            toast.success(`Presence added successfully`);
         },
         onSettled: () => {
-          queryClient.invalidateQueries({
-            queryKey: trpc.admin.getEvents.queryKey(),
-          });
+            queryClient.invalidateQueries({
+                queryKey: trpc.admin.getEvents.queryKey(),
+            });
         },
-      });
-      const removePresence = useMutation({
+    });
+    const removePresence = useMutation({
         ...trpc.admin.removePresenceParticipant.mutationOptions(),
         onMutate: () => {
-          toast.loading("Removing presence...", {
-            id: "remove-presence",
-          });
+            toast.loading("Removing presence...", {
+                id: "remove-presence",
+            });
         },
         onError: (error) => {
-          toast.dismiss("remove-presence");
-          toast.error("Failed to remove presence", {
-            description: error.message,
-          });
-          // console.log(error.message);
+            toast.dismiss("remove-presence");
+            toast.error("Failed to remove presence", {
+                description: error.message,
+            });
+            // console.log(error.message);
         },
         onSuccess() {
-          toast.dismiss("remove-presence");
-          toast.success(`Presence removed successfully`);
+            toast.dismiss("remove-presence");
+            toast.success(`Presence removed successfully`);
         },
         onSettled: () => {
-          queryClient.invalidateQueries({
-            queryKey: trpc.admin.getEvents.queryKey(),
-          });
+            queryClient.invalidateQueries({
+                queryKey: trpc.admin.getEvents.queryKey(),
+            });
         },
-      });
+    });
 
     const deleteEvent = useMutation({
         ...trpc.admin.deleteEvent.mutationOptions(),
@@ -219,25 +219,25 @@ export default function ETUDataTable() {
                         >
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                             <DropdownMenuItem
-                                            className="cursor-pointer text-green-500 hover:text-green-500! hover:bg-green-900/60!"
-                                            onClick={() =>
-                                              addPresence.mutate({ eventId: item.id })
-                                            }
-                                          >
-                                            Add presence
-                                          </DropdownMenuItem>
-                                          <DropdownMenuItem
-                                            variant="destructive"
-                                            className="cursor-pointer"
-                                            onClick={() =>
-                                              removePresence.mutate({
-                                                eventId: item.id,
-                                              })
-                                            }
-                                          >
-                                            Remove presence
-                                          </DropdownMenuItem>
+                            <DropdownMenuItem
+                                className="cursor-pointer text-green-500 hover:text-green-500! hover:bg-green-900/60!"
+                                onClick={() =>
+                                    addPresence.mutate({ eventId: item.id })
+                                }
+                            >
+                                Add presence
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                variant="destructive"
+                                className="cursor-pointer"
+                                onClick={() =>
+                                    removePresence.mutate({
+                                        eventId: item.id,
+                                    })
+                                }
+                            >
+                                Remove presence
+                            </DropdownMenuItem>
                             <DropdownMenuItem
                                 variant="destructive"
                                 className="cursor-pointer"
@@ -280,16 +280,16 @@ export default function ETUDataTable() {
             filterFn: "includesString",
         },
         {
-              accessorKey: "isPresent",
-              accessorFn: (row) => (row.isPresence ? "Present" : "Absent"),
-              header: ({ column }) => {
+            accessorKey: "isPresent",
+            accessorFn: (row) => (row.isPresence ? "Present" : "Absent"),
+            header: ({ column }) => {
                 return (
-                  <DataTableColumnHeader column={column} title="Presence Status" />
+                    <DataTableColumnHeader column={column} title="Presence Status" />
                 );
-              },
-              cell: ({ row }) => <div className="">{row.getValue("isPresent")}</div>,
-              filterFn: "includesString",
             },
+            cell: ({ row }) => <div className="">{row.getValue("isPresent")}</div>,
+            filterFn: "includesString",
+        },
         {
             accessorKey: "userName",
             accessorFn: (row) => row.user.name,
@@ -373,6 +373,17 @@ export default function ETUDataTable() {
                 return <DataTableColumnHeader column={column} title="NIM/NIP" />;
             },
             cell: ({ row }) => <div className="">{row.getValue("nimOrNip")}</div>,
+        },
+        {
+            accessorKey: "motorType",
+            accessorFn: (row) => (row.motorType === "MATIC" ? "Matic" : "Manual"),
+            header: ({ column }) => {
+                return <DataTableColumnHeader column={column} title="Motor Type" />;
+            },
+            cell: ({ row }) => (
+                <div className="">{row.getValue("motorType")}</div>
+            ),
+            filterFn: "includesString",
         },
         {
             accessorKey: "merekKendaraan",
@@ -528,16 +539,16 @@ export default function ETUDataTable() {
                                 >
                                     User Id
                                 </DropdownMenuItem>
-                                 <DropdownMenuItem
-                                                  className="cursor-pointer hover:bg-white/20!"
-                                                  onClick={() => {
-                                                    setFilterColumn("isPresent");
-                                                    table.getColumn("isPresent")?.setFilterValue("");
-                                                    table.resetColumnFilters();
-                                                  }}
-                                                >
-                                                  Presence
-                                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        setFilterColumn("isPresent");
+                                        table.getColumn("isPresent")?.setFilterValue("");
+                                        table.resetColumnFilters();
+                                    }}
+                                >
+                                    Presence
+                                </DropdownMenuItem>
                                 <DropdownMenuItem
                                     className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
@@ -587,6 +598,16 @@ export default function ETUDataTable() {
                                     }}
                                 >
                                     NIM or NIP
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        setFilterColumn("motorType");
+                                        table.getColumn("motorType")?.setFilterValue("");
+                                        table.resetColumnFilters();
+                                    }}
+                                >
+                                    Motor Type
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                     className="cursor-pointer hover:bg-white/20!"
