@@ -233,6 +233,7 @@ export default function EngineTuneUpPage() {
                     <ChevronRight className="ml-2 w-6 h-6" />
                 </Link>
               </Button>
+              <span className="text-sm text-gray-400 block mt-2">*Please login before registering</span>
           </div>
         </div>
 
