@@ -47,7 +47,7 @@ export function getSubmissionDeadline(comp: CompetitionName) {
   if (comp === "BCC") {
     return new Date("2026-03-14T23:59:59");
   } else if (comp === "IPPC") {
-    return new Date("2026-02-28T23:59:59");
+    return new Date("2026-03-01T02:00:00");
   } else if (comp === "PDC") {
     return new Date("2026-03-06T23:59:59");
   } else if (comp === "STEM") return null;
