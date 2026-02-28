@@ -10,6 +10,7 @@ import { ReactLenis } from "lenis/react";
 import QueryTanstackProvider from "@/components/providers/query-provider";
 import type { Metadata } from "next";
 import { env } from "@/env";
+import 'katex/dist/katex.min.css';
 
 const baseUrl = env.NEXT_PUBLIC_BASE_URL;
 

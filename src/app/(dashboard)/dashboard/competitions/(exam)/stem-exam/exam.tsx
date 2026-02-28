@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import type { QuizTypes } from "../../../../../../../prisma/generated/prisma/enums";
 import type { User, TeamMember } from "../../../../../../../prisma/generated/prisma/client";
 import { getCurrentDate } from "@/lib/utils";
+import MathRenderer from "@/components/dashboard/competitions/MathRenderer";
 
 export default function ExamClient({ user, teamMember }: { user: User, teamMember: TeamMember }) {
     const router = useRouter();
@@ -56,7 +57,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
     const [userAnswers, setUserAnswers] = useState<(number | null)[]>([]);
     const [showScore, setShowScore] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
-    const INITIAL_TIME = 3 * 60 * 60; // 3 Jam
+    const INITIAL_TIME = 2 *60 * 60; // 1 Jam
     const [timeLeft, setTimeLeft] = useState(INITIAL_TIME);
 
     // --- 4. Reset Logic (Kunci Perbaikan) ---
@@ -65,7 +66,6 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
         if (quizQuestions.length > 0) {
             setCurrentQuestionIndex(0);
             setUserAnswers(Array(quizQuestions.length).fill(null));
-            setTimeLeft(INITIAL_TIME);
             setShowScore(false);
         }
     }, [activeSession, quizQuestions.length]);
@@ -157,8 +157,8 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
     if (!currentSessionData) return <div className="p-10 text-center">Loading session data...</div>;
 
     return (
-        <div className="min-h-screen bg-transparent backdrop-glass-lg flex items-start justify-center p-0 lg:p-8 font-sans">
-            <div className="w-full max-w-7xl bg-white shadow-2xl lg:rounded-2xl border border-slate-200 min-h-screen lg:min-h-0 overflow-hidden flex flex-col lg:row mx-auto">
+        <div className="min-h-screen bg-transparent backdrop-glass-lg flex-1 min-w-0 items-start justify-center p-0 lg:p-8 font-sans overflow-x-hidden">
+            <div className="w-full max-w-7xl bg-white shadow-2xl lg:rounded-2xl border border-slate-200 min-h-screen lg:min-h-0 overflow-hidden flex flex-col lg:flex-row mx-auto">
                 
                 {/* Sidebar */}
                 {!showScore && (
@@ -228,8 +228,15 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
                             </div>
 
                             <div className="mb-10">
-                                <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 leading-snug">
-                                    {quizQuestions[currentQuestionIndex]?.questionText}
+                                {quizQuestions[currentQuestionIndex]?.questionPhoto && (
+                                    <img 
+                                        src={quizQuestions[currentQuestionIndex].questionPhoto} 
+                                        alt="Question" 
+                                        height={100}
+                                    />
+                                )}
+                                <h3 className="text-xl font-bold text-slate-900 leading-relaxed break-words">
+                                    <MathRenderer equation={quizQuestions[currentQuestionIndex]?.questionText || ""} />
                                 </h3>
                             </div>
 
@@ -255,7 +262,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
                                             }`}>
                                                 {String.fromCharCode(65 + index)}
                                             </span>
-                                            <span className="text-lg font-bold">{option.answerText}</span>
+                                            <span className="text-lg font-bold"><MathRenderer equation={option.answerText} />  </span>
                                         </button>
                                     ))
                                 )}

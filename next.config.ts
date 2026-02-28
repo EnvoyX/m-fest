@@ -48,6 +48,11 @@ const nextConfig: NextConfig = {
                 hostname: "api.microlink.io",
                 pathname: "/**",
             },
+            {
+                protocol: "https",
+                hostname: "drive.google.com",
+                pathname: "/**",
+            },
         ],
     },
 };
