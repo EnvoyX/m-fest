@@ -28,6 +28,8 @@ import { Badge } from "@/components/ui/badge";
 import { isBefore, isWithinInterval, isAfter } from "date-fns";
 import { eventsList, type Event } from "@/lib/eventDashboard";
 import type { MotorType } from "../../../../prisma/generated/prisma/enums";
+import QuotaTrackETU from "./QuotaTrackETU";
+import { is } from "date-fns/locale";
 
 export default function EventsListDashboard() {
     return (
@@ -51,6 +53,10 @@ async function FetchUserAvailableEvents() {
         "MANUAL": stats.find((stat) => stat.motorType === "MANUAL")?._count.motorType ?? 0,
     }
 
+    const maxQuotaMatic = eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0;
+    const maxQuotaManual = eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0;
+    const ismaticfull = currentMotorTypeQuota.MATIC >= (eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0);
+    const ismanualfull = currentMotorTypeQuota.MANUAL >= (eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0);
 
     const registeredEvents = await db.eventRegistration.findMany({
         where: {
@@ -139,6 +145,14 @@ async function FetchUserAvailableEvents() {
                                 <event.logo className="size-24" />
                             </CardContent>
                             <CardFooter className="flex flex-col justify-center mt-auto">
+
+                                {event.id === "ETU" && (
+                                    <>
+                                        {!ismaticfull ? <QuotaTrackETU motorType="MATIC" fetchedCurrentQuota={currentMotorTypeQuota.MATIC} maxQuota={maxQuotaMatic}></QuotaTrackETU>: <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5"><span className="text-sm">Matic: Full</span></Badge>}
+                                        {!ismanualfull ? <QuotaTrackETU motorType="MANUAL" fetchedCurrentQuota={currentMotorTypeQuota.MANUAL} maxQuota={maxQuotaManual}></QuotaTrackETU> : <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5"><span className="text-sm">Manual: Full</span></Badge>}
+                                    </>
+                                )}
+
                                 <Button
                                     variant="default"
                                     size="sm"

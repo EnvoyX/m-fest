@@ -32,6 +32,7 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { eventsList } from "@/lib/eventDashboard";
 
 const MOTORTYPES_OPTIONS = [
     { id: "MATIC", label: "Matic" },
@@ -68,6 +69,13 @@ export default function EtuForm() {
     })
     const etuEvent = events?.filter((e) => e.eventType === "ETU")
     if (etuEvent?.length) router.push("/dashboard/events");
+
+    const {data: currentQuota} = useQuery({
+        ...trpc.dashboard.getCurrentMotorTypeQuota.queryOptions(undefined),
+    })
+
+    const isMaticFull = currentQuota?.MATIC >= (eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0);
+    const isManualFull = currentQuota?.MANUAL >= (eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0);
 
 
     const registerEvent = useMutation({
@@ -256,7 +264,7 @@ export default function EtuForm() {
                                                                 className="flex items-center space-x-3 space-y-0 cursor-pointer"
                                                             >
                                                                 <FormControl>
-                                                                    <RadioGroupItem value={item.id} />
+                                                                    <RadioGroupItem value={item.id} disabled={item.id === "MATIC" ? isMaticFull : isManualFull} />
                                                                 </FormControl>
                                                                 <FormLabel className="font-normal text-slate-300 cursor-pointer w-full">
                                                                     {item.label}
