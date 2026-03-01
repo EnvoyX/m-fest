@@ -14,7 +14,7 @@ export default function QuotaTrackETU({ motorType, fetchedCurrentQuota, maxQuota
     const trpc = useTRPC()
     // defaults to fetchedCurrentQuota if currentQuotas is undefined
     const { data: currentMotorTypeQuotas = fetchedCurrentQuota } = useQuery({
-        ...trpc.dashboard.getCurrentMotorTypeQuota.queryOptions(undefined),
+        ...trpc.dashboard.getCurrentMotorTypeQuota.queryOptions(),
         enabled: fetchedCurrentQuota < maxQuota,
 
         // polling query every 2 seconds (in milliseconds)
@@ -26,7 +26,7 @@ export default function QuotaTrackETU({ motorType, fetchedCurrentQuota, maxQuota
         refetchOnReconnect: true,
     })
 
-    const maticQuota =  currentMotorTypeQuotas.MATIC ?? fetchedCurrentQuota
+    const maticQuota = currentMotorTypeQuotas.MATIC ?? fetchedCurrentQuota
     const manualQuota = currentMotorTypeQuotas.MANUAL ?? fetchedCurrentQuota;
 
     return (

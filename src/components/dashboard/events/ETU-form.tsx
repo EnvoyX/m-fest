@@ -70,12 +70,12 @@ export default function EtuForm() {
     const etuEvent = events?.filter((e) => e.eventType === "ETU")
     if (etuEvent?.length) router.push("/dashboard/events");
 
-    const {data: currentQuota} = useQuery({
-        ...trpc.dashboard.getCurrentMotorTypeQuota.queryOptions(undefined),
+    const { data: currentQuota } = useQuery({
+        ...trpc.dashboard.getCurrentMotorTypeQuota.queryOptions(),
     })
 
-    const isMaticFull = currentQuota?.MATIC >= (eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0);
-    const isManualFull = currentQuota?.MANUAL >= (eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0);
+    const isMaticFull = currentQuota?.MATIC as number >= (eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0);
+    const isManualFull = currentQuota?.MANUAL as number >= (eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0);
 
 
     const registerEvent = useMutation({
