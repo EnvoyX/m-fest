@@ -1,15 +1,15 @@
 import { env } from "@/env";
 
 export function getSebConfig() {
-  if (env.NODE_ENV === "development") {
-    return `<?xml version="1.0" encoding="utf-8"?>
+    if (env.NODE_ENV === "development") {
+        return `<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
     <key>originatorVersion</key>
     <string>SEB_Win_2.1.1</string>
     <key>startURL</key>
-    <string>http://localhost:3000/login</string>
+    <string>http://localhost:3000/dashboard/competitions/</string>
     <key>startResource</key>
     <string />
     <key>sebServerURL</key>
@@ -1671,18 +1671,18 @@ export function getSebConfig() {
     <true />
   </dict>
 </plist>`;
-  } else if (
-    env.NODE_ENV === "production" &&
-    env.NEXT_PUBLIC_BASE_URL.includes("vercel")
-  ) {
-    return `<?xml version="1.0" encoding="utf-8"?>
+    } else if (
+        env.NODE_ENV === "production" &&
+        env.NEXT_PUBLIC_BASE_URL.includes("vercel")
+    ) {
+        return `<?xml version="1.0" encoding="utf-8"?>
   <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
   <plist version="1.0">
     <dict>
       <key>originatorVersion</key>
       <string>SEB_Win_2.1.1</string>
       <key>startURL</key>
-      <string>https://m-fest-xi.vercel.app/login</string>
+      <string>https://m-fest-xi.vercel.app/dashboard/competitions/</string>
       <key>startResource</key>
       <string />
       <key>sebServerURL</key>
@@ -3344,16 +3344,16 @@ export function getSebConfig() {
       <true />
     </dict>
   </plist>`;
-  }
+    }
 
-  return `<?xml version="1.0" encoding="utf-8"?>
+    return `<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
   <key>originatorVersion</key>
   <string>SEB_Win_2.1.1</string>
   <key>startURL</key>
-  <string>https://mfest-itb.com/login</string>
+  <string>https://mfest-itb.com/dashboard/competitions/</string>
   <key>startResource</key>
   <string />
   <key>sebServerURL</key>

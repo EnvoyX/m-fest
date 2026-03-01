@@ -25,7 +25,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
     const router = useRouter();
     const trpc = useTRPC();
     const queryClient = useQueryClient();
-    
+
     // --- 1. State Global Sesi ---
     const [activeSession, setActiveSession] = useState<1 | 2 | 3>(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +47,8 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
             TECHMEET: sessionsDataTechMeet,
         };
 
-        return dataMap[kodeSoal][activeSession];
+        // return dataMap[kodeSoal]?.[activeSession];
+        return dataMap.TECHMEET[activeSession];
     }, [activeSession, kodeSoal]);
 
     const quizQuestions = currentSessionData?.questions || [];
@@ -57,7 +58,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
     const [userAnswers, setUserAnswers] = useState<(number | null)[]>([]);
     const [showScore, setShowScore] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
-    const INITIAL_TIME = 2 *60 * 60; // 1 Jam
+    const INITIAL_TIME = 2 * 60 * 60; // 1 Jam
     const [timeLeft, setTimeLeft] = useState(INITIAL_TIME);
 
     // --- 4. Reset Logic (Kunci Perbaikan) ---
@@ -159,7 +160,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
     return (
         <div className="min-h-screen bg-transparent backdrop-glass-lg flex-1 min-w-0 items-start justify-center p-0 lg:p-8 font-sans overflow-x-hidden">
             <div className="w-full max-w-7xl bg-white shadow-2xl lg:rounded-2xl border border-slate-200 min-h-screen lg:min-h-0 overflow-hidden flex flex-col lg:flex-row mx-auto">
-                
+
                 {/* Sidebar */}
                 {!showScore && (
                     <div className="lg:w-80 bg-slate-900 text-white p-6 flex flex-col shrink-0 border-r border-slate-800">
@@ -185,10 +186,9 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
                                     <button
                                         key={index}
                                         onClick={() => setCurrentQuestionIndex(index)}
-                                        className={`h-10 rounded-lg font-bold text-sm transition-all ${
-                                            index === currentQuestionIndex ? "bg-blue-600 text-white" : 
+                                        className={`h-10 rounded-lg font-bold text-sm transition-all ${index === currentQuestionIndex ? "bg-blue-600 text-white" :
                                             userAnswers[index] !== null ? "bg-green-500/20 text-green-400 border border-green-500/40" : "bg-white/5 text-slate-500"
-                                        }`}
+                                            }`}
                                     >
                                         {index + 1}
                                     </button>
@@ -229,9 +229,9 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
 
                             <div className="mb-10">
                                 {quizQuestions[currentQuestionIndex]?.questionPhoto && (
-                                    <img 
-                                        src={quizQuestions[currentQuestionIndex].questionPhoto} 
-                                        alt="Question" 
+                                    <img
+                                        src={quizQuestions[currentQuestionIndex].questionPhoto}
+                                        alt="Question"
                                         height={100}
                                     />
                                 )}
@@ -251,15 +251,13 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
                                         <button
                                             key={index}
                                             onClick={() => handleAnswerSelection(index)}
-                                            className={`w-full text-left p-6 rounded-2xl border-2 transition-all flex items-center space-x-5 ${
-                                                userAnswers[currentQuestionIndex] === index
-                                                    ? "bg-blue-600 border-blue-600 text-white shadow-lg"
-                                                    : "bg-white border-slate-100 text-slate-700 hover:border-blue-200"
-                                            }`}
+                                            className={`w-full text-left p-6 rounded-2xl border-2 transition-all flex items-center space-x-5 ${userAnswers[currentQuestionIndex] === index
+                                                ? "bg-blue-600 border-blue-600 text-white shadow-lg"
+                                                : "bg-white border-slate-100 text-slate-700 hover:border-blue-200"
+                                                }`}
                                         >
-                                            <span className={`w-10 h-10 rounded-xl border-2 flex items-center justify-center font-black ${
-                                                userAnswers[currentQuestionIndex] === index ? "bg-white/20 border-white/20 text-white" : "bg-slate-50 text-slate-400"
-                                            }`}>
+                                            <span className={`w-10 h-10 rounded-xl border-2 flex items-center justify-center font-black ${userAnswers[currentQuestionIndex] === index ? "bg-white/20 border-white/20 text-white" : "bg-slate-50 text-slate-400"
+                                                }`}>
                                                 {String.fromCharCode(65 + index)}
                                             </span>
                                             <span className="text-lg font-bold"><MathRenderer equation={option.answerText} />  </span>

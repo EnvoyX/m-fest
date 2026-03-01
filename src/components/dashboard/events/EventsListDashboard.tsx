@@ -55,8 +55,8 @@ async function FetchUserAvailableEvents() {
 
     const maxQuotaMatic = eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0;
     const maxQuotaManual = eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0;
-    const ismaticfull = currentMotorTypeQuota.MATIC >= (eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0);
-    const ismanualfull = currentMotorTypeQuota.MANUAL >= (eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0);
+    const isMaticFull = currentMotorTypeQuota.MATIC >= (eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0);
+    const isManualFull = currentMotorTypeQuota.MANUAL >= (eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0);
 
     const registeredEvents = await db.eventRegistration.findMany({
         where: {
@@ -114,6 +114,8 @@ async function FetchUserAvailableEvents() {
                         currentDate,
                         event.startRegDate1 as Date,
                     );
+                    const isETUOpen = (!isMaticFull || !isManualFull)
+
                     return (
                         <Card
                             key={event.id}
@@ -148,8 +150,8 @@ async function FetchUserAvailableEvents() {
 
                                 {event.id === "ETU" && (
                                     <>
-                                        {!ismaticfull ? <QuotaTrackETU motorType="MATIC" fetchedCurrentQuota={currentMotorTypeQuota.MATIC} maxQuota={maxQuotaMatic}></QuotaTrackETU>: <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5"><span className="text-sm">Matic: Full</span></Badge>}
-                                        {!ismanualfull ? <QuotaTrackETU motorType="MANUAL" fetchedCurrentQuota={currentMotorTypeQuota.MANUAL} maxQuota={maxQuotaManual}></QuotaTrackETU> : <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5"><span className="text-sm">Manual: Full</span></Badge>}
+                                        {!isMaticFull ? <QuotaTrackETU motorType="MATIC" fetchedCurrentQuota={currentMotorTypeQuota.MATIC} maxQuota={maxQuotaMatic} /> : <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5"><span className="text-sm">Matic: Full</span></Badge>}
+                                        {!isManualFull ? <QuotaTrackETU motorType="MANUAL" fetchedCurrentQuota={currentMotorTypeQuota.MANUAL} maxQuota={maxQuotaManual} /> : <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5"><span className="text-sm">Manual: Full</span></Badge>}
                                     </>
                                 )}
 
