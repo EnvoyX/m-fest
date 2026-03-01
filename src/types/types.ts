@@ -96,36 +96,36 @@ export type CompRegistration = {
 };
 
 export type Competition = {
-  title: string;
-  logo: string;
-  desc: string;
-  regLink: string;
-  abbreviation: CompetitionName;
-  cover: string;
-  isOpen?: boolean;
-  prize1: string; // 1st Place
-  prize2: string; // 2nd Place
-  prize3: string; // 3rd Place
-  prize4?: string;
-  prize5?: string;
-  reg1: string; // Early Bird
-  reg2: string; // Regular
-  reg3: string; // Extended Regular
-  startRegDate1: Date;
-  startRegDate2: Date;
-  startRegDate3: Date;
-  endRegDate1: Date;
-  endRegDate2: Date;
-  endRegDate3: Date;
-  fee1: number;
-  fee2: number;
-  guideBook: string;
-  icon: string;
-  uploadThingRoute: string;
-  submissionDeadline: Date | null;
-  compOpenCase: Date | null;
-  examOpen?: Date;
-  maxQuota?: number;
+    title: string;
+    logo: string;
+    desc: string;
+    regLink: string;
+    abbreviation: CompetitionName;
+    cover: string;
+    isOpen?: boolean;
+    prize1: string; // 1st Place
+    prize2: string; // 2nd Place
+    prize3: string; // 3rd Place
+    prize4?: string;
+    prize5?: string;
+    reg1: string; // Early Bird
+    reg2: string; // Regular
+    reg3: string; // Extended Regular
+    startRegDate1: Date;
+    startRegDate2: Date;
+    startRegDate3: Date;
+    endRegDate1: Date;
+    endRegDate2: Date;
+    endRegDate3: Date;
+    fee1: number;
+    fee2: number;
+    guideBook: string;
+    icon: string;
+    uploadThingRoute: string;
+    submissionDeadline: Date | null;
+    compOpenCase: Date | null;
+    examOpen?: Date;
+    maxQuota?: number;
 }
 
 export type Team = {
@@ -217,7 +217,8 @@ export type Document = {
 export type UploadThingRoute = "identityCard" | "twibbon" | "followIg";
 export type UploadThingEventRoute =
     | "uploadKTPorStudentCard"
-    | "uploadPaymentProofUrl";
+    | "uploadPaymentProofUrl" | "uploadProofFollowIg";
+
 export type UploadDocumentProps = {
     isLoading: boolean;
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -251,11 +252,12 @@ export type UploadEventProps = {
         emergencyContactName: string;
         category: "UMUM" | "MAHASISWA";
         jerseySize: "S" | "M" | "L" | "XL" | "XXL";
-        bloodType: "A" | "B" | "AB" | "O";
+        bloodType: "O" | "A" | "B" | "AB";
         rhesus: "POSITIVE" | "NEGATIVE" | "NOT_KNOWN";
-        siapLomba: boolean;
         ktpUrl: string;
+        followIgUrl: string;
         buktiBayarUrl: string;
+        siapLomba: boolean;
         isAlumniHMM?: boolean | undefined;
         isHMM?: boolean | undefined;
         nimHMM?: string | undefined;
@@ -264,7 +266,6 @@ export type UploadEventProps = {
         alergi?: boolean | undefined;
         detailAlergi?: string | undefined;
     }>;
-    userId: string;
 };
 
 export type UploadDialogProps = {

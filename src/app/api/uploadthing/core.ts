@@ -84,30 +84,51 @@ export const ourFileRouter = {
             maxFileCount: 1,
         },
     })
-        .input(
-            z.object({
-                targetUserId: z.string(),
-            }),
-        )
-        .middleware(async ({ input, req }) => {
+        .middleware(async ({ req }) => {
             const session = await auth.api.getSession({
                 headers: req.headers,
-            });
-            const user = await db.user.findUnique({
-                where: { id: input.targetUserId },
             });
             if (!session) {
                 console.log("Unauthorized user tried to upload");
                 throw new UploadThingError("Unauthorized");
             }
-            if (!user) {
-                console.log("User not found");
-                throw new UploadThingError("User not found");
+            return {
+                userId: session.user.id,
+                name: session.user.name,
+                email: session.user.email,
+            };
+        })
+        .onUploadComplete(async ({ metadata, file }) => {
+            return {
+                userId: metadata.userId,
+                name: metadata.name,
+                email: metadata.email,
+                fileUrl: file.ufsUrl,
+                fileKey: file.key,
+            };
+        }),
+    uploadProofFollowIg: f({
+        image: {
+            maxFileSize: "4MB",
+            maxFileCount: 1,
+        },
+        "application/pdf": {
+            maxFileSize: "4MB",
+            maxFileCount: 1,
+        },
+    })
+        .middleware(async ({ req }) => {
+            const session = await auth.api.getSession({
+                headers: req.headers,
+            });
+            if (!session) {
+                console.log("Unauthorized user tried to upload");
+                throw new UploadThingError("Unauthorized");
             }
             return {
-                userId: user?.id,
-                name: user?.name,
-                email: user?.email,
+                userId: session.user.id,
+                name: session.user.name,
+                email: session.user.email,
             };
         })
         .onUploadComplete(async ({ metadata, file }) => {
@@ -129,30 +150,18 @@ export const ourFileRouter = {
             maxFileCount: 1,
         },
     })
-        .input(
-            z.object({
-                targetUserId: z.string(),
-            }),
-        )
-        .middleware(async ({ input, req }) => {
+        .middleware(async ({ req }) => {
             const session = await auth.api.getSession({
                 headers: req.headers,
-            });
-            const user = await db.user.findUnique({
-                where: { id: input.targetUserId },
             });
             if (!session) {
                 console.log("Unauthorized user tried to upload");
                 throw new UploadThingError("Unauthorized");
             }
-            if (!user) {
-                console.log("User not found");
-                throw new UploadThingError("User not found");
-            }
             return {
-                userId: user?.id,
-                name: user?.name,
-                email: user?.email,
+                userId: session.user.id,
+                name: session.user.name,
+                email: session.user.email,
             };
         })
         .onUploadComplete(async ({ metadata, file }) => {

@@ -49,6 +49,7 @@ export type EventRegistrationMinAggregateOutputType = {
   memenuhiSyarat: boolean | null
   age: string | null
   ktpUrl: string | null
+  followIgUrl: string | null
   category: $Enums.Kategori | null
   jerseySize: $Enums.JerseySize | null
   isAlumniHMM: boolean | null
@@ -96,6 +97,7 @@ export type EventRegistrationMaxAggregateOutputType = {
   memenuhiSyarat: boolean | null
   age: string | null
   ktpUrl: string | null
+  followIgUrl: string | null
   category: $Enums.Kategori | null
   jerseySize: $Enums.JerseySize | null
   isAlumniHMM: boolean | null
@@ -143,6 +145,7 @@ export type EventRegistrationCountAggregateOutputType = {
   memenuhiSyarat: number
   age: number
   ktpUrl: number
+  followIgUrl: number
   category: number
   jerseySize: number
   isAlumniHMM: number
@@ -192,6 +195,7 @@ export type EventRegistrationMinAggregateInputType = {
   memenuhiSyarat?: true
   age?: true
   ktpUrl?: true
+  followIgUrl?: true
   category?: true
   jerseySize?: true
   isAlumniHMM?: true
@@ -239,6 +243,7 @@ export type EventRegistrationMaxAggregateInputType = {
   memenuhiSyarat?: true
   age?: true
   ktpUrl?: true
+  followIgUrl?: true
   category?: true
   jerseySize?: true
   isAlumniHMM?: true
@@ -286,6 +291,7 @@ export type EventRegistrationCountAggregateInputType = {
   memenuhiSyarat?: true
   age?: true
   ktpUrl?: true
+  followIgUrl?: true
   category?: true
   jerseySize?: true
   isAlumniHMM?: true
@@ -406,6 +412,7 @@ export type EventRegistrationGroupByOutputType = {
   memenuhiSyarat: boolean | null
   age: string | null
   ktpUrl: string | null
+  followIgUrl: string | null
   category: $Enums.Kategori | null
   jerseySize: $Enums.JerseySize | null
   isAlumniHMM: boolean | null
@@ -474,6 +481,7 @@ export type EventRegistrationWhereInput = {
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  followIgUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableFilter<"EventRegistration"> | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
@@ -522,6 +530,7 @@ export type EventRegistrationOrderByWithRelationInput = {
   memenuhiSyarat?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   ktpUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  followIgUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   jerseySize?: Prisma.SortOrderInput | Prisma.SortOrder
   isAlumniHMM?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -573,6 +582,7 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  followIgUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableFilter<"EventRegistration"> | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
@@ -621,6 +631,7 @@ export type EventRegistrationOrderByWithAggregationInput = {
   memenuhiSyarat?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   ktpUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  followIgUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   jerseySize?: Prisma.SortOrderInput | Prisma.SortOrder
   isAlumniHMM?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -674,6 +685,7 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   memenuhiSyarat?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+  followIgUrl?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableWithAggregatesFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableWithAggregatesFilter<"EventRegistration"> | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
@@ -720,6 +732,7 @@ export type EventRegistrationCreateInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
   isAlumniHMM?: boolean | null
@@ -768,6 +781,7 @@ export type EventRegistrationUncheckedCreateInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
   isAlumniHMM?: boolean | null
@@ -814,6 +828,7 @@ export type EventRegistrationUpdateInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -862,6 +877,7 @@ export type EventRegistrationUncheckedUpdateInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -909,6 +925,7 @@ export type EventRegistrationCreateManyInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
   isAlumniHMM?: boolean | null
@@ -955,6 +972,7 @@ export type EventRegistrationUpdateManyMutationInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -1002,6 +1020,7 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -1049,6 +1068,7 @@ export type EventRegistrationCountOrderByAggregateInput = {
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
   ktpUrl?: Prisma.SortOrder
+  followIgUrl?: Prisma.SortOrder
   category?: Prisma.SortOrder
   jerseySize?: Prisma.SortOrder
   isAlumniHMM?: Prisma.SortOrder
@@ -1096,6 +1116,7 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
   ktpUrl?: Prisma.SortOrder
+  followIgUrl?: Prisma.SortOrder
   category?: Prisma.SortOrder
   jerseySize?: Prisma.SortOrder
   isAlumniHMM?: Prisma.SortOrder
@@ -1143,6 +1164,7 @@ export type EventRegistrationMinOrderByAggregateInput = {
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
   ktpUrl?: Prisma.SortOrder
+  followIgUrl?: Prisma.SortOrder
   category?: Prisma.SortOrder
   jerseySize?: Prisma.SortOrder
   isAlumniHMM?: Prisma.SortOrder
@@ -1281,6 +1303,7 @@ export type EventRegistrationCreateWithoutUserInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
   isAlumniHMM?: boolean | null
@@ -1327,6 +1350,7 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
   isAlumniHMM?: boolean | null
@@ -1403,6 +1427,7 @@ export type EventRegistrationScalarWhereInput = {
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  followIgUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableFilter<"EventRegistration"> | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
@@ -1449,6 +1474,7 @@ export type EventRegistrationCreateManyUserInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
   isAlumniHMM?: boolean | null
@@ -1495,6 +1521,7 @@ export type EventRegistrationUpdateWithoutUserInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -1541,6 +1568,7 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -1587,6 +1615,7 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
   isAlumniHMM?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -1636,6 +1665,7 @@ export type EventRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Int
   memenuhiSyarat?: boolean
   age?: boolean
   ktpUrl?: boolean
+  followIgUrl?: boolean
   category?: boolean
   jerseySize?: boolean
   isAlumniHMM?: boolean
@@ -1684,6 +1714,7 @@ export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   memenuhiSyarat?: boolean
   age?: boolean
   ktpUrl?: boolean
+  followIgUrl?: boolean
   category?: boolean
   jerseySize?: boolean
   isAlumniHMM?: boolean
@@ -1732,6 +1763,7 @@ export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   memenuhiSyarat?: boolean
   age?: boolean
   ktpUrl?: boolean
+  followIgUrl?: boolean
   category?: boolean
   jerseySize?: boolean
   isAlumniHMM?: boolean
@@ -1780,6 +1812,7 @@ export type EventRegistrationSelectScalar = {
   memenuhiSyarat?: boolean
   age?: boolean
   ktpUrl?: boolean
+  followIgUrl?: boolean
   category?: boolean
   jerseySize?: boolean
   isAlumniHMM?: boolean
@@ -1802,7 +1835,7 @@ export type EventRegistrationSelectScalar = {
   motorType?: boolean
 }
 
-export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "buktiBayarUrl" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant" | "motorType", ExtArgs["result"]["eventRegistration"]>
+export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "followIgUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "buktiBayarUrl" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant" | "motorType", ExtArgs["result"]["eventRegistration"]>
 export type EventRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -1843,6 +1876,7 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     memenuhiSyarat: boolean | null
     age: string | null
     ktpUrl: string | null
+    followIgUrl: string | null
     category: $Enums.Kategori | null
     jerseySize: $Enums.JerseySize | null
     isAlumniHMM: boolean | null
@@ -2311,6 +2345,7 @@ export interface EventRegistrationFieldRefs {
   readonly memenuhiSyarat: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly age: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly ktpUrl: Prisma.FieldRef<"EventRegistration", 'String'>
+  readonly followIgUrl: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly category: Prisma.FieldRef<"EventRegistration", 'Kategori'>
   readonly jerseySize: Prisma.FieldRef<"EventRegistration", 'JerseySize'>
   readonly isAlumniHMM: Prisma.FieldRef<"EventRegistration", 'Boolean'>

@@ -142,6 +142,7 @@ export const EventRegistrationScalarFieldEnum = {
   memenuhiSyarat: 'memenuhiSyarat',
   age: 'age',
   ktpUrl: 'ktpUrl',
+  followIgUrl: 'followIgUrl',
   category: 'category',
   jerseySize: 'jerseySize',
   isAlumniHMM: 'isAlumniHMM',

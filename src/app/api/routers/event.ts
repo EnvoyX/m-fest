@@ -94,6 +94,7 @@ export const eventRouter = router({
                             detailAlergi: input.detailAlergi,
                             siapLomba: input.siapLomba,
                             ktpUrl: input.ktpUrl,
+                            followIgUrl: input.followIgUrl,
                             buktiBayarUrl: input.buktiBayarUrl,
                         },
                     });

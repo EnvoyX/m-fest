@@ -51,7 +51,7 @@ async function FetchUserAvailableCompetitions() {
         return acc;
     }, {} as Record<string, number>);
 
-    console.log("Competition counts: ", counts);
+    // console.log("Competition counts: ", counts);
 
     const registeredCompetitions = await db.compRegistration.findMany({
         where: {

@@ -29,7 +29,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { getCurrentDate, getMRUNBatchInfo } from "@/lib/utils";
 import UploadEventDialog from "./UploadEventDialog";
-import { authClient } from "@/lib/auth-client";
 import { useTRPC } from "@/utils/trpc";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -38,7 +37,6 @@ import { Loader2 } from "lucide-react";
 
 export default function MRunForm() {
     const currentDate = getCurrentDate();
-    const session = authClient.useSession();
     const batchInfo = getMRUNBatchInfo(currentDate);
     const form = useForm<mRunSchema>({
         resolver: zodResolver(mRunSchema),
@@ -617,11 +615,38 @@ export default function MRunForm() {
                     </FormLabel> */}
                                         <UploadEventDialog
                                             id={1}
-                                            userId={session.data?.user.id as string}
                                             title="KTP/Kartu Pelajar"
                                             isLoading={isLoading}
                                             setIsLoading={setIsLoading}
                                             uploadThingRoute="uploadKTPorStudentCard"
+                                            setValue={form.setValue}
+                                        />
+                                        <FormControl>
+                                            <Input
+                                                {...field}
+                                                disabled
+                                                readOnly
+                                                className="bg-white/5 border-white/10 text-white"
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="followIgUrl"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className="text-slate-300">
+                                            IG: @mfestitb
+                                        </FormLabel>
+                                        <UploadEventDialog
+                                            id={2}
+                                            title="Bukti Follow IG"
+                                            isLoading={isLoading}
+                                            setIsLoading={setIsLoading}
+                                            uploadThingRoute="uploadProofFollowIg"
                                             setValue={form.setValue}
                                         />
                                         <FormControl>
@@ -648,8 +673,7 @@ export default function MRunForm() {
                       Link Bukti Pembayaran
                     </FormLabel> */}
                                         <UploadEventDialog
-                                            id={2}
-                                            userId={session.data?.user.id as string}
+                                            id={3}
                                             title="Bukti Pembayaran"
                                             isLoading={isLoading}
                                             setIsLoading={setIsLoading}

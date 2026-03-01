@@ -166,6 +166,10 @@ export const mRunSchema = z
             .string()
             .min(1, "Foto KTP wajib diisi.")
             .url("Tautan Foto KTP tidak valid."),
+        followIgUrl: z
+            .string()
+            .min(1, "Tauatan Bukti Follow IG wajib diisi.")
+            .url("Tautan Foto KTP tidak valid."),
         buktiBayarUrl: z
             .string()
             .min(1, "Tautan Bukti Pembayaran wajib diisi.")

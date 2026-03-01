@@ -201,6 +201,7 @@ model EventRegistration {
   // M-Run Specifics
   age             String?
   ktpUrl          String?
+  followIgUrl     String?
   category        Kategori? // 5K, 10K, etc
   jerseySize      JerseySize?
   isAlumniHMM     Boolean?    @default(false)
@@ -221,7 +222,7 @@ model EventRegistration {
   platNomor       String?
   lastServiceDate String?
   nimOrNip        String? // Buat ETU / Mexpo
-  isSopCompliant  Boolean? @default(false) // Consent ETU
+  isSopCompliant  Boolean?   @default(false) // Consent ETU
   motorType       MotorType?
 
   @@index([userId])
