@@ -91,7 +91,6 @@ export default async function EntryExamPage() {
             <Button
                 variant="primary"
                 className={"rounded-sm bg-white/5 border hover:bg-white/10 mt-2"}
-                isDisabled={!isOpen}
             >
                 <Link href={`stem-exam?token=${token}`}>Start Exam</Link>
             </Button>

@@ -165,7 +165,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
                 {!showScore && (
                     <div className="lg:w-80 bg-slate-900 text-white p-6 flex flex-col shrink-0 border-r border-slate-800">
                         <div className="mb-8">
-                            <h1 className="text-lg font-black tracking-tight">STEM Preliminary</h1>
+                            <h1 className="text-lg font-black tracking-tight">STEM Tryout</h1>
                             <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest">{user?.name}</p>
                             <p className="text-xl font-black text-blue-100">{currentSessionData.subject}</p>
                         </div>
