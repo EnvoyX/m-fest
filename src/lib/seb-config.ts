@@ -3283,7 +3283,7 @@ export function getSebConfig() {
         <key>originatorVersion</key>
         <string>SEB_Win_2.1.1</string>
         <key>startURL</key>
-        <string>https://mfest-itb/dashboard/competitions/</string>
+        <string>https://mfest-itb.com/dashboard/competitions/</string>
         <key>startResource</key>
         <string />
         <key>sebServerURL</key>
