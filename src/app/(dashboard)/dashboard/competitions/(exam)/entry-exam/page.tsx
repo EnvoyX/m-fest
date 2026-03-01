@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     description: "Entry Exam",
 };
 
+const currentDate = getCurrentDate();
+const openStemTime = new Date("2026-03-01T14:00:00Z");
+const closeStemTime = new Date("2026-03-01T16:00:00Z");
+const isOpen = currentDate >= openStemTime && currentDate < closeStemTime;
+
 export default async function EntryExamPage() {
     const sebKey = await headers().then((h) =>
         h.get("x-safeexambrowser-configkeyhash"),
@@ -86,6 +91,7 @@ export default async function EntryExamPage() {
             <Button
                 variant="primary"
                 className={"rounded-sm bg-white/5 border hover:bg-white/10 mt-2"}
+                isDisabled={!isOpen}
             >
                 <Link href={`stem-exam?token=${token}`}>Start Exam</Link>
             </Button>
