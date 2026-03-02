@@ -27,6 +27,7 @@ export const sessionsDataA = {
       {
         questionText:
           "masih paket a",
+        questionPhoto: "/competitions/exam/Mat/A/1.png",
         answerOptions: [
           { answerText: "2", isCorrect: true },
           { answerText: "2x", isCorrect: false },
