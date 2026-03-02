@@ -215,17 +215,36 @@ export const sessionsDataTechMeet = {
   1: {
     subject: "PHYSICS",
     questions: [
-      {
-        questionText: "Hafizh adalah siswa SMA yang sedang menduduki kelas 10. Ia mengunjungi gedung pameran sains yang mendemonstrasikan beberapa fenomena fisika. Ia pun melihat salah satu sistem yang terdiri dari pegas dan batang yang keduanya dianggap tak bermassa, serta bola bermassa 4 kg di mana pegas dan batang tersebut dipasang oleh pin yang tertempel pada langit-langit dan dinding. Bola tersebut dapat bergerak bebas sepanjang batang. Mula-mula, bola dilepas tanpa kecepatan awal ketika postur batang disejajarkan dengan sumbu horizontal. Hafizh membaca beberapa data pada meja simulator tersebut yang terdiri dari koefisien gesek kinetis antara bola dan lintasan sebesar 0,3; panjang pegas ketika tidak terdeformasi sebesar 0,7 meter; dan kekakuan pegas adalah 50 N/m. Karena Hafizh sudah mempelajari konsep Usaha-Energi sewaktu di kelas bersama Pak Fourier, ia ingin mengetahui nilai kecepatan bola pada saat postur batang tersebut sejajar dengan sumbu vertikal. Akan tetapi, Hafizh belum mendapatkan materi konsep benda tegar. Ia pun mengasumsikan bola sebagai partikel sehingga ukuran bola dapat diabaikan. Selain itu, Hafizh juga menganggap gaya normal sepanjang lintasan semata-mata diakibatkan oleh komponen berat bola meskipun sebenarnya terdapat gaya-gaya lainnya sebagai kemudahan untuk analisis. Berapakah besar kecepatan tersebut yang diperoleh Hafizh? Gunakan g = 10 m/s2.",
-        questionPhoto: "/competitions/exam/Fisika/gambar soal mfest 2/1.png",
-        answerOptions: [
-          { answerText: "$\\frac{2}{5}\\sqrt{15}$", isCorrect: false },
-          { answerText: "$2\\sqrt{3}$", isCorrect: false },
-          { answerText: "$\\frac{4}{5}\\sqrt{35}$", isCorrect: false },
-          { answerText: "$4\\sqrt{2}$", isCorrect: false },
-          { answerText: "$\\frac{6}{5}\\sqrt{10}$", isCorrect: true },
-        ],
-      },
+          {
+            questionText: "Jika diketahui $\\cos x = \\frac{4}{5}$ di mana $x$ berada di kuadran pertama, maka tentukan nilai $\\frac{1 - \\csc^2 x}{\\csc^2 x} = \\dots$",
+            answerOptions: [
+              { answerText: "$-\\frac{9}{25}$", isCorrect: false },
+              { answerText: "$\\frac{9}{25}$", isCorrect: false },
+              { answerText: "$-\\frac{16}{25}$", isCorrect: true },
+              { answerText: "$-\\frac{16}{9}$", isCorrect: false },
+              { answerText: "$\\frac{9}{16}$", isCorrect: false },
+            ],
+          },
+          {
+            questionText: "Diberikan 2 buah bilangan bulat positif yakni $m$ dan $72$. Jika diketahui FPB dan KPK-nya berturut-turut $8$ dan $1080$, maka nilai $m$ adalah $\\dots$",
+            answerOptions: [
+              { answerText: "40", isCorrect: false },
+              { answerText: "60", isCorrect: false },
+              { answerText: "80", isCorrect: false },
+              { answerText: "90", isCorrect: false },
+              { answerText: "120", isCorrect: true },
+            ],
+          },
+          {
+            questionText: "daru ganteng 123 $m_1 = 1, m_2 = 5,$ dan $m_k = 5m_{k-1} - 6m_{k-2}$, maka nilai $m_{2026}$ adalah $\\dots$",
+            answerOptions: [
+              { answerText: "$3^{2025} - 2^{2025}$", isCorrect: false },
+              { answerText: "$3^{2026} - 2^{2026}$", isCorrect: false },
+              { answerText: "$3^{2027} - 2^{2027}$", isCorrect: false },
+              { answerText: "$3^{2026} - 2^{2025}$", isCorrect: false },
+              { answerText: "$3^{2027} - 2^{2026}$", isCorrect: true },
+            ],
+          },
       {
         questionText: "Sebuah truk dengan massa $m_T$ mengangkut pipa gorong-gorong (culvert) dengan massa $m_C$ melaju bersama seperti gambar. Karena sopir sudah bekerja lembur, beliau mengantuk dan menabrak mobil dengan massa $m_M$ yang bergerak seperti pada gambar. Setelah bertabrakan, keduanya menyatu dan melaju sebesar $v=1$ m/s ke sumbu-x positif. Akibat tabrakan tersebut, 4,125 kJ energi hilang. Setelah itu, seorang pengamat dari pinggir jalan melihat culvert menggelinding tanpa slip selama 0,2 detik sebelum hancur (massa culvert setelah hancur diabaikan) dengan menyerap 20% momen ekuivalen dari energi yang hilang. Dengan mengabaikan gaya gesek dan menganggap sistem sebagai benda titik, carilah semua massa yang tidak diketahui dan hitung nilai $\\frac{m_T+m_M}{m_C}$! Anggap laju menggelinding culvert sama dengan kecepatan setelah tabrakan dan anggap culvert sebagai silinder tipis berongga.",
         questionPhoto: "/competitions/exam/Fisika/gambar soal mfest 2/2.png",
