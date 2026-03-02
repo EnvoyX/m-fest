@@ -7,18 +7,18 @@ export const events = [
         href: "/events/m-care",
     },
     {
-        title: "M-Run",
-        desc: "Improve your health and build connection in the process, with us and M-Run.",
-        img: "/events/card/mrun.png",
-        logo: "/events/mrun-icon.svg",
-        href: "/events/m-run",
-    },
-    {
         title: "Engine Tune Up",
         desc: "Make sure your vehicle always at its prime, come visit us for free engine tune up service!",
         img: "/events/card/etu.png",
         logo: "/events/etu-icon.svg",
         href: "/events/engine-tune-up",
+    },
+    {
+        title: "M-Run",
+        desc: "Improve your health and build connection in the process, with us and M-Run.",
+        img: "/events/card/mrun.png",
+        logo: "/events/mrun-icon.svg",
+        href: "/events/m-run",
     },
     {
         title: "M-Talks",
