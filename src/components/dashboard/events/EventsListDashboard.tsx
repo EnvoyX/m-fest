@@ -147,14 +147,6 @@ async function FetchUserAvailableEvents() {
                                 <event.logo className="size-24" />
                             </CardContent>
                             <CardFooter className="flex flex-col justify-center mt-auto">
-
-                                {event.id === "ETU" && (
-                                    <>
-                                        {!isMaticFull ? <QuotaTrackETU motorType="MATIC" fetchedCurrentQuota={currentMotorTypeQuota.MATIC} maxQuota={maxQuotaMatic} /> : <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5"><span className="text-sm">Matic: Full</span></Badge>}
-                                        {!isManualFull ? <QuotaTrackETU motorType="MANUAL" fetchedCurrentQuota={currentMotorTypeQuota.MANUAL} maxQuota={maxQuotaManual} /> : <Badge className="bg-primary/30 text-primary border-primary/50 border  mb-5"><span className="text-sm">Manual: Full</span></Badge>}
-                                    </>
-                                )}
-
                                 <Button
                                     variant="default"
                                     size="sm"
