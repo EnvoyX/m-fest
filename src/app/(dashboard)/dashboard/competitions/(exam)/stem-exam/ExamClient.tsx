@@ -232,9 +232,10 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
                                         src={quizQuestions[currentQuestionIndex].questionPhoto}
                                         alt="Question"
                                         height={100}
+                                        className="mb-6 rounded-xl border object-contain max-h-80 w-full"
                                     />
                                 )}
-                                <h3 className="text-xl font-bold text-slate-900 leading-relaxed break-words">
+                                <h3 className="text-xl font-bold text-slate-900 leading-relaxed break-words text-justify">
                                     <MathRenderer equation={quizQuestions[currentQuestionIndex]?.questionText || ""} />
                                 </h3>
                             </div>

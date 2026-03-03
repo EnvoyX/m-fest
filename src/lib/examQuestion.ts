@@ -1,25 +1,169 @@
 export const sessionsDataA = {
-  1: {
+ 1: {
     subject: "PHYSICS",
     questions: [
       {
-        questionText:
-          "Ini paket A",
+        questionText: "Satrio adalah mahasiswa Program Studi Teknik Mesin ITB yang mengikuti sebuah Unit Kegiatan Mahasiswa yang berfokus pada pengembangan game digital. Ia tertarik untuk membuat permainan yang memenuhi hukum Fisika (khususnya Mekanika) di mana ia merancang sebuah sistem permainan yang melibatkan objek tank dan mobil penyusup. Tank tersebut menembakkan rudal dengan sudut elevasi $\\beta$ ke arah mobil penyusup yang berada di bukit yang dimodelkan sebagai suatu bidang miring sebagaimana tertera pada gambar di atas. Mula-mula, mobil tersebut tidak memiliki kecepatan awal dan berakselerasi konstan sebesar 2Q (dua dikali Q) menuruni bukit. Tentukan besar kecepatan awal rudal yang harus Satrio input ke sistem permainan agar rudal tersebut tepat mengenai mobil penyusup jika mobil tersebut tertembak di bukit dan tank selalu diam. Asumsikan ketinggian ujung moncong tembakan sama dengan ketinggian mobil sesaat setelah tertembak relatif terhadap tanah horizontal. Gesekan udara diabaikan.",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/1.png",
         answerOptions: [
-          { answerText: "Hukum Newton I", isCorrect: false },
-          { answerText: "Hukum Newton II", isCorrect: false },
-          { answerText: "Hukum Newton III", isCorrect: true },
-        ],
+          { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta+\\frac{16Q\\sin^{2}\\beta}{5g}}}$", isCorrect: false },
+          { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta-\\frac{16Q\\sin^{2}\\beta}{5g}}}$", isCorrect: false },
+          { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{3}{4}H)}{\\sin2\\beta+\\frac{16Q\\sin^{2}\\beta}{5g}}}$", isCorrect: false },
+          { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta+\\frac{12Q\\sin^{2}\\beta}{5g}}}$", isCorrect: false },
+          { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta+\\frac{32Q\\sin^{2}\\beta}{5g}}}$", isCorrect: true }
+        ]
       },
       {
-        questionText: "Rumus energi kinetik adalah...",
+        questionText: "Diberikan bidang miring dengan sudut kemiringan serta balok yang memiliki massa berturut-turut adalah $m_{1}=4$ kg dan $m_{2}=5$ kg. Bidang miring tersebut berada di atas permukaan lantai yang kasar dengan suatu koefisien gesek kinetis $\\mu_{k}=0,75$ dan balok berada di atas bidang miring di mana permukaan antara balok dengan bidang miring adalah licin. Bidang miring ditarik oleh gaya konstan F sebesar 50 N. Mula-mula, bidang miring maupun balok berada pada keadaan diam serta balok berada di ujung atas bidang miring dengan ketinggian $H=4$ m. Tetapkan arah percepatan gravitasi $g=10~m/s^{2}$ ke bawah serta asumsikan sistem pasti bergerak, tentukan waktu t yang dibutuhkan balok agar sampai di dasar bidang miring. Diketahui juga $\\sin\\theta=0,6$ dan $\\cos\\theta=0,8$",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/2.png",
         answerOptions: [
-          { answerText: "Ek = m.g.h", isCorrect: false },
-          { answerText: "Ek = 1/2 m.v²", isCorrect: true },
-          { answerText: "Ek = F.s", isCorrect: false },
-        ],
+          { answerText: "Solusi Bukan Bilangan Real", isCorrect: false },
+          { answerText: "$\\frac{4}{5}\\sqrt{3}$ detik", isCorrect: false },
+          { answerText: "$\\frac{2}{3}\\sqrt{15}$ detik", isCorrect: true },
+          { answerText: "$\\frac{2}{3}\\sqrt{6}$ detik", isCorrect: false },
+          { answerText: "$\\frac{2}{3}\\sqrt{3}$ detik", isCorrect: false }
+        ]
       },
-    ],
+      {
+        questionText: "Sebuah selang menyemprotkan air pada titik A dengan kecepatan $v_{A}$ dan air keluar pada titik B. Karena dorongan dari air, blade dengan massa $m_{b}$ yang ditinjau sebagai sistem bergerak ke kanan dengan kecepatan dan mengakibatkan muncratan air $v_{cv}$ pada titik B membentuk sudut $\\phi$ terhadap horizontal. Diketahui debit air sebesar Q dan laju aliran massa $(\\frac{dm}{dt})$ selalu sama di sepanjang lengkungan blade. Gaya dorong akibat hembusan air mengakibatkan gaya reaksi R pada sistem yang terpusat pada titik G dan selalu tegak lurus garis yang membentuk sudut $\\theta$ terhadap datar dan merupakan sudut komplementer dengan $\\phi$. Turunkan persamaan untuk menentukan waktu yang diperlukan untuk membuat sistem bergerak sebesar $v_{cv}$ dengan mengabaikan gesekan air terhadap blade dan gesekan blade terhadap tanah serta sistem semula diam!. Anggap sistem sebagai benda titik dan massa jenis air adalah $\\rho$ serta semua kecepatan dianggap konstan ($v_{A}$ dan $v_{B}$ adalah kecepatan relatif air terhadap blade).",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/3.png",
+        answerOptions: [
+          { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{\\rho Q(v_{B}\\sin\\theta-v_{A})}$", isCorrect: false },
+          { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{\\rho Q(v_{A}-v_{B}\\sin\\theta)}$", isCorrect: false },
+          { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{-R \\cdot \\sin\\theta}$", isCorrect: true },
+          { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{-R \\cdot \\cos\\theta}$", isCorrect: false },
+          { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{\\rho Q(v_{A}\\cos\\phi-v_{B})}$", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Sebuah wadah diisi air dengan massa jenis $1000kg/m^{3}$ sampai ketinggian 2 meter. Wadah tersebut tertutupi oleh 3 dinding diam, lantai dan satu dinding yang dapat dibuka (secara digulung dari bawah ke atas seperti di gambar) dengan tinggi 2 meter dan lebar 3 meter seperti di gambar. Agar pintu wadah tersebut tetap tertutup, diberikan gaya F di ujung bawah pintu tersebut untuk menahannya. Besar gaya F yang dibutuhkan adalah: (percepatan gravitasi adalah $10m/s^{2}$)",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/4.png",
+        answerOptions: [
+          { answerText: "60000 N", isCorrect: false },
+          { answerText: "40000 N", isCorrect: true },
+          { answerText: "30000 N", isCorrect: false },
+          { answerText: "20000 N", isCorrect: false },
+          { answerText: "35000 N", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Sebuah pipa U dengan luas penampang yang sama di tiap ujung pipa berotasi dengan salah satu tabung sebagai poros kelajuan sudut putar ($\\omega=4~rad/s$) menyebabkan kedua permukaan cairan berselisih H meter. Jika panjang pipa U mendatar adalah 3 meter, maka tinggi H adalah... ($g=10m/s^{2}$)",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/5.png",
+        answerOptions: [
+          { answerText: "2.7 meter", isCorrect: false },
+          { answerText: "3.6 meter", isCorrect: false },
+          { answerText: "4.5 meter", isCorrect: false },
+          { answerText: "5.4 meter", isCorrect: false },
+          { answerText: "7.2 meter", isCorrect: true }
+        ]
+      },
+      {
+        questionText: "Hitunglah kecepatan balok sesaat ketika balok berada di B jika kecepatan awalnya adalah $4~m/s$ ketika berada di A. Koefisien gesekan kinetik adalah 0.30 dan asumsikan kecepatan gravitasi $g=9,8~m/s^{2}$ ",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/6.png",
+        answerOptions: [
+          { answerText: "$2.5~m/s$", isCorrect: false },
+          { answerText: "$2.9~m/s$", isCorrect: false },
+          { answerText: "$3.1~m/s$", isCorrect: true },
+          { answerText: "$1.8~m/s$", isCorrect: false },
+          { answerText: "$0.9~m/s$", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Sebuah bola dilemparkan ke lantai kasar dengan sudut $\\theta=45$ derajat. Jika bolanya memantul di sudut yang sama, tentukan koefisien gesek kinetis antara bola dan lantai. Diketahui koefisien restitusi dari lantai tersebut adalah 0.6.",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/7.png",
+        answerOptions: [
+          { answerText: "0,25", isCorrect: true },
+          { answerText: "0,3", isCorrect: false },
+          { answerText: "0,35", isCorrect: false },
+          { answerText: "0,45", isCorrect: false },
+          { answerText: "0,5", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Sebuah spool (seperti yoyo besar) memiliki massa sebesar M, jari-jari luar R, dan jari-jari dalam r. Momen inersia terhadap pusat massanya adalah $I=\\frac{1}{2}M(R^{2}+r^{2}).$ Spool ini berada di atas lantai kasar horizontal sehingga dapat menggelinding tanpa slip. Sebuah pegas dengan konstanta k diikatkan pada pegas yang melilit hub dalam (jari-jari r). Ujung tali ditarik horizontal menjauhi dinding. Tentukan frekuensi angular dari sistem tersebut.",
+        answerOptions: [
+          { answerText: "$\\omega=\\sqrt{\\frac{k}{M}}$", isCorrect: false },
+          { answerText: "$\\omega=\\sqrt{\\frac{k(1+\\frac{r}{R})^{2}}{M(\\frac{3}{2}+\\frac{r^{2}}{2R^{2}})}}$", isCorrect: true },
+          { answerText: "$\\omega=\\sqrt{\\frac{k(1+\\frac{r}{R})}{M(1+\\frac{r^{2}}{R^{2}})}}$", isCorrect: false },
+          { answerText: "$\\omega=\\sqrt{\\frac{k(1+\\frac{r}{R})^{2}}{M(\\frac{3}{2}+\\frac{r^{2}}{2R^{2}})^{2}}}$", isCorrect: false },
+          { answerText: "$\\omega=\\sqrt{\\frac{k}{M(1+\\frac{r^{2}}{2R^{2}})}}$", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Silinder halus C bermassa 3 kg memiliki pasak P yang bergerak melewati celah pada batang OA. Jarak vertikal titik O dan C adalah 1m. Jika lengan tersebut dipaksa berputar pada bidang vertikal dengan laju konstan tentukan $\\frac{d\\theta}{dt}=1~rad/s$ gaya yang diberikan lengan tersebut saat $\\theta=30^{\\circ}$ (Gunakan $\\sqrt{3}=1,71)$",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/9.png",
+        answerOptions: [
+          { answerText: "6,92 N", isCorrect: false },
+          { answerText: "11,99 N", isCorrect: false },
+          { answerText: "40,24 N", isCorrect: false },
+          { answerText: "83,11 N", isCorrect: true },
+          { answerText: "101,25 N", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Tinjau sebuah silinder panjang dan narrow dengan luas penampang A yang diisi dengan cairan kompresibel hingga ketinggian h. Massa jenis cairan tersebut merupakan fungsi dari tekanan $P(z)$ yang dinyatakan sebagai: $p(z)=\\frac{P_{o}}{2}(1+\\frac{P(z)}{P_{o}})$ di mana Po dan $\\rho_{o}$ konstanta. Percepatan gravitasi adalah g. Kedalaman z diukur dari permukaan bebas cairan, di mana tekanannya sama dengan tekanan atmosfer (Patm). Tentukan tekanan $P(z)$ sebagai fungsi dari z!",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/10.png",
+        answerOptions: [
+          { answerText: "$P(z)=(P_{atm}+P_{o})\\exp(\\frac{\\rho_{o}gz}{2P_{o}})-P_{o}$", isCorrect: true },
+          { answerText: "$P(z)=(P_{atm}+P_{o})\\exp(\\frac{\\rho_{o}gz}{2P_{o}})-P_{atm}$", isCorrect: false },
+          { answerText: "$P(z)=(P_{atm}+P_{o})\\exp(\\frac{\\rho_{o}gz}{2})-P_{o}$", isCorrect: false },
+          { answerText: "$P(z)=(P_{atm}+P_{o})\\exp(\\frac{P_{o}z}{2P_{o}})-P_{o}$", isCorrect: false },
+          { answerText: "$P(z)=(P_{atm}+P_{o})\\ln(\\frac{P_{o}gz}{2P_{o}})-P_{o}$", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Seorang pendaki terjebak di Puncak Gunung Semeru yang dingin (Suhu $T_{1}$, sementara tim penyelamat berada di Base Camp yang hangat di kaki gunung (Suhu $T_{2}$ ). Jarak vertikal antara mereka adalah L. Pendaki tersebut membunyikan peluit darurat. Karena perbedaan ketinggian, suhu udara menurun secara linear dari Base Camp ke Puncak. Jika diasumsikan kecepatan bunyi bergantung pada suhu dengan persamaan $v=\\alpha\\sqrt{T},$ di mana $\\alpha$ adalah suatu konstanta. Berapa lama waktu yang dibutuhkan suara peluit itu untuk terdengar oleh tim penyelamat di bawah?",
+        answerOptions: [
+          { answerText: "$t=\\frac{2L}{\\alpha(\\sqrt{T_{puncak}}-\\sqrt{T_{base}})}$", isCorrect: false },
+          { answerText: "$t=\\frac{2L}{\\alpha(T_{puncak}+T_{base})}$", isCorrect: false },
+          { answerText: "$t=\\frac{2L(\\sqrt{T_{puncak}}+\\sqrt{T_{base}})}{a(\\sqrt{T_{base}})}$", isCorrect: false },
+          { answerText: "$t=\\frac{2L}{a(2\\sqrt{T_{puncak}}+\\sqrt{T_{base}})}$", isCorrect: false },
+          { answerText: "$t=\\frac{2L}{\\alpha(\\sqrt{T_{puncak}}+\\sqrt{T_{base}})}$", isCorrect: true }
+        ]
+      },
+      {
+        questionText: "Di kedalaman laut di Samudra selatan, secara tidak sengaja kapal selam \"Leviathan\"(A.S) dan kapal selam \"Minerve\" (Prancis) berpapasan. Minerve bergerak ke kanan dengan kecepatan $50~km/jam$ dan Leviathan bergerak ke kiri dengan kecepatan $100~km/jam$. Minerve mengirimkan sinyal sonar (gelombang suara dalam air) dengan frekuensi $10^{3}Hz.$ Gelombang sonar tersebut bergerak dengan kecepatan $5050~km/jam$ Berturut-turut tentukanlah frekuensi sinyal yang terdeteksi oleh Leviathan dan frekuensi yang terdeteksi oleh Minerve pada sinyal yang dipantulkan kembali kepadanya oleh Leviathan.",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/12.png",
+        answerOptions: [
+          { answerText: "1015 Hz dan 1051 Hz", isCorrect: false },
+          { answerText: "1030 Hz dan 1051 Hz", isCorrect: false },
+          { answerText: "1015 Hz dan 1061 Hz", isCorrect: false },
+          { answerText: "1030 Hz dan 1061 Hz", isCorrect: true },
+          { answerText: "1015 Hz dan 1030 Hz", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Sebuah gitar dipetik sehingga pada salah satu senarnya terdapat dua buah gelombang yang saling berlawanan arah dengan persamaan: $y_{1}(x,t)=(5~mm)\\sin(3\\pi x-300\\pi t)$ $y_{2}(x,t)=(5~mm)\\sin(3\\pi x+300\\pi t+\\frac{\\pi}{2})$ Dengan x dalam meter dan t dalam detik. Kedua gelombang tersebut berinterferensi membentuk gelombang berdiri. Jika sebuah titik antinode berada di titik A, tentukan jarak yang ditempuh masing-masing gelombang berjalan pada senar selama titik A bergerak dari simpangan maksimum atas menuju posisi keseimbangan untuk pertama kali",
+        answerOptions: [
+          { answerText: "$\\frac{1}{2}m$", isCorrect: false },
+          { answerText: "$\\frac{1}{3}m$", isCorrect: false },
+          { answerText: "$\\frac{1}{4}m$", isCorrect: true },
+          { answerText: "$\\frac{1}{6}m$", isCorrect: false },
+          { answerText: "$\\frac{1}{12}m$", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Terdapat dua ranting kayu yang mengambang di kolam Curug Biru dan terpisah sejauh X cm. Keduanya naik-turun bersamaan dengan frekuensi B getaran per detik. Salah satu ranting berada pada puncak gelombang (titik C) dan yang lain berada pada lembah (titik D). Di antara C dan D terdapat 3 bukit gelombang lengkap. Berapakah cepat rambat gelombang pada permukaan kolam tersebut? (Asumsi debit air terjun konstan.)",
+        answerOptions: [
+          { answerText: "$v=\\frac{2BX}{7}$", isCorrect: true },
+          { answerText: "$v=\\frac{BX}{7}$", isCorrect: false },
+          { answerText: "$v=\\frac{3BX}{2}$", isCorrect: false },
+          { answerText: "$v=\\frac{BX}{4}$", isCorrect: false },
+          { answerText: "$v=\\frac{3BX}{1.5}$", isCorrect: false }
+        ]
+      },
+      {
+        questionText: "Mobil-mobil bergerak mengelilingi sebuah bundaran lalu lintas yang berbentuk elips dengan $a=10$ m dan $b=50$ m. Jika mobil bergerak dengan kecepatan konstan sebesar $36~km/jam.$ Jika lintasan dinyatakan sebagai $y=f(x)$ maka jari-jari kelengkungan $\\rho$ pada setiap titik di sepanjang lintasan dapat ditentukan dari persamaan: $\\rho=\\frac{[1+(\\frac{dy}{dx})^{2}]^{\\frac{3}{2}}}{|\\frac{d^{2}y}{dx^{2}}|}$ tentukan percepatan maksimum yang dialami oleh penumpang!",
+        questionPhoto: "/competitions/exam/KodeA/Fisika/15.png",
+        answerOptions: [
+          { answerText: "$10~m/s^{2}$", isCorrect: false },
+          { answerText: "$20~m/s^{2}$", isCorrect: false },
+          { answerText: "$30~{m/s}^{2}$", isCorrect: false },
+          { answerText: "$40~{m/s}^{2}$", isCorrect: false },
+          { answerText: "$50~m/s^{2}$", isCorrect: true }
+        ]
+      }
+    ]
   },
   2: {
     subject: "MATHEMATICS",
@@ -229,24 +373,158 @@ export const sessionsDataB = {
   2: {
     subject: "MATHEMATICS",
     questions: [
-      {
-        questionText:
-          "masih paket b",
-        answerOptions: [
-          { answerText: "2", isCorrect: true },
-          { answerText: "2x", isCorrect: false },
-          { answerText: "3", isCorrect: false },
-        ],
-      },
-      {
-        questionText: "Nilai dari sin(90°) adalah...",
-        answerOptions: [
-          { answerText: "0", isCorrect: false },
-          { answerText: "1", isCorrect: true },
-          { answerText: "0.5", isCorrect: false },
-        ],
-      },
-    ],
+  {
+    "questionText": "Jika $f^{-1}(x)=\\frac{x-2}{x+d}$ untuk suatu $d\\in\\mathbb{R}$ dan $f(1)=4$, maka nilai d adalah...",
+    "answerOptions": [
+      { "answerText": "-3", "isCorrect": false },
+      { "answerText": "-2", "isCorrect": true },
+      { "answerText": "-3/2", "isCorrect": false },
+      { "answerText": "-1", "isCorrect": false },
+      { "answerText": "1/2", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diketahui grafik berikut menunjukan fungsi $f(x)=\\frac{1}{6}x^{3}-2x+1$. Garis singgung grafik ini pada $x=1$ memotong grafik pada suatu titik lain (A, B). Tentukan nilai A + B!",
+    "questionPhoto": "/competitions/exam/MatB/no 2.png",
+    "answerOptions": [
+      { "answerText": "-1", "isCorrect": false },
+      { "answerText": "-2/3", "isCorrect": true },
+      { "answerText": "-1/3", "isCorrect": false },
+      { "answerText": "0", "isCorrect": false },
+      { "answerText": "1/3", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Perhatikan data berikut, di mana x,y adalah bilangan yang tidak diketahui: 3, 6, 7, 9, 11, x, y. Diketahui bahwa median data ini adalah 7, dan jangkauannya adalah 9. Maka, mean terbesar yang mungkin adalah...",
+    "answerOptions": [
+      { "answerText": "55/7", "isCorrect": true },
+      { "answerText": "8", "isCorrect": false },
+      { "answerText": "59/7", "isCorrect": false },
+      { "answerText": "61/7", "isCorrect": false },
+      { "answerText": "9", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Suatu kantong berisi 4 bola merah, 3 bola biru, dan 3 bola hijau. Isao mengambil 4 bola secara acak, dan ia menyatakan bahwa $setidaknya$ $satu$ bola berwarna merah. Berapa peluang Isao tidak mengambil bola biru?",
+    "answerOptions": [
+      { "answerText": "5/18", "isCorrect": false },
+      { "answerText": "7/18", "isCorrect": false },
+      { "answerText": "4/9", "isCorrect": true },
+      { "answerText": "2/9", "isCorrect": false },
+      { "answerText": "1/3", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Sisa dari $4^{2026}-7^{2026}$ saat dibagi 9 adalah...",
+    "answerOptions": [
+      { "answerText": "0", "isCorrect": false },
+      { "answerText": "3", "isCorrect": false },
+      { "answerText": "5", "isCorrect": false },
+      { "answerText": "6", "isCorrect": true },
+      { "answerText": "8", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan 2 buah bilangan bulat positif yakni m dan 48. Jika diketahui FPB dan KPK nya berturut-turut 12 dan 240, maka nilai m adalah...",
+    "answerOptions": [
+      { "answerText": "48", "isCorrect": false },
+      { "answerText": "60", "isCorrect": true },
+      { "answerText": "72", "isCorrect": false },
+      { "answerText": "80", "isCorrect": false },
+      { "answerText": "120", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Jika diketahui $m_{1}=1$, $m_{2}=5$ dan $m_{k}=5m_{k-1}-6m_{k-2}$, maka nilai $m_{2025}$ adalah...",
+    "answerOptions": [
+      { "answerText": "$3^{2025}-2^{2025}$", "isCorrect": true },
+      { "answerText": "$3^{2026}-2^{2026}$", "isCorrect": false },
+      { "answerText": "$3^{2027}-2^{2027}$", "isCorrect": false },
+      { "answerText": "$3^{2026}-2^{2025}$", "isCorrect": false },
+      { "answerText": "$3^{2027}-2^{2026}$", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Misalkan Kinx diberikan pernyataan: \"... jika dan hanya jika $A \\cap B = \\emptyset$\". Manakah pernyataan yang harus diisi Kinx pada bagian yang kosong?",
+    "answerOptions": [
+      { "answerText": "A ⊆ B", "isCorrect": false },
+      { "answerText": "B ⊆ A", "isCorrect": false },
+      { "answerText": "A ⊆ Bᶜ", "isCorrect": true },
+      { "answerText": "Aᶜ ⊆ B", "isCorrect": false },
+      { "answerText": "A = Bᶜ", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan bilangan x bilangan real yang memenuhi $4x^{2}+2\\{x\\}=8$. Bilangan x yang memenuhi dapat dinyatakan dalam bentuk paling sederhana $\\frac {a+√b}{c}$. Tentukan nilai dari a+b+c. Note: {x} = bilangan desimal dari x, contoh: {1.1} = 0.1, {-1.1} = 0.9",
+    "answerOptions": [
+      { "answerText": "44", "isCorrect": true },
+      { "answerText": "45", "isCorrect": false },
+      { "answerText": "46", "isCorrect": false },
+      { "answerText": "47", "isCorrect": false },
+      { "answerText": "48", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Tentukan banyaknya pasangan (a, b) yang memenuhi $FPB(a,b) = 2026!$, dan $KPK(a,b) = 2027!$ dan a ≤ b.",
+    "answerOptions": [
+      { "answerText": "1", "isCorrect": true },
+      { "answerText": "2", "isCorrect": false },
+      { "answerText": "3", "isCorrect": false },
+      { "answerText": "4", "isCorrect": false },
+      { "answerText": "5", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Banyaknya cara menaruh 8 benteng pada papan catur 9x9 sehingga tidak ada benteng yang berada pada kolom atau baris yang sama",
+    "answerOptions": [
+      { "answerText": "8!", "isCorrect": false },
+      { "answerText": "9! - 8!", "isCorrect": false },
+      { "answerText": "9!", "isCorrect": false },
+      { "answerText": "10! - 9!", "isCorrect": true },
+      { "answerText": "10!", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan segienam ABCDEF beraturan dengan panjang sisi 3 dan titik potong garis AC dan BD adalah P. Tentukan panjang $PE^{2}$",
+    "answerOptions": [
+      { "answerText": "21", "isCorrect": true },
+      { "answerText": "20", "isCorrect": false },
+      { "answerText": "19", "isCorrect": false },
+      { "answerText": "18", "isCorrect": false },
+      { "answerText": "17", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan bidang $2025x+45y-2025z=135$ dan $90x+2y-90z=2025$. Jarak terpendek di antara 2 bidang tersebut dapat dinyatakan dalam bentuk paling sederhana $\\frac {a}{b√c}$. Tentukan nilai a+b+c",
+    "answerOptions": [
+      { "answerText": "6076", "isCorrect": false },
+      { "answerText": "6075", "isCorrect": false },
+      { "answerText": "6074", "isCorrect": false },
+      { "answerText": "6073", "isCorrect": false },
+      { "answerText": "6072", "isCorrect": true }
+    ]
+  },
+  {
+    "questionText": "Dalam suatu perlombaan terdapat 25 soal. Sistem penilaian yang digunakan adalah sebagai berikut: Jawaban benar diberi skor +4, jawaban salah diberi skor -1, dan jawaban tidak diisi diberi skor 0. Perlombaan tersebut diikuti oleh 125 peserta. Setelah seluruh lembar jawaban diperiksa, diperoleh informasi bahwa rata-rata skor peserta adalah 25 dan median skor peserta adalah 10. Tentukan banyak maksimum peserta yang mungkin memperoleh skor tertinggi pada perlombaan tersebut",
+    "answerOptions": [
+      { "answerText": "51", "isCorrect": false },
+      { "answerText": "48", "isCorrect": false },
+      { "answerText": "46", "isCorrect": false },
+      { "answerText": "44", "isCorrect": true },
+      { "answerText": "41", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan suatu barisan $S_{n}$ yang didefinisikan secara rekursif sebagai berikut: $S_{0}=7$ dan untuk setiap bilangan bulat n ≥ 1, $S_{n}-S_{n-1}=\\frac{30\\times(2^{n}+1)}{6^{n-1}\\times3}$. Tentukan nilai $\\lim_{n \\to\\infty} S_n$",
+    "answerOptions": [
+      { "answerText": "100", "isCorrect": false },
+      { "answerText": "81", "isCorrect": false },
+      { "answerText": "64", "isCorrect": false },
+      { "answerText": "49", "isCorrect": true },
+      { "answerText": "36", "isCorrect": false }
+    ]
+  }
+]
   },
   3: {
     subject: "ESSAY",
@@ -349,17 +627,36 @@ export const sessionsDataTechMeet = {
   1: {
     subject: "PHYSICS",
     questions: [
-      {
-        questionText: "Hafizh adalah siswa SMA yang sedang menduduki kelas 10. Ia mengunjungi gedung pameran sains yang mendemonstrasikan beberapa fenomena fisika. Ia pun melihat salah satu sistem yang terdiri dari pegas dan batang yang keduanya dianggap tak bermassa, serta bola bermassa 4 kg di mana pegas dan batang tersebut dipasang oleh pin yang tertempel pada langit-langit dan dinding. Bola tersebut dapat bergerak bebas sepanjang batang. Mula-mula, bola dilepas tanpa kecepatan awal ketika postur batang disejajarkan dengan sumbu horizontal. Hafizh membaca beberapa data pada meja simulator tersebut yang terdiri dari koefisien gesek kinetis antara bola dan lintasan sebesar 0,3; panjang pegas ketika tidak terdeformasi sebesar 0,7 meter; dan kekakuan pegas adalah 50 N/m. Karena Hafizh sudah mempelajari konsep Usaha-Energi sewaktu di kelas bersama Pak Fourier, ia ingin mengetahui nilai kecepatan bola pada saat postur batang tersebut sejajar dengan sumbu vertikal. Akan tetapi, Hafizh belum mendapatkan materi konsep benda tegar. Ia pun mengasumsikan bola sebagai partikel sehingga ukuran bola dapat diabaikan. Selain itu, Hafizh juga menganggap gaya normal sepanjang lintasan semata-mata diakibatkan oleh komponen berat bola meskipun sebenarnya terdapat gaya-gaya lainnya sebagai kemudahan untuk analisis. Berapakah besar kecepatan tersebut yang diperoleh Hafizh? Gunakan g = 10 m/s2.",
-        questionPhoto: "/competitions/exam/Fisika/gambar soal mfest 2/1.png",
-        answerOptions: [
-          { answerText: "$\\frac{2}{5}\\sqrt{15}$", isCorrect: false },
-          { answerText: "$2\\sqrt{3}$", isCorrect: false },
-          { answerText: "$\\frac{4}{5}\\sqrt{35}$", isCorrect: false },
-          { answerText: "$4\\sqrt{2}$", isCorrect: false },
-          { answerText: "$\\frac{6}{5}\\sqrt{10}$", isCorrect: true },
-        ],
-      },
+          {
+            questionText: "Jika diketahui $\\cos x = \\frac{4}{5}$ di mana $x$ berada di kuadran pertama, maka tentukan nilai $\\frac{1 - \\csc^2 x}{\\csc^2 x} = \\dots$",
+            answerOptions: [
+              { answerText: "$-\\frac{9}{25}$", isCorrect: false },
+              { answerText: "$\\frac{9}{25}$", isCorrect: false },
+              { answerText: "$-\\frac{16}{25}$", isCorrect: true },
+              { answerText: "$-\\frac{16}{9}$", isCorrect: false },
+              { answerText: "$\\frac{9}{16}$", isCorrect: false },
+            ],
+          },
+          {
+            questionText: "Diberikan 2 buah bilangan bulat positif yakni $m$ dan $72$. Jika diketahui FPB dan KPK-nya berturut-turut $8$ dan $1080$, maka nilai $m$ adalah $\\dots$",
+            answerOptions: [
+              { answerText: "40", isCorrect: false },
+              { answerText: "60", isCorrect: false },
+              { answerText: "80", isCorrect: false },
+              { answerText: "90", isCorrect: false },
+              { answerText: "120", isCorrect: true },
+            ],
+          },
+          {
+            questionText: "daru ganteng 123 $m_1 = 1, m_2 = 5,$ dan $m_k = 5m_{k-1} - 6m_{k-2}$, maka nilai $m_{2026}$ adalah $\\dots$",
+            answerOptions: [
+              { answerText: "$3^{2025} - 2^{2025}$", isCorrect: false },
+              { answerText: "$3^{2026} - 2^{2026}$", isCorrect: false },
+              { answerText: "$3^{2027} - 2^{2027}$", isCorrect: false },
+              { answerText: "$3^{2026} - 2^{2025}$", isCorrect: false },
+              { answerText: "$3^{2027} - 2^{2026}$", isCorrect: true },
+            ],
+          },
       {
         questionText: "Sebuah truk dengan massa $m_T$ mengangkut pipa gorong-gorong (culvert) dengan massa $m_C$ melaju bersama seperti gambar. Karena sopir sudah bekerja lembur, beliau mengantuk dan menabrak mobil dengan massa $m_M$ yang bergerak seperti pada gambar. Setelah bertabrakan, keduanya menyatu dan melaju sebesar $v=1$ m/s ke sumbu-x positif. Akibat tabrakan tersebut, 4,125 kJ energi hilang. Setelah itu, seorang pengamat dari pinggir jalan melihat culvert menggelinding tanpa slip selama 0,2 detik sebelum hancur (massa culvert setelah hancur diabaikan) dengan menyerap 20% momen ekuivalen dari energi yang hilang. Dengan mengabaikan gaya gesek dan menganggap sistem sebagai benda titik, carilah semua massa yang tidak diketahui dan hitung nilai $\\frac{m_T+m_M}{m_C}$! Anggap laju menggelinding culvert sama dengan kecepatan setelah tabrakan dan anggap culvert sebagai silinder tipis berongga.",
         questionPhoto: "/competitions/exam/Fisika/gambar soal mfest 2/2.png",
