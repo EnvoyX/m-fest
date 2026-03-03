@@ -48,6 +48,21 @@ export const eventsList: Event[] = [
         endRegDate1: new Date("2026-02-13T21:00:00"),
     },
     {
+        id: "ETU",
+        dbId: "ETU",
+        title: "Engine Tune Up",
+        desc: "Free Vehicle Maintenance",
+        logo: MotorbikeIcon,
+        href: "events/engine-tune-up",
+        location: "Institut Teknologi Bandung Ganesha",
+        eventDate: "Sabtu, 7 Maret 2026 (8:00 - 16:30)",
+        startRegDate1: new Date("2026-02-26T19:00:00"),
+        endRegDate1: new Date("2026-03-01T23:59:59"),
+        slotmanual: 60,
+        slotmatic: 90,
+
+    },
+    {
         id: "M-RUN",
         dbId: "M_RUN",
         title: "M-Run",
@@ -66,21 +81,6 @@ export const eventsList: Event[] = [
         Batch2EndRegDate: new Date("2026-04-04T23:59:59"),
         price1: 175000,
         price2: 200000,
-    },
-    {
-        id: "ETU",
-        dbId: "ETU",
-        title: "Engine Tune Up",
-        desc: "Free Vehicle Maintenance",
-        logo: MotorbikeIcon,
-        href: "events/engine-tune-up",
-        location: "Institut Teknologi Bandung Ganesha",
-        eventDate: "Sabtu, 7 Maret 2026 (8:00 - 16:30)",
-        startRegDate1: new Date("2026-02-26T19:00:00"),
-        endRegDate1: new Date("2026-03-06T23:59:59"),
-        slotmanual: 60,
-        slotmatic: 90,
-
     },
     {
         id: "M-TALKS",
