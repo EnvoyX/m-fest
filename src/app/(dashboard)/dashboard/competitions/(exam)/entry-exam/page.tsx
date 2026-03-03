@@ -23,10 +23,10 @@ export default async function EntryExamPage() {
     );
     // console.log("SEB Key for this client exam: ", sebKey);
 
-    if (!sebKey) {
+    {/*if (!sebKey) {
         console.log("SEB key not found, user is not using SEB");
         redirect("use-seb");
-    }
+    }*/}
 
     const session = await auth.api.getSession({
         headers: await headers(),
