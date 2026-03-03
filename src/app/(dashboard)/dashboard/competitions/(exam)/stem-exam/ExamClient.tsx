@@ -47,8 +47,8 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
             TECHMEET: sessionsDataTechMeet,
         };
 
-        // return dataMap[kodeSoal]?.[activeSession];
-        return dataMap.TECHMEET[activeSession];
+        return dataMap[kodeSoal]?.[activeSession];
+        //return dataMap.TECHMEET[activeSession];
     }, [activeSession, kodeSoal]);
 
     const quizQuestions = currentSessionData?.questions || [];
