@@ -239,24 +239,158 @@ export const sessionsDataB = {
   2: {
     subject: "MATHEMATICS",
     questions: [
-      {
-        questionText:
-          "masih paket b",
-        answerOptions: [
-          { answerText: "2", isCorrect: true },
-          { answerText: "2x", isCorrect: false },
-          { answerText: "3", isCorrect: false },
-        ],
-      },
-      {
-        questionText: "Nilai dari sin(90°) adalah...",
-        answerOptions: [
-          { answerText: "0", isCorrect: false },
-          { answerText: "1", isCorrect: true },
-          { answerText: "0.5", isCorrect: false },
-        ],
-      },
-    ],
+  {
+    "questionText": "Jika $f^{-1}(x)=\\frac{x-2}{x+d}$ untuk suatu $d\\in\\mathbb{R}$ dan $f(1)=4$, maka nilai d adalah...",
+    "answerOptions": [
+      { "answerText": "-3", "isCorrect": false },
+      { "answerText": "-2", "isCorrect": true },
+      { "answerText": "-3/2", "isCorrect": false },
+      { "answerText": "-1", "isCorrect": false },
+      { "answerText": "1/2", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diketahui grafik berikut menunjukan fungsi $f(x)=\\frac{1}{6}x^{3}-2x+1$. Garis singgung grafik ini pada $x=1$ memotong grafik pada suatu titik lain (A, B). Tentukan nilai A + B!",
+    "questionPhoto": "/competitions/exam/MatB/no 2.png",
+    "answerOptions": [
+      { "answerText": "-1", "isCorrect": false },
+      { "answerText": "-2/3", "isCorrect": true },
+      { "answerText": "-1/3", "isCorrect": false },
+      { "answerText": "0", "isCorrect": false },
+      { "answerText": "1/3", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Perhatikan data berikut, di mana x,y adalah bilangan yang tidak diketahui: 3, 6, 7, 9, 11, x, y. Diketahui bahwa median data ini adalah 7, dan jangkauannya adalah 9. Maka, mean terbesar yang mungkin adalah...",
+    "answerOptions": [
+      { "answerText": "55/7", "isCorrect": true },
+      { "answerText": "8", "isCorrect": false },
+      { "answerText": "59/7", "isCorrect": false },
+      { "answerText": "61/7", "isCorrect": false },
+      { "answerText": "9", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Suatu kantong berisi 4 bola merah, 3 bola biru, dan 3 bola hijau. Isao mengambil 4 bola secara acak, dan ia menyatakan bahwa $setidaknya$ $satu$ bola berwarna merah. Berapa peluang Isao tidak mengambil bola biru?",
+    "answerOptions": [
+      { "answerText": "5/18", "isCorrect": false },
+      { "answerText": "7/18", "isCorrect": false },
+      { "answerText": "4/9", "isCorrect": true },
+      { "answerText": "2/9", "isCorrect": false },
+      { "answerText": "1/3", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Sisa dari $4^{2026}-7^{2026}$ saat dibagi 9 adalah...",
+    "answerOptions": [
+      { "answerText": "0", "isCorrect": false },
+      { "answerText": "3", "isCorrect": false },
+      { "answerText": "5", "isCorrect": false },
+      { "answerText": "6", "isCorrect": true },
+      { "answerText": "8", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan 2 buah bilangan bulat positif yakni m dan 48. Jika diketahui FPB dan KPK nya berturut-turut 12 dan 240, maka nilai m adalah...",
+    "answerOptions": [
+      { "answerText": "48", "isCorrect": false },
+      { "answerText": "60", "isCorrect": true },
+      { "answerText": "72", "isCorrect": false },
+      { "answerText": "80", "isCorrect": false },
+      { "answerText": "120", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Jika diketahui $m_{1}=1$, $m_{2}=5$ dan $m_{k}=5m_{k-1}-6m_{k-2}$, maka nilai $m_{2025}$ adalah...",
+    "answerOptions": [
+      { "answerText": "$3^{2025}-2^{2025}$", "isCorrect": true },
+      { "answerText": "$3^{2026}-2^{2026}$", "isCorrect": false },
+      { "answerText": "$3^{2027}-2^{2027}$", "isCorrect": false },
+      { "answerText": "$3^{2026}-2^{2025}$", "isCorrect": false },
+      { "answerText": "$3^{2027}-2^{2026}$", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Misalkan Kinx diberikan pernyataan: \"... jika dan hanya jika $A \\cap B = \\emptyset$\". Manakah pernyataan yang harus diisi Kinx pada bagian yang kosong?",
+    "answerOptions": [
+      { "answerText": "A ⊆ B", "isCorrect": false },
+      { "answerText": "B ⊆ A", "isCorrect": false },
+      { "answerText": "A ⊆ Bᶜ", "isCorrect": true },
+      { "answerText": "Aᶜ ⊆ B", "isCorrect": false },
+      { "answerText": "A = Bᶜ", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan bilangan x bilangan real yang memenuhi $4x^{2}+2\\{x\\}=8$. Bilangan x yang memenuhi dapat dinyatakan dalam bentuk paling sederhana $\\frac {a+√b}{c}$. Tentukan nilai dari a+b+c. Note: {x} = bilangan desimal dari x, contoh: {1.1} = 0.1, {-1.1} = 0.9",
+    "answerOptions": [
+      { "answerText": "44", "isCorrect": true },
+      { "answerText": "45", "isCorrect": false },
+      { "answerText": "46", "isCorrect": false },
+      { "answerText": "47", "isCorrect": false },
+      { "answerText": "48", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Tentukan banyaknya pasangan (a, b) yang memenuhi $FPB(a,b) = 2026!$, dan $KPK(a,b) = 2027!$ dan a ≤ b.",
+    "answerOptions": [
+      { "answerText": "1", "isCorrect": true },
+      { "answerText": "2", "isCorrect": false },
+      { "answerText": "3", "isCorrect": false },
+      { "answerText": "4", "isCorrect": false },
+      { "answerText": "5", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Banyaknya cara menaruh 8 benteng pada papan catur 9x9 sehingga tidak ada benteng yang berada pada kolom atau baris yang sama",
+    "answerOptions": [
+      { "answerText": "8!", "isCorrect": false },
+      { "answerText": "9! - 8!", "isCorrect": false },
+      { "answerText": "9!", "isCorrect": false },
+      { "answerText": "10! - 9!", "isCorrect": true },
+      { "answerText": "10!", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan segienam ABCDEF beraturan dengan panjang sisi 3 dan titik potong garis AC dan BD adalah P. Tentukan panjang $PE^{2}$",
+    "answerOptions": [
+      { "answerText": "21", "isCorrect": true },
+      { "answerText": "20", "isCorrect": false },
+      { "answerText": "19", "isCorrect": false },
+      { "answerText": "18", "isCorrect": false },
+      { "answerText": "17", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan bidang $2025x+45y-2025z=135$ dan $90x+2y-90z=2025$. Jarak terpendek di antara 2 bidang tersebut dapat dinyatakan dalam bentuk paling sederhana $\\frac {a}{b√c}$. Tentukan nilai a+b+c",
+    "answerOptions": [
+      { "answerText": "6076", "isCorrect": false },
+      { "answerText": "6075", "isCorrect": false },
+      { "answerText": "6074", "isCorrect": false },
+      { "answerText": "6073", "isCorrect": false },
+      { "answerText": "6072", "isCorrect": true }
+    ]
+  },
+  {
+    "questionText": "Dalam suatu perlombaan terdapat 25 soal. Sistem penilaian yang digunakan adalah sebagai berikut: Jawaban benar diberi skor +4, jawaban salah diberi skor -1, dan jawaban tidak diisi diberi skor 0. Perlombaan tersebut diikuti oleh 125 peserta. Setelah seluruh lembar jawaban diperiksa, diperoleh informasi bahwa rata-rata skor peserta adalah 25 dan median skor peserta adalah 10. Tentukan banyak maksimum peserta yang mungkin memperoleh skor tertinggi pada perlombaan tersebut",
+    "answerOptions": [
+      { "answerText": "51", "isCorrect": false },
+      { "answerText": "48", "isCorrect": false },
+      { "answerText": "46", "isCorrect": false },
+      { "answerText": "44", "isCorrect": true },
+      { "answerText": "41", "isCorrect": false }
+    ]
+  },
+  {
+    "questionText": "Diberikan suatu barisan $S_{n}$ yang didefinisikan secara rekursif sebagai berikut: $S_{0}=7$ dan untuk setiap bilangan bulat n ≥ 1, $S_{n}-S_{n-1}=\\frac{30\\times(2^{n}+1)}{6^{n-1}\\times3}$. Tentukan nilai $\\lim_{n \\to\\infty} S_n$",
+    "answerOptions": [
+      { "answerText": "100", "isCorrect": false },
+      { "answerText": "81", "isCorrect": false },
+      { "answerText": "64", "isCorrect": false },
+      { "answerText": "49", "isCorrect": true },
+      { "answerText": "36", "isCorrect": false }
+    ]
+  }
+]
   },
   3: {
     subject: "ESSAY",
