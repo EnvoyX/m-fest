@@ -52,7 +52,6 @@ import {
 
 export default function SessionsDataTable() {
     const trpc = useTRPC();
-    // const { data: session } = authClient.useSession();
     const queryClient = useQueryClient();
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] =
@@ -650,10 +649,10 @@ export default function SessionsDataTable() {
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
-                                                      header.column.columnDef
-                                                          .header,
-                                                      header.getContext(),
-                                                  )}
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
                                         </TableHead>
                                     );
                                 })}
