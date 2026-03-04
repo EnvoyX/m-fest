@@ -356,10 +356,10 @@ export const sessionsDataB = {
                 questionPhoto: "/competitions/exam/KodeB/Fisika/1.png",
                 answerOptions: [
                     { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{12}{5}H)}{\\sin2\\beta-\\frac{12P\\sin^{2}\\beta}{13g}}}$", isCorrect: false },
-                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{12}{5}H)}{\\sin2\\beta+\\frac{12P\\sin^{2}\\beta}{13g}}}$", isCorrect: false },
+                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{12}{5}H)}{\\sin2\\beta+\\frac{12P\\sin^{2}\\beta}{13g}}}$", isCorrect: true },
                     { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{5}{12}H)}{\\sin2\\beta-\\frac{12P\\sin^{2}\\beta}{13g}}}$", isCorrect: false },
                     { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{12}{5}H)}{\\sin2\\beta+\\frac{5P\\sin^{2}\\beta}{13g}}}$", isCorrect: false },
-                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{12}{5}H)}{\\sin2\\beta+\\frac{24P\\sin^{2}\\beta}{13g}}}$", isCorrect: true }
+                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{12}{5}H)}{\\sin2\\beta+\\frac{24P\\sin^{2}\\beta}{13g}}}$", isCorrect: false }
                 ]
             },
             {
@@ -367,9 +367,9 @@ export const sessionsDataB = {
                 questionPhoto: "/competitions/exam/KodeA/Fisika/2.png",
                 answerOptions: [
                     { answerText: "$\\frac{1}{2}\\sqrt{11}$ detik", isCorrect: false },
-                    { answerText: "1 detik", isCorrect: true },
+                    { answerText: "1 detik", isCorrect: false },
                     { answerText: "Solusi Bukan Bilangan Real", isCorrect: false },
-                    { answerText: "$\\frac{1}{2}\\sqrt{5}$ detik", isCorrect: false },
+                    { answerText: "$\\frac{1}{2}\\sqrt{5}$ detik", isCorrect: true },
                     { answerText: "$\\frac{2}{5}\\sqrt{11}$ detik", isCorrect: false }
                 ]
             },
@@ -377,9 +377,9 @@ export const sessionsDataB = {
                 questionText: "Sebuah selang air disemprotkan dengan kecepatan $v$ dari nozzle dengan diameter $d$. Air kemudian dimuncratkan keluar dari vane dengan kecepatan $v'=4v$ dengan membentuk sudut  terhadap datar. Jika massa jenis air yaitu $\\rho$ , hitunglah resultan reaksi yang diperlukan agar vane tetap diam! anggap laju aliran massa $(\\frac{dm}{dt})$ selalu sama di sepanjang lengkungan vane dan abaikan gesekan air.",
                 questionPhoto: "/competitions/exam/KodeB/Fisika/3.jpeg",
                 answerOptions: [
-                    { answerText: "$R = \\rho \\pi d^2 v^2 \\sqrt{\\frac{17}{16} - \\frac{1}{2} \\cos \\theta}$", isCorrect: false },
+                    { answerText: "$R = \\rho \\pi d^2 v^2 \\sqrt{\\frac{17}{16} - \\frac{1}{2} \\cos \\theta}$", isCorrect: true },
                     { answerText: "$R = \\frac{\\rho \\pi d^2 v^2}{4} \\sqrt{17 - \\frac{1}{2} \\cos \\theta}$", isCorrect: false },
-                    { answerText: "$R = \\frac{\\rho \\pi d^2 v^2}{4} \\sqrt{17 - 4 \\cos \\theta}$", isCorrect: true },
+                    { answerText: "$R = \\frac{\\rho \\pi d^2 v^2}{4} \\sqrt{17 - 4 \\cos \\theta}$", isCorrect: false },
                     { answerText: "$R = \\rho \\pi d^2 v^2 \\sqrt{\\frac{17}{16} - \\frac{1}{2} \\sin \\theta}$", isCorrect: false },
                     { answerText: "$R = \\frac{\\rho \\pi d^2 v^2}{4} \\sqrt{\\frac{17}{16} - \\frac{1}{2} \\sin \\theta}$", isCorrect: false }
                 ]
@@ -402,8 +402,8 @@ export const sessionsDataB = {
                     { answerText: "5 meter", isCorrect: false },
                     { answerText: "10 meter", isCorrect: false },
                     { answerText: "15 meter", isCorrect: false },
-                    { answerText: "20 meter", isCorrect: false },
-                    { answerText: "25 meter", isCorrect: true }
+                    { answerText: "20 meter", isCorrect: true },
+                    { answerText: "25 meter", isCorrect: false }
                 ]
             },
             {
@@ -412,8 +412,8 @@ export const sessionsDataB = {
                 answerOptions: [
                     { answerText: "$10~m/s$", isCorrect: false },
                     { answerText: "$13.4~m/s$", isCorrect: false },
-                    { answerText: "$16.4~m/s$", isCorrect: true },
-                    { answerText: "$12.5~m/s$", isCorrect: false },
+                    { answerText: "$16.4~m/s$", isCorrect: false },
+                    { answerText: "$12.5~m/s$", isCorrect: true },
                     { answerText: "$11.3~m/s$", isCorrect: false }
                 ]
             },
@@ -432,8 +432,8 @@ export const sessionsDataB = {
                 questionText: "Sebuah spool (seperti yoyo besar) memiliki massa sebesar M = 2$kg$, jari-jari luar R = 0.5$m$, dan jari-jari dalam r = 0.25$m$. Momen inersia terhadap pusat massanya adalah $I=\\frac{1}{2}M(R^{2}+r^{2}).$ Spool ini berada di atas lantai kasar horizontal sehingga dapat menggelinding tanpa slip. Sebuah pegas dengan konstanta k (128 $N/m$) diikatkan pada pegas yang melilit hub dalam (jari-jari r). Ujung tali ditarik horizontal menjauhi dinding. Tentukan frekuensi angular dari sistem tersebut.",
                 answerOptions: [
                     { answerText: "$\\omega= 4 rad/s$", isCorrect: false },
-                    { answerText: "$\\omega= 6 rad/s$", isCorrect: true },
-                    { answerText: "$\\omega= 8 rad/s$", isCorrect: false },
+                    { answerText: "$\\omega= 6 rad/s$", isCorrect: false },
+                    { answerText: "$\\omega= 8 rad/s$", isCorrect: true },
                     { answerText: "$\\omega= 10 rad/s$", isCorrect: false },
                     { answerText: "$\\omega= 12 rad/s$", isCorrect: false }
                 ]
@@ -444,8 +444,8 @@ export const sessionsDataB = {
                 answerOptions: [
                     { answerText: "20,76 N", isCorrect: false },
                     { answerText: "56 N", isCorrect: false },
-                    { answerText: "110,8 N", isCorrect: false },
-                    { answerText: "160,3 N", isCorrect: true },
+                    { answerText: "110,8 N", isCorrect: true },
+                    { answerText: "160,3 N", isCorrect: false },
                     { answerText: "75,5 N", isCorrect: false }
                 ]
             },
@@ -453,21 +453,21 @@ export const sessionsDataB = {
                 questionText: "Tinjau sebuah silinder panjang dan narrow dengan luas penampang A yang diisi dengan cairan kompresibel hingga ketinggian h. Kedalaman z diukur ke bawah dari permukaan bebas fluida. Tekanan di permukaan bebas sama dengan tekanan atmosfer Patm  Massa jenis cairan tersebut  merupakan fungsi dari tekanan $P(z)$ yang dinyatakan sebagai:  $\\rho(z)=\\rho_{o}(1+\\alpha \\frac{P(z)}{P_{o}})$ di mana $P_{o}$, $\\rho_{o}$ dan $\\alpha$ adalah konstanta. Percepatan gravitasi adalah $g$. Tentukan tekanan dasar silinder $P(h)$!",
                 questionPhoto: "/competitions/exam/KodeB/Fisika/11.png",
                 answerOptions: [
-                    { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 + \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} + 1 \\right]$", isCorrect: true },
+                    { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 + \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} + 1 \\right]$", isCorrect: false },
                     { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 + \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} \\right]$", isCorrect: false },
                     { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 - \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} - 1 \\right]$", isCorrect: false },
-                    { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 + \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} - 1 \\right]$", isCorrect: false },
+                    { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 + \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} - 1 \\right]$", isCorrect: true },
                     { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} - 1 \\right]$", isCorrect: false }
                 ]
             },
             {
                 questionText: "Seorang pendaki terjebak di Puncak Gunung Semeru yang dingin (Suhu $T_{1}$, sementara tim penyelamat berada di Base Camp yang hangat di kaki gunung (Suhu $T_{2}$ ). Jarak vertikal antara mereka adalah L. Pendaki tersebut membunyikan peluit darurat. Suara peluit merambat turun ke kaki gunung dan mengenai sebuah dinding tebing di Base camp. Karena perbedaan ketinggian, suhu udara menurun secara linear dari Base Camp ke Puncak. Jika diasumsikan kecepatan bunyi bergantung pada suhu dengan persamaan $v=\\alpha\\sqrt{T},$ di mana $\\alpha$ adalah suatu konstanta. Tentukan waktu total ($t_{total}$) yang dibutuhkan sejak pendaki berteriak hingga ia mendengar gemanya sendiri?",
                 answerOptions: [
-                    { answerText: "$\\frac{4l}{\\alpha (\\sqrt{T_1} + \\sqrt{T_2})}$", isCorrect: false },
+                    { answerText: "$\\frac{4l}{\\alpha (\\sqrt{T_1} + \\sqrt{T_2})}$", isCorrect: true },
                     { answerText: "$\\frac{6l}{\\alpha (\\sqrt{T_1} + \\sqrt{T_2})}$", isCorrect: false },
                     { answerText: "$\\frac{4l}{\\alpha (T_1 + T_2)}$", isCorrect: false },
                     { answerText: "$\\frac{6l}{\\alpha (T_1 + T_2)}$", isCorrect: false },
-                    { answerText: "$\\frac{8l}{\\alpha (\\sqrt{T_1} + \\sqrt{T_2})}$", isCorrect: true }
+                    { answerText: "$\\frac{8l}{\\alpha (\\sqrt{T_1} + \\sqrt{T_2})}$", isCorrect: false }
                 ]
             },
             {
@@ -486,18 +486,18 @@ export const sessionsDataB = {
                 answerOptions: [
                     { answerText: "$\\frac{1}{6}m$", isCorrect: false },
                     { answerText: "$\\frac{1}{7}m$", isCorrect: false },
-                    { answerText: "$\\frac{1}{12}m$", isCorrect: true },
-                    { answerText: "$\\frac{1}{14}m$", isCorrect: false },
+                    { answerText: "$\\frac{1}{12}m$", isCorrect: false },
+                    { answerText: "$\\frac{1}{14}m$", isCorrect: true },
                     { answerText: "$\\frac{1}{15}m$", isCorrect: false }
                 ]
             },
             {
                 questionText: "Terdapat dua ranting kayu yang mengambang di kolam Curug Biru dan terpisah sejauh 70 cm. Keduanya naik-turun bersamaan dengan frekuensi 2 getaran per detik. Salah satu ranting berada pada puncak gelombang (titik C) dan yang lain berada pada lembah (titik D). Di antara C dan D terdapat 3 bukit gelombang lengkap. Berapakah cepat rambat gelombang pada permukaan kolam tersebut? (Asumsi debit air terjun konstan.)",
                 answerOptions: [
-                    { answerText: "0,20 m/s", isCorrect: true },
+                    { answerText: "0,20 m/s", isCorrect: false },
                     { answerText: "0,28 m/s", isCorrect: false },
                     { answerText: "0,35 m/s", isCorrect: false },
-                    { answerText: "0,40 m/s", isCorrect: false },
+                    { answerText: "0,40 m/s", isCorrect: true },
                     { answerText: "0,70 m/s", isCorrect: false }
                 ]
             },
@@ -701,23 +701,167 @@ export const sessionsDataC = {
         subject: "PHYSICS",
         questions: [
             {
-                questionText:
-                    "Ini paket C",
+                questionText: "Thifal adalah mahasiswa Program Studi Teknik Mesin ITB yang mengikuti sebuah Unit Kegiatan Mahasiswa yang berfokus pada pengembangan game digital. Ia tertarik untuk membuat permainan yang memenuhi hukum Fisika (khususnya Mekanika) di mana ia merancang sebuah sistem permainan yang melibatkan objek tank dan mobil penyusup. Tank tersebut menembakkan rudal dengan sudut elevasi $\\beta$ ke arah mobil penyusup yang berada di bukit yang dimodelkan sebagai suatu bidang miring sebagaimana tertera pada gambar di atas. Mula-mula, mobil tersebut tidak memiliki kecepatan awal dan berakselerasi konstan sebesar 5Z (lima kali Z) menuruni bukit. Tentukan besar kecepatan awal rudal yang harus Satrio input ke sistem permainan agar rudal tersebut tepat mengenai mobil penyusup jika mobil tersebut tertembak di bukit dan tank selalu diam. Asumsikan ketinggian ujung moncong tembakan sama dengan ketinggian mobil sesaat setelah tertembak relatif terhadap tanah horizontal. Gesekan udara diabaikan.",
+                questionPhoto: "/competitions/exam/KodeC/Fisika/1.png",
                 answerOptions: [
-                    { answerText: "Hukum Newton I", isCorrect: false },
-                    { answerText: "Hukum Newton II", isCorrect: false },
-                    { answerText: "Hukum Newton III", isCorrect: true },
-                ],
+                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+H\\sqrt{3})}{\\sin2\\beta+\\frac{5Z\\sin^{2}\\beta}{g}}}$", isCorrect: false },
+                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+H\\sqrt{3})}{\\sin2\\beta-\\frac{(5\\sqrt{3})Z\\sin^{2}\\beta}{g}}}$", isCorrect: false },
+                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{1}{3}H\\sqrt{3})}{\\sin2\\beta+\\frac{(5\\sqrt{3})Z\\sin^{2}\\beta}{g}}}$", isCorrect: false },
+                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+H\\sqrt{3})}{\\sin2\\beta+\\frac{(5\\sqrt{3})Z\\sin^{2}\\beta}{g}}}$", isCorrect: false },
+                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+H\\sqrt{3})}{\\sin2\\beta+\\frac{(10\\sqrt{3})Z\\sin^{2}\\beta}{g}}}$", isCorrect: true }
+                ]
             },
             {
-                questionText: "Rumus energi kinetik adalah...",
+                questionText: "Diberikan bidang miring dengan sudut kemiringan serta balok yang memiliki massa berturut-turut adalah $m_{1}=2$ kg dan $m_{2}=5$ kg. Bidang miring tersebut berada di atas permukaan lantai yang kasar dengan suatu koefisien gesek kinetis $\\mu_{k}=0,5$ dan balok berada di atas bidang miring di mana permukaan antara balok dengan bidang miring adalah licin. Bidang miring ditarik oleh gaya konstan F sebesar 15 N. Mula-mula, bidang miring maupun balok berada pada keadaan diam serta balok berada di ujung atas bidang miring dengan ketinggian $H=5,5$ m. Tetapkan arah percepatan gravitasi $g=10~m/s^{2}$ ke bawah serta asumsikan sistem pasti bergerak, tentukan waktu t yang dibutuhkan balok agar sampai di dasar bidang miring. Diketahui juga $\\sin\\theta=0,8$ dan $\\cos\\theta=0,6$",
+                questionPhoto: "/competitions/exam/KodeA/Fisika/2.png",
                 answerOptions: [
-                    { answerText: "Ek = m.g.h", isCorrect: false },
-                    { answerText: "Ek = 1/2 m.v²", isCorrect: true },
-                    { answerText: "Ek = F.s", isCorrect: false },
-                ],
+                    { answerText: "$\\frac{1}{2}\\sqrt{11}$ detik", isCorrect: false },
+                    { answerText: "1 detik", isCorrect: true },
+                    { answerText: "Solusi Bukan Bilangan Real", isCorrect: false },
+                    { answerText: "$\\frac{1}{2}\\sqrt{5}$ detik", isCorrect: false },
+                    { answerText: "$\\frac{2}{5}\\sqrt{11}$ detik", isCorrect: false }
+                ]
             },
-        ],
+            {
+                questionText: "Sebuah selang air disemprotkan dengan kecepatan $v$ dari nozzle dengan diameter $d$. Air kemudian dimuncratkan keluar dari vane dengan kecepatan $v'=4v$ dengan membentuk sudut  terhadap datar. Jika massa jenis air yaitu $\\rho$ , hitunglah resultan reaksi yang diperlukan agar vane tetap diam! anggap laju aliran massa $(\\frac{dm}{dt})$ selalu sama di sepanjang lengkungan vane dan abaikan gesekan air.",
+                questionPhoto: "/competitions/exam/KodeB/Fisika/3.jpeg",
+                answerOptions: [
+                    { answerText: "$R = \\rho \\pi d^2 v^2 \\sqrt{\\frac{17}{16} - \\frac{1}{2} \\cos \\theta}$", isCorrect: false },
+                    { answerText: "$R = \\frac{\\rho \\pi d^2 v^2}{4} \\sqrt{17 - \\frac{1}{2} \\cos \\theta}$", isCorrect: false },
+                    { answerText: "$R = \\frac{\\rho \\pi d^2 v^2}{4} \\sqrt{17 - 4 \\cos \\theta}$", isCorrect: true },
+                    { answerText: "$R = \\rho \\pi d^2 v^2 \\sqrt{\\frac{17}{16} - \\frac{1}{2} \\sin \\theta}$", isCorrect: false },
+                    { answerText: "$R = \\frac{\\rho \\pi d^2 v^2}{4} \\sqrt{\\frac{17}{16} - \\frac{1}{2} \\sin \\theta}$", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Sebuah wadah diisi air dengan massa jenis $1000kg/m^{3}$ sampai ketinggian 3 meter. Wadah tersebut tertutupi oleh 3 dinding diam, lantai dan satu dinding yang dapat dibuka (secara digulung dari bawah ke atas seperti di gambar) dengan tinggi 3 meter dan lebar 4 meter seperti di gambar. Agar pintu wadah tersebut tetap tertutup, diberikan gaya F di ujung bawah pintu tersebut untuk menahannya. Besar gaya F yang dibutuhkan adalah: (percepatan gravitasi adalah $10m/s^{2}$)",
+                questionPhoto: "/competitions/exam/KodeB/Fisika/4.png",
+                answerOptions: [
+                    { answerText: "90.000 N", isCorrect: false },
+                    { answerText: "120.000 N", isCorrect: true },
+                    { answerText: "130.000 N", isCorrect: false },
+                    { answerText: "150.000 N", isCorrect: false },
+                    { answerText: "180.000 N", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Sebuah pipa U dengan luas penampang yang sama di tiap ujung pipa berotasi dengan salah satu tabung sebagai poros kelajuan sudut putar ($\\omega=5~rad/s$) menyebabkan kedua permukaan cairan berselisih H meter. Jika panjang pipa U mendatar adalah 4 meter, maka tinggi H adalah... ($g=10m/s^{2}$)",
+                questionPhoto: "/competitions/exam/KodeB/Fisika/5.png",
+                answerOptions: [
+                    { answerText: "5 meter", isCorrect: false },
+                    { answerText: "10 meter", isCorrect: false },
+                    { answerText: "15 meter", isCorrect: false },
+                    { answerText: "20 meter", isCorrect: false },
+                    { answerText: "25 meter", isCorrect: true }
+                ]
+            },
+            {
+                questionText: "Hitunglah Vb! (asumsikan kecepatan gravitasi $g=9,8~m/s^{2}$) ",
+                questionPhoto: "/competitions/exam/KodeB/Fisika/6.png",
+                answerOptions: [
+                    { answerText: "$10~m/s$", isCorrect: false },
+                    { answerText: "$13.4~m/s$", isCorrect: false },
+                    { answerText: "$16.4~m/s$", isCorrect: true },
+                    { answerText: "$12.5~m/s$", isCorrect: false },
+                    { answerText: "$11.3~m/s$", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Sebuah bola dilemparkan ke lantai kasar dengan sudut $\\theta=37$ derajat. Jika bolanya memantul di sudut $\\phi=37$ derajat, tentukan koefisien gesek kinetis antara bola dan lantai. Diketahui koefisien restitusi dari lantai tersebut adalah 0.75.",
+                questionPhoto: "/competitions/exam/KodeB/Fisika/7.png",
+                answerOptions: [
+                    { answerText: "$\\frac{37}{84}$", isCorrect: true },
+                    { answerText: "$\\frac{35}{84}$", isCorrect: false },
+                    { answerText: "$\\frac{31}{84}$", isCorrect: false },
+                    { answerText: "$\\frac{41}{84}$", isCorrect: false },
+                    { answerText: "$\\frac{43}{84}$", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Sebuah spool (seperti yoyo besar) memiliki massa sebesar M = 2$kg$, jari-jari luar R = 0.5$m$, dan jari-jari dalam r = 0.25$m$. Momen inersia terhadap pusat massanya adalah $I=\\frac{1}{2}M(R^{2}+r^{2}).$ Spool ini berada di atas lantai kasar horizontal sehingga dapat menggelinding tanpa slip. Sebuah pegas dengan konstanta k (128 $N/m$) diikatkan pada pegas yang melilit hub dalam (jari-jari r). Ujung tali ditarik horizontal menjauhi dinding. Tentukan frekuensi angular dari sistem tersebut.",
+                answerOptions: [
+                    { answerText: "$\\omega= 4 rad/s$", isCorrect: false },
+                    { answerText: "$\\omega= 6 rad/s$", isCorrect: true },
+                    { answerText: "$\\omega= 8 rad/s$", isCorrect: false },
+                    { answerText: "$\\omega= 10 rad/s$", isCorrect: false },
+                    { answerText: "$\\omega= 12 rad/s$", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Silinder halus C bermassa 4 kg memiliki pasak P yang bergerak melewati celah pada batang OA. Jarak vertikal titik O dan C adalah 1m. Jika lengan tersebut dipaksa berputar pada bidang vertikal dengan laju konstan tentukan $\\frac{d\\theta}{dt}=1~rad/s$ gaya yang diberikan lengan tersebut saat $\\theta=30^{\\circ}$ (Gunakan $\\sqrt{3}=1,71)$",
+                questionPhoto: "/competitions/exam/KodeB/Fisika/9.png",
+                answerOptions: [
+                    { answerText: "20,76 N", isCorrect: false },
+                    { answerText: "56 N", isCorrect: false },
+                    { answerText: "110,8 N", isCorrect: false },
+                    { answerText: "160,3 N", isCorrect: true },
+                    { answerText: "75,5 N", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Tinjau sebuah silinder panjang dan narrow dengan luas penampang A yang diisi dengan cairan kompresibel hingga ketinggian h. Kedalaman z diukur ke bawah dari permukaan bebas fluida. Tekanan di permukaan bebas sama dengan tekanan atmosfer Patm  Massa jenis cairan tersebut  merupakan fungsi dari tekanan $P(z)$ yang dinyatakan sebagai:  $\\rho(z)=\\rho_{o}(1+\\alpha \\frac{P(z)}{P_{o}})$ di mana $P_{o}$, $\\rho_{o}$ dan $\\alpha$ adalah konstanta. Percepatan gravitasi adalah $g$. Tentukan tekanan dasar silinder $P(h)$!",
+                questionPhoto: "/competitions/exam/KodeB/Fisika/11.png",
+                answerOptions: [
+                    { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 + \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} + 1 \\right]$", isCorrect: true },
+                    { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 + \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} \\right]$", isCorrect: false },
+                    { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 - \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} - 1 \\right]$", isCorrect: false },
+                    { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( 1 + \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} - 1 \\right]$", isCorrect: false },
+                    { answerText: "$P(h) = \\frac{P_0}{\\alpha} \\left[ \\left( \\frac{\\alpha P_{\\text{atm}}}{P_0} \\right) e^{\\frac{\\alpha \\rho_0 g h}{P_0}} - 1 \\right]$", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Seorang pendaki terjebak di Puncak Gunung Semeru yang dingin (Suhu $T_{1}$, sementara tim penyelamat berada di Base Camp yang hangat di kaki gunung (Suhu $T_{2}$ ). Jarak vertikal antara mereka adalah L. Pendaki tersebut membunyikan peluit darurat. Suara peluit merambat turun ke kaki gunung dan mengenai sebuah dinding tebing di Base camp. Karena perbedaan ketinggian, suhu udara menurun secara linear dari Base Camp ke Puncak. Jika diasumsikan kecepatan bunyi bergantung pada suhu dengan persamaan $v=\\alpha\\sqrt{T},$ di mana $\\alpha$ adalah suatu konstanta. Tentukan waktu total ($t_{total}$) yang dibutuhkan sejak pendaki berteriak hingga ia mendengar gemanya sendiri?",
+                answerOptions: [
+                    { answerText: "$\\frac{4l}{\\alpha (\\sqrt{T_1} + \\sqrt{T_2})}$", isCorrect: false },
+                    { answerText: "$\\frac{6l}{\\alpha (\\sqrt{T_1} + \\sqrt{T_2})}$", isCorrect: false },
+                    { answerText: "$\\frac{4l}{\\alpha (T_1 + T_2)}$", isCorrect: false },
+                    { answerText: "$\\frac{6l}{\\alpha (T_1 + T_2)}$", isCorrect: false },
+                    { answerText: "$\\frac{8l}{\\alpha (\\sqrt{T_1} + \\sqrt{T_2})}$", isCorrect: true }
+                ]
+            },
+            {
+                questionText: "Di kedalaman laut di Samudra selatan, secara tidak sengaja kapal selam \"Leviathan\"(A.S) dan kapal selam \"Minerve\" (Prancis) berpapasan. Minerve bergerak ke kanan dengan kecepatan $60~km/jam$ dan Leviathan bergerak ke kiri dengan kecepatan $120~km/jam$. Minerve mengirimkan sinyal sonar (gelombang suara dalam air) dengan frekuensi $10^{3}Hz.$ Gelombang sonar tersebut bergerak dengan kecepatan $6060~km/jam$ Berturut-turut tentukanlah frekuensi sinyal yang terdeteksi oleh Leviathan dan frekuensi yang terdeteksi oleh Minerve pada sinyal yang dipantulkan kembali kepadanya oleh Leviathan.",
+                questionPhoto: "/competitions/exam/KodeB/Fisika/13.jpeg",
+                answerOptions: [
+                    { answerText: "1015 Hz dan 1051 Hz", isCorrect: false },
+                    { answerText: "1030 Hz dan 1051 Hz", isCorrect: false },
+                    { answerText: "1015 Hz dan 1061 Hz", isCorrect: false },
+                    { answerText: "1030 Hz dan 1061 Hz", isCorrect: true },
+                    { answerText: "1015 Hz dan 1030 Hz", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Sebuah gitar dipetik sehingga pada salah satu senarnya terdapat dua buah gelombang yang saling berlawanan arah dengan persamaan: $y_{1}(x,t)=(6~mm)\\sin(7\\pi x-700\\pi t)$ $y_{2}(x,t)=(6~mm)\\sin(7\\pi x+700\\pi t+\\frac{\\pi}{3})$ Dengan x dalam meter dan t dalam detik. Kedua gelombang tersebut berinterferensi membentuk gelombang berdiri. Jika sebuah titik antinode berada di titik A, tentukan jarak yang ditempuh masing-masing gelombang berjalan pada senar selama titik A bergerak dari simpangan maksimum atas menuju posisi keseimbangan untuk pertama kali",
+                answerOptions: [
+                    { answerText: "$\\frac{1}{6}m$", isCorrect: false },
+                    { answerText: "$\\frac{1}{7}m$", isCorrect: false },
+                    { answerText: "$\\frac{1}{12}m$", isCorrect: true },
+                    { answerText: "$\\frac{1}{14}m$", isCorrect: false },
+                    { answerText: "$\\frac{1}{15}m$", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Terdapat dua ranting kayu yang mengambang di kolam Curug Biru dan terpisah sejauh 70 cm. Keduanya naik-turun bersamaan dengan frekuensi 2 getaran per detik. Salah satu ranting berada pada puncak gelombang (titik C) dan yang lain berada pada lembah (titik D). Di antara C dan D terdapat 3 bukit gelombang lengkap. Berapakah cepat rambat gelombang pada permukaan kolam tersebut? (Asumsi debit air terjun konstan.)",
+                answerOptions: [
+                    { answerText: "0,20 m/s", isCorrect: true },
+                    { answerText: "0,28 m/s", isCorrect: false },
+                    { answerText: "0,35 m/s", isCorrect: false },
+                    { answerText: "0,40 m/s", isCorrect: false },
+                    { answerText: "0,70 m/s", isCorrect: false }
+                ]
+            },
+            {
+                questionText: "Mobil-mobil bergerak mengelilingi sebuah bundaran lalu lintas yang berbentuk elips dengan $a=20$ m dan $b=100$ m. Jika mobil bergerak dengan kecepatan konstan sebesar 72~km/jam.Jika lintasan dinyatakan sebagai $y=f(x)$ maka jari-jari kelengkungan $\\rho$ pada setiap titik di sepanjang lintasan dapat ditentukan dari persamaan: $\\rho=\\frac{[1+(\\frac{dy}{dx})^{2}]^{\\frac{3}{2}}}{|\\frac{d^{2}y}{dx^{2}}|}$ tentukan percepatan maksimum yang dialami oleh penumpang!",
+                questionPhoto: "/competitions/exam/KodeB/Fisika/16.png",
+                answerOptions: [
+                    { answerText: "$20~m/s^{2}$", isCorrect: false },
+                    { answerText: "$40~m/s^{2}$", isCorrect: false },
+                    { answerText: "$60~{m/s}^{2}$", isCorrect: false },
+                    { answerText: "$80~{m/s}^{2}$", isCorrect: false },
+                    { answerText: "$100~m/s^{2}$", isCorrect: true }
+                ]
+            }
+        ]
     },
     2: {
         subject: "MATHEMATICS",
