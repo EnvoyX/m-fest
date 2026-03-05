@@ -863,246 +863,247 @@ export const sessionsDataC = {
             }
         ]
     },
-  2: {
-    subject: "MATHEMATICS",
-    questions: [
-      {
-        questionText:
-          "Jika $f^{-1}(x) = \\frac{2x + 1}{x + d}$ untuk suatu $d \\in \\mathbb{R}$ dan $f(3) = 5$, maka nilai $d$ adalah...",
-        answerOptions: [
-          { answerText: "-$\\frac{7}{2}$", isCorrect: false },
-          { answerText: "-3", isCorrect: false },
-          { answerText: "-$\\frac{5}{2}$", isCorrect: true },
-          { answerText: "-2", isCorrect: false },
-          { answerText: "-1", isCorrect: false },
+    2: {
+        subject: "MATHEMATICS",
+        questions: [
+            {
+                questionText:
+                    "Jika $f^{-1}(x) = \\frac{2x + 1}{x + d}$ untuk suatu $d \\in \\mathbb{R}$ dan $f(3) = 5$, maka nilai $d$ adalah...",
+                answerOptions: [
+                    { answerText: "-$\\frac{7}{2}$", isCorrect: false },
+                    { answerText: "-3", isCorrect: false },
+                    { answerText: "-$\\frac{5}{2}$", isCorrect: true },
+                    { answerText: "-2", isCorrect: false },
+                    { answerText: "-1", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Diketahui grafik berikut menunjukan fungsi $f(x) = \\frac{1}{6}x^3 − x + 1$. Garis singgung grafik ini pada $x = −1$ memotong grafik pada suatu titik lain (A,B).",
+                questionPhoto: "/competitions/exam/Mat/C/C2.png",
+                answerOptions: [
+                    { answerText: "-2", isCorrect: false },
+                    { answerText: "-1", isCorrect: false },
+                    { answerText: "$-\\frac{2}{3}$", isCorrect: false },
+                    { answerText: "0", isCorrect: false },
+                    { answerText: "$-\\frac{1}{3}$", isCorrect: true },
+                ],
+            },
+            {
+                questionText: "ABCD adalah suatu persegi. Tentukan besar sudut α !",
+                questionPhoto: "/competitions/exam/Mat/C/C3.png",
+                answerOptions: [
+                    { answerText: "$45^\\circ$", isCorrect: false },
+                    { answerText: "$55^\\circ$", isCorrect: true },
+                    { answerText: "$65^\\circ$", isCorrect: false },
+                    { answerText: "$75^\\circ$", isCorrect: false },
+                    { answerText: "$85^\\circ$", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Perhatikan data berikut, di mana x, y adalah bilangan yang tidak diketahui :",
+                questionPhoto: "/competitions/exam/Mat/C/C4.png",
+                answerOptions: [
+                    { answerText: "$\\frac{50}{7}$", isCorrect: false },
+                    { answerText: "$\\frac{53}{7}$", isCorrect: true },
+                    { answerText: "$\\frac{56}{7}$", isCorrect: false },
+                    { answerText: "$9$", isCorrect: false },
+                    { answerText: "$\\frac{65}{7}$", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Suatu kantong berisi 2 bola merah, 4 bola biru, dan 4 bola kuning. Arie mengambil 3 bola secara acak, dan ia menyatakan bahwa setidaknya satu bola berwarna merah. Berapa peluang Arie tidak mengambil bola biru?",
+                answerOptions: [
+                    { answerText: "$\\frac{1}{6}$", isCorrect: false },
+                    { answerText: "$\\frac{1}{5}$", isCorrect: false },
+                    { answerText: "$\\frac{1}{4}$", isCorrect: true },
+                    { answerText: "$\\frac{1}{3}$", isCorrect: false },
+                    { answerText: "$\\frac{2}{5}$", isCorrect: false },
+                ],
+            },
+            {
+                questionText: "Sisa dari $5^{2026}$- $3^{2026}$ saat dibagi 7 adalah...",
+                answerOptions: [
+                    { answerText: "1", isCorrect: false },
+                    { answerText: "3", isCorrect: false },
+                    { answerText: "4", isCorrect: false },
+                    { answerText: "5", isCorrect: true },
+                    { answerText: "6", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Seorang polisi sedang mengajar seorang maling yang sedang berlari ke arah timur. Posisi awal polisi P persis berada di utara M sejauh 8 km. Strategi si polisi adalah menangkap maling di suatu titik A dengan berlari ke arah tenggara seperti pada gambar.",
+                questionPhoto: "/competitions/exam/Mat/C/C7.png",
+                answerOptions: [
+                    { answerText: "$\\sqrt{2}$ km", isCorrect: false },
+                    { answerText: "$2\\sqrt{2}$ km", isCorrect: false },
+                    { answerText: "4 km", isCorrect: false },
+                    { answerText: "$4 \\sqrt{2}$ km", isCorrect: true },
+                    { answerText: "$8\\sqrt{2}$ km", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Jika diketahui $\\cos x = \\frac{3}{4}$ di mana x berada di kuadran pertama, maka tentukan nilai $\\frac{(\\csc^2x - 1)}{\\csc^2 x}$",
+                answerOptions: [
+                    { answerText: "$-\\frac{9}{25}$", isCorrect: false },
+                    { answerText: "$\\frac{9}{25}$", isCorrect: false },
+                    { answerText: "$-\\frac{16}{25}$", isCorrect: false },
+                    { answerText: "$-\\frac{16}{9}$", isCorrect: false },
+                    { answerText: "$\\frac{9}{16}$", isCorrect: true },
+                ],
+            },
+            {
+                questionText:
+                    "Diberikan 2 buah bilangan bulat positif yakni m dan 60. Jika diketahui FPB dan KPK nya berturut-turut 15 dan 180, maka nilai m adalah . . .",
+                answerOptions: [
+                    { answerText: "30", isCorrect: false },
+                    { answerText: "45", isCorrect: true },
+                    { answerText: "60", isCorrect: false },
+                    { answerText: "75", isCorrect: false },
+                    { answerText: "90", isCorrect: false },
+                ],
+
+            },
+            {
+                questionText:
+                    "Jika diketahui $m_1 = 1$, $m_2 = 5$ dan $m_k = 5m_{k-1}$ $-$ $6m_{k-2}$, maka nilai $m_{2027}$ adalah...",
+                answerOptions: [
+                    { answerText: "$3^{2025} - 2^{2025}$", isCorrect: false },
+                    { answerText: "$3^{2026} - 2^{2026}$", isCorrect: false },
+                    { answerText: "$3^{2027} - 2^{2027}$", isCorrect: true },
+                    { answerText: "$3^{2026} - 2^{2025}$", isCorrect: false },
+                    { answerText: "$3^{2027} - 2^{2026}$", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Sekumpulan data $x_1,x_2,x_3,...,x_n$ memiliki rata-rata m. Jika setiap data dijumlahkan dengan p kemudian dikalikan dengan q, maka rata-ratanya menjadi ... ",
+                answerOptions: [
+                    { answerText: "$pq + m$", isCorrect: false },
+                    { answerText: "$p(m + q)$", isCorrect: false },
+                    { answerText: "$q(m + p)$", isCorrect: true },
+                    { answerText: "$qm + p $", isCorrect: false },
+                    { answerText: "$pm + q$", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Misalkan Kinx diberikan pernyataan $\\boxed{\\quad}$ jika dan hanya jika $A \\subseteq B$. Manakah pernyataan yang harus diisi Kinx di dalam kotak?",
+                answerOptions: [
+                    { answerText: "$A \\cap B = A$", isCorrect: true },
+                    { answerText: "$B \\subseteq A$", isCorrect: false },
+                    { answerText: "$C \\cup A = A$", isCorrect: false },
+                    { answerText: "$A^C = B$", isCorrect: false },
+                    { answerText: "$B^C = A$", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Misalkan $\\vec{v} = \\vec{i} + 2\\vec{j} - \\vec{k}$, dan $\\vec{u} = -\\vec{j} + 3\\vec{i} + n\\vec{k}$. Jika panjang vektor $\\vec{u} + \\vec{v}$ adalah $\\sqrt{42}$, maka nilai $n$ yang mungkin adalah ...",
+                answerOptions: [
+                    { answerText: "$n = 5$ atau $n = -5$", isCorrect: false },
+                    { answerText: "$n = -4$ atau $n = 2$", isCorrect: true },
+                    { answerText: "$n = 4$ atau $n = -5$", isCorrect: false },
+                    { answerText: "$n = 5$ atau $n = -6$", isCorrect: false },
+                    { answerText: "$n = 6$ atau $n = -4$", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "$1 + \\frac{1}{3} + \\frac{1}{6} + \\frac{1}{10} + ... = M$. Nilai $M$ adalah ...",
+                answerOptions: [
+                    { answerText: "$\\infty$", isCorrect: false },
+                    { answerText: "$2 - \\infty$", isCorrect: false },
+                    { answerText: "$0$", isCorrect: false },
+                    { answerText: "$2$", isCorrect: true },
+                    { answerText: "$\\infty - 2$", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Diberikan bilangan $x$ bilangan real yang memenuhi $16x^2 + 4\\{x\\} = 16$. Bilangan $x$ yang memenuhi dapat dinyatakan dalam bentuk paling sederhana $\\frac{a + \\sqrt{b}}{c}$. Tentukan nilai dari $a + b + c$. Note: $\\{x\\} = $ bilangan desimal dari $x$, contoh: $\\{1.1\\} = 0.1, \\{-1.1\\} = 0.9$",
+                answerOptions: [
+                    { answerText: "$68$", isCorrect: false },
+                    { answerText: "$69$", isCorrect: false },
+                    { answerText: "$70$", isCorrect: false },
+                    { answerText: "$71$", isCorrect: false },
+                    { answerText: "$72$", isCorrect: true },
+                ],
+            },
+            {
+                questionText:
+                    "Tentukan banyaknya pasangan $(a,b)$ yang memenuhi $FPB(a,b) = 2022!$, dan $KPK(a,b) = 2023!$ dan $a \\le b$",
+                answerOptions: [
+                    { answerText: "$1$", isCorrect: false },
+                    { answerText: "$2$", isCorrect: true },
+                    { answerText: "$3$", isCorrect: false },
+                    { answerText: "$5$", isCorrect: false },
+                    { answerText: "$6$", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Banyaknya cara menaruh 6 benteng pada papan catur 7x7 sehingga tidak ada benteng yang berada pada kolom atau baris yang sama",
+                answerOptions: [
+                    { answerText: "$6!$", isCorrect: false },
+                    { answerText: "$7!-6!$", isCorrect: false },
+                    { answerText: "$7!$", isCorrect: false },
+                    { answerText: "$8!-7!$", isCorrect: true },
+                    { answerText: "$8!$", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Diberikan segienam $ABCDEF$ beraturan dengan panjang sisi 9 dan titik potong garis $AC$ dan $BD$ adalah $P$. tentukan panjang $PE^2$",
+                answerOptions: [
+                    { answerText: "187", isCorrect: false },
+                    { answerText: "188", isCorrect: false },
+                    { answerText: "189", isCorrect: true },
+                    { answerText: "190", isCorrect: false },
+                    { answerText: "191", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Diberikan bidang $2025x + 45y - 2025z = 45$ dan $90x + 2y - 90z = 2025$. jarak terpendek diantara 2 bidang tersebut dapat dinyatakan dalam bentuk paling sederhana $\\frac{a}{b\\sqrt{c}}$. tentukan nilai $a+b+c$",
+                answerOptions: [
+                    { answerText: "6076", isCorrect: true },
+                    { answerText: "6075", isCorrect: false },
+                    { answerText: "6074", isCorrect: false },
+                    { answerText: "6073", isCorrect: false },
+                    { answerText: "6072", isCorrect: false },
+                ],
+            },
+            {
+                questionText:
+                    "Dalam suatu perlombaan terdapat 25 soal. Sistem penilaian yang digunakan adalah sebagai berikut :",
+                questionPhoto: "/competitions/exam/Mat/C/C20.png",
+                answerOptions: [
+                    { answerText: "54", isCorrect: false },
+                    { answerText: "53", isCorrect: false },
+                    { answerText: "52", isCorrect: false },
+                    { answerText: "51", isCorrect: false },
+                    { answerText: "50", isCorrect: true },
+                ],
+            },
+            {
+                questionText:
+                    "Diberikan suatu barisan $S_n$ yang didefinisikan secara rekursif sebagai berikut :",
+                questionPhoto: "/competitions/exam/Mat/C/C21.png",
+                answerOptions: [
+                    { answerText: "100", isCorrect: true },
+                    { answerText: "81", isCorrect: false },
+                    { answerText: "64", isCorrect: false },
+                    { answerText: "49", isCorrect: false },
+                    { answerText: "36", isCorrect: false },
+                ],
+            },
         ],
-      },
-      {
-        questionText:
-          "Diketahui grafik berikut menunjukan fungsi $f(x) = \\frac{1}{6}x^3 − x + 1$. Garis singgung grafik ini pada $x = −1$ memotong grafik pada suatu titik lain (A,B).",
-        questionPhoto: "/competitions/exam/Mat/C/C2.png",
-        answerOptions: [
-          { answerText: "-2", isCorrect: false },
-          { answerText: "-1", isCorrect: false },
-          { answerText: "$-\\frac{2}{3}$", isCorrect: false },
-          { answerText: "0", isCorrect: false },
-          { answerText: "$-\\frac{1}{3}$", isCorrect: true },
-        ],
-      },
-      {
-        questionText: "ABCD adalah suatu persegi. Tentukan besar sudut α !",
-        questionPhoto: "/competitions/exam/Mat/C/C3.png",
-        answerOptions: [
-          { answerText: "$45^\\circ$", isCorrect: false },
-          { answerText: "$55^\\circ$", isCorrect: true },
-          { answerText: "$65^\\circ$", isCorrect: false },
-          { answerText: "$75^\\circ$", isCorrect: false },
-          { answerText: "$85^\\circ$", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Perhatikan data berikut, di mana x, y adalah bilangan yang tidak diketahui :",
-        questionPhoto: "/competitions/exam/Mat/C/C4.png",
-        answerOptions: [
-          { answerText: "$\\frac{50}{7}$", isCorrect: false },
-          { answerText: "$\\frac{53}{7}$", isCorrect: true },
-          { answerText: "$\\frac{56}{7}$", isCorrect: false },
-          { answerText: "$9$", isCorrect: false },
-          { answerText: "$\\frac{65}{7}$", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Suatu kantong berisi 2 bola merah, 4 bola biru, dan 4 bola kuning. Arie mengambil 3 bola secara acak, dan ia menyatakan bahwa setidaknya satu bola berwarna merah. Berapa peluang Arie tidak mengambil bola biru?",
-        answerOptions: [
-          { answerText: "$\\frac{1}{6}$", isCorrect: false },
-          { answerText: "$\\frac{1}{5}$", isCorrect: false },
-          { answerText: "$\\frac{1}{4}$", isCorrect: true },
-          { answerText: "$\\frac{1}{3}$", isCorrect: false },
-          { answerText: "$\\frac{2}{5}$", isCorrect: false },
-        ],
-      },
-      {
-        questionText: "Sisa dari $5^2026 - 3^2026$ saat dibagi 7 adalah...",
-        answerOptions: [
-          { answerText: "1", isCorrect: false },
-          { answerText: "3", isCorrect: false },
-          { answerText: "4", isCorrect: false },
-          { answerText: "5", isCorrect: true },
-          { answerText: "6", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Seorang polisi sedang mengajar seorang maling yang sedang berlari ke arah timur. Posisi awal polisi P persis berada di utara M sejauh 8 km. Strategi si polisi adalah menangkap maling di suatu titik A dengan berlari ke arah tenggara seperti pada gambar.",
-        questionPhoto: "/competitions/exam/Mat/C/C7.png",
-        answerOptions: [
-          { answerText: "$\\sqrt{2}$ km", isCorrect: false },
-          { answerText: "$2\\sqrt{2}$ km", isCorrect: false },
-          { answerText: "4 km", isCorrect: false },
-          { answerText: "$4 \\sqrt{2}$ km", isCorrect: true },
-          { answerText: "$8\\sqrt{2}$ km", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Jika diketahui $\\cos x = \\frac{3}{4}$ di mana x berada di kuadra pertama, maka tentukan nilai \\frac{(\\frac csc^2 x - 1)}{\\csc^2 x}",
-        answerOptions: [
-          { answerText: "$-\\frac{9}{25}$", isCorrect: false },
-          { answerText: "$\\frac{9}{25}$", isCorrect: false },
-          { answerText: "$-\\frac{16}{25}$", isCorrect: false },
-          { answerText: "$-\\frac{16}{9}$", isCorrect: false },
-          { answerText: "$\\frac{9}{16}$", isCorrect: true },
-        ],
-      },
-      {
-        questionText:
-          "Diberikan 2 buah bilangan bulat positif yakni m dan 60. Jika diketahui FPB dan KPK nya berturut-turut 15 dan 180, maka nilai m adalah . . .",
-        answerOptions: [
-          { answerText: "30", isCorrect: false },
-          { answerText: "45", isCorrect: true },
-          { answerText: "60", isCorrect: false },
-          { answerText: "75", isCorrect: false },
-          { answerText: "90", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Jika diketahui $m_1 = 1, m_2 = 5 dan m_k = 5m_(k-1) - 6m_(k-2), maka nilai m_2027$ adalah...",
-        answerOptions: [
-          { answerText: "$3^2025 - 2^2025$", isCorrect: false },
-          { answerText: "$3^2026 - 2^2026$", isCorrect: false },
-          { answerText: "$3^2027 - 2^2027$", isCorrect: true },
-          { answerText: "$3^2026 - 2^2025$", isCorrect: false },
-          { answerText: "$3^2027 - 2^2026$", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Sekumpulan data $x_1,x_2,x_3,...,x_n$ memiliki rata-rata m. Jika setiap data dijumlahkan dengan p kemudian dikalikan dengan q, maka rata-ratanya menjadi ... ",
-        answerOptions: [
-          { answerText: "$pq + m$", isCorrect: false },
-          { answerText: "$p(m + q)$", isCorrect: false },
-          { answerText: "$q(m + p)$", isCorrect: true },
-          { answerText: "$qm + p $", isCorrect: false },
-          { answerText: "$pm + q$", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Misalkan Kinx diberikan pernyataan $\\boxed{\\quad}$ jika dan hanya jika $A \\subseteq B$. Manakah pernyataan yang harus diisi Kinx di dalam kotak?",
-        answerOptions: [
-          { answerText: "$A \\cap B = A$", isCorrect: true },
-          { answerText: "$B \\subseteq A$", isCorrect: false },
-          { answerText: "$C \\cup A = A$", isCorrect: false },
-          { answerText: "$A^C = B$", isCorrect: false },
-          { answerText: "$B^C = A$", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Misalkan $\\vec{v} = \\vec{i} + 2\\vec{j} - \\vec{k}$, dan $\\vec{u} = -\\vec{j} + 3\\vec{i} + n\\vec{k}$. Jika panjang vektor $\\vec{u} + \\vec{v}$ adalah $\\sqrt{42}$, maka nilai $n$ yang mungkin adalah ...",
-        answerOptions: [
-          { answerText: "$n = 5 atau n = -5$", isCorrect: false },
-          { answerText: "$n = -4 atau n = 2$", isCorrect: true },
-          { answerText: "$n = 4 atau n = -5$", isCorrect: false },
-          { answerText: "$n = 5 atau n = -6$", isCorrect: false },
-          { answerText: "$n = 6 atau n = -4$", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "$1 + \\frac{1}{3} + \\frac{1}{6} + \\frac{1}{10} + ... = M$. Nilai $M$ adalah ...",
-        answerOptions: [
-          { answerText: "$\\infty$", isCorrect: false },
-          { answerText: "$2 - \\infty$", isCorrect: false },
-          { answerText: "$0$", isCorrect: false },
-          { answerText: "$2$", isCorrect: true },
-          { answerText: "$\\infty - 2$", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Diberikan bilangan $x$ bilangan real yang memenuhi $16x^2 + 4\\{x\\} = 16$. Bilangan $x$ yang memenuhi dapat dinyatakan dalam bentuk paling sederhana $\\frac{a + \\sqrt{b}}{c}$. Tentukan nilai dari $a + b + c$. \\Note: $\\{x\\} = $ bilangan desimal dari $x$, contoh: $\\{1.1\\} = 0.1, \\{-1.1\\} = 0.9$",
-        answerOptions: [
-          { answerText: "$68", isCorrect: false },
-          { answerText: "$69", isCorrect: false },
-          { answerText: "$70", isCorrect: false },
-          { answerText: "$71", isCorrect: false },
-          { answerText: "72", isCorrect: true },
-        ],
-      },
-      {
-        questionText:
-          "Tentukan banyaknya pasangan $(a,b)$ yang memenuhi $FPB(a,b) = 2022!$, dan $KPK(a,b) = 2023!$ dan $a \\le b$",
-        answerOptions: [
-          { answerText: "$1$", isCorrect: false },
-          { answerText: "$2$", isCorrect: true },
-          { answerText: "$3$", isCorrect: false },
-          { answerText: "$5$", isCorrect: false },
-          { answerText: "$6$", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Banyaknya cara menaruh 6 benteng pada papan catur 7x7 sehingga tidak ada benteng yang berada pada kolom atau baris yang sama",
-        answerOptions: [
-          { answerText: "$6!$", isCorrect: false },
-          { answerText: "$7!-6!$", isCorrect: false },
-          { answerText: "$7!$", isCorrect: false },
-          { answerText: "$8!-7!$", isCorrect: true },
-          { answerText: "$8!$", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Diberikan segienam $ABCDEF$ beraturan dengan panjang sisi 9 dan titik potong garis $AC$ dan $BD$ adalah $P$. tentukan panjang $PE^2$",
-        answerOptions: [
-          { answerText: "187", isCorrect: false },
-          { answerText: "188", isCorrect: false },
-          { answerText: "189", isCorrect: true },
-          { answerText: "190", isCorrect: false },
-          { answerText: "191", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Diberikan bidang $2025x + 45y - 2025z = 45$ dan $90x + 2y - 90z = 2025$. jarak terpendek diantara 2 bidang tersebut dapat dinyatakan dalam bentuk paling sederhana $\\frac{a}{b\\sqrt{c}}$. tentukan nilai $a+b+c$",
-        answerOptions: [
-          { answerText: "6076", isCorrect: true },
-          { answerText: "6075", isCorrect: false },
-          { answerText: "6074", isCorrect: false },
-          { answerText: "6073", isCorrect: false },
-          { answerText: "6072", isCorrect: false },
-        ],
-      },
-      {
-        questionText:
-          "Dalam suatu perlombaan terdapat 25 soal. Sistem penilaian yang digunakan adalah sebagai berikut :",
-        questionPhoto: "competitions/exam/Mat/C/C20.png",
-        answerOptions: [
-          { answerText: "54", isCorrect: false },
-          { answerText: "53", isCorrect: false },
-          { answerText: "52", isCorrect: false },
-          { answerText: "51", isCorrect: false },
-          { answerText: "50", isCorrect: true },
-        ],
-      },
-      {
-        questionText:
-          "Diberikan suatu barisan $S_n$ yang didefinisikan secara rekursif sebagai berikut :",
-        questionPhoto: "competitions/exam/Mat/C/C21.png",
-        answerOptions: [
-          { answerText: "100", isCorrect: true },
-          { answerText: "81", isCorrect: false },
-          { answerText: "64", isCorrect: false },
-          { answerText: "49", isCorrect: false },
-          { answerText: "36", isCorrect: false },
-        ],
-      },
-    ],
-  },
+    },
     3: {
         subject: "ESSAY",
         // Catatan: Karena backend tRPC saat ini menerima array angka (index),

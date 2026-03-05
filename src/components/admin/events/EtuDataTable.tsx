@@ -353,6 +353,19 @@ export default function ETUDataTable() {
             filterFn: "includesString",
         },
         {
+            accessorKey: "phoneNumber",
+            accessorFn: (row) => row.phoneNumber,
+            header: ({ column }) => {
+                return (
+                    <DataTableColumnHeader column={column} title="Phone Number" />
+                );
+            },
+            cell: ({ row }) => (
+                <div className="">{row.getValue("phoneNumber")}</div>
+            ),
+            filterFn: "includesString",
+        },
+        {
             accessorKey: "isITB",
             accessorFn: (row) => (row.isITB ? "True" : "False"),
             header: ({ column }) => {
@@ -578,6 +591,16 @@ export default function ETUDataTable() {
                                     }}
                                 >
                                     Participant Name
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        setFilterColumn("phoneNumber");
+                                        table.getColumn("phoneNumber")?.setFilterValue("");
+                                        table.resetColumnFilters();
+                                    }}
+                                >
+                                    Phone Number
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                     className="cursor-pointer hover:bg-white/20!"
