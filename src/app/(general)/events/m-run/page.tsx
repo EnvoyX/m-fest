@@ -60,7 +60,7 @@ export default function ETUPages() {
         </h1>
         <div className="w-full px-4">
           <Image
-            src="/mrunimage2.png"
+            src="/prizepoolmrun.png"
             alt="mrunimage2"
             height={500}
             width={2000}
@@ -93,7 +93,7 @@ export default function ETUPages() {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">full throttle?</h1>
         </div>
         <Image
-          src="/regisdatemrun.png"
+          src="/mrunregdate.png"
           alt="mrunimage3"
           width={1000}
           height={467}
