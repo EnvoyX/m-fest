@@ -1135,36 +1135,6 @@ export const sessionsDataTechMeet = {
         subject: "PHYSICS",
         questions: [
             {
-                questionText: "Jika diketahui $\\cos x = \\frac{4}{5}$ di mana $x$ berada di kuadran pertama, maka tentukan nilai $\\frac{1 - \\csc^2 x}{\\csc^2 x} = \\dots$",
-                answerOptions: [
-                    { answerText: "$-\\frac{9}{25}$", isCorrect: false },
-                    { answerText: "$\\frac{9}{25}$", isCorrect: false },
-                    { answerText: "$-\\frac{16}{25}$", isCorrect: true },
-                    { answerText: "$-\\frac{16}{9}$", isCorrect: false },
-                    { answerText: "$\\frac{9}{16}$", isCorrect: false },
-                ],
-            },
-            {
-                questionText: "Diberikan 2 buah bilangan bulat positif yakni $m$ dan $72$. Jika diketahui FPB dan KPK-nya berturut-turut $8$ dan $1080$, maka nilai $m$ adalah $\\dots$",
-                answerOptions: [
-                    { answerText: "40", isCorrect: false },
-                    { answerText: "60", isCorrect: false },
-                    { answerText: "80", isCorrect: false },
-                    { answerText: "90", isCorrect: false },
-                    { answerText: "120", isCorrect: true },
-                ],
-            },
-            {
-                questionText: "daru ganteng 123 $m_1 = 1, m_2 = 5,$ dan $m_k = 5m_{k-1} - 6m_{k-2}$, maka nilai $m_{2026}$ adalah $\\dots$",
-                answerOptions: [
-                    { answerText: "$3^{2025} - 2^{2025}$", isCorrect: false },
-                    { answerText: "$3^{2026} - 2^{2026}$", isCorrect: false },
-                    { answerText: "$3^{2027} - 2^{2027}$", isCorrect: false },
-                    { answerText: "$3^{2026} - 2^{2025}$", isCorrect: false },
-                    { answerText: "$3^{2027} - 2^{2026}$", isCorrect: true },
-                ],
-            },
-            {
                 questionText: "Sebuah truk dengan massa $m_T$ mengangkut pipa gorong-gorong (culvert) dengan massa $m_C$ melaju bersama seperti gambar. Karena sopir sudah bekerja lembur, beliau mengantuk dan menabrak mobil dengan massa $m_M$ yang bergerak seperti pada gambar. Setelah bertabrakan, keduanya menyatu dan melaju sebesar $v=1$ m/s ke sumbu-x positif. Akibat tabrakan tersebut, 4,125 kJ energi hilang. Setelah itu, seorang pengamat dari pinggir jalan melihat culvert menggelinding tanpa slip selama 0,2 detik sebelum hancur (massa culvert setelah hancur diabaikan) dengan menyerap 20% momen ekuivalen dari energi yang hilang. Dengan mengabaikan gaya gesek dan menganggap sistem sebagai benda titik, carilah semua massa yang tidak diketahui dan hitung nilai $\\frac{m_T+m_M}{m_C}$! Anggap laju menggelinding culvert sama dengan kecepatan setelah tabrakan dan anggap culvert sebagai silinder tipis berongga.",
                 questionPhoto: "/competitions/exam/Fisika/gambar soal mfest 2/2.png",
                 answerOptions: [
