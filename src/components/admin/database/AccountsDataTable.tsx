@@ -53,7 +53,6 @@ import {
 
 export default function AccountsDataTable() {
     const trpc = useTRPC();
-    // const { data: session } = authClient.useSession();
     const queryClient = useQueryClient();
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] =
@@ -314,8 +313,8 @@ export default function AccountsDataTable() {
                 <div className="">
                     {row.getValue("accessTokenExpiresAt")
                         ? new Date(
-                              row.getValue("accessTokenExpiresAt"),
-                          ).toLocaleString()
+                            row.getValue("accessTokenExpiresAt"),
+                        ).toLocaleString()
                         : "Null"}
                 </div>
             ),
@@ -335,8 +334,8 @@ export default function AccountsDataTable() {
                 <div className="">
                     {row.getValue("refreshTokenExpiresAt")
                         ? new Date(
-                              row.getValue("refreshTokenExpiresAt"),
-                          ).toLocaleString()
+                            row.getValue("refreshTokenExpiresAt"),
+                        ).toLocaleString()
                         : "Null"}
                 </div>
             ),
@@ -723,10 +722,10 @@ export default function AccountsDataTable() {
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
-                                                      header.column.columnDef
-                                                          .header,
-                                                      header.getContext(),
-                                                  )}
+                                                    header.column.columnDef
+                                                        .header,
+                                                    header.getContext(),
+                                                )}
                                         </TableHead>
                                     );
                                 })}
