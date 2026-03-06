@@ -41,9 +41,9 @@ export const stemRouter = router({
         }),
     getEssayState: protectedProcedure
         .query(async ({ ctx }) => {
-        const essayState = await ctx.db.examState.findFirst({
-            select: {essayState: true}
-        });
-        return essayState;
-    }),
+            const essayState = await ctx.db.examState.findFirst({
+                select: { essayState: true }
+            });
+            return essayState?.essayState as boolean;
+        }),
 });

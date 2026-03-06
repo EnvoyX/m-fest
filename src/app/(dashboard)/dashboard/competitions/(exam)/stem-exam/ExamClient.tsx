@@ -10,16 +10,18 @@ import {
     AlertCircle,
     List,
     ArrowRight,
+    RefreshCw,
 } from "lucide-react";
 import { sessionsDataA, sessionsDataB, sessionsDataC, sessionsDataTechMeet } from "@/lib/examQuestion";
 import { useRouter } from "next/navigation";
 import { useTRPC } from "@/utils/trpc";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import type { QuizTypes } from "../../../../../../../prisma/generated/prisma/enums";
 import type { User, TeamMember } from "../../../../../../../prisma/generated/prisma/client";
-import { getCurrentDate } from "@/lib/utils";
+import { cn, getCurrentDate } from "@/lib/utils";
 import MathRenderer from "@/components/dashboard/competitions/MathRenderer";
+import { Button } from "@/components/ui/button";
 
 export default function ExamClient({ user, teamMember }: { user: User, teamMember: TeamMember }) {
     const router = useRouter();
@@ -30,8 +32,9 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
     const [activeSession, setActiveSession] = useState<1 | 2 | 3>(1);
     const [isLoading, setIsLoading] = useState(false);
     const kodeSoal = (teamMember.kodeSoal as "A" | "B" | "C" | "TECHMEET");
-    
-    const isEssayOpen = useQuery({...trpc.stemExam.getEssayState.queryOptions()})
+
+    const { data: isEssayOpen, isFetching } = useQuery(trpc.stemExam.getEssayState.queryOptions())
+
 
     // --- 2. Derivasi Data (Memoized) ---
     const currentSessionData = useMemo(() => {
@@ -166,7 +169,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
                 {!showScore && (
                     <div className="lg:w-80 bg-slate-900 text-white p-6 flex flex-col shrink-0 border-r border-slate-800">
                         <div className="mb-8">
-                            <h1 className="text-lg font-black tracking-tight">STEM Tryout</h1>
+                            <h1 className="text-lg font-black tracking-tight">STEM Preliminary</h1>
                             <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest">{user?.name}</p>
                             <p className="text-xl font-black text-blue-100">{currentSessionData.subject}</p>
                         </div>
@@ -210,14 +213,27 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
                                 <h2 className="text-3xl font-black text-slate-900 mb-2">
                                     {activeSession === 3 ? "Exam Completed!" : `Session ${currentSessionData.subject} Done!`}
                                 </h2>
-                                <button
+                                {
+                                    activeSession === 2 && (
+                                        <Button
+                                            className="cursor-pointer"
+                                            onClick={() => {
+                                                queryClient.invalidateQueries({
+                                                    queryKey: trpc.stemExam.getEssayState.queryKey()
+                                                })
+                                            }}>
+                                            <RefreshCw className={cn("w-5 h-5", { "animate-spin": isFetching })} />
+                                        </Button>
+                                    )
+                                }
+                                <Button
                                     onClick={handleNextSession}
-                                    disabled= {activeSession === 3 && isEssayOpen === false}
+                                    disabled={activeSession === 2 && isEssayOpen === false}
                                     className="w-full mt-8 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 flex items-center justify-center gap-2 transition-all"
                                 >
                                     {activeSession === 3 ? "Finish & Dashboard" : `Go to Session ${activeSession + 1}`}
                                     <ArrowRight className="w-5 h-5" />
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     ) : (
@@ -303,7 +319,3 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
         </div>
     );
 }
-function useQuery(arg0: unknown) {
-    throw new Error("Function not implemented.");
-}
-
