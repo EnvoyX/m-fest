@@ -147,7 +147,7 @@ async function FetchUserRegisteredCompetitions() {
                 className="gap-1 pr-1.5 cursor-pointer"
                 disabled={
                   comp.abbreviation === "STEM"
-                    ? false
+                    ? true
                     : team?.leaderUserId === user.id
                       ? team?.teamStatus === "ACCEPTED"
                         ? false
