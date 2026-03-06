@@ -72,3 +72,8 @@ export type ExamSession = Prisma.ExamSessionModel
  * 
  */
 export type quizResult = Prisma.quizResultModel
+/**
+ * Model ExamState
+ * 
+ */
+export type ExamState = Prisma.ExamStateModel

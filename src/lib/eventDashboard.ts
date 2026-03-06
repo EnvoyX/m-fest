@@ -55,7 +55,7 @@ export const eventsList: Event[] = [
         logo: MotorbikeIcon,
         href: "events/engine-tune-up",
         location: "Institut Teknologi Bandung Ganesha",
-        eventDate: "Sabtu, 7 Maret 2026 (8:00 - 16:30)",
+        eventDate: "Sabtu, 7 Maret 2026 (8:30 - 17:00)",
         startRegDate1: new Date("2026-02-26T19:00:00"),
         endRegDate1: new Date("2026-03-01T23:59:59"),
         slotmanual: 60,

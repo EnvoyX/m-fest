@@ -323,25 +323,11 @@ export const sessionsDataA = {
     },
     3: {
         subject: "ESSAY",
-        // Catatan: Karena backend tRPC saat ini menerima array angka (index),
-        // saya menggunakan format Pilihan Ganda untuk 'Logika Esai' agar kompatibel.
-        // Jika backend mendukung string, UI ini bisa diubah menjadi Textarea.
         questions: [
             {
                 questionText:
-                    "paket a juga",
-                answerOptions: [
-                    {
-                        answerText: "Karena lebih murah tanpa memikirkan dampak lingkungan",
-                        isCorrect: false,
-                    },
-                    {
-                        answerText:
-                            "Mengurangi emisi karbon dan menjaga keberlanjutan sumber daya",
-                        isCorrect: true,
-                    },
-                    { answerText: "Agar terlihat modern saja", isCorrect: false },
-                ],
+                    "Sebuah silinder berdinding tipis dengan massa $M$ dan permukaan dalam yang cukup kasar berjari-jari $R$ dapat berotasi pada sumbu pusat horizontal tetapnya, $OZ$. Sumbu $Z$ tegak lurus dan mengarah keluar dari halaman (bidang gambar).\nSebuah silinder pejal homogen lain yang lebih kecil dengan massa $m$ dan jari-jari $r$ menggelinding tanpa slip pada permukaan dalam $M$ pada sumbu pusatnya sendiri yang sejajar dengan $OZ$. Sistem dipengaruhi oleh percepatan gravitasi sebesar $g$ ke bawah. Dengan cara $Newtonian$, tentukan:\na). Berapakah periode osilasi amplitudo kecil pada sistem jika:\n1. $M > m$ (10 poin)\n2. $M \\gg m$ (2 poin)\nb). Jelaskan bagaimana ekuivalensi gerakan sistemnya secara fisis pada kasus $M \\gg m$ (3 poin)",
+                    questionPhoto: "/competitions/exam/essay.png",
             },
         ],
     },
@@ -670,27 +656,13 @@ export const sessionsDataB = {
             }
         ]
     },
-    3: {
+        3: {
         subject: "ESSAY",
-        // Catatan: Karena backend tRPC saat ini menerima array angka (index),
-        // saya menggunakan format Pilihan Ganda untuk 'Logika Esai' agar kompatibel.
-        // Jika backend mendukung string, UI ini bisa diubah menjadi Textarea.
         questions: [
             {
                 questionText:
-                    "paket b juga",
-                answerOptions: [
-                    {
-                        answerText: "Karena lebih murah tanpa memikirkan dampak lingkungan",
-                        isCorrect: false,
-                    },
-                    {
-                        answerText:
-                            "Mengurangi emisi karbon dan menjaga keberlanjutan sumber daya",
-                        isCorrect: true,
-                    },
-                    { answerText: "Agar terlihat modern saja", isCorrect: false },
-                ],
+                    "Sebuah silinder berdinding tipis dengan massa $M$ dan permukaan dalam yang cukup kasar berjari-jari $R$ dapat berotasi pada sumbu pusat horizontal tetapnya, $OZ$. Sumbu $Z$ tegak lurus dan mengarah keluar dari halaman (bidang gambar).\nSebuah silinder pejal homogen lain yang lebih kecil dengan massa $m$ dan jari-jari $r$ menggelinding tanpa slip pada permukaan dalam $M$ pada sumbu pusatnya sendiri yang sejajar dengan $OZ$. Sistem dipengaruhi oleh percepatan gravitasi sebesar $g$ ke bawah. Dengan cara $Newtonian$, tentukan:\na). Berapakah periode osilasi amplitudo kecil pada sistem jika:\n1. $M > m$ (10 poin)\n2. $M \\gg m$ (2 poin)\nb). Jelaskan bagaimana ekuivalensi gerakan sistemnya secara fisis pada kasus $M \\gg m$ (3 poin)",
+                    questionPhoto: "/competitions/exam/essay.png",
             },
         ],
     },
@@ -890,17 +862,6 @@ export const sessionsDataC = {
                 ],
             },
             {
-                questionText: "ABCD adalah suatu persegi. Tentukan besar sudut α !",
-                questionPhoto: "/competitions/exam/Mat/C/C3.png",
-                answerOptions: [
-                    { answerText: "$45^\\circ$", isCorrect: false },
-                    { answerText: "$55^\\circ$", isCorrect: true },
-                    { answerText: "$65^\\circ$", isCorrect: false },
-                    { answerText: "$75^\\circ$", isCorrect: false },
-                    { answerText: "$85^\\circ$", isCorrect: false },
-                ],
-            },
-            {
                 questionText:
                     "Perhatikan data berikut, di mana x, y adalah bilangan yang tidak diketahui :",
                 questionPhoto: "/competitions/exam/Mat/C/C4.png",
@@ -935,29 +896,6 @@ export const sessionsDataC = {
             },
             {
                 questionText:
-                    "Seorang polisi sedang mengajar seorang maling yang sedang berlari ke arah timur. Posisi awal polisi P persis berada di utara M sejauh 8 km. Strategi si polisi adalah menangkap maling di suatu titik A dengan berlari ke arah tenggara seperti pada gambar.",
-                questionPhoto: "/competitions/exam/Mat/C/C7.png",
-                answerOptions: [
-                    { answerText: "$\\sqrt{2}$ km", isCorrect: false },
-                    { answerText: "$2\\sqrt{2}$ km", isCorrect: false },
-                    { answerText: "4 km", isCorrect: false },
-                    { answerText: "$4 \\sqrt{2}$ km", isCorrect: true },
-                    { answerText: "$8\\sqrt{2}$ km", isCorrect: false },
-                ],
-            },
-            {
-                questionText:
-                    "Jika diketahui $\\cos x = \\frac{3}{4}$ di mana x berada di kuadran pertama, maka tentukan nilai $\\frac{(\\csc^2x - 1)}{\\csc^2 x}$",
-                answerOptions: [
-                    { answerText: "$-\\frac{9}{25}$", isCorrect: false },
-                    { answerText: "$\\frac{9}{25}$", isCorrect: false },
-                    { answerText: "$-\\frac{16}{25}$", isCorrect: false },
-                    { answerText: "$-\\frac{16}{9}$", isCorrect: false },
-                    { answerText: "$\\frac{9}{16}$", isCorrect: true },
-                ],
-            },
-            {
-                questionText:
                     "Diberikan 2 buah bilangan bulat positif yakni m dan 60. Jika diketahui FPB dan KPK nya berturut-turut 15 dan 180, maka nilai m adalah . . .",
                 answerOptions: [
                     { answerText: "30", isCorrect: false },
@@ -981,17 +919,6 @@ export const sessionsDataC = {
             },
             {
                 questionText:
-                    "Sekumpulan data $x_1,x_2,x_3,...,x_n$ memiliki rata-rata m. Jika setiap data dijumlahkan dengan p kemudian dikalikan dengan q, maka rata-ratanya menjadi ... ",
-                answerOptions: [
-                    { answerText: "$pq + m$", isCorrect: false },
-                    { answerText: "$p(m + q)$", isCorrect: false },
-                    { answerText: "$q(m + p)$", isCorrect: true },
-                    { answerText: "$qm + p $", isCorrect: false },
-                    { answerText: "$pm + q$", isCorrect: false },
-                ],
-            },
-            {
-                questionText:
                     "Misalkan Kinx diberikan pernyataan $\\boxed{\\quad}$ jika dan hanya jika $A \\subseteq B$. Manakah pernyataan yang harus diisi Kinx di dalam kotak?",
                 answerOptions: [
                     { answerText: "$A \\cap B = A$", isCorrect: true },
@@ -999,28 +926,6 @@ export const sessionsDataC = {
                     { answerText: "$C \\cup A = A$", isCorrect: false },
                     { answerText: "$A^C = B$", isCorrect: false },
                     { answerText: "$B^C = A$", isCorrect: false },
-                ],
-            },
-            {
-                questionText:
-                    "Misalkan $\\vec{v} = \\vec{i} + 2\\vec{j} - \\vec{k}$, dan $\\vec{u} = -\\vec{j} + 3\\vec{i} + n\\vec{k}$. Jika panjang vektor $\\vec{u} + \\vec{v}$ adalah $\\sqrt{42}$, maka nilai $n$ yang mungkin adalah ...",
-                answerOptions: [
-                    { answerText: "$n = 5$ atau $n = -5$", isCorrect: false },
-                    { answerText: "$n = -4$ atau $n = 2$", isCorrect: true },
-                    { answerText: "$n = 4$ atau $n = -5$", isCorrect: false },
-                    { answerText: "$n = 5$ atau $n = -6$", isCorrect: false },
-                    { answerText: "$n = 6$ atau $n = -4$", isCorrect: false },
-                ],
-            },
-            {
-                questionText:
-                    "$1 + \\frac{1}{3} + \\frac{1}{6} + \\frac{1}{10} + ... = M$. Nilai $M$ adalah ...",
-                answerOptions: [
-                    { answerText: "$\\infty$", isCorrect: false },
-                    { answerText: "$2 - \\infty$", isCorrect: false },
-                    { answerText: "$0$", isCorrect: false },
-                    { answerText: "$2$", isCorrect: true },
-                    { answerText: "$\\infty - 2$", isCorrect: false },
                 ],
             },
             {
@@ -1106,25 +1011,11 @@ export const sessionsDataC = {
     },
     3: {
         subject: "ESSAY",
-        // Catatan: Karena backend tRPC saat ini menerima array angka (index),
-        // saya menggunakan format Pilihan Ganda untuk 'Logika Esai' agar kompatibel.
-        // Jika backend mendukung string, UI ini bisa diubah menjadi Textarea.
         questions: [
             {
                 questionText:
-                    "ini paket c kok :)",
-                answerOptions: [
-                    {
-                        answerText: "Karena lebih murah tanpa memikirkan dampak lingkungan",
-                        isCorrect: false,
-                    },
-                    {
-                        answerText:
-                            "Mengurangi emisi karbon dan menjaga keberlanjutan sumber daya",
-                        isCorrect: true,
-                    },
-                    { answerText: "Agar terlihat modern saja", isCorrect: false },
-                ],
+                    "Sebuah silinder berdinding tipis dengan massa $M$ dan permukaan dalam yang cukup kasar berjari-jari $R$ dapat berotasi pada sumbu pusat horizontal tetapnya, $OZ$. Sumbu $Z$ tegak lurus dan mengarah keluar dari halaman (bidang gambar).\nSebuah silinder pejal homogen lain yang lebih kecil dengan massa $m$ dan jari-jari $r$ menggelinding tanpa slip pada permukaan dalam $M$ pada sumbu pusatnya sendiri yang sejajar dengan $OZ$. Sistem dipengaruhi oleh percepatan gravitasi sebesar $g$ ke bawah. Dengan cara $Newtonian$, tentukan:\na). Berapakah periode osilasi amplitudo kecil pada sistem jika:\n1. $M > m$ (10 poin)\n2. $M \\gg m$ (2 poin)\nb). Jelaskan bagaimana ekuivalensi gerakan sistemnya secara fisis pada kasus $M \\gg m$ (3 poin)",
+                    questionPhoto: "/competitions/exam/essay.png",
             },
         ],
     },
@@ -1134,36 +1025,6 @@ export const sessionsDataTechMeet = {
     1: {
         subject: "PHYSICS",
         questions: [
-            {
-                questionText: "Jika diketahui $\\cos x = \\frac{4}{5}$ di mana $x$ berada di kuadran pertama, maka tentukan nilai $\\frac{1 - \\csc^2 x}{\\csc^2 x} = \\dots$",
-                answerOptions: [
-                    { answerText: "$-\\frac{9}{25}$", isCorrect: false },
-                    { answerText: "$\\frac{9}{25}$", isCorrect: false },
-                    { answerText: "$-\\frac{16}{25}$", isCorrect: true },
-                    { answerText: "$-\\frac{16}{9}$", isCorrect: false },
-                    { answerText: "$\\frac{9}{16}$", isCorrect: false },
-                ],
-            },
-            {
-                questionText: "Diberikan 2 buah bilangan bulat positif yakni $m$ dan $72$. Jika diketahui FPB dan KPK-nya berturut-turut $8$ dan $1080$, maka nilai $m$ adalah $\\dots$",
-                answerOptions: [
-                    { answerText: "40", isCorrect: false },
-                    { answerText: "60", isCorrect: false },
-                    { answerText: "80", isCorrect: false },
-                    { answerText: "90", isCorrect: false },
-                    { answerText: "120", isCorrect: true },
-                ],
-            },
-            {
-                questionText: "daru ganteng 123 $m_1 = 1, m_2 = 5,$ dan $m_k = 5m_{k-1} - 6m_{k-2}$, maka nilai $m_{2026}$ adalah $\\dots$",
-                answerOptions: [
-                    { answerText: "$3^{2025} - 2^{2025}$", isCorrect: false },
-                    { answerText: "$3^{2026} - 2^{2026}$", isCorrect: false },
-                    { answerText: "$3^{2027} - 2^{2027}$", isCorrect: false },
-                    { answerText: "$3^{2026} - 2^{2025}$", isCorrect: false },
-                    { answerText: "$3^{2027} - 2^{2026}$", isCorrect: true },
-                ],
-            },
             {
                 questionText: "Sebuah truk dengan massa $m_T$ mengangkut pipa gorong-gorong (culvert) dengan massa $m_C$ melaju bersama seperti gambar. Karena sopir sudah bekerja lembur, beliau mengantuk dan menabrak mobil dengan massa $m_M$ yang bergerak seperti pada gambar. Setelah bertabrakan, keduanya menyatu dan melaju sebesar $v=1$ m/s ke sumbu-x positif. Akibat tabrakan tersebut, 4,125 kJ energi hilang. Setelah itu, seorang pengamat dari pinggir jalan melihat culvert menggelinding tanpa slip selama 0,2 detik sebelum hancur (massa culvert setelah hancur diabaikan) dengan menyerap 20% momen ekuivalen dari energi yang hilang. Dengan mengabaikan gaya gesek dan menganggap sistem sebagai benda titik, carilah semua massa yang tidak diketahui dan hitung nilai $\\frac{m_T+m_M}{m_C}$! Anggap laju menggelinding culvert sama dengan kecepatan setelah tabrakan dan anggap culvert sebagai silinder tipis berongga.",
                 questionPhoto: "/competitions/exam/Fisika/gambar soal mfest 2/2.png",

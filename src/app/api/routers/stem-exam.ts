@@ -39,4 +39,11 @@ export const stemRouter = router({
             });
             return newResult;
         }),
+    getEssayState: protectedProcedure
+        .query(async ({ ctx }) => {
+        const essayState = await ctx.db.examState.findFirst({
+            select: {essayState: true}
+        });
+        return essayState;
+    }),
 });

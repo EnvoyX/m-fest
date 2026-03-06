@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.4.2
- * Query Engine version: 94a226be1cf2967af2541cca5529f0f7ba866919
+ * Prisma Client JS version: 7.4.0
+ * Query Engine version: ab56fe763f921d033a6c195e7ddeb3e255bdbb57
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.4.2",
-  engine: "94a226be1cf2967af2541cca5529f0f7ba866919"
+  client: "7.4.0",
+  engine: "ab56fe763f921d033a6c195e7ddeb3e255bdbb57"
 }
 
 /**
@@ -394,7 +394,8 @@ export const ModelName = {
   Session: 'Session',
   Verification: 'Verification',
   ExamSession: 'ExamSession',
-  quizResult: 'quizResult'
+  quizResult: 'quizResult',
+  ExamState: 'ExamState'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -410,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "compRegistration" | "eventRegistration" | "user" | "documents" | "team" | "teamMember" | "account" | "session" | "verification" | "examSession" | "quizResult"
+    modelProps: "compRegistration" | "eventRegistration" | "user" | "documents" | "team" | "teamMember" | "account" | "session" | "verification" | "examSession" | "quizResult" | "examState"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1228,6 +1229,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ExamState: {
+      payload: Prisma.$ExamStatePayload<ExtArgs>
+      fields: Prisma.ExamStateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ExamStateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ExamStateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload>
+        }
+        findFirst: {
+          args: Prisma.ExamStateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ExamStateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload>
+        }
+        findMany: {
+          args: Prisma.ExamStateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload>[]
+        }
+        create: {
+          args: Prisma.ExamStateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload>
+        }
+        createMany: {
+          args: Prisma.ExamStateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ExamStateCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload>[]
+        }
+        delete: {
+          args: Prisma.ExamStateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload>
+        }
+        update: {
+          args: Prisma.ExamStateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload>
+        }
+        deleteMany: {
+          args: Prisma.ExamStateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ExamStateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ExamStateUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload>[]
+        }
+        upsert: {
+          args: Prisma.ExamStateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ExamStatePayload>
+        }
+        aggregate: {
+          args: Prisma.ExamStateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateExamState>
+        }
+        groupBy: {
+          args: Prisma.ExamStateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExamStateGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ExamStateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ExamStateCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1511,6 +1586,14 @@ export const QuizResultScalarFieldEnum = {
 } as const
 
 export type QuizResultScalarFieldEnum = (typeof QuizResultScalarFieldEnum)[keyof typeof QuizResultScalarFieldEnum]
+
+
+export const ExamStateScalarFieldEnum = {
+  id: 'id',
+  essayState: 'essayState'
+} as const
+
+export type ExamStateScalarFieldEnum = (typeof ExamStateScalarFieldEnum)[keyof typeof ExamStateScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1993,6 +2076,7 @@ export type GlobalOmitConfig = {
   verification?: Prisma.VerificationOmit
   examSession?: Prisma.ExamSessionOmit
   quizResult?: Prisma.quizResultOmit
+  examState?: Prisma.ExamStateOmit
 }
 
 /* Types for Logging */

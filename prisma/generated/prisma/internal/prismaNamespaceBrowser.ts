@@ -61,7 +61,8 @@ export const ModelName = {
   Session: 'Session',
   Verification: 'Verification',
   ExamSession: 'ExamSession',
-  quizResult: 'quizResult'
+  quizResult: 'quizResult',
+  ExamState: 'ExamState'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -324,6 +325,14 @@ export const QuizResultScalarFieldEnum = {
 } as const
 
 export type QuizResultScalarFieldEnum = (typeof QuizResultScalarFieldEnum)[keyof typeof QuizResultScalarFieldEnum]
+
+
+export const ExamStateScalarFieldEnum = {
+  id: 'id',
+  essayState: 'essayState'
+} as const
+
+export type ExamStateScalarFieldEnum = (typeof ExamStateScalarFieldEnum)[keyof typeof ExamStateScalarFieldEnum]
 
 
 export const SortOrder = {
