@@ -13,7 +13,7 @@ import { Button as HeroButton } from "@heroui/react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { SubmissionSkeleton } from "./CompFormSkeleton";
-import { getCurrentDate } from "@/lib/utils";
+import { cn, getCurrentDate } from "@/lib/utils";
 import { format, isBefore } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -95,6 +95,12 @@ async function FetchCompForm({
     }
 
     if (comp === "STEM" && team.competition === "STEM") {
+        const stats = await db.quizResult.findMany({
+            where: {
+                userId: session?.user?.id
+            }
+        })
+        const examAttempted = stats.length >= 3;
         return (
             // Tryout Exam Here
             <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -155,17 +161,13 @@ async function FetchCompForm({
                                 is available.
                             </p>
                             <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
-                                <Button className="" variant={"outline"} asChild>
+                                {examAttempted ? (
+                                    <Button className={cn({ "opacity-50 cursor-not-allowed": examAttempted })} variant={"outline"} disabled={examAttempted}>
+                                        Exam Attempted
+                                    </Button>
+                                ) : (<Button className={cn({ "opacity-50 cursor-not-allowed": examAttempted })} variant={"outline"} disabled={examAttempted} asChild>
                                     <Link href={"entry-exam"}>Start Exam</Link>
-                                </Button>
-                                <HeroButton
-                                    variant="primary"
-                                    className={"rounded-sm bg-white/5 border hover:bg-white/10 "}
-                                >
-                                    <Link href={`/api/exam-config`} download>
-                                        Download SEB Config
-                                    </Link>
-                                </HeroButton>
+                                </Button>)}
                             </div>
                         </div>
                     </div>
