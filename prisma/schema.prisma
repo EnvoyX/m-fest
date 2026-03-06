@@ -406,3 +406,8 @@ model quizResult {
   type               QuizTypes
   user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model ExamState {
+  id         String    @id @default(cuid())
+  essayState Boolean   @default(false)
+}

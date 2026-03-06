@@ -603,5 +603,5 @@ export const dashboardRouter = router({
         }
 
         return currentMotorTypeQuota
-    })
+    }),
 });

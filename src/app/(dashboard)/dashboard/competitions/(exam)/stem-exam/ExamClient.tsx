@@ -30,6 +30,8 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
     const [activeSession, setActiveSession] = useState<1 | 2 | 3>(1);
     const [isLoading, setIsLoading] = useState(false);
     const kodeSoal = (teamMember.kodeSoal as "A" | "B" | "C" | "TECHMEET");
+    
+    const isEssayOpen = useQuery({...trpc.stemExam.getEssayState.queryOptions()})
 
     // --- 2. Derivasi Data (Memoized) ---
     const currentSessionData = useMemo(() => {
@@ -210,6 +212,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
                                 </h2>
                                 <button
                                     onClick={handleNextSession}
+                                    disabled= {activeSession === 3 && isEssayOpen === false}
                                     className="w-full mt-8 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 flex items-center justify-center gap-2 transition-all"
                                 >
                                     {activeSession === 3 ? "Finish & Dashboard" : `Go to Session ${activeSession + 1}`}
@@ -300,3 +303,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
         </div>
     );
 }
+function useQuery(arg0: unknown) {
+    throw new Error("Function not implemented.");
+}
+
