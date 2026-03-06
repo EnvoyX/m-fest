@@ -1,9 +1,11 @@
-/*import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";*/
+import { ChevronRight } from "lucide-react";
+import { eventsList } from "@/lib/eventDashboard";
+import { getCurrentDate } from "@/lib/utils";
 
-export default function ComingSoon() {
+{/*export default function ComingSoon() {
    return (
     <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
       <div className="bg-trasnparent backdrop-glass-lg m-auto h-fit w-full max-w-xl verflow-hidden rounded-[calc(var(--radius)+.125rem)] border-2 shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)] py-4">
@@ -13,15 +15,24 @@ export default function ComingSoon() {
       </div>
     </section>
   );
-}
+}*/}
 
-/*export default function ETUPages() {
+const currentDate = getCurrentDate();
+const startRegDate1: Date = eventsList.find(event => event.id === "M-RUN")?.startRegDate1;
+const endRegDate1: Date = eventsList.find(event => event.id === "M-RUN")?.endRegDate1;
+const startRegDate2: Date = eventsList.find(event => event.id === "M-RUN")?.Batch1StartRegDate;
+const endRegDate2: Date = eventsList.find(event => event.id === "M-RUN")?.Batch1EndRegDate;
+
+const isOpen = (currentDate >= startRegDate1 && currentDate <= endRegDate1) || (currentDate >= startRegDate2 && currentDate <= endRegDate2);
+
+export default function ETUPages() {
   return (
     <div className="w-full overflow-x-hidden">
       <div className="py-12 lg:py-16 w-full px-4">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center">
           M-Run
         </h1>
+        <div className="mx-auto mb-3 text-center font-bold">Run Like a Machine! Unleash Your Biological Engine</div>
         <Image
           src="/mrunimage1.png"
           alt="mrunimage1"
@@ -43,11 +54,6 @@ export default function ComingSoon() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 text-center pb-12">
-        <h1 className="text-lg md:text-xl lg:text-2xl">The race will be on going on</h1>
-        <h1 className="text-3xl md:text-5xl font-bold mt-2">From now, that is roughly</h1>
-      </div>
-
       <div className="py-12 lg:py-16">
         <h1 className="text-center text-4xl md:text-6xl lg:text-7xl font-bold px-4 leading-tight">
           With the Grand Prize Totalling...
@@ -56,8 +62,8 @@ export default function ComingSoon() {
           <Image
             src="/mrunimage2.png"
             alt="mrunimage2"
-            height={1000}
-            width={4000}
+            height={500}
+            width={2000}
             className="py-8 lg:py-16 w-full h-auto object-contain"
           />
         </div>
@@ -87,7 +93,7 @@ export default function ComingSoon() {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">full throttle?</h1>
         </div>
         <Image
-          src="/mrunimage3.png"
+          src="/regisdatemrun.png"
           alt="mrunimage3"
           width={1000}
           height={467}
@@ -96,19 +102,26 @@ export default function ComingSoon() {
       </div>
 
       <div className="flex justify-center pb-16">
-        <Link href="/#">
           <Button 
-          size="lg"
-          className="rounded-xl text-lg md:text-xl font-bold px-10 py-6 md:px-12 md:py-8 shadow-lg"
+            size="lg"
+            disabled={!isOpen}
+            className="rounded-xl text-lg md:text-xl font-bold px-10 py-6 md:px-12 md:py-8 shadow-lg w-fit"
           >
-            Register Now <ChevronRight className="ml-2 h-6 w-6" />
+            {!isOpen ? (
+              <span className="flex items-center gap-2 whitespace-nowrap">
+                Register Now <ChevronRight className="h-6 w-6" />
+              </span>
+            ) : (
+              <Link href="/dashboard/register/m-run" className="flex items-center gap-2 whitespace-nowrap">
+                Register Now <ChevronRight className="h-6 w-6" />
+              </Link>
+            )}
           </Button>
-        </Link>
       </div>
 
       <div className="px-4 pb-8">
         <Image
-          src="/mruntimeline.png"
+          src="/timelinemrun.png"
           alt="mruntimeline"
           height={600}
           width={1200}
@@ -117,4 +130,4 @@ export default function ComingSoon() {
       </div>
     </div>
   );
-}*/
+}
