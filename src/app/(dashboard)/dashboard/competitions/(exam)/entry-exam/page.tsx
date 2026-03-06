@@ -18,16 +18,6 @@ const closeStemTime = new Date("2026-03-01T16:00:00Z");
 const isOpen = currentDate >= openStemTime && currentDate < closeStemTime;
 
 export default async function EntryExamPage() {
-    const sebKey = await headers().then((h) =>
-        h.get("x-safeexambrowser-configkeyhash"),
-    );
-    // console.log("SEB Key for this client exam: ", sebKey);
-
-    {/*if (!sebKey) {
-        console.log("SEB key not found, user is not using SEB");
-        redirect("use-seb");
-    }*/}
-
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -50,6 +40,15 @@ export default async function EntryExamPage() {
             },
         },
     });
+
+
+    const stats = await db.quizResult.findMany({
+        where: {
+            userId: user?.id
+        }
+    })
+
+    const examAttempted = stats.length >= 3;
 
     // Leader check if registered for STEM
     if (
@@ -91,8 +90,9 @@ export default async function EntryExamPage() {
             <Button
                 variant="primary"
                 className={"rounded-sm bg-white/5 border hover:bg-white/10 mt-2"}
+                isDisabled={examAttempted}
             >
-                <Link href={`stem-exam?token=${token}`}>Start Exam</Link>
+                <Link href={`stem-exam?token=${token}`}>{examAttempted ? "Exam Already Attempted" : "Start Exam"}</Link>
             </Button>
         </div>
     );
