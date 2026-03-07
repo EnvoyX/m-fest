@@ -39,7 +39,7 @@ export default async function EntryExamPage() {
     const examAttempted = await getExamAttempt(user?.id)
     const isExamOpen = await getExamStatus()
 
-    // Leader check if registered for STEM
+    /*// Leader check if registered for STEM
     if (
         user?.registration[0]?.competitionName !== "STEM" &&
         user?.id === user?.team_member[0]?.team.leaderUserId
@@ -58,7 +58,7 @@ export default async function EntryExamPage() {
     ) {
         // console.log("Member's team is not accepted and not registered");
         redirect("/dashboard");
-    }
+    }*/
 
     const token = crypto.randomUUID();
 
