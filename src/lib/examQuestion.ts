@@ -6,11 +6,11 @@ export const sessionsDataA = {
                 questionText: "Satrio adalah mahasiswa Program Studi Teknik Mesin ITB yang mengikuti sebuah Unit Kegiatan Mahasiswa yang berfokus pada pengembangan game digital. Ia tertarik untuk membuat permainan yang memenuhi hukum Fisika (khususnya Mekanika) di mana ia merancang sebuah sistem permainan yang melibatkan objek tank dan mobil penyusup. Tank tersebut menembakkan rudal dengan sudut elevasi $\\beta$ ke arah mobil penyusup yang berada di bukit yang dimodelkan sebagai suatu bidang miring sebagaimana tertera pada gambar di atas. Mula-mula, mobil tersebut tidak memiliki kecepatan awal dan berakselerasi konstan sebesar 2Q (dua dikali Q) menuruni bukit. Tentukan besar kecepatan awal rudal yang harus Satrio input ke sistem permainan agar rudal tersebut tepat mengenai mobil penyusup jika mobil tersebut tertembak di bukit dan tank selalu diam. Asumsikan ketinggian ujung moncong tembakan sama dengan ketinggian mobil sesaat setelah tertembak relatif terhadap tanah horizontal. Gesekan udara diabaikan.",
                 questionPhoto: "/competitions/exam/KodeA/Fisika/1.png",
                 answerOptions: [
-                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta+\\frac{16Q\\sin^{2}\\beta}{5g}}}$", isCorrect: false },
+                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta+\\frac{16Q\\sin^{2}\\beta}{5g}}}$", isCorrect: true },
                     { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta-\\frac{16Q\\sin^{2}\\beta}{5g}}}$", isCorrect: false },
                     { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{3}{4}H)}{\\sin2\\beta+\\frac{16Q\\sin^{2}\\beta}{5g}}}$", isCorrect: false },
                     { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta+\\frac{12Q\\sin^{2}\\beta}{5g}}}$", isCorrect: false },
-                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta+\\frac{32Q\\sin^{2}\\beta}{5g}}}$", isCorrect: true }
+                    { answerText: "$v_{0}=\\sqrt{\\frac{g(L+\\frac{4}{3}H)}{\\sin2\\beta+\\frac{32Q\\sin^{2}\\beta}{5g}}}$", isCorrect: false }
                 ]
             },
             {
@@ -19,9 +19,9 @@ export const sessionsDataA = {
                 answerOptions: [
                     { answerText: "Solusi Bukan Bilangan Real", isCorrect: false },
                     { answerText: "$\\frac{4}{5}\\sqrt{3}$ detik", isCorrect: false },
-                    { answerText: "$\\frac{2}{3}\\sqrt{15}$ detik", isCorrect: true },
+                    { answerText: "$\\frac{2}{3}\\sqrt{15}$ detik", isCorrect: false },
                     { answerText: "$\\frac{2}{3}\\sqrt{6}$ detik", isCorrect: false },
-                    { answerText: "$\\frac{2}{3}\\sqrt{3}$ detik", isCorrect: false }
+                    { answerText: "$\\frac{2}{3}\\sqrt{3}$ detik", isCorrect: true }
                 ]
             },
             {
@@ -29,8 +29,8 @@ export const sessionsDataA = {
                 questionPhoto: "/competitions/exam/KodeA/Fisika/3.png",
                 answerOptions: [
                     { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{\\rho Q(v_{B}\\sin\\theta-v_{A})}$", isCorrect: false },
-                    { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{\\rho Q(v_{A}-v_{B}\\sin\\theta)}$", isCorrect: false },
-                    { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{-R \\cdot \\sin\\theta}$", isCorrect: true },
+                    { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{\\rho Q(v_{A}-v_{B}\\sin\\theta)}$", isCorrect: true },
+                    { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{-R \\cdot \\sin\\theta}$", isCorrect: false },
                     { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{-R \\cdot \\cos\\theta}$", isCorrect: false },
                     { answerText: "$t = \\frac{m_{b} \\cdot v_{cv}}{\\rho Q(v_{A}\\cos\\phi-v_{B})}$", isCorrect: false }
                 ]
@@ -53,8 +53,8 @@ export const sessionsDataA = {
                     { answerText: "2.7 meter", isCorrect: false },
                     { answerText: "3.6 meter", isCorrect: false },
                     { answerText: "4.5 meter", isCorrect: false },
-                    { answerText: "5.4 meter", isCorrect: false },
-                    { answerText: "7.2 meter", isCorrect: true }
+                    { answerText: "5.4 meter", isCorrect: true },
+                    { answerText: "7.2 meter", isCorrect: false }
                 ]
             },
             {
@@ -83,9 +83,9 @@ export const sessionsDataA = {
                 questionText: "Sebuah spool (seperti yoyo besar) memiliki massa sebesar M, jari-jari luar R, dan jari-jari dalam r. Momen inersia terhadap pusat massanya adalah $I=\\frac{1}{2}M(R^{2}+r^{2}).$ Spool ini berada di atas lantai kasar horizontal sehingga dapat menggelinding tanpa slip. Sebuah pegas dengan konstanta k diikatkan pada pegas yang melilit hub dalam (jari-jari r). Ujung tali ditarik horizontal menjauhi dinding. Tentukan frekuensi angular dari sistem tersebut.",
                 answerOptions: [
                     { answerText: "$\\omega=\\sqrt{\\frac{k}{M}}$", isCorrect: false },
-                    { answerText: "$\\omega=\\sqrt{\\frac{k(1+\\frac{r}{R})^{2}}{M(\\frac{3}{2}+\\frac{r^{2}}{2R^{2}})}}$", isCorrect: true },
+                    { answerText: "$\\omega=\\sqrt{\\frac{k(1+\\frac{r}{R})^{2}}{M(\\frac{3}{2}+\\frac{r^{2}}{2R^{2}})}}$", isCorrect: false },
                     { answerText: "$\\omega=\\sqrt{\\frac{k(1+\\frac{r}{R})}{M(1+\\frac{r^{2}}{R^{2}})}}$", isCorrect: false },
-                    { answerText: "$\\omega=\\sqrt{\\frac{k(1+\\frac{r}{R})^{2}}{M(\\frac{3}{2}+\\frac{r^{2}}{2R^{2}})^{2}}}$", isCorrect: false },
+                    { answerText: "$\\omega=\\sqrt{\\frac{k(1+\\frac{r}{R})^{2}}{M(\\frac{3}{2}+\\frac{r^{2}}{2R^{2}})^{2}}}$", isCorrect: true },
                     { answerText: "$\\omega=\\sqrt{\\frac{k}{M(1+\\frac{r^{2}}{2R^{2}})}}$", isCorrect: false }
                 ]
             },
@@ -137,8 +137,8 @@ export const sessionsDataA = {
                 answerOptions: [
                     { answerText: "$\\frac{1}{2}m$", isCorrect: false },
                     { answerText: "$\\frac{1}{3}m$", isCorrect: false },
-                    { answerText: "$\\frac{1}{4}m$", isCorrect: true },
-                    { answerText: "$\\frac{1}{6}m$", isCorrect: false },
+                    { answerText: "$\\frac{1}{4}m$", isCorrect: false },
+                    { answerText: "$\\frac{1}{6}m$", isCorrect: true },
                     { answerText: "$\\frac{1}{12}m$", isCorrect: false }
                 ]
             },
