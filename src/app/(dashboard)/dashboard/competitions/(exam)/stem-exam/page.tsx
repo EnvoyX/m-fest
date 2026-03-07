@@ -20,10 +20,13 @@ export default async function StemExamPage({
 }) {
     const currentDate = getCurrentDate();
     const isExamOpen = await getExamStatus()
-    if (!isExamOpen) redirect("/dashboard")
+    if (!isExamOpen) {
+        console.log("Exam is not open");
+        redirect("/dashboard")
+    }
     const token = (await searchParams).token;
     if (!token) {
-        // console.log("Token not found");
+        console.log("Token not found");
         redirect("entry-exam");
     }
 
@@ -31,7 +34,10 @@ export default async function StemExamPage({
         where: { token },
     });
 
-    if (!examSession) redirect("entry-exam")
+    if (!examSession) {
+        console.log("Exam session not found");
+        redirect("entry-exam");
+    }
 
     const user = await db.user.findUnique({
         where: {
@@ -61,7 +67,7 @@ export default async function StemExamPage({
         user?.registration[0]?.competitionName !== "STEM" &&
         user?.id === user?.team_member[0]?.team.leaderUserId
     ) {
-        // console.log("User is not registered for STEM");
+        console.log("User is not registered for STEM");
         redirect("/dashboard");
     }
 
@@ -73,7 +79,7 @@ export default async function StemExamPage({
         !user.team_member[0] ||
         !user.team_member[0].team
     ) {
-        // console.log("Member's team is not accepted and not registered");
+        console.log("Member's team is not accepted and not registered");
         redirect("/dashboard");
     }
 
@@ -82,7 +88,7 @@ export default async function StemExamPage({
         examSession.used ||
         isAfter(currentDate, examSession.expiresAt)
     ) {
-        // console.log("Exam session not found");
+        console.log("Exam session not found");
         redirect("entry-exam");
     }
 
