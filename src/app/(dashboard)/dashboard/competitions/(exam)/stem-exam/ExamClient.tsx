@@ -137,8 +137,8 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
         };
         if (activeSession < 3) {
             setActiveSession((prev) => (prev + 1) as 1 | 2 | 3);
-        } else {
-            router.push("/dashboard");
+        } if (activeSession === 3) {
+            setTimeLeft(15 * 60);
         }
     };
 
