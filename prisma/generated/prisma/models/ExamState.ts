@@ -27,16 +27,19 @@ export type AggregateExamState = {
 export type ExamStateMinAggregateOutputType = {
   id: string | null
   essayState: boolean | null
+  examOpen: boolean | null
 }
 
 export type ExamStateMaxAggregateOutputType = {
   id: string | null
   essayState: boolean | null
+  examOpen: boolean | null
 }
 
 export type ExamStateCountAggregateOutputType = {
   id: number
   essayState: number
+  examOpen: number
   _all: number
 }
 
@@ -44,16 +47,19 @@ export type ExamStateCountAggregateOutputType = {
 export type ExamStateMinAggregateInputType = {
   id?: true
   essayState?: true
+  examOpen?: true
 }
 
 export type ExamStateMaxAggregateInputType = {
   id?: true
   essayState?: true
+  examOpen?: true
 }
 
 export type ExamStateCountAggregateInputType = {
   id?: true
   essayState?: true
+  examOpen?: true
   _all?: true
 }
 
@@ -132,6 +138,7 @@ export type ExamStateGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type ExamStateGroupByOutputType = {
   id: string
   essayState: boolean
+  examOpen: boolean
   _count: ExamStateCountAggregateOutputType | null
   _min: ExamStateMinAggregateOutputType | null
   _max: ExamStateMaxAggregateOutputType | null
@@ -158,11 +165,13 @@ export type ExamStateWhereInput = {
   NOT?: Prisma.ExamStateWhereInput | Prisma.ExamStateWhereInput[]
   id?: Prisma.StringFilter<"ExamState"> | string
   essayState?: Prisma.BoolFilter<"ExamState"> | boolean
+  examOpen?: Prisma.BoolFilter<"ExamState"> | boolean
 }
 
 export type ExamStateOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   essayState?: Prisma.SortOrder
+  examOpen?: Prisma.SortOrder
 }
 
 export type ExamStateWhereUniqueInput = Prisma.AtLeast<{
@@ -171,11 +180,13 @@ export type ExamStateWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ExamStateWhereInput[]
   NOT?: Prisma.ExamStateWhereInput | Prisma.ExamStateWhereInput[]
   essayState?: Prisma.BoolFilter<"ExamState"> | boolean
+  examOpen?: Prisma.BoolFilter<"ExamState"> | boolean
 }, "id">
 
 export type ExamStateOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   essayState?: Prisma.SortOrder
+  examOpen?: Prisma.SortOrder
   _count?: Prisma.ExamStateCountOrderByAggregateInput
   _max?: Prisma.ExamStateMaxOrderByAggregateInput
   _min?: Prisma.ExamStateMinOrderByAggregateInput
@@ -187,56 +198,67 @@ export type ExamStateScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ExamStateScalarWhereWithAggregatesInput | Prisma.ExamStateScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ExamState"> | string
   essayState?: Prisma.BoolWithAggregatesFilter<"ExamState"> | boolean
+  examOpen?: Prisma.BoolWithAggregatesFilter<"ExamState"> | boolean
 }
 
 export type ExamStateCreateInput = {
   id?: string
   essayState?: boolean
+  examOpen?: boolean
 }
 
 export type ExamStateUncheckedCreateInput = {
   id?: string
   essayState?: boolean
+  examOpen?: boolean
 }
 
 export type ExamStateUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   essayState?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  examOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ExamStateUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   essayState?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  examOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ExamStateCreateManyInput = {
   id?: string
   essayState?: boolean
+  examOpen?: boolean
 }
 
 export type ExamStateUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   essayState?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  examOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ExamStateUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   essayState?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  examOpen?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ExamStateCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   essayState?: Prisma.SortOrder
+  examOpen?: Prisma.SortOrder
 }
 
 export type ExamStateMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   essayState?: Prisma.SortOrder
+  examOpen?: Prisma.SortOrder
 }
 
 export type ExamStateMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   essayState?: Prisma.SortOrder
+  examOpen?: Prisma.SortOrder
 }
 
 
@@ -244,24 +266,28 @@ export type ExamStateMinOrderByAggregateInput = {
 export type ExamStateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   essayState?: boolean
+  examOpen?: boolean
 }, ExtArgs["result"]["examState"]>
 
 export type ExamStateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   essayState?: boolean
+  examOpen?: boolean
 }, ExtArgs["result"]["examState"]>
 
 export type ExamStateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   essayState?: boolean
+  examOpen?: boolean
 }, ExtArgs["result"]["examState"]>
 
 export type ExamStateSelectScalar = {
   id?: boolean
   essayState?: boolean
+  examOpen?: boolean
 }
 
-export type ExamStateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "essayState", ExtArgs["result"]["examState"]>
+export type ExamStateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "essayState" | "examOpen", ExtArgs["result"]["examState"]>
 
 export type $ExamStatePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ExamState"
@@ -269,6 +295,7 @@ export type $ExamStatePayload<ExtArgs extends runtime.Types.Extensions.InternalA
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     essayState: boolean
+    examOpen: boolean
   }, ExtArgs["result"]["examState"]>
   composites: {}
 }
@@ -694,6 +721,7 @@ export interface Prisma__ExamStateClient<T, Null = never, ExtArgs extends runtim
 export interface ExamStateFieldRefs {
   readonly id: Prisma.FieldRef<"ExamState", 'String'>
   readonly essayState: Prisma.FieldRef<"ExamState", 'Boolean'>
+  readonly examOpen: Prisma.FieldRef<"ExamState", 'Boolean'>
 }
     
 

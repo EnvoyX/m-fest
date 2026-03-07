@@ -604,12 +604,4 @@ export const dashboardRouter = router({
 
         return currentMotorTypeQuota
     }),
-    getExamResults: protectedProcedure.query(async ({ ctx }) => {
-        const stats = await ctx.db.quizResult.findMany({
-            where: {
-                id: ctx.session.user.id
-            }
-        })
-        return stats
-    })
 });

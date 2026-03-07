@@ -9,7 +9,7 @@ import { eventsList, type Event } from "./eventDashboard";
 const WIB_TZ = "Asia/Jakarta";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+    return twMerge(clsx(inputs));
 }
 
 // For testing date
@@ -21,119 +21,119 @@ export function cn(...inputs: ClassValue[]) {
 
 // Real date
 export const getCurrentDate = () => {
-  const now = new Date();
+    const now = new Date();
 
-  return now;
+    return now;
 };
 const currentDate = getCurrentDate();
 
 export function wibToUTC(date: Date) {
-  return fromZonedTime(date, WIB_TZ);
+    return fromZonedTime(date, WIB_TZ);
 }
 
 export function getCompCaseDate(comp: CompetitionName) {
-  if (comp === "BCC") {
-    return new Date("2026-01-23T00:00:00");
-  } else if (comp === "IPPC") return null;
-  else if (comp === "PDC") {
-    new Date("2026-02-01T00:00:00");
-  } else if (comp === "STEM") {
-    new Date("2026-03-08T00:00:00");
-  }
-  return null;
+    if (comp === "BCC") {
+        return new Date("2026-01-23T00:00:00");
+    } else if (comp === "IPPC") return null;
+    else if (comp === "PDC") {
+        new Date("2026-02-01T00:00:00");
+    } else if (comp === "STEM") {
+        new Date("2026-03-08T00:00:00");
+    }
+    return null;
 }
 
 export function getSubmissionDeadline(comp: CompetitionName) {
-  if (comp === "BCC") {
-    return new Date("2026-03-14T23:59:59");
-  } else if (comp === "IPPC") {
-    return new Date("2026-03-01T02:00:00");
-  } else if (comp === "PDC") {
-    return new Date("2026-03-06T23:59:59");
-  } else if (comp === "STEM") return null;
-  return null;
+    if (comp === "BCC") {
+        return new Date("2026-03-14T23:59:59");
+    } else if (comp === "IPPC") {
+        return new Date("2026-03-01T02:00:00");
+    } else if (comp === "PDC") {
+        return new Date("2026-03-06T23:59:59");
+    } else if (comp === "STEM") return null;
+    return null;
 }
 export function getCompFee(comp: string) {
-  // const compStartDate1 = competitions.find(
-  //   (competition) => competition.abbreviation === comp.toUpperCase(),
-  // )?.startRegDate1 as Date;
-  // const compEndDate1 = competitions.find(
-  //   (competition) => competition.abbreviation === comp.toUpperCase(),
-  // )?.endRegDate1 as Date;
-  // if (
-  //   isWithinInterval(currentDate, {
-  //     start: compStartDate1,
-  //     end: compEndDate1,
-  //   })
-  // ) {
-  //   const compFee = competitions.find(
-  //     (competition) => competition.abbreviation === comp.toUpperCase(),
-  //   )?.fee1 as number;
+    // const compStartDate1 = competitions.find(
+    //   (competition) => competition.abbreviation === comp.toUpperCase(),
+    // )?.startRegDate1 as Date;
+    // const compEndDate1 = competitions.find(
+    //   (competition) => competition.abbreviation === comp.toUpperCase(),
+    // )?.endRegDate1 as Date;
+    // if (
+    //   isWithinInterval(currentDate, {
+    //     start: compStartDate1,
+    //     end: compEndDate1,
+    //   })
+    // ) {
+    //   const compFee = competitions.find(
+    //     (competition) => competition.abbreviation === comp.toUpperCase(),
+    //   )?.fee1 as number;
 
-  //   return compFee;
-  // }
+    //   return compFee;
+    // }
 
-  const compFee = competitions.find(
-    (competition) => competition.abbreviation === comp.toUpperCase(),
-  )?.fee2 as number;
+    const compFee = competitions.find(
+        (competition) => competition.abbreviation === comp.toUpperCase(),
+    )?.fee2 as number;
 
-  return compFee;
+    return compFee;
 }
 
 export function getTwibbonFormatLink(comp: CompetitionName) {
-  switch (comp) {
-    case CompetitionName.BCC:
-      return "https://drive.google.com/drive/folders/1BWJJ8mOQbO8S1psZmvJ_00pAr6ejR1G-?usp=sharing";
-    case CompetitionName.IPPC:
-      return "https://drive.google.com/drive/folders/1Suy1QMroEjRlUzivl-gLiKBGDZ3oFBux?usp=sharing";
-    case CompetitionName.PDC:
-      return "https://drive.google.com/drive/folders/17ADXN7Iom5nPJXJHEw2oQZvRRvf9q4fP?usp=sharing";
-    case CompetitionName.STEM:
-      return "https://drive.google.com/drive/folders/1IfVYRpYq67Vk5Sgwnpvrr5eUKpKgNlng?usp=sharing";
-  }
+    switch (comp) {
+        case CompetitionName.BCC:
+            return "https://drive.google.com/drive/folders/1BWJJ8mOQbO8S1psZmvJ_00pAr6ejR1G-?usp=sharing";
+        case CompetitionName.IPPC:
+            return "https://drive.google.com/drive/folders/1Suy1QMroEjRlUzivl-gLiKBGDZ3oFBux?usp=sharing";
+        case CompetitionName.PDC:
+            return "https://drive.google.com/drive/folders/17ADXN7Iom5nPJXJHEw2oQZvRRvf9q4fP?usp=sharing";
+        case CompetitionName.STEM:
+            return "https://drive.google.com/drive/folders/1IfVYRpYq67Vk5Sgwnpvrr5eUKpKgNlng?usp=sharing";
+    }
 }
 
 export function getMRUNBatchInfo(currentDate: Date) {
-  const mRunInfo = eventsList.find((event) => event.id === "M-RUN");
-  if (
-    isWithinInterval(currentDate, {
-      start: mRunInfo?.Batch1StartRegDate as Date,
-      end: mRunInfo?.Batch1EndRegDate as Date,
-    })
-  ) {
+    const mRunInfo = eventsList.find((event) => event.id === "M-RUN");
+    if (
+        isWithinInterval(currentDate, {
+            start: mRunInfo?.Batch1StartRegDate as Date,
+            end: mRunInfo?.Batch1EndRegDate as Date,
+        })
+    ) {
+        return {
+            batch: "1",
+            price: mRunInfo?.price1,
+            startRegDate: mRunInfo?.Batch1StartRegDate,
+            endRegDate: mRunInfo?.Batch1EndRegDate,
+        };
+    }
+    if (
+        isWithinInterval(currentDate, {
+            start: mRunInfo?.Batch2StartRegDate as Date,
+            end: mRunInfo?.Batch2EndRegDate as Date,
+        })
+    ) {
+        return {
+            batch: "2",
+            price: mRunInfo?.price2,
+            startRegDate: mRunInfo?.Batch2StartRegDate,
+            endRegDate: mRunInfo?.Batch2EndRegDate,
+        };
+    }
+    // Return hard-coded info or default info
     return {
-      batch: "1",
-      price: mRunInfo?.price1,
-      startRegDate: mRunInfo?.Batch1StartRegDate,
-      endRegDate: mRunInfo?.Batch1EndRegDate,
+        batch: "1",
+        price: mRunInfo?.price1,
+        startRegDate: mRunInfo?.Batch2StartRegDate,
+        endRegDate: mRunInfo?.Batch2EndRegDate,
     };
-  }
-  if (
-    isWithinInterval(currentDate, {
-      start: mRunInfo?.Batch2StartRegDate as Date,
-      end: mRunInfo?.Batch2EndRegDate as Date,
-    })
-  ) {
-    return {
-      batch: "2",
-      price: mRunInfo?.price2,
-      startRegDate: mRunInfo?.Batch2StartRegDate,
-      endRegDate: mRunInfo?.Batch2EndRegDate,
-    };
-  }
-  // Return hard-coded info or default info
-  return {
-    batch: "1",
-    price: mRunInfo?.price1,
-    startRegDate: mRunInfo?.Batch2StartRegDate,
-    endRegDate: mRunInfo?.Batch2EndRegDate,
-  };
 }
 
 export function isEventOpen(event: Event, now: Date) {
-  if (!event.startRegDate1 || !event.endRegDate1) return false;
-  return isWithinInterval(now, {
-    start: event.startRegDate1,
-    end: event.endRegDate1,
-  });
+    if (!event.startRegDate1 || !event.endRegDate1) return false;
+    return isWithinInterval(now, {
+        start: event.startRegDate1,
+        end: event.endRegDate1,
+    });
 }

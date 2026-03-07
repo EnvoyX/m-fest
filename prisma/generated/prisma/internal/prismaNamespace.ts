@@ -1590,7 +1590,8 @@ export type QuizResultScalarFieldEnum = (typeof QuizResultScalarFieldEnum)[keyof
 
 export const ExamStateScalarFieldEnum = {
   id: 'id',
-  essayState: 'essayState'
+  essayState: 'essayState',
+  examOpen: 'examOpen'
 } as const
 
 export type ExamStateScalarFieldEnum = (typeof ExamStateScalarFieldEnum)[keyof typeof ExamStateScalarFieldEnum]

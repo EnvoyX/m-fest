@@ -408,6 +408,7 @@ model quizResult {
 }
 
 model ExamState {
-  id         String    @id @default(cuid())
-  essayState Boolean   @default(false)
+  id         String  @id @default(cuid())
+  essayState Boolean @default(false)
+  examOpen   Boolean @default(false)
 }

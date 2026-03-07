@@ -6,6 +6,7 @@ import type { User } from "../../../../../../../prisma/generated/prisma/client";
 import { getCurrentDate } from "@/lib/utils";
 import { isAfter } from "date-fns";
 import type { TeamMemberWithTeam } from "@/types/prisma";
+import { getExamStatus } from "@/lib/exam-states";
 
 export const metadata: Metadata = {
     title: "STEM Exam | Mechanical Festival 2026",
@@ -18,6 +19,8 @@ export default async function StemExamPage({
     searchParams: Promise<{ token: string }>;
 }) {
     const currentDate = getCurrentDate();
+    const isExamOpen = await getExamStatus()
+    if (!isExamOpen) redirect("/dashboard")
     const token = (await searchParams).token;
     if (!token) {
         // console.log("Token not found");
@@ -27,6 +30,8 @@ export default async function StemExamPage({
     const examSession = await db.examSession.findUnique({
         where: { token },
     });
+
+    if (!examSession) redirect("entry-exam")
 
     const user = await db.user.findUnique({
         where: {

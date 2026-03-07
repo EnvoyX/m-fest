@@ -34,6 +34,7 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
     const kodeSoal = (teamMember.kodeSoal as "A" | "B" | "C" | "TECHMEET");
 
     const { data: isEssayOpen, isFetching } = useQuery(trpc.stemExam.getEssayState.queryOptions())
+    const { data: isExamOpen } = useQuery(trpc.stemExam.getExamState.queryOptions())
 
 
     // --- 2. Derivasi Data (Memoized) ---
@@ -128,6 +129,12 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
 
     // --- 6. Handlers ---
     const handleNextSession = () => {
+        queryClient.invalidateQueries({
+            queryKey: trpc.stemExam.getEssayState.queryKey(),
+        });
+        if (!isExamOpen) {
+            router.replace("/dashboard")
+        };
         if (activeSession < 3) {
             setActiveSession((prev) => (prev + 1) as 1 | 2 | 3);
         } else {
@@ -136,6 +143,12 @@ export default function ExamClient({ user, teamMember }: { user: User, teamMembe
     };
 
     const handleAnswerSelection = (index: number) => {
+        queryClient.invalidateQueries({
+            queryKey: trpc.stemExam.getEssayState.queryKey(),
+        });
+        if (!isExamOpen) {
+            router.replace("/dashboard")
+        };
         const newAnswers = [...userAnswers];
         newAnswers[currentQuestionIndex] = index;
         setUserAnswers(newAnswers);

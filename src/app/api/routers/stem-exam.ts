@@ -39,6 +39,14 @@ export const stemRouter = router({
             });
             return newResult;
         }),
+    getExamAttempt: protectedProcedure.query(async ({ ctx }) => {
+        const stats = await ctx.db.quizResult.findMany({
+            where: {
+                id: ctx.session.user.id
+            }
+        })
+        return stats
+    }),
     getEssayState: protectedProcedure
         .query(async ({ ctx }) => {
             const essayState = await ctx.db.examState.findFirst({
@@ -46,4 +54,10 @@ export const stemRouter = router({
             });
             return essayState?.essayState as boolean;
         }),
+    getExamState: protectedProcedure.query(async ({ ctx }) => {
+        const examState = await ctx.db.examState.findFirst({
+            select: { examOpen: true }
+        });
+        return examState?.examOpen as boolean;
+    }),
 });

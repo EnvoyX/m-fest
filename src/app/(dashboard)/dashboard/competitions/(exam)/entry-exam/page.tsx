@@ -1,3 +1,4 @@
+import { getExamAttempt, getExamStatus } from "@/lib/exam-states";
 import { getCurrentDate } from "@/lib/utils";
 import { auth } from "@/server/auth/auth";
 import { db } from "@/server/db";
@@ -11,11 +12,6 @@ export const metadata: Metadata = {
     title: "Entry Exam | Mechanical Festival 2026",
     description: "Entry Exam",
 };
-
-const currentDate = getCurrentDate();
-const openStemTime = new Date("2026-03-01T14:00:00Z");
-const closeStemTime = new Date("2026-03-01T16:00:00Z");
-const isOpen = currentDate >= openStemTime && currentDate < closeStemTime;
 
 export default async function EntryExamPage() {
     const session = await auth.api.getSession({
@@ -40,15 +36,8 @@ export default async function EntryExamPage() {
             },
         },
     });
-
-
-    const stats = await db.quizResult.findMany({
-        where: {
-            userId: user?.id
-        }
-    })
-
-    const examAttempted = stats.length >= 3;
+    const examAttempted = await getExamAttempt(user?.id)
+    const isExamOpen = await getExamStatus()
 
     // Leader check if registered for STEM
     if (
@@ -90,9 +79,9 @@ export default async function EntryExamPage() {
             <Button
                 variant="primary"
                 className={"rounded-sm bg-white/5 border hover:bg-white/10 mt-2"}
-                isDisabled={examAttempted}
+                isDisabled={examAttempted || !isExamOpen}
             >
-                <Link href={`stem-exam?token=${token}`}>{examAttempted ? "Exam Already Attempted" : "Start Exam"}</Link>
+                <Link href={`${examAttempted ? "" : isExamOpen ? `stem-exam?token=${token}` : ""}`}>{examAttempted ? "Exam Already Attempted" : isExamOpen ? "Start Exam" : "Exam closed"}</Link>
             </Button>
         </div>
     );

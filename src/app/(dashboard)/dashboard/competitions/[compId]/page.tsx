@@ -9,13 +9,13 @@ import { db } from "@/server/db";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Button as HeroButton } from "@heroui/react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { SubmissionSkeleton } from "./CompFormSkeleton";
 import { cn, getCurrentDate } from "@/lib/utils";
 import { format, isBefore } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getExamAttempt, getExamStatus } from "@/lib/exam-states";
 
 export async function generateMetadata({
     params,
@@ -95,12 +95,8 @@ async function FetchCompForm({
     }
 
     if (comp === "STEM" && team.competition === "STEM") {
-        const stats = await db.quizResult.findMany({
-            where: {
-                userId: session?.user?.id
-            }
-        })
-        const examAttempted = stats.length >= 3;
+        const examAttempted = await getExamAttempt(session?.user?.id)
+        const isExamOpen = await getExamStatus()
         return (
             // Tryout Exam Here
             <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -165,9 +161,13 @@ async function FetchCompForm({
                                     <Button className={cn({ "opacity-50 cursor-not-allowed": examAttempted })} variant={"outline"} disabled={examAttempted}>
                                         Exam Attempted
                                     </Button>
-                                ) : (<Button className={cn({ "opacity-50 cursor-not-allowed": examAttempted })} variant={"outline"} disabled={examAttempted} asChild>
+                                ) : isExamOpen ? (<Button className={cn({ "opacity-50 cursor-not-allowed": !isExamOpen })} variant={"outline"} disabled={!isExamOpen} asChild>
                                     <Link href={"entry-exam"}>Start Exam</Link>
-                                </Button>)}
+                                </Button>) : (
+                                    <Button className={cn({ "opacity-50 cursor-not-allowed": !isExamOpen })} variant={"outline"} disabled={!isExamOpen}>
+                                        Exam closed
+                                    </Button>
+                                )}
                             </div>
                         </div>
                     </div>
