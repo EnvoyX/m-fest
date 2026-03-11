@@ -77,7 +77,7 @@ export const eventsList: Event[] = [
         endRegDate1: new Date("2026-04-04T23:59:59"),
         // Batch 1 : 8 Maret - 21 Maret
         // Batch 2 : 22 Maret - 4 April
-        Batch1StartRegDate: new Date("2026-03-10T00:00:00"),
+        Batch1StartRegDate: new Date("2026-03-13T13:00:00"),
         Batch1EndRegDate: new Date("2026-03-21T23:59:59"),
         Batch2StartRegDate: new Date("2026-03-22T00:00:00"),
         Batch2EndRegDate: new Date("2026-04-04T23:59:59"),
