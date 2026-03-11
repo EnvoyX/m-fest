@@ -1359,4 +1359,66 @@ export const adminRouter = router({
         }
 
     }),
+    updateEventStatusByMany: adminProcedure.input(
+        z.object({
+            eventIds: z.array(z.string()),
+            context: z.enum(["Registration", "Payment"]),
+            action: z.enum(["Approve", "Reject", "Pending"])
+        })
+    ).mutation(async ({ ctx, input }) => {
+        const { eventIds, context, action } = input
+        if (context === "Registration") {
+            if (action === "Approve") {
+                await ctx.db.eventRegistration.updateMany({
+                    where: {
+                        id: {
+                            in: eventIds
+                        }
+                    },
+                    data: { eventStatus: "ACCEPTED" },
+                });
+            } else if (action === "Reject") {
+                await ctx.db.eventRegistration.updateMany({
+                    where: {
+                        id: {
+                            in: eventIds
+                        }
+                    },
+                    data: { eventStatus: "REJECTED" },
+                });
+            } else if (action === "Pending") {
+                await ctx.db.eventRegistration.updateMany({
+                    where: {
+                        id: {
+                            in: eventIds
+                        }
+                    },
+                    data: { eventStatus: "PENDING" },
+                });
+            }
+        }
+        else {
+            if (action === "Approve") {
+                await ctx.db.eventRegistration.updateMany({
+                    where: {
+                        id: {
+                            in: eventIds
+                        }
+                    },
+                    data: { paymentStatus: "ACCEPTED" },
+                });
+            } else if (action === "Pending") {
+                await ctx.db.eventRegistration.updateMany({
+                    where: {
+                        id: {
+                            in: eventIds
+                        }
+                    }
+                    ,
+                    data: { paymentStatus: "PENDING" },
+                });
+            }
+        }
+
+    }),
 });

@@ -101,7 +101,30 @@ export default function MRunDataTable() {
             });
         },
     });
-
+    const updateStatusByMany = useMutation({
+        ...trpc.admin.updateEventStatusByMany.mutationOptions(),
+        onMutate: () => {
+            toast.loading("Updating statuses...", {
+                id: "update-statuses",
+            });
+        },
+        onError: (error) => {
+            toast.dismiss("update-statuses");
+            toast.error("Failed to update statuses", {
+                description: error.message,
+            });
+            // console.log(error.message);
+        },
+        onSuccess(data, variables) {
+            toast.dismiss("update-statuses");
+            toast.success(`${variables.eventIds.length} registration statuses updated successfully`);
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries({
+                queryKey: trpc.admin.getEvents.queryKey(),
+            });
+        },
+    });
 
     const deleteEvent = useMutation({
         ...trpc.admin.deleteEvent.mutationOptions(),
@@ -325,7 +348,7 @@ export default function MRunDataTable() {
             accessorFn: (row) => row.ktpUrl,
             header: ({ column }) => {
                 return (
-                    <DataTableColumnHeader column={column} title="KTP or Student Card" />
+                    <DataTableColumnHeader column={column} title="KTP/KTM/Student Card" />
                 );
             },
             cell: ({ row }) => {
@@ -750,7 +773,17 @@ export default function MRunDataTable() {
                                         table.resetColumnFilters();
                                     }}
                                 >
-                                    Status
+                                    Registration Status
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        setFilterColumn("paymentStatus");
+                                        table.getColumn("paymentStatus")?.setFilterValue("");
+                                        table.resetColumnFilters();
+                                    }}
+                                >
+                                    Payment Status
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                     className="cursor-pointer hover:bg-white/20!"
@@ -1064,16 +1097,41 @@ export default function MRunDataTable() {
                                 className="bg-transparent backdrop-glass-xl"
                                 align="end"
                             >
-                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
+                                <DropdownMenuLabel className="text-muted-foreground">Registration</DropdownMenuLabel>
                                 <DropdownMenuItem
-                                    className="cursor-pointer hover:bg-white/20!"
+                                    className="cursor-pointer text-green-500 hover:text-green-500! hover:bg-green-900/60!"
                                     onClick={() => {
-                                        exportFilteredRowsToXlsx(table, "events.xlsx");
+                                        const itemIds = table
+                                            .getFilteredSelectedRowModel()
+                                            .rows.map((row) => row.original.id);
+                                        updateStatusByMany.mutate({ eventIds: itemIds, action: "Approve", context: "Registration" })
                                     }}
                                 >
-                                    <IconFileExport />
-                                    Export selected to .xlsx
+                                    Approve {table.getFilteredSelectedRowModel().rows.length} registrations
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    className="cursor-pointer text-yellow-500 hover:text-yellow-500! hover:bg-yellow-900/60!"
+                                    onClick={() => {
+                                        const itemIds = table
+                                            .getFilteredSelectedRowModel()
+                                            .rows.map((row) => row.original.id);
+                                        updateStatusByMany.mutate({ eventIds: itemIds, action: "Pending", context: "Registration" })
+                                    }}
+                                >
+                                    Mark {table.getFilteredSelectedRowModel().rows.length} rows as Pending
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    variant="destructive"
+                                    className="cursor-pointer"
+                                    onClick={() => {
+                                        const itemIds = table
+                                            .getFilteredSelectedRowModel()
+                                            .rows.map((row) => row.original.id);
+                                        updateStatusByMany.mutate({ eventIds: itemIds, action: "Reject", context: "Registration" })
+                                    }}
+                                >
+                                    Reject {table.getFilteredSelectedRowModel().rows.length} registrations
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                     variant="destructive"
@@ -1089,6 +1147,41 @@ export default function MRunDataTable() {
                                 >
                                     Delete {table.getFilteredSelectedRowModel().rows.length}{" "}
                                     events
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuLabel className="text-muted-foreground">Payment</DropdownMenuLabel>
+                                <DropdownMenuItem
+                                    className="cursor-pointer text-green-500 hover:text-green-500! hover:bg-green-900/60!"
+                                    onClick={() => {
+                                        const itemIds = table
+                                            .getFilteredSelectedRowModel()
+                                            .rows.map((row) => row.original.id);
+                                        updateStatusByMany.mutate({ eventIds: itemIds, action: "Approve", context: "Payment" })
+                                    }}
+                                >
+                                    Approve {table.getFilteredSelectedRowModel().rows.length} payments
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    className="cursor-pointer text-yellow-500 hover:text-yellow-500! hover:bg-yellow-900/60!"
+                                    onClick={() => {
+                                        const itemIds = table
+                                            .getFilteredSelectedRowModel()
+                                            .rows.map((row) => row.original.id);
+                                        updateStatusByMany.mutate({ eventIds: itemIds, action: "Pending", context: "Payment" })
+                                    }}
+                                >
+                                    Mark {table.getFilteredSelectedRowModel().rows.length} rows as Pending
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuLabel className="text-muted-foreground">Export</DropdownMenuLabel>
+                                <DropdownMenuItem
+                                    className="cursor-pointer hover:bg-white/20!"
+                                    onClick={() => {
+                                        exportFilteredRowsToXlsx(table, "events.xlsx");
+                                    }}
+                                >
+                                    <IconFileExport />
+                                    Export selected to .xlsx
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
