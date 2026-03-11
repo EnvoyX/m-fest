@@ -49,6 +49,7 @@ export default function MRunForm() {
             riwayatPenyakit: false,
             alergi: false,
             siapLomba: false,
+            category: "UMUM"
         },
     });
 
@@ -330,6 +331,7 @@ export default function MRunForm() {
                                                     }
                                                     return field.onChange(val);
                                                 }}
+                                                defaultValue="UMUM"
                                                 className="flex max-sm:flex-col gap-4 space-x-4"
                                             >
                                                 <div className="flex items-center space-x-2">
@@ -615,7 +617,7 @@ export default function MRunForm() {
                     </FormLabel> */}
                                         <UploadEventDialog
                                             id={1}
-                                            title="KTP/Kartu Pelajar"
+                                            title="KTP/KTM"
                                             isLoading={isLoading}
                                             setIsLoading={setIsLoading}
                                             uploadThingRoute="uploadKTPorStudentCard"
@@ -662,7 +664,7 @@ export default function MRunForm() {
                                 )}
                             />
                             <h4 className="text-xs font-bold uppercase tracking-widest text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 border-b border-teal-500/20 pb-2">
-                                Batch {batchInfo?.batch} | Harga : Rp. {batchInfo?.price}
+                                Batch {batchInfo?.batch} | Harga : Rp. {form.watch("category") === "UMUM" ? batchInfo?.pricePublic : batchInfo?.priceStudent}
                             </h4>
                             <FormField
                                 control={form.control}

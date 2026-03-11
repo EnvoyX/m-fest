@@ -12,16 +12,10 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
-// For testing date
-// export const getCurrentDate = () => {
-//     const now = new Date("2026-01-26T00:00:00");
-
-//     return now;
-// };
-
-// Real date
+// Date Testing or Real Date
 export const getCurrentDate = () => {
     const now = new Date();
+    //     const now = new Date("2026-01-26T00:00:00");
 
     return now;
 };
@@ -103,7 +97,8 @@ export function getMRUNBatchInfo(currentDate: Date) {
     ) {
         return {
             batch: "1",
-            price: mRunInfo?.price1,
+            pricePublic: mRunInfo?.price1,
+            priceStudent: mRunInfo?.price2,
             startRegDate: mRunInfo?.Batch1StartRegDate,
             endRegDate: mRunInfo?.Batch1EndRegDate,
         };
@@ -116,7 +111,8 @@ export function getMRUNBatchInfo(currentDate: Date) {
     ) {
         return {
             batch: "2",
-            price: mRunInfo?.price2,
+            pricePublic: mRunInfo?.price3,
+            priceStudent: mRunInfo?.price4,
             startRegDate: mRunInfo?.Batch2StartRegDate,
             endRegDate: mRunInfo?.Batch2EndRegDate,
         };
@@ -124,9 +120,10 @@ export function getMRUNBatchInfo(currentDate: Date) {
     // Return hard-coded info or default info
     return {
         batch: "1",
-        price: mRunInfo?.price1,
-        startRegDate: mRunInfo?.Batch2StartRegDate,
-        endRegDate: mRunInfo?.Batch2EndRegDate,
+        pricePublic: mRunInfo?.price1,
+        priceStudent: mRunInfo?.price2,
+        startRegDate: mRunInfo?.Batch1StartRegDate,
+        endRegDate: mRunInfo?.Batch1EndRegDate,
     };
 }
 

@@ -1318,4 +1318,45 @@ export const adminRouter = router({
                 },
             });
         }),
+    updateEventStatus: adminProcedure.input(
+        z.object({
+            eventId: z.string(),
+            context: z.enum(["Registration", "Payment"]),
+            action: z.enum(["Approve", "Reject", "Pending"])
+        })
+    ).mutation(async ({ ctx, input }) => {
+        const { eventId, context, action } = input
+        if (context === "Registration") {
+            if (action === "Approve") {
+                await ctx.db.eventRegistration.update({
+                    where: { id: eventId },
+                    data: { eventStatus: "ACCEPTED" },
+                });
+            } else if (action === "Reject") {
+                await ctx.db.eventRegistration.update({
+                    where: { id: eventId },
+                    data: { eventStatus: "REJECTED" },
+                });
+            } else if (action === "Pending") {
+                await ctx.db.eventRegistration.update({
+                    where: { id: eventId },
+                    data: { eventStatus: "PENDING" },
+                });
+            }
+        }
+        else {
+            if (action === "Approve") {
+                await ctx.db.eventRegistration.update({
+                    where: { id: eventId },
+                    data: { paymentStatus: "ACCEPTED" },
+                });
+            } else if (action === "Pending") {
+                await ctx.db.eventRegistration.update({
+                    where: { id: eventId },
+                    data: { paymentStatus: "PENDING" },
+                });
+            }
+        }
+
+    }),
 });

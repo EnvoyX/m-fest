@@ -13,7 +13,7 @@ import {
     useReactTable,
     type VisibilityState,
 } from "@tanstack/react-table";
-import { ListFilter, Loader2, MoreHorizontal, RefreshCw } from "lucide-react";
+import { BadgeCheckIcon, BadgeX, Clock, ListFilter, Loader2, MoreHorizontal, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -49,6 +49,7 @@ import {
     exportCurrentPageToXlsx,
     exportFilteredRowsToXlsx,
 } from "@/utils/xlsx";
+import { Badge } from "@/components/ui/badge";
 
 export default function MRunDataTable() {
     const trpc = useTRPC();
@@ -76,23 +77,23 @@ export default function MRunDataTable() {
 
     type Unified = (typeof unified)[number];
 
-    const addPresence = useMutation({
-        ...trpc.admin.addPresenceParticipant.mutationOptions(),
+    const updateStatus = useMutation({
+        ...trpc.admin.updateEventStatus.mutationOptions(),
         onMutate: () => {
-            toast.loading("Adding presence...", {
-                id: "add-presence",
+            toast.loading("Updating status...", {
+                id: "update-status",
             });
         },
         onError: (error) => {
-            toast.dismiss("add-presence");
-            toast.error("Failed to add presence", {
+            toast.dismiss("update-status");
+            toast.error("Failed to update status", {
                 description: error.message,
             });
             // console.log(error.message);
         },
         onSuccess() {
-            toast.dismiss("add-presence");
-            toast.success(`Presence added successfully`);
+            toast.dismiss("update-status");
+            toast.success(`Status updated successfully`);
         },
         onSettled: () => {
             queryClient.invalidateQueries({
@@ -100,30 +101,7 @@ export default function MRunDataTable() {
             });
         },
     });
-    const removePresence = useMutation({
-        ...trpc.admin.removePresenceParticipant.mutationOptions(),
-        onMutate: () => {
-            toast.loading("Removing presence...", {
-                id: "remove-presence",
-            });
-        },
-        onError: (error) => {
-            toast.dismiss("remove-presence");
-            toast.error("Failed to remove presence", {
-                description: error.message,
-            });
-            // console.log(error.message);
-        },
-        onSuccess() {
-            toast.dismiss("remove-presence");
-            toast.success(`Presence removed successfully`);
-        },
-        onSettled: () => {
-            queryClient.invalidateQueries({
-                queryKey: trpc.admin.getEvents.queryKey(),
-            });
-        },
-    });
+
 
     const deleteEvent = useMutation({
         ...trpc.admin.deleteEvent.mutationOptions(),
@@ -217,24 +195,31 @@ export default function MRunDataTable() {
                             className="bg-transparent! backdrop-glass-lg"
                             align="end"
                         >
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
+                            <DropdownMenuLabel className="text-muted-foreground">Registration</DropdownMenuLabel>
                             <DropdownMenuItem
                                 className="cursor-pointer text-green-500 hover:text-green-500! hover:bg-green-900/60!"
-                                onClick={() => addPresence.mutate({ eventId: item.id })}
+                                onClick={() => updateStatus.mutate({ eventId: item.id, action: "Approve", context: "Registration" })}
                             >
-                                Add presence
+                                Approve registration
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                className="cursor-pointer text-yellow-500 hover:text-yellow-500! hover:bg-yellow-900/60!"
+                                onClick={() => updateStatus.mutate({ eventId: item.id, action: "Pending", context: "Registration" })}
+                            >
+                                Mark as Pending
                             </DropdownMenuItem>
                             <DropdownMenuItem
                                 variant="destructive"
                                 className="cursor-pointer"
                                 onClick={() =>
-                                    removePresence.mutate({
+                                    updateStatus.mutate({
                                         eventId: item.id,
+                                        action: "Reject",
+                                        context: "Registration"
                                     })
                                 }
                             >
-                                Remove presence
+                                Reject registration
                             </DropdownMenuItem>
                             <DropdownMenuItem
                                 variant="destructive"
@@ -243,9 +228,24 @@ export default function MRunDataTable() {
                                     deleteEvent.mutate({ eventId: item.id, userId: item.userId })
                                 }
                             >
-                                Delete event
+                                Delete registration
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
+                            <DropdownMenuLabel className="text-muted-foreground">Payment</DropdownMenuLabel>
+                            <DropdownMenuItem
+                                className="cursor-pointer text-green-500 hover:text-green-500! hover:bg-green-900/60!"
+                                onClick={() => updateStatus.mutate({ eventId: item.id, action: "Approve", context: "Payment" })}
+                            >
+                                Approve payment
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                className="cursor-pointer text-yellow-500 hover:text-yellow-500! hover:bg-yellow-900/60!"
+                                onClick={() => updateStatus.mutate({ eventId: item.id, action: "Pending", context: "Payment" })}
+                            >
+                                Mark as Pending
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuLabel className="text-muted-foreground">Misc</DropdownMenuLabel>
                             <DropdownMenuItem className="cursor-pointer hover:bg-white/20!">
                                 <Link
                                     href={`/admin/users/${item.userId}`}
@@ -261,32 +261,123 @@ export default function MRunDataTable() {
             },
         },
         {
-            accessorKey: "id",
-            accessorFn: (row) => row.id,
-            header: ({ column }) => {
-                return <DataTableColumnHeader column={column} title="Event Id" />;
-            },
-            cell: ({ row }) => <div className="">{row.getValue("id")}</div>,
-        },
-        {
-            accessorKey: "userId",
-            accessorFn: (row) => row.userId,
-            header: ({ column }) => {
-                return <DataTableColumnHeader column={column} title="User Id" />;
-            },
-            cell: ({ row }) => <div className="">{row.getValue("userId")}</div>,
-            filterFn: "includesString",
-        },
-        {
-            accessorKey: "isPresent",
-            accessorFn: (row) => (row.isPresence ? "Present" : "Absent"),
+            accessorKey: "eventStatus",
+            accessorFn: (row) => (row.eventStatus === "ACCEPTED" ? "VERIFIED" : row.eventStatus === "PENDING" ? "PENDING" : "REJECTED"),
             header: ({ column }) => {
                 return (
-                    <DataTableColumnHeader column={column} title="Presence Status" />
+                    <DataTableColumnHeader column={column} title="Registration Status" />
                 );
             },
-            cell: ({ row }) => <div className="">{row.getValue("isPresent")}</div>,
+            cell: ({ row }) => <div className="">   <span>
+                {row.getValue("eventStatus") === "PENDING" ? (
+                    <Badge variant="secondary" className="bg-yellow-600 text-white">
+                        <Clock />
+                        PENDING
+                    </Badge>
+                ) : row.getValue("eventStatus") === "VERIFIED" ? (
+                    <Badge
+                        variant="secondary"
+                        className="bg-blue-500 text-white dark:bg-blue-600"
+                    >
+                        <BadgeCheckIcon />
+                        VERIFIED
+                    </Badge>
+                ) : (
+                    <Badge className="bg-red-500 text-white">
+                        <BadgeX />
+                        REJECTED</Badge>
+                )}
+            </span></div>,
             filterFn: "includesString",
+        },
+        {
+            accessorKey: "paymentStatus",
+            accessorFn: (row) => (row.paymentStatus === "ACCEPTED" ? "VERIFIED" : row.paymentStatus === "PENDING" ? "PENDING" : "REJECTED"),
+            header: ({ column }) => {
+                return (
+                    <DataTableColumnHeader column={column} title="Payment Status" />
+                );
+            },
+            cell: ({ row }) => <div className="">   <span>
+                {row.getValue("paymentStatus") === "PENDING" ? (
+                    <Badge variant="secondary" className="bg-yellow-600 text-white">
+                        <Clock />
+                        PENDING
+                    </Badge>
+                ) : row.getValue("paymentStatus") === "VERIFIED" ? (
+                    <Badge
+                        variant="secondary"
+                        className="bg-blue-500 text-white dark:bg-blue-600"
+                    >
+                        <BadgeCheckIcon />
+                        VERIFIED
+                    </Badge>
+                ) : (
+                    <Badge className="bg-red-500 text-white">
+                        <BadgeX />
+                        REJECTED</Badge>
+                )}
+            </span></div>,
+            filterFn: "includesString",
+        },
+        {
+            accessorKey: "ktpUrl",
+            accessorFn: (row) => row.ktpUrl,
+            header: ({ column }) => {
+                return (
+                    <DataTableColumnHeader column={column} title="KTP or Student Card" />
+                );
+            },
+            cell: ({ row }) => {
+                const ktpUrl = row.getValue("ktpUrl") as string;
+                return (
+                    <Link
+                        href={(ktpUrl as string) ?? ""}
+                        className={cn(ktpUrl ? "underline italic font-bold" : "")}
+                        target="_blank"
+                    >
+                        {ktpUrl ? "View" : "No File"}
+                    </Link>
+                );
+            },
+        },
+        {
+            accessorKey: "buktiBayarUrl",
+            accessorFn: (row) => row.buktiBayarUrl,
+            header: ({ column }) => {
+                return <DataTableColumnHeader column={column} title="Bukti Bayar" />;
+            },
+            cell: ({ row }) => {
+                const buktiBayarUrl = row.getValue("buktiBayarUrl") as string;
+                return (
+                    <Link
+                        href={(buktiBayarUrl as string) ?? ""}
+                        className={cn(buktiBayarUrl ? "underline italic font-bold" : "")}
+                        target="_blank"
+                    >
+                        {buktiBayarUrl ? "View" : "No File"}
+                    </Link>
+                );
+            },
+        },
+        {
+            accessorKey: "followIgUrl",
+            accessorFn: (row) => row.followIgUrl,
+            header: ({ column }) => {
+                return <DataTableColumnHeader column={column} title="Follow IG Proof" />;
+            },
+            cell: ({ row }) => {
+                const followIgProofUrl = row.getValue("followIgUrl") as string;
+                return (
+                    <Link
+                        href={(followIgProofUrl as string) ?? ""}
+                        className={cn(followIgProofUrl ? "underline italic font-bold" : "")}
+                        target="_blank"
+                    >
+                        {followIgProofUrl ? "View" : "No File"}
+                    </Link>
+                );
+            },
         },
         {
             accessorKey: "userName",
@@ -529,71 +620,29 @@ export default function MRunDataTable() {
             cell: ({ row }) => <div className="">{row.getValue("detailAlergi")}</div>,
         },
         {
-            accessorKey: "ktpUrl",
-            accessorFn: (row) => row.ktpUrl,
-            header: ({ column }) => {
-                return (
-                    <DataTableColumnHeader column={column} title="KTP or Student Card" />
-                );
-            },
-            cell: ({ row }) => {
-                const ktpUrl = row.getValue("ktpUrl") as string;
-                return (
-                    <Link
-                        href={(ktpUrl as string) ?? ""}
-                        className={cn(ktpUrl ? "underline italic font-bold" : "")}
-                        target="_blank"
-                    >
-                        {ktpUrl ? "View" : "No File"}
-                    </Link>
-                );
-            },
-        },
-        {
-            accessorKey: "buktiBayarUrl",
-            accessorFn: (row) => row.buktiBayarUrl,
-            header: ({ column }) => {
-                return <DataTableColumnHeader column={column} title="Bukti Bayar" />;
-            },
-            cell: ({ row }) => {
-                const buktiBayarUrl = row.getValue("buktiBayarUrl") as string;
-                return (
-                    <Link
-                        href={(buktiBayarUrl as string) ?? ""}
-                        className={cn(buktiBayarUrl ? "underline italic font-bold" : "")}
-                        target="_blank"
-                    >
-                        {buktiBayarUrl ? "View" : "No File"}
-                    </Link>
-                );
-            },
-        },
-        {
-            accessorKey: "followIgUrl",
-            accessorFn: (row) => row.followIgUrl,
-            header: ({ column }) => {
-                return <DataTableColumnHeader column={column} title="Follow IG Proof" />;
-            },
-            cell: ({ row }) => {
-                const followIgProofUrl = row.getValue("followIgUrl") as string;
-                return (
-                    <Link
-                        href={(followIgProofUrl as string) ?? ""}
-                        className={cn(followIgProofUrl ? "underline italic font-bold" : "")}
-                        target="_blank"
-                    >
-                        {followIgProofUrl ? "View" : "No File"}
-                    </Link>
-                );
-            },
-        },
-        {
             accessorKey: "siapLomba",
             accessorFn: (row) => (row.siapLomba ? "Agreed" : "Refuse"),
             header: ({ column }) => {
                 return <DataTableColumnHeader column={column} title="Siap Lomba" />;
             },
             cell: ({ row }) => <div className="">{row.getValue("siapLomba")}</div>,
+        },
+        {
+            accessorKey: "id",
+            accessorFn: (row) => row.id,
+            header: ({ column }) => {
+                return <DataTableColumnHeader column={column} title="Event Id" />;
+            },
+            cell: ({ row }) => <div className="">{row.getValue("id")}</div>,
+        },
+        {
+            accessorKey: "userId",
+            accessorFn: (row) => row.userId,
+            header: ({ column }) => {
+                return <DataTableColumnHeader column={column} title="User Id" />;
+            },
+            cell: ({ row }) => <div className="">{row.getValue("userId")}</div>,
+            filterFn: "includesString",
         },
         {
             accessorKey: "createdAt",
@@ -696,12 +745,12 @@ export default function MRunDataTable() {
                                 <DropdownMenuItem
                                     className="cursor-pointer hover:bg-white/20!"
                                     onClick={() => {
-                                        setFilterColumn("isPresent");
-                                        table.getColumn("isPresent")?.setFilterValue("");
+                                        setFilterColumn("eventStatus");
+                                        table.getColumn("eventStatus")?.setFilterValue("");
                                         table.resetColumnFilters();
                                     }}
                                 >
-                                    Presence
+                                    Status
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                     className="cursor-pointer hover:bg-white/20!"

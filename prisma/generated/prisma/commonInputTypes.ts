@@ -245,6 +245,13 @@ export type EnumRhesusNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumRhesusNullableFilter<$PrismaModel> | $Enums.Rhesus | null
 }
 
+export type EnumEventStatusNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventStatus | Prisma.EnumEventStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumEventStatusNullableFilter<$PrismaModel> | $Enums.EventStatus | null
+}
+
 export type EnumMotorTypeNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.MotorType | Prisma.EnumMotorTypeFieldRefInput<$PrismaModel> | null
   in?: $Enums.MotorType[] | Prisma.ListEnumMotorTypeFieldRefInput<$PrismaModel> | null
@@ -338,6 +345,16 @@ export type EnumRhesusNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumRhesusNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumRhesusNullableFilter<$PrismaModel>
+}
+
+export type EnumEventStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventStatus | Prisma.EnumEventStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumEventStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.EventStatus | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEventStatusNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEventStatusNullableFilter<$PrismaModel>
 }
 
 export type EnumMotorTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -833,6 +850,13 @@ export type NestedEnumRhesusNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumRhesusNullableFilter<$PrismaModel> | $Enums.Rhesus | null
 }
 
+export type NestedEnumEventStatusNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventStatus | Prisma.EnumEventStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumEventStatusNullableFilter<$PrismaModel> | $Enums.EventStatus | null
+}
+
 export type NestedEnumMotorTypeNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.MotorType | Prisma.EnumMotorTypeFieldRefInput<$PrismaModel> | null
   in?: $Enums.MotorType[] | Prisma.ListEnumMotorTypeFieldRefInput<$PrismaModel> | null
@@ -926,6 +950,16 @@ export type NestedEnumRhesusNullableWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumRhesusNullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumRhesusNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumEventStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.EventStatus | Prisma.EnumEventStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.EventStatus[] | Prisma.ListEnumEventStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumEventStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.EventStatus | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumEventStatusNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumEventStatusNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumMotorTypeNullableWithAggregatesFilter<$PrismaModel = never> = {

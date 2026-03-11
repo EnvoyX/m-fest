@@ -1,6 +1,5 @@
 import { protectedProcedure, router } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
-import { CompetitionName } from "../../../../prisma/generated/prisma/enums";
 import { getCurrentDate } from "@/lib/utils";
 import { eventsInputProcedureSchema } from "@/lib/event-schema";
 

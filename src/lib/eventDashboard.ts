@@ -30,6 +30,8 @@ export type Event = {
     Batch2EndRegDate?: Date;
     price1?: number;
     price2?: number;
+    price3?: number;
+    price4?: number;
     slotmatic?: number;
     slotmanual?: number;
 };
@@ -79,8 +81,12 @@ export const eventsList: Event[] = [
         Batch1EndRegDate: new Date("2026-03-21T23:59:59"),
         Batch2StartRegDate: new Date("2026-03-22T00:00:00"),
         Batch2EndRegDate: new Date("2026-04-04T23:59:59"),
-        price1: 175000,
-        price2: 200000,
+        // Batch 1
+        price1: 120000, // Umum
+        price2: 110000, // Mahasiswa
+        // Batch 2
+        price3: 130000, // Umum
+        price4: 120000, // Mahasiswa
     },
     {
         id: "M-TALKS",

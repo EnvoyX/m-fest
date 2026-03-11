@@ -1404,6 +1404,7 @@ export const EventRegistrationScalarFieldEnum = {
   memenuhiSyarat: 'memenuhiSyarat',
   age: 'age',
   ktpUrl: 'ktpUrl',
+  buktiBayarUrl: 'buktiBayarUrl',
   followIgUrl: 'followIgUrl',
   category: 'category',
   jerseySize: 'jerseySize',
@@ -1417,7 +1418,8 @@ export const EventRegistrationScalarFieldEnum = {
   alergi: 'alergi',
   detailAlergi: 'detailAlergi',
   siapLomba: 'siapLomba',
-  buktiBayarUrl: 'buktiBayarUrl',
+  eventStatus: 'eventStatus',
+  paymentStatus: 'paymentStatus',
   merekKendaraan: 'merekKendaraan',
   tahunBuat: 'tahunBuat',
   platNomor: 'platNomor',
@@ -1829,6 +1831,20 @@ export type EnumRhesusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Rhesus[]'
  */
 export type ListEnumRhesusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Rhesus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EventStatus'
+ */
+export type EnumEventStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'EventStatus[]'
+ */
+export type ListEnumEventStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventStatus[]'>
     
 
 

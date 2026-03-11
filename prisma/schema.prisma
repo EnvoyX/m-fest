@@ -57,6 +57,12 @@ enum TeamStatus {
   ACCEPTED
 }
 
+enum EventStatus {
+  REJECTED
+  PENDING
+  ACCEPTED
+}
+
 enum QuizTypes {
   MATHEMATICS
   PHYSICS
@@ -201,20 +207,22 @@ model EventRegistration {
   // M-Run Specifics
   age             String?
   ktpUrl          String?
+  buktiBayarUrl   String?
   followIgUrl     String?
   category        Kategori? // 5K, 10K, etc
   jerseySize      JerseySize?
-  isAlumniHMM     Boolean?    @default(false)
-  isHMM           Boolean?    @default(false)
+  isAlumniHMM     Boolean?     @default(false)
+  isHMM           Boolean?     @default(false)
   nimHMM          String? // Khusus verifikasi HMM
   bloodType       BloodType?
   rhesus          Rhesus?
-  riwayatPenyakit Boolean?    @default(false)
+  riwayatPenyakit Boolean?     @default(false)
   detailPenyakit  String? // Kapan terakhir kambuh
   alergi          Boolean?
   detailAlergi    String?
-  siapLomba       Boolean?    @default(false) // Consent M-Run
-  buktiBayarUrl   String?
+  siapLomba       Boolean?     @default(false) // Consent M-Run
+  eventStatus     EventStatus? @default(PENDING)
+  paymentStatus   EventStatus? @default(PENDING)
 
   // ETU speficfics
   merekKendaraan  String?

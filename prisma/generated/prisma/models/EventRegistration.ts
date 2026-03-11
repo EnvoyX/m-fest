@@ -49,6 +49,7 @@ export type EventRegistrationMinAggregateOutputType = {
   memenuhiSyarat: boolean | null
   age: string | null
   ktpUrl: string | null
+  buktiBayarUrl: string | null
   followIgUrl: string | null
   category: $Enums.Kategori | null
   jerseySize: $Enums.JerseySize | null
@@ -62,7 +63,8 @@ export type EventRegistrationMinAggregateOutputType = {
   alergi: boolean | null
   detailAlergi: string | null
   siapLomba: boolean | null
-  buktiBayarUrl: string | null
+  eventStatus: $Enums.EventStatus | null
+  paymentStatus: $Enums.EventStatus | null
   merekKendaraan: string | null
   tahunBuat: string | null
   platNomor: string | null
@@ -97,6 +99,7 @@ export type EventRegistrationMaxAggregateOutputType = {
   memenuhiSyarat: boolean | null
   age: string | null
   ktpUrl: string | null
+  buktiBayarUrl: string | null
   followIgUrl: string | null
   category: $Enums.Kategori | null
   jerseySize: $Enums.JerseySize | null
@@ -110,7 +113,8 @@ export type EventRegistrationMaxAggregateOutputType = {
   alergi: boolean | null
   detailAlergi: string | null
   siapLomba: boolean | null
-  buktiBayarUrl: string | null
+  eventStatus: $Enums.EventStatus | null
+  paymentStatus: $Enums.EventStatus | null
   merekKendaraan: string | null
   tahunBuat: string | null
   platNomor: string | null
@@ -145,6 +149,7 @@ export type EventRegistrationCountAggregateOutputType = {
   memenuhiSyarat: number
   age: number
   ktpUrl: number
+  buktiBayarUrl: number
   followIgUrl: number
   category: number
   jerseySize: number
@@ -158,7 +163,8 @@ export type EventRegistrationCountAggregateOutputType = {
   alergi: number
   detailAlergi: number
   siapLomba: number
-  buktiBayarUrl: number
+  eventStatus: number
+  paymentStatus: number
   merekKendaraan: number
   tahunBuat: number
   platNomor: number
@@ -195,6 +201,7 @@ export type EventRegistrationMinAggregateInputType = {
   memenuhiSyarat?: true
   age?: true
   ktpUrl?: true
+  buktiBayarUrl?: true
   followIgUrl?: true
   category?: true
   jerseySize?: true
@@ -208,7 +215,8 @@ export type EventRegistrationMinAggregateInputType = {
   alergi?: true
   detailAlergi?: true
   siapLomba?: true
-  buktiBayarUrl?: true
+  eventStatus?: true
+  paymentStatus?: true
   merekKendaraan?: true
   tahunBuat?: true
   platNomor?: true
@@ -243,6 +251,7 @@ export type EventRegistrationMaxAggregateInputType = {
   memenuhiSyarat?: true
   age?: true
   ktpUrl?: true
+  buktiBayarUrl?: true
   followIgUrl?: true
   category?: true
   jerseySize?: true
@@ -256,7 +265,8 @@ export type EventRegistrationMaxAggregateInputType = {
   alergi?: true
   detailAlergi?: true
   siapLomba?: true
-  buktiBayarUrl?: true
+  eventStatus?: true
+  paymentStatus?: true
   merekKendaraan?: true
   tahunBuat?: true
   platNomor?: true
@@ -291,6 +301,7 @@ export type EventRegistrationCountAggregateInputType = {
   memenuhiSyarat?: true
   age?: true
   ktpUrl?: true
+  buktiBayarUrl?: true
   followIgUrl?: true
   category?: true
   jerseySize?: true
@@ -304,7 +315,8 @@ export type EventRegistrationCountAggregateInputType = {
   alergi?: true
   detailAlergi?: true
   siapLomba?: true
-  buktiBayarUrl?: true
+  eventStatus?: true
+  paymentStatus?: true
   merekKendaraan?: true
   tahunBuat?: true
   platNomor?: true
@@ -412,6 +424,7 @@ export type EventRegistrationGroupByOutputType = {
   memenuhiSyarat: boolean | null
   age: string | null
   ktpUrl: string | null
+  buktiBayarUrl: string | null
   followIgUrl: string | null
   category: $Enums.Kategori | null
   jerseySize: $Enums.JerseySize | null
@@ -425,7 +438,8 @@ export type EventRegistrationGroupByOutputType = {
   alergi: boolean | null
   detailAlergi: string | null
   siapLomba: boolean | null
-  buktiBayarUrl: string | null
+  eventStatus: $Enums.EventStatus | null
+  paymentStatus: $Enums.EventStatus | null
   merekKendaraan: string | null
   tahunBuat: string | null
   platNomor: string | null
@@ -481,6 +495,7 @@ export type EventRegistrationWhereInput = {
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  buktiBayarUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   followIgUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableFilter<"EventRegistration"> | $Enums.JerseySize | null
@@ -494,7 +509,8 @@ export type EventRegistrationWhereInput = {
   alergi?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   detailAlergi?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   siapLomba?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
-  buktiBayarUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  eventStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
+  paymentStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
   merekKendaraan?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   tahunBuat?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -530,6 +546,7 @@ export type EventRegistrationOrderByWithRelationInput = {
   memenuhiSyarat?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   ktpUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  buktiBayarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   followIgUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   jerseySize?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -543,7 +560,8 @@ export type EventRegistrationOrderByWithRelationInput = {
   alergi?: Prisma.SortOrderInput | Prisma.SortOrder
   detailAlergi?: Prisma.SortOrderInput | Prisma.SortOrder
   siapLomba?: Prisma.SortOrderInput | Prisma.SortOrder
-  buktiBayarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  eventStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrderInput | Prisma.SortOrder
   tahunBuat?: Prisma.SortOrderInput | Prisma.SortOrder
   platNomor?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -582,6 +600,7 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  buktiBayarUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   followIgUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableFilter<"EventRegistration"> | $Enums.JerseySize | null
@@ -595,7 +614,8 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   alergi?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   detailAlergi?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   siapLomba?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
-  buktiBayarUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  eventStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
+  paymentStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
   merekKendaraan?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   tahunBuat?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -631,6 +651,7 @@ export type EventRegistrationOrderByWithAggregationInput = {
   memenuhiSyarat?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   ktpUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  buktiBayarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   followIgUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   jerseySize?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -644,7 +665,8 @@ export type EventRegistrationOrderByWithAggregationInput = {
   alergi?: Prisma.SortOrderInput | Prisma.SortOrder
   detailAlergi?: Prisma.SortOrderInput | Prisma.SortOrder
   siapLomba?: Prisma.SortOrderInput | Prisma.SortOrder
-  buktiBayarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  eventStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrderInput | Prisma.SortOrder
   tahunBuat?: Prisma.SortOrderInput | Prisma.SortOrder
   platNomor?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -685,6 +707,7 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   memenuhiSyarat?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+  buktiBayarUrl?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   followIgUrl?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableWithAggregatesFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableWithAggregatesFilter<"EventRegistration"> | $Enums.JerseySize | null
@@ -698,7 +721,8 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   alergi?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   detailAlergi?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   siapLomba?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
-  buktiBayarUrl?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+  eventStatus?: Prisma.EnumEventStatusNullableWithAggregatesFilter<"EventRegistration"> | $Enums.EventStatus | null
+  paymentStatus?: Prisma.EnumEventStatusNullableWithAggregatesFilter<"EventRegistration"> | $Enums.EventStatus | null
   merekKendaraan?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   tahunBuat?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
@@ -732,6 +756,7 @@ export type EventRegistrationCreateInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  buktiBayarUrl?: string | null
   followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -745,7 +770,8 @@ export type EventRegistrationCreateInput = {
   alergi?: boolean | null
   detailAlergi?: string | null
   siapLomba?: boolean | null
-  buktiBayarUrl?: string | null
+  eventStatus?: $Enums.EventStatus | null
+  paymentStatus?: $Enums.EventStatus | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -781,6 +807,7 @@ export type EventRegistrationUncheckedCreateInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  buktiBayarUrl?: string | null
   followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -794,7 +821,8 @@ export type EventRegistrationUncheckedCreateInput = {
   alergi?: boolean | null
   detailAlergi?: string | null
   siapLomba?: boolean | null
-  buktiBayarUrl?: string | null
+  eventStatus?: $Enums.EventStatus | null
+  paymentStatus?: $Enums.EventStatus | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -828,6 +856,7 @@ export type EventRegistrationUpdateInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -841,7 +870,8 @@ export type EventRegistrationUpdateInput = {
   alergi?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   detailAlergi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -877,6 +907,7 @@ export type EventRegistrationUncheckedUpdateInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -890,7 +921,8 @@ export type EventRegistrationUncheckedUpdateInput = {
   alergi?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   detailAlergi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -925,6 +957,7 @@ export type EventRegistrationCreateManyInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  buktiBayarUrl?: string | null
   followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -938,7 +971,8 @@ export type EventRegistrationCreateManyInput = {
   alergi?: boolean | null
   detailAlergi?: string | null
   siapLomba?: boolean | null
-  buktiBayarUrl?: string | null
+  eventStatus?: $Enums.EventStatus | null
+  paymentStatus?: $Enums.EventStatus | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -972,6 +1006,7 @@ export type EventRegistrationUpdateManyMutationInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -985,7 +1020,8 @@ export type EventRegistrationUpdateManyMutationInput = {
   alergi?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   detailAlergi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1020,6 +1056,7 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -1033,7 +1070,8 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   alergi?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   detailAlergi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1068,6 +1106,7 @@ export type EventRegistrationCountOrderByAggregateInput = {
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
   ktpUrl?: Prisma.SortOrder
+  buktiBayarUrl?: Prisma.SortOrder
   followIgUrl?: Prisma.SortOrder
   category?: Prisma.SortOrder
   jerseySize?: Prisma.SortOrder
@@ -1081,7 +1120,8 @@ export type EventRegistrationCountOrderByAggregateInput = {
   alergi?: Prisma.SortOrder
   detailAlergi?: Prisma.SortOrder
   siapLomba?: Prisma.SortOrder
-  buktiBayarUrl?: Prisma.SortOrder
+  eventStatus?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrder
   tahunBuat?: Prisma.SortOrder
   platNomor?: Prisma.SortOrder
@@ -1116,6 +1156,7 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
   ktpUrl?: Prisma.SortOrder
+  buktiBayarUrl?: Prisma.SortOrder
   followIgUrl?: Prisma.SortOrder
   category?: Prisma.SortOrder
   jerseySize?: Prisma.SortOrder
@@ -1129,7 +1170,8 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   alergi?: Prisma.SortOrder
   detailAlergi?: Prisma.SortOrder
   siapLomba?: Prisma.SortOrder
-  buktiBayarUrl?: Prisma.SortOrder
+  eventStatus?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrder
   tahunBuat?: Prisma.SortOrder
   platNomor?: Prisma.SortOrder
@@ -1164,6 +1206,7 @@ export type EventRegistrationMinOrderByAggregateInput = {
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
   ktpUrl?: Prisma.SortOrder
+  buktiBayarUrl?: Prisma.SortOrder
   followIgUrl?: Prisma.SortOrder
   category?: Prisma.SortOrder
   jerseySize?: Prisma.SortOrder
@@ -1177,7 +1220,8 @@ export type EventRegistrationMinOrderByAggregateInput = {
   alergi?: Prisma.SortOrder
   detailAlergi?: Prisma.SortOrder
   siapLomba?: Prisma.SortOrder
-  buktiBayarUrl?: Prisma.SortOrder
+  eventStatus?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrder
   tahunBuat?: Prisma.SortOrder
   platNomor?: Prisma.SortOrder
@@ -1231,6 +1275,10 @@ export type NullableEnumBloodTypeFieldUpdateOperationsInput = {
 
 export type NullableEnumRhesusFieldUpdateOperationsInput = {
   set?: $Enums.Rhesus | null
+}
+
+export type NullableEnumEventStatusFieldUpdateOperationsInput = {
+  set?: $Enums.EventStatus | null
 }
 
 export type NullableEnumMotorTypeFieldUpdateOperationsInput = {
@@ -1303,6 +1351,7 @@ export type EventRegistrationCreateWithoutUserInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  buktiBayarUrl?: string | null
   followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -1316,7 +1365,8 @@ export type EventRegistrationCreateWithoutUserInput = {
   alergi?: boolean | null
   detailAlergi?: string | null
   siapLomba?: boolean | null
-  buktiBayarUrl?: string | null
+  eventStatus?: $Enums.EventStatus | null
+  paymentStatus?: $Enums.EventStatus | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -1350,6 +1400,7 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  buktiBayarUrl?: string | null
   followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -1363,7 +1414,8 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   alergi?: boolean | null
   detailAlergi?: string | null
   siapLomba?: boolean | null
-  buktiBayarUrl?: string | null
+  eventStatus?: $Enums.EventStatus | null
+  paymentStatus?: $Enums.EventStatus | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -1427,6 +1479,7 @@ export type EventRegistrationScalarWhereInput = {
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   ktpUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  buktiBayarUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   followIgUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   category?: Prisma.EnumKategoriNullableFilter<"EventRegistration"> | $Enums.Kategori | null
   jerseySize?: Prisma.EnumJerseySizeNullableFilter<"EventRegistration"> | $Enums.JerseySize | null
@@ -1440,7 +1493,8 @@ export type EventRegistrationScalarWhereInput = {
   alergi?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   detailAlergi?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   siapLomba?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
-  buktiBayarUrl?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  eventStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
+  paymentStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
   merekKendaraan?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   tahunBuat?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -1474,6 +1528,7 @@ export type EventRegistrationCreateManyUserInput = {
   memenuhiSyarat?: boolean | null
   age?: string | null
   ktpUrl?: string | null
+  buktiBayarUrl?: string | null
   followIgUrl?: string | null
   category?: $Enums.Kategori | null
   jerseySize?: $Enums.JerseySize | null
@@ -1487,7 +1542,8 @@ export type EventRegistrationCreateManyUserInput = {
   alergi?: boolean | null
   detailAlergi?: string | null
   siapLomba?: boolean | null
-  buktiBayarUrl?: string | null
+  eventStatus?: $Enums.EventStatus | null
+  paymentStatus?: $Enums.EventStatus | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -1521,6 +1577,7 @@ export type EventRegistrationUpdateWithoutUserInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -1534,7 +1591,8 @@ export type EventRegistrationUpdateWithoutUserInput = {
   alergi?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   detailAlergi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1568,6 +1626,7 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -1581,7 +1640,8 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   alergi?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   detailAlergi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1615,6 +1675,7 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ktpUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   followIgUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   category?: Prisma.NullableEnumKategoriFieldUpdateOperationsInput | $Enums.Kategori | null
   jerseySize?: Prisma.NullableEnumJerseySizeFieldUpdateOperationsInput | $Enums.JerseySize | null
@@ -1628,7 +1689,8 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   alergi?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   detailAlergi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  buktiBayarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1665,6 +1727,7 @@ export type EventRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Int
   memenuhiSyarat?: boolean
   age?: boolean
   ktpUrl?: boolean
+  buktiBayarUrl?: boolean
   followIgUrl?: boolean
   category?: boolean
   jerseySize?: boolean
@@ -1678,7 +1741,8 @@ export type EventRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Int
   alergi?: boolean
   detailAlergi?: boolean
   siapLomba?: boolean
-  buktiBayarUrl?: boolean
+  eventStatus?: boolean
+  paymentStatus?: boolean
   merekKendaraan?: boolean
   tahunBuat?: boolean
   platNomor?: boolean
@@ -1714,6 +1778,7 @@ export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   memenuhiSyarat?: boolean
   age?: boolean
   ktpUrl?: boolean
+  buktiBayarUrl?: boolean
   followIgUrl?: boolean
   category?: boolean
   jerseySize?: boolean
@@ -1727,7 +1792,8 @@ export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   alergi?: boolean
   detailAlergi?: boolean
   siapLomba?: boolean
-  buktiBayarUrl?: boolean
+  eventStatus?: boolean
+  paymentStatus?: boolean
   merekKendaraan?: boolean
   tahunBuat?: boolean
   platNomor?: boolean
@@ -1763,6 +1829,7 @@ export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   memenuhiSyarat?: boolean
   age?: boolean
   ktpUrl?: boolean
+  buktiBayarUrl?: boolean
   followIgUrl?: boolean
   category?: boolean
   jerseySize?: boolean
@@ -1776,7 +1843,8 @@ export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   alergi?: boolean
   detailAlergi?: boolean
   siapLomba?: boolean
-  buktiBayarUrl?: boolean
+  eventStatus?: boolean
+  paymentStatus?: boolean
   merekKendaraan?: boolean
   tahunBuat?: boolean
   platNomor?: boolean
@@ -1812,6 +1880,7 @@ export type EventRegistrationSelectScalar = {
   memenuhiSyarat?: boolean
   age?: boolean
   ktpUrl?: boolean
+  buktiBayarUrl?: boolean
   followIgUrl?: boolean
   category?: boolean
   jerseySize?: boolean
@@ -1825,7 +1894,8 @@ export type EventRegistrationSelectScalar = {
   alergi?: boolean
   detailAlergi?: boolean
   siapLomba?: boolean
-  buktiBayarUrl?: boolean
+  eventStatus?: boolean
+  paymentStatus?: boolean
   merekKendaraan?: boolean
   tahunBuat?: boolean
   platNomor?: boolean
@@ -1835,7 +1905,7 @@ export type EventRegistrationSelectScalar = {
   motorType?: boolean
 }
 
-export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "followIgUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "buktiBayarUrl" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant" | "motorType", ExtArgs["result"]["eventRegistration"]>
+export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "buktiBayarUrl" | "followIgUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "eventStatus" | "paymentStatus" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant" | "motorType", ExtArgs["result"]["eventRegistration"]>
 export type EventRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -1876,6 +1946,7 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     memenuhiSyarat: boolean | null
     age: string | null
     ktpUrl: string | null
+    buktiBayarUrl: string | null
     followIgUrl: string | null
     category: $Enums.Kategori | null
     jerseySize: $Enums.JerseySize | null
@@ -1889,7 +1960,8 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     alergi: boolean | null
     detailAlergi: string | null
     siapLomba: boolean | null
-    buktiBayarUrl: string | null
+    eventStatus: $Enums.EventStatus | null
+    paymentStatus: $Enums.EventStatus | null
     merekKendaraan: string | null
     tahunBuat: string | null
     platNomor: string | null
@@ -2345,6 +2417,7 @@ export interface EventRegistrationFieldRefs {
   readonly memenuhiSyarat: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly age: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly ktpUrl: Prisma.FieldRef<"EventRegistration", 'String'>
+  readonly buktiBayarUrl: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly followIgUrl: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly category: Prisma.FieldRef<"EventRegistration", 'Kategori'>
   readonly jerseySize: Prisma.FieldRef<"EventRegistration", 'JerseySize'>
@@ -2358,7 +2431,8 @@ export interface EventRegistrationFieldRefs {
   readonly alergi: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly detailAlergi: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly siapLomba: Prisma.FieldRef<"EventRegistration", 'Boolean'>
-  readonly buktiBayarUrl: Prisma.FieldRef<"EventRegistration", 'String'>
+  readonly eventStatus: Prisma.FieldRef<"EventRegistration", 'EventStatus'>
+  readonly paymentStatus: Prisma.FieldRef<"EventRegistration", 'EventStatus'>
   readonly merekKendaraan: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly tahunBuat: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly platNomor: Prisma.FieldRef<"EventRegistration", 'String'>

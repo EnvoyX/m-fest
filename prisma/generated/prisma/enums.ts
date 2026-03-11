@@ -82,6 +82,15 @@ export const TeamStatus = {
 export type TeamStatus = (typeof TeamStatus)[keyof typeof TeamStatus]
 
 
+export const EventStatus = {
+  REJECTED: 'REJECTED',
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED'
+} as const
+
+export type EventStatus = (typeof EventStatus)[keyof typeof EventStatus]
+
+
 export const QuizTypes = {
   MATHEMATICS: 'MATHEMATICS',
   PHYSICS: 'PHYSICS',
