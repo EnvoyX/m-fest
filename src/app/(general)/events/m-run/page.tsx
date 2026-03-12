@@ -87,7 +87,7 @@ export default function ETUPages() {
         </div>
       </div>
 
-      {/* <div className="py-16 px-4 text-center">
+      <div className="py-16 px-4 text-center">
         <div className="space-y-2 mb-8">
           <h1 className="text-3xl md:text-5xl lg:text-6xl">Ready to operate at</h1>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">full throttle?</h1>
@@ -112,7 +112,7 @@ export default function ETUPages() {
                 Register Now <ChevronRight className="h-6 w-6" />
               </span>
             ) : (
-              <Link href="/dashboard/register/m-run" className="flex items-center gap-2 whitespace-nowrap">
+              <Link href="/dashboard/events/register/M-RUN/" className="flex items-center gap-2 whitespace-nowrap">
                 Register Now <ChevronRight className="h-6 w-6" />
               </Link>
             )}
@@ -127,7 +127,7 @@ export default function ETUPages() {
           width={1200}
           className="mx-auto w-full max-w-[1200px] h-auto"
         />
-      </div>*/}
+      </div>
     </div>
   );
 }
