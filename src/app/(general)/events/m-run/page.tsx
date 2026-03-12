@@ -78,11 +78,12 @@ export default function ETUPages() {
           <p>Route: Institut Teknologi Bandung</p>
           <p>Facility:</p>
           <ul className="space-y-3 list-disc list-inside ml-2 md:ml-5">
+            <li>Prize Money (for Winners)</li>
             <li>M-Run 2026 Jersey</li>
             <li>Finisher Medal</li>
             <li>BIB</li>
+            <li>Timing Chip</li>
             <li>Refreshments</li>
-            <li>Doorprize Coupon</li>
           </ul>
         </div>
       </div>
@@ -93,7 +94,7 @@ export default function ETUPages() {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">full throttle?</h1>
         </div>
         <Image
-          src="/mrunregdate.png"
+          src="/reginfomrun.png"
           alt="mrunimage3"
           width={1000}
           height={467}
@@ -121,7 +122,7 @@ export default function ETUPages() {
 
       <div className="px-4 pb-8">
         <Image
-          src="/timelinemrun.png"
+          src="/mruntimelinefix.png"
           alt="mruntimeline"
           height={600}
           width={1200}
