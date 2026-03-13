@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
 import { UserAvatar } from "./UserProfile";
 import { compNavLinks, eventNavLinks, menuItems } from "@/constants/constants";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTRPC } from "@/utils/trpc";
 import { authClient } from "@/lib/auth-client";
 import {
@@ -45,6 +45,7 @@ export const Navbar = () => {
     const router = useRouter();
     const currentPath = usePathname();
     const trpc = useTRPC();
+    const queryClient = useQueryClient()
     const navRef = useRef<HTMLDivElement>(null);
     const { data: session, isPending } = useQuery({
         queryKey: ["session-user"],
@@ -63,6 +64,9 @@ export const Navbar = () => {
         const toastId = toast.loading("Logging out...");
         try {
             await authClient.signOut();
+            queryClient.invalidateQueries({
+                queryKey: ["session-user"]
+            })
             toast.success("Logged out successfully", { id: toastId });
             router.refresh();
             startTransition(() => {
