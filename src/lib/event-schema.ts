@@ -138,7 +138,7 @@ export const mRunSchema = z
         category: z.enum(["UMUM", "MAHASISWA"], {
             error: "Kategori wajib diisi.",
         }),
-        jerseySize: z.enum(["S", "M", "L", "XL", "XXL"], {
+        jerseySize: z.enum(["XS","S", "M", "L", "XL", "XXL", "XXXL"], {
             error: "Ukuran Jersey wajib diisi.",
         }),
         isAlumniHMM: z

@@ -78,11 +78,13 @@ enum EventType {
 }
 
 enum JerseySize {
+  XS
   S
   M
   L
   XL
   XXL
+  XXXL
 }
 
 enum BloodType {

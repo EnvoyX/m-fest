@@ -251,7 +251,7 @@ export type UploadEventProps = {
         emergencyContact: string;
         emergencyContactName: string;
         category: "UMUM" | "MAHASISWA";
-        jerseySize: "S" | "M" | "L" | "XL" | "XXL";
+        jerseySize:  "XS" |"S" | "M" | "L" | "XL" | "XXL" | "XXXL";
         bloodType: "O" | "A" | "B" | "AB";
         rhesus: "POSITIVE" | "NEGATIVE" | "NOT_KNOWN";
         ktpUrl: string;

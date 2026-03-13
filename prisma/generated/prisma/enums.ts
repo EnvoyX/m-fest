@@ -112,11 +112,13 @@ export type EventType = (typeof EventType)[keyof typeof EventType]
 
 
 export const JerseySize = {
+  XS: 'XS',
   S: 'S',
   M: 'M',
   L: 'L',
   XL: 'XL',
-  XXL: 'XXL'
+  XXL: 'XXL',
+  XXXL: 'XXXL'
 } as const
 
 export type JerseySize = (typeof JerseySize)[keyof typeof JerseySize]

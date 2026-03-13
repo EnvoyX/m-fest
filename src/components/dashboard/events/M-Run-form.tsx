@@ -37,6 +37,32 @@ import { ArrowUpRightFromSquare, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+
+const jerseySizes  = [{
+    label: "XS",
+    value: "XS"
+}, {
+    label: "S",
+    value: "S"
+}, {
+    label: "M",
+    value: "M"
+}, {
+    label: "L",
+    value: "L"
+}, {
+    label: "XL",
+    value: "XL"
+},
+{
+    label: "2XL",
+    value: "XXL"
+},
+{
+    label: "3XL",
+    value: "XXXL"
+}]
+
 export default function MRunForm() {
     const currentDate = getCurrentDate();
     const batchInfo = getMRUNBatchInfo(currentDate);
@@ -100,12 +126,14 @@ export default function MRunForm() {
         },
     });
 
+    const is3XL = form.watch("jerseySize") === "XXXL" ? 10000 : 0
+
     const onSubmit = (data: mRunSchema) => {
         // console.log("Form Submitted: ", data);
         registerEvent.mutate({
             registrationType: "M-RUN",
             batch: batchInfo?.batch,
-            price: form.watch("category") === "UMUM" ? batchInfo?.pricePublic as number : batchInfo?.priceStudent as number,
+            price: form.watch("category") === "UMUM" ? (batchInfo?.pricePublic  as number + is3XL) : (batchInfo?.priceStudent as number + is3XL),
             ...data,
             
         });
@@ -366,9 +394,9 @@ export default function MRunForm() {
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent className="bg-slate-900 border-white/10 text-white">
-                                                    {["S", "M", "L", "XL", "XXL"].map((s) => (
-                                                        <SelectItem key={s} value={s}>
-                                                            {s}
+                                                    {jerseySizes.map((size) => (
+                                                        <SelectItem key={size.value} value={size.value}>
+                                                            {size.label}
                                                         </SelectItem>
                                                     ))}
                                                 </SelectContent>
@@ -673,7 +701,7 @@ export default function MRunForm() {
                                 )}
                             />
                             <h4 className="text-xl font-bold uppercase tracking-widest text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 border-b border-teal-500/20 pb-2">
-                                Batch {batchInfo?.batch} {form.watch("category") && ` | Harga : Rp. ${form.watch("category") === "UMUM" ? batchInfo?.pricePublic : batchInfo?.priceStudent}`}
+                                Batch {batchInfo?.batch} {form.watch("category") && ` | Harga : Rp. ${form.watch("category") === "UMUM" ? (batchInfo?.pricePublic  as number + is3XL) : (batchInfo?.priceStudent as number + is3XL)}`}
                             </h4>
                     <h3 className="text-base font-bold text-start mb-3">
                     Pembayaran melalui transfer ke:
