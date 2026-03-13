@@ -122,7 +122,7 @@ export default function ETUPages() {
 
       <div className="px-4 pb-8">
         <Image
-          src="/mruntimelinefix.png"
+          src="/mruntimelinefixbgt.png"
           alt="mruntimeline"
           height={600}
           width={1200}
