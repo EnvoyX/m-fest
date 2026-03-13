@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
-import { eventsList } from "@/lib/eventDashboard";
-import { getCurrentDate } from "@/lib/utils";
+import { eventsList, type Event } from "@/lib/eventDashboard";
+import { getCurrentDate, wibToUTC } from "@/lib/utils";
+import { isWithinInterval } from "date-fns";
 
 {/*export default function ComingSoon() {
    return (
@@ -18,13 +19,17 @@ import { getCurrentDate } from "@/lib/utils";
 }*/}
 
 const currentDate = getCurrentDate();
-const startRegDate1: Date = eventsList.find(event => event.id === "M-RUN")?.startRegDate1;
-const endRegDate1: Date = eventsList.find(event => event.id === "M-RUN")?.endRegDate1;
-const startRegDate2: Date = eventsList.find(event => event.id === "M-RUN")?.Batch1StartRegDate;
-const endRegDate2: Date = eventsList.find(event => event.id === "M-RUN")?.Batch1EndRegDate;
+const event = eventsList.find((event) => event.id === "M-RUN") as Event;
+function isRegistrationOpen(event: Event, now: Date) {
+                        if (!event.startRegDate1 || !event.endRegDate1) return false;
 
-const isOpen = (currentDate >= startRegDate1 && currentDate <= endRegDate1) || (currentDate >= startRegDate2 && currentDate <= endRegDate2);
+                        const start = wibToUTC(event.startRegDate1);
+                        const end = wibToUTC(event.endRegDate1);
 
+                        return isWithinInterval(now, { start, end });
+}
+const isOpen = isRegistrationOpen(event, currentDate);
+                  
 export default function ETUPages() {
   return (
     <div className="w-full overflow-x-hidden">
