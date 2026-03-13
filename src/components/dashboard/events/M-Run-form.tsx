@@ -104,7 +104,10 @@ export default function MRunForm() {
         // console.log("Form Submitted: ", data);
         registerEvent.mutate({
             registrationType: "M-RUN",
+            batch: batchInfo?.batch,
+            price: form.watch("category") === "UMUM" ? batchInfo?.pricePublic as number : batchInfo?.priceStudent as number,
             ...data,
+            
         });
     };
 

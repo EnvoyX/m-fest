@@ -20,8 +20,18 @@ export type EventRegistrationModel = runtime.Types.Result.DefaultSelection<Prism
 
 export type AggregateEventRegistration = {
   _count: EventRegistrationCountAggregateOutputType | null
+  _avg: EventRegistrationAvgAggregateOutputType | null
+  _sum: EventRegistrationSumAggregateOutputType | null
   _min: EventRegistrationMinAggregateOutputType | null
   _max: EventRegistrationMaxAggregateOutputType | null
+}
+
+export type EventRegistrationAvgAggregateOutputType = {
+  price: number | null
+}
+
+export type EventRegistrationSumAggregateOutputType = {
+  price: number | null
 }
 
 export type EventRegistrationMinAggregateOutputType = {
@@ -65,6 +75,8 @@ export type EventRegistrationMinAggregateOutputType = {
   siapLomba: boolean | null
   eventStatus: $Enums.EventStatus | null
   paymentStatus: $Enums.EventStatus | null
+  batch: string | null
+  price: number | null
   merekKendaraan: string | null
   tahunBuat: string | null
   platNomor: string | null
@@ -115,6 +127,8 @@ export type EventRegistrationMaxAggregateOutputType = {
   siapLomba: boolean | null
   eventStatus: $Enums.EventStatus | null
   paymentStatus: $Enums.EventStatus | null
+  batch: string | null
+  price: number | null
   merekKendaraan: string | null
   tahunBuat: string | null
   platNomor: string | null
@@ -165,6 +179,8 @@ export type EventRegistrationCountAggregateOutputType = {
   siapLomba: number
   eventStatus: number
   paymentStatus: number
+  batch: number
+  price: number
   merekKendaraan: number
   tahunBuat: number
   platNomor: number
@@ -175,6 +191,14 @@ export type EventRegistrationCountAggregateOutputType = {
   _all: number
 }
 
+
+export type EventRegistrationAvgAggregateInputType = {
+  price?: true
+}
+
+export type EventRegistrationSumAggregateInputType = {
+  price?: true
+}
 
 export type EventRegistrationMinAggregateInputType = {
   id?: true
@@ -217,6 +241,8 @@ export type EventRegistrationMinAggregateInputType = {
   siapLomba?: true
   eventStatus?: true
   paymentStatus?: true
+  batch?: true
+  price?: true
   merekKendaraan?: true
   tahunBuat?: true
   platNomor?: true
@@ -267,6 +293,8 @@ export type EventRegistrationMaxAggregateInputType = {
   siapLomba?: true
   eventStatus?: true
   paymentStatus?: true
+  batch?: true
+  price?: true
   merekKendaraan?: true
   tahunBuat?: true
   platNomor?: true
@@ -317,6 +345,8 @@ export type EventRegistrationCountAggregateInputType = {
   siapLomba?: true
   eventStatus?: true
   paymentStatus?: true
+  batch?: true
+  price?: true
   merekKendaraan?: true
   tahunBuat?: true
   platNomor?: true
@@ -365,6 +395,18 @@ export type EventRegistrationAggregateArgs<ExtArgs extends runtime.Types.Extensi
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: EventRegistrationAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: EventRegistrationSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: EventRegistrationMinAggregateInputType
@@ -395,6 +437,8 @@ export type EventRegistrationGroupByArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   _count?: EventRegistrationCountAggregateInputType | true
+  _avg?: EventRegistrationAvgAggregateInputType
+  _sum?: EventRegistrationSumAggregateInputType
   _min?: EventRegistrationMinAggregateInputType
   _max?: EventRegistrationMaxAggregateInputType
 }
@@ -440,6 +484,8 @@ export type EventRegistrationGroupByOutputType = {
   siapLomba: boolean | null
   eventStatus: $Enums.EventStatus | null
   paymentStatus: $Enums.EventStatus | null
+  batch: string | null
+  price: number | null
   merekKendaraan: string | null
   tahunBuat: string | null
   platNomor: string | null
@@ -448,6 +494,8 @@ export type EventRegistrationGroupByOutputType = {
   isSopCompliant: boolean | null
   motorType: $Enums.MotorType | null
   _count: EventRegistrationCountAggregateOutputType | null
+  _avg: EventRegistrationAvgAggregateOutputType | null
+  _sum: EventRegistrationSumAggregateOutputType | null
   _min: EventRegistrationMinAggregateOutputType | null
   _max: EventRegistrationMaxAggregateOutputType | null
 }
@@ -511,6 +559,8 @@ export type EventRegistrationWhereInput = {
   siapLomba?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   eventStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
   paymentStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
+  batch?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  price?: Prisma.IntNullableFilter<"EventRegistration"> | number | null
   merekKendaraan?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   tahunBuat?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -562,6 +612,8 @@ export type EventRegistrationOrderByWithRelationInput = {
   siapLomba?: Prisma.SortOrderInput | Prisma.SortOrder
   eventStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  batch?: Prisma.SortOrderInput | Prisma.SortOrder
+  price?: Prisma.SortOrderInput | Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrderInput | Prisma.SortOrder
   tahunBuat?: Prisma.SortOrderInput | Prisma.SortOrder
   platNomor?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -616,6 +668,8 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   siapLomba?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   eventStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
   paymentStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
+  batch?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  price?: Prisma.IntNullableFilter<"EventRegistration"> | number | null
   merekKendaraan?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   tahunBuat?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -667,6 +721,8 @@ export type EventRegistrationOrderByWithAggregationInput = {
   siapLomba?: Prisma.SortOrderInput | Prisma.SortOrder
   eventStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  batch?: Prisma.SortOrderInput | Prisma.SortOrder
+  price?: Prisma.SortOrderInput | Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrderInput | Prisma.SortOrder
   tahunBuat?: Prisma.SortOrderInput | Prisma.SortOrder
   platNomor?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -675,8 +731,10 @@ export type EventRegistrationOrderByWithAggregationInput = {
   isSopCompliant?: Prisma.SortOrderInput | Prisma.SortOrder
   motorType?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EventRegistrationCountOrderByAggregateInput
+  _avg?: Prisma.EventRegistrationAvgOrderByAggregateInput
   _max?: Prisma.EventRegistrationMaxOrderByAggregateInput
   _min?: Prisma.EventRegistrationMinOrderByAggregateInput
+  _sum?: Prisma.EventRegistrationSumOrderByAggregateInput
 }
 
 export type EventRegistrationScalarWhereWithAggregatesInput = {
@@ -723,6 +781,8 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   siapLomba?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   eventStatus?: Prisma.EnumEventStatusNullableWithAggregatesFilter<"EventRegistration"> | $Enums.EventStatus | null
   paymentStatus?: Prisma.EnumEventStatusNullableWithAggregatesFilter<"EventRegistration"> | $Enums.EventStatus | null
+  batch?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+  price?: Prisma.IntNullableWithAggregatesFilter<"EventRegistration"> | number | null
   merekKendaraan?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   tahunBuat?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
@@ -772,6 +832,8 @@ export type EventRegistrationCreateInput = {
   siapLomba?: boolean | null
   eventStatus?: $Enums.EventStatus | null
   paymentStatus?: $Enums.EventStatus | null
+  batch?: string | null
+  price?: number | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -823,6 +885,8 @@ export type EventRegistrationUncheckedCreateInput = {
   siapLomba?: boolean | null
   eventStatus?: $Enums.EventStatus | null
   paymentStatus?: $Enums.EventStatus | null
+  batch?: string | null
+  price?: number | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -872,6 +936,8 @@ export type EventRegistrationUpdateInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  batch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -923,6 +989,8 @@ export type EventRegistrationUncheckedUpdateInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  batch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -973,6 +1041,8 @@ export type EventRegistrationCreateManyInput = {
   siapLomba?: boolean | null
   eventStatus?: $Enums.EventStatus | null
   paymentStatus?: $Enums.EventStatus | null
+  batch?: string | null
+  price?: number | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -1022,6 +1092,8 @@ export type EventRegistrationUpdateManyMutationInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  batch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1072,6 +1144,8 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  batch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1122,6 +1196,8 @@ export type EventRegistrationCountOrderByAggregateInput = {
   siapLomba?: Prisma.SortOrder
   eventStatus?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
+  batch?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrder
   tahunBuat?: Prisma.SortOrder
   platNomor?: Prisma.SortOrder
@@ -1129,6 +1205,10 @@ export type EventRegistrationCountOrderByAggregateInput = {
   nimOrNip?: Prisma.SortOrder
   isSopCompliant?: Prisma.SortOrder
   motorType?: Prisma.SortOrder
+}
+
+export type EventRegistrationAvgOrderByAggregateInput = {
+  price?: Prisma.SortOrder
 }
 
 export type EventRegistrationMaxOrderByAggregateInput = {
@@ -1172,6 +1252,8 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   siapLomba?: Prisma.SortOrder
   eventStatus?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
+  batch?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrder
   tahunBuat?: Prisma.SortOrder
   platNomor?: Prisma.SortOrder
@@ -1222,6 +1304,8 @@ export type EventRegistrationMinOrderByAggregateInput = {
   siapLomba?: Prisma.SortOrder
   eventStatus?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
+  batch?: Prisma.SortOrder
+  price?: Prisma.SortOrder
   merekKendaraan?: Prisma.SortOrder
   tahunBuat?: Prisma.SortOrder
   platNomor?: Prisma.SortOrder
@@ -1229,6 +1313,10 @@ export type EventRegistrationMinOrderByAggregateInput = {
   nimOrNip?: Prisma.SortOrder
   isSopCompliant?: Prisma.SortOrder
   motorType?: Prisma.SortOrder
+}
+
+export type EventRegistrationSumOrderByAggregateInput = {
+  price?: Prisma.SortOrder
 }
 
 export type EventRegistrationListRelationFilter = {
@@ -1279,6 +1367,14 @@ export type NullableEnumRhesusFieldUpdateOperationsInput = {
 
 export type NullableEnumEventStatusFieldUpdateOperationsInput = {
   set?: $Enums.EventStatus | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type NullableEnumMotorTypeFieldUpdateOperationsInput = {
@@ -1367,6 +1463,8 @@ export type EventRegistrationCreateWithoutUserInput = {
   siapLomba?: boolean | null
   eventStatus?: $Enums.EventStatus | null
   paymentStatus?: $Enums.EventStatus | null
+  batch?: string | null
+  price?: number | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -1416,6 +1514,8 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   siapLomba?: boolean | null
   eventStatus?: $Enums.EventStatus | null
   paymentStatus?: $Enums.EventStatus | null
+  batch?: string | null
+  price?: number | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -1495,6 +1595,8 @@ export type EventRegistrationScalarWhereInput = {
   siapLomba?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   eventStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
   paymentStatus?: Prisma.EnumEventStatusNullableFilter<"EventRegistration"> | $Enums.EventStatus | null
+  batch?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  price?: Prisma.IntNullableFilter<"EventRegistration"> | number | null
   merekKendaraan?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   tahunBuat?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   platNomor?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -1544,6 +1646,8 @@ export type EventRegistrationCreateManyUserInput = {
   siapLomba?: boolean | null
   eventStatus?: $Enums.EventStatus | null
   paymentStatus?: $Enums.EventStatus | null
+  batch?: string | null
+  price?: number | null
   merekKendaraan?: string | null
   tahunBuat?: string | null
   platNomor?: string | null
@@ -1593,6 +1697,8 @@ export type EventRegistrationUpdateWithoutUserInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  batch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1642,6 +1748,8 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  batch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1691,6 +1799,8 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   siapLomba?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   eventStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
   paymentStatus?: Prisma.NullableEnumEventStatusFieldUpdateOperationsInput | $Enums.EventStatus | null
+  batch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  price?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   merekKendaraan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tahunBuat?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   platNomor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1743,6 +1853,8 @@ export type EventRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Int
   siapLomba?: boolean
   eventStatus?: boolean
   paymentStatus?: boolean
+  batch?: boolean
+  price?: boolean
   merekKendaraan?: boolean
   tahunBuat?: boolean
   platNomor?: boolean
@@ -1794,6 +1906,8 @@ export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   siapLomba?: boolean
   eventStatus?: boolean
   paymentStatus?: boolean
+  batch?: boolean
+  price?: boolean
   merekKendaraan?: boolean
   tahunBuat?: boolean
   platNomor?: boolean
@@ -1845,6 +1959,8 @@ export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   siapLomba?: boolean
   eventStatus?: boolean
   paymentStatus?: boolean
+  batch?: boolean
+  price?: boolean
   merekKendaraan?: boolean
   tahunBuat?: boolean
   platNomor?: boolean
@@ -1896,6 +2012,8 @@ export type EventRegistrationSelectScalar = {
   siapLomba?: boolean
   eventStatus?: boolean
   paymentStatus?: boolean
+  batch?: boolean
+  price?: boolean
   merekKendaraan?: boolean
   tahunBuat?: boolean
   platNomor?: boolean
@@ -1905,7 +2023,7 @@ export type EventRegistrationSelectScalar = {
   motorType?: boolean
 }
 
-export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "buktiBayarUrl" | "followIgUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "eventStatus" | "paymentStatus" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant" | "motorType", ExtArgs["result"]["eventRegistration"]>
+export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "buktiBayarUrl" | "followIgUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "eventStatus" | "paymentStatus" | "batch" | "price" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant" | "motorType", ExtArgs["result"]["eventRegistration"]>
 export type EventRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -1962,6 +2080,8 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     siapLomba: boolean | null
     eventStatus: $Enums.EventStatus | null
     paymentStatus: $Enums.EventStatus | null
+    batch: string | null
+    price: number | null
     merekKendaraan: string | null
     tahunBuat: string | null
     platNomor: string | null
@@ -2433,6 +2553,8 @@ export interface EventRegistrationFieldRefs {
   readonly siapLomba: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly eventStatus: Prisma.FieldRef<"EventRegistration", 'EventStatus'>
   readonly paymentStatus: Prisma.FieldRef<"EventRegistration", 'EventStatus'>
+  readonly batch: Prisma.FieldRef<"EventRegistration", 'String'>
+  readonly price: Prisma.FieldRef<"EventRegistration", 'Int'>
   readonly merekKendaraan: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly tahunBuat: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly platNomor: Prisma.FieldRef<"EventRegistration", 'String'>

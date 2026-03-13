@@ -159,6 +159,8 @@ export const EventRegistrationScalarFieldEnum = {
   siapLomba: 'siapLomba',
   eventStatus: 'eventStatus',
   paymentStatus: 'paymentStatus',
+  batch: 'batch',
+  price: 'price',
   merekKendaraan: 'merekKendaraan',
   tahunBuat: 'tahunBuat',
   platNomor: 'platNomor',

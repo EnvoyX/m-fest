@@ -95,6 +95,8 @@ export const eventRouter = router({
                             ktpUrl: input.ktpUrl,
                             followIgUrl: input.followIgUrl,
                             buktiBayarUrl: input.buktiBayarUrl,
+                            batch: input.batch,
+                            price: input.price
                         },
                     });
                 });

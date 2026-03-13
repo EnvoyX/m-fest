@@ -226,7 +226,7 @@ export const eventsInputProcedureSchema = z.discriminatedUnion(
         mCareSchema.extend({ registrationType: z.literal("M-CARE") }),
         mTalksSchema.extend({ registrationType: z.literal("M-TALKS") }),
         etuSchema.extend({ registrationType: z.literal("ETU") }),
-        mRunSchema.extend({ registrationType: z.literal("M-RUN") }),
+        mRunSchema.extend({ registrationType: z.literal("M-RUN"), batch: z.string(), price: z.number() }),
     ],
 );
 

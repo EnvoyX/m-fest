@@ -642,6 +642,36 @@ export default function MRunDataTable() {
             },
             cell: ({ row }) => <div className="">{row.getValue("detailAlergi")}</div>,
         },
+         {
+            accessorKey: "batch",
+            accessorFn: (row) => row.batch,
+            header: ({ column }) => {
+                return (
+                    <DataTableColumnHeader
+                        column={column}
+                        title="Batch"
+                    />
+                );
+            },
+            cell: ({ row }) => (
+                <div className="">{row.getValue("batch")}</div>
+            ),
+        },
+           {
+            accessorKey: "price",
+            accessorFn: (row) => row.price,
+            header: ({ column }) => {
+                return (
+                    <DataTableColumnHeader
+                        column={column}
+                        title="Price"
+                    />
+                );
+            },
+            cell: ({ row }) => (
+                <div className="">{row.getValue("price")}</div>
+            ),
+        },
         {
             accessorKey: "siapLomba",
             accessorFn: (row) => (row.siapLomba ? "Agreed" : "Refuse"),
