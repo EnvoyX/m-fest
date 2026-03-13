@@ -672,6 +672,14 @@ export default function MRunForm() {
                             <h4 className="text-xl font-bold uppercase tracking-widest text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 border-b border-teal-500/20 pb-2">
                                 Batch {batchInfo?.batch} {form.watch("category") && ` | Harga : Rp. ${form.watch("category") === "UMUM" ? batchInfo?.pricePublic : batchInfo?.priceStudent}`}
                             </h4>
+                    <h3 className="text-base font-bold text-start mb-3">
+                    Registration fees should be paid through the following:
+                    <p className="flex flex-col items-start justify-center">
+                        <span>Account Bank Name: SEABANK </span>
+                        <span>Account Number: 901914836624 </span>
+                        <span>Holder: Reva Elita Nurhaliza</span>
+                    </p>
+                    </h3>
                             <FormField
                                 control={form.control}
                                 name="buktiBayarUrl"

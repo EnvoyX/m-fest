@@ -81,11 +81,11 @@ export const eventsList: Event[] = [
         Batch2StartRegDate: new Date("2026-03-22T00:00:00"),
         Batch2EndRegDate: new Date("2026-04-04T23:59:59"),
         // Batch 1
-        price1: 120000, // Umum
-        price2: 110000, // Mahasiswa
+        price1: 120001, // Umum
+        price2: 110001, // Mahasiswa
         // Batch 2
-        price3: 130000, // Umum
-        price4: 120000, // Mahasiswa
+        price3: 130001, // Umum
+        price4: 120001, // Mahasiswa
     },
     {
         id: "M-TALKS",
