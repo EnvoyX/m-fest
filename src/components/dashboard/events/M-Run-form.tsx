@@ -113,9 +113,6 @@ export default function MRunForm() {
                     <h2 className="text-5xl font-black tracking-tight text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 italic">
                         M-RUN
                     </h2>
-                    {/* <p className="text-slate-400 mt-2">
-            Push your limits. Secure your spot in the race.
-          </p> */}
                 </div>
 
                 <Form {...form}>

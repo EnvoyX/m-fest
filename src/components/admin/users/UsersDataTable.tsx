@@ -60,9 +60,18 @@ import {
     exportCurrentPageToXlsx,
     exportFilteredRowsToXlsx,
 } from "@/utils/xlsx";
+import { authClient } from "@/lib/auth-client";
 
 export function UsersDataTable() {
     const trpc = useTRPC();
+     const { data: session, isFetched, isPending } = useQuery({
+               queryKey: ["session-user"],
+               queryFn : async () => {
+                   const data = await authClient.getSession()
+                   if (data) return data.data
+                   return null
+               }
+           });
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         [],
@@ -77,7 +86,6 @@ export function UsersDataTable() {
         isLoading,
         isFetching,
     } = useQuery(trpc.admin.getUsers.queryOptions());
-    const { data: currentUser } = useQuery(trpc.dashboard.getUser.queryOptions())
     const unified = React.useMemo(() => {
         if (!users) return [];
 
@@ -151,7 +159,7 @@ export function UsersDataTable() {
                                 Copy email
                             </DropdownMenuItem>
 
-                            {currentUser?.role === "SUPERADMIN" &&
+                            {session?.user?.role === "SUPERADMIN" &&
                                 item.role !== "SUPERADMIN" && (
                                     <>
                                         {userRoles
@@ -181,9 +189,9 @@ export function UsersDataTable() {
                                     })
                                 }
                                 variant="destructive"
-                                disabled={item.id === currentUser?.id}
+                                disabled={item.id === session?.user.id}
                             >
-                                {item.id === currentUser?.id
+                                {item.id === session?.user.id
                                     ? "You cannot delete yourself"
                                     : "Delete User"}
                             </DropdownMenuItem>
@@ -964,7 +972,7 @@ export function UsersDataTable() {
                                     <IconFileExport />
                                     Export selected to .xlsx
                                 </DropdownMenuItem>
-                                {currentUser?.role === "SUPERADMIN" && (
+                                {session?.user.role === "SUPERADMIN" && (
                                     <>
                                         <DropdownMenuItem
                                             onClick={() => {

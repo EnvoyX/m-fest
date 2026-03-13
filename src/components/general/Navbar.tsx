@@ -46,10 +46,18 @@ export const Navbar = () => {
     const currentPath = usePathname();
     const trpc = useTRPC();
     const navRef = useRef<HTMLDivElement>(null);
-    const { data, isFetched, isPending } = useQuery({
-        ...trpc.dashboard.getUser.queryOptions(),
+    const { data: session, isPending } = useQuery({
+        queryKey: ["session-user"],
+        queryFn : async () => {
+            const data = await authClient.getSession()
+            if (data) return data.data
+            return null
+        }
     });
-
+      const { data, isFetched } = useQuery({
+    ...trpc.dashboard.getUser.queryOptions(),
+    enabled: session?.user ? true : false,
+  });
     const handleLogout = async () => {
         setIsLoading(true);
         const toastId = toast.loading("Logging out...");
@@ -323,7 +331,7 @@ export const Navbar = () => {
                                             </AccordionItem>
                                         </Accordion>
                                     </li>
-                                    {isFetched && data && (
+                                    {isFetched && session?.user && (
                                         <>
                                             <li className="hover:bg-white/15 transition-all duration-300 p-2 rounded-lg">
                                                 <Link
@@ -362,7 +370,7 @@ export const Navbar = () => {
                                 <div className="flex items-center justify-between gap-4">
                                     {isPending ? (
                                         <Loader2 className="animate-spin size-5" />
-                                    ) : data ? (
+                                    ) : session?.user ? (
                                         <>
                                             <DropdownMenu>
                                                 <DropdownMenuTrigger className="outline-none">
@@ -381,7 +389,7 @@ export const Navbar = () => {
                                                             {data?.name}
                                                         </p>
                                                         <p className="text-xs text-accent-foreground truncate">
-                                                            {data.email}
+                                                            {session?.user.email}
                                                         </p>
                                                     </div>
                                                     <DropdownMenuSeparator />

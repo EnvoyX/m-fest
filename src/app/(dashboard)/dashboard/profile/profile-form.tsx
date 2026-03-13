@@ -28,9 +28,18 @@ import { useTRPC } from "@/utils/trpc";
 import { profileSchema } from "@/lib/schema";
 import { educations } from "@/constants/constants";
 import { trim } from "es-toolkit";
+import { authClient } from "@/lib/auth-client";
 
 function ProfileUpdateForm() {
     const trpc = useTRPC();
+    const { data: session, isFetched, isPending } = useQuery({
+            queryKey: ["session-user"],
+            queryFn : async () => {
+                const data = await authClient.getSession()
+                if (data) return data.data
+                return null
+            }
+        });
     const { data: user, isLoading: isLoadingUser } = useQuery({
         ...trpc.dashboard.getUser.queryOptions(),
         refetchOnWindowFocus: false,
@@ -140,7 +149,7 @@ function ProfileUpdateForm() {
     async function onSubmit(formData: profileSchema) {
         const data = {
             ...formData,
-            email: user?.email,
+            email: session?.user.email,
         };
         // console.log("Form data: ", data);
         updateProfile.mutate(data);
@@ -213,7 +222,7 @@ function ProfileUpdateForm() {
                         <Label htmlFor="email" className="block text-sm">
                             Email
                         </Label>
-                        <Input disabled placeholder={user?.email as string} />
+                        <Input disabled placeholder={session?.user.email as string} />
                     </div>
                     <div className="space-y-2">
                         <Controller
