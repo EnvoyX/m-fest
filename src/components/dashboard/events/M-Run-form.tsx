@@ -33,7 +33,9 @@ import { useTRPC } from "@/utils/trpc";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
+import { ArrowUpRightFromSquare, Loader2 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function MRunForm() {
     const currentDate = getCurrentDate();
@@ -113,9 +115,6 @@ export default function MRunForm() {
                     <h2 className="text-5xl font-black tracking-tight text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 italic">
                         M-RUN
                     </h2>
-                    {/* <p className="text-slate-400 mt-2">
-            Push your limits. Secure your spot in the race.
-          </p> */}
                 </div>
 
                 <Form {...form}>
@@ -438,6 +437,15 @@ export default function MRunForm() {
                                     </div>
                                 )}
                             </div>
+                              <div className="relative w-full h-full flex flex-col gap-2 justify-center">
+                                <div className="flex items-center gap-2">
+                                 <Link href={"/events/size-chart-m-run.png"} target="_blank" className="text-blue-400 underline font-bold italic">
+                                View Size Chart
+                                </Link>
+                                <ArrowUpRightFromSquare className="size-4"/>
+                               </div>
+                                <Image src={`/events/size-chart-m-run.png`} alt={"size-chart"} className="object-cover" height={400} width={600}/>
+                            </div>
                         </div>
 
                         <div className="space-y-6">
@@ -692,6 +700,15 @@ export default function MRunForm() {
                                     </FormItem>
                                 )}
                             />
+                              <h3 className="text-sm font-bold uppercase tracking-widest text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 border-b border-teal-500/20 pb-2">
+                                Terms & Condition
+                            </h3>
+                               <div className="flex items-center gap-2">
+                                 <Link href={"/events/TERMS_CONDITIONS_M-RUN-2026.pdf"} target="_blank" className="text-blue-400 underline font-bold italic">
+                                Terms & Condition
+                                </Link>
+                                <ArrowUpRightFromSquare className="size-4"/>
+                               </div>
                             <FormField
                                 control={form.control}
                                 name="siapLomba"
