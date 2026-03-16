@@ -348,7 +348,7 @@ export default function MRunDataTable() {
             accessorFn: (row) => row.ktpUrl,
             header: ({ column }) => {
                 return (
-                    <DataTableColumnHeader column={column} title="KTP/KTM/Student Card" />
+                    <DataTableColumnHeader column={column} title="KTP/KTM/Kartu Pelajar" />
                 );
             },
             cell: ({ row }) => {

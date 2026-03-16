@@ -342,7 +342,7 @@ export default function MRunForm() {
                             <h3 className="text-sm font-bold uppercase tracking-widest text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 border-b border-teal-500/20 pb-2">
                                 Informasi Peserta
                             </h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-12">
                                 <FormField
                                     control={form.control}
                                     name="category"
@@ -370,8 +370,8 @@ export default function MRunForm() {
                                                 </div>
                                                 <div className="flex items-center space-x-2">
                                                     <RadioGroupItem value="MAHASISWA" id="mhs" />
-                                                    <FormLabel htmlFor="mhs" className="text-slate-300">
-                                                        Mahasiswa
+                                                    <FormLabel htmlFor="mhs" className="text-slate-300 text-sm">
+                                                        Mahasiswa/Pelajar
                                                     </FormLabel>
                                                 </div>
                                             </RadioGroup>
@@ -654,7 +654,7 @@ export default function MRunForm() {
                     </FormLabel> */}
                                         <UploadEventDialog
                                             id={1}
-                                            title={`${form.watch("category") === "UMUM" ? "KTP" : "KTM"}`}
+                                            title={`${form.watch("category") === "UMUM" ? "KTP" : "KTM/Kartu Pelajar"}`}
                                             isLoading={isLoading}
                                             setIsLoading={setIsLoading}
                                             uploadThingRoute="uploadKTPorStudentCard"
