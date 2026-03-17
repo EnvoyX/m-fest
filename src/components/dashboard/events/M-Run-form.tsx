@@ -743,7 +743,7 @@ export default function MRunForm() {
                                 Terms & Condition
                             </h3>
                                <div className="flex items-center gap-2">
-                                 <Link href={"/events/TERMS_CONDITIONS_M-RUN-2026.pdf"} target="_blank" className="text-blue-400 underline font-bold italic">
+                                 <Link href={"/events/TERMS _ CONDITIONS M-RUN 2026.pdf"} target="_blank" className="text-blue-400 underline font-bold italic">
                                 Terms & Condition
                                 </Link>
                                 <ArrowUpRightFromSquare className="size-4"/>
