@@ -1,7 +1,5 @@
 import { montserrat, onest, roboto } from "@/styles/font";
-// @ts-ignore this import is exist
 import "./globals.css";
-// @ts-ignore this import is exist
 import "lenis/dist/lenis.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
