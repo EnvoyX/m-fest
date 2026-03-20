@@ -898,6 +898,11 @@ export type ExamStateFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Skip the first `n` ExamStates.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of ExamStates.
+   */
   distinct?: Prisma.ExamStateScalarFieldEnum | Prisma.ExamStateScalarFieldEnum[]
 }
 

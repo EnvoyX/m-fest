@@ -2758,6 +2758,11 @@ export type EventRegistrationFindManyArgs<ExtArgs extends runtime.Types.Extensio
    * Skip the first `n` EventRegistrations.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of EventRegistrations.
+   */
   distinct?: Prisma.EventRegistrationScalarFieldEnum | Prisma.EventRegistrationScalarFieldEnum[]
 }
 
