@@ -470,7 +470,7 @@ export default function MRunForm() {
                             </div>
                               <div className="relative w-full h-full flex flex-col gap-2 justify-center">
                                 <div className="flex items-center gap-2">
-                                 <Link href={"/events/size-chart-m-run.png"} target="_blank" className="text-blue-400 underline font-bold italic">
+                                 <Link href={"/events/jersey_size_mrun_new.png"} target="_blank" className="text-blue-400 underline font-bold italic">
                                 View Size Chart
                                 </Link>
                                 <ArrowUpRightFromSquare className="size-4"/>
