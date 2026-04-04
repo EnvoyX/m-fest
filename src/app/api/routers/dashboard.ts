@@ -604,4 +604,12 @@ export const dashboardRouter = router({
 
         return currentMotorTypeQuota
     }),
-});
+    getMRUNJoinedCount: protectedProcedure.query(async ({ ctx }) => {
+        const mrunJoinedCount = await ctx.db.eventRegistration.count({
+            where: {
+                eventType: "M_RUN",
+            },
+        });
+        return mrunJoinedCount
+    }),
+})

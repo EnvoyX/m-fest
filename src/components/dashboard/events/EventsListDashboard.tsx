@@ -30,6 +30,7 @@ import { eventsList, type Event } from "@/lib/eventDashboard";
 import type { MotorType } from "../../../../prisma/generated/prisma/enums";
 import QuotaTrackETU from "./QuotaTrackETU";
 import { is } from "date-fns/locale";
+import RunnerCount from "./RunnerCount";
 
 export default function EventsListDashboard() {
     return (
@@ -42,21 +43,6 @@ export default function EventsListDashboard() {
 async function FetchUserAvailableEvents() {
     const currentDate = getCurrentDate();
     const user = (await getUser()) as User;
-
-    const stats = await db.eventRegistration.groupBy({
-        by: ["motorType"],
-        _count: { motorType: true },
-    });
-
-    const currentMotorTypeQuota = {
-        "MATIC": stats.find((stat) => stat.motorType === "MATIC")?._count.motorType ?? 0,
-        "MANUAL": stats.find((stat) => stat.motorType === "MANUAL")?._count.motorType ?? 0,
-    }
-
-    const maxQuotaMatic = eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0;
-    const maxQuotaManual = eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0;
-    const isMaticFull = currentMotorTypeQuota.MATIC >= (eventsList.find((event) => event.id === "ETU")?.slotmatic ?? 0);
-    const isManualFull = currentMotorTypeQuota.MANUAL >= (eventsList.find((event) => event.id === "ETU")?.slotmanual ?? 0);
 
     const registeredEvents = await db.eventRegistration.findMany({
         where: {
@@ -114,7 +100,6 @@ async function FetchUserAvailableEvents() {
                         currentDate,
                         event.startRegDate1 as Date,
                     );
-                    const isETUOpen = (!isMaticFull || !isManualFull)
 
                     return (
                         <Card
@@ -143,8 +128,14 @@ async function FetchUserAvailableEvents() {
                                     <Badge variant="destructive">Closed</Badge>
                                 )}
                             </CardHeader>
-                            <CardContent className="flex justify-center items-center grow my-auto">
+                            <CardContent className="flex flex-col justify-center items-center grow my-auto">
                                 <event.logo className="size-24" />
+
+                                {event.id === "M-RUN" && (
+                                    <p className="text-sm text-muted-foreground mt-2">
+                                    <RunnerCount />
+                                    </p>
+                                )}
                             </CardContent>
                             <CardFooter className="flex flex-col justify-center mt-auto">
                                 <Button

@@ -5,6 +5,8 @@ import { ChevronRight } from "lucide-react";
 import { eventsList, type Event } from "@/lib/eventDashboard";
 import { getCurrentDate, wibToUTC } from "@/lib/utils";
 import { isWithinInterval } from "date-fns";
+import RunnerCount, { RunnerCountMain } from "@/components/dashboard/events/RunnerCount";
+import { CLIENT_STATIC_FILES_RUNTIME_MAIN } from "next/dist/shared/lib/constants";
 
 {/*export default function ComingSoon() {
    return (
@@ -107,8 +109,10 @@ export default function ETUPages() {
         />
       </div>
 
-      <div className="flex justify-center pb-16">
-          <Button 
+      <div className="flex flex-col items-center my-auto justify-center pb-16">
+          <div className="pb-5"> <RunnerCountMain/> </div>
+
+          <Button
             size="lg"
             disabled={!isOpen}
             className="rounded-xl text-lg md:text-xl font-bold px-10 py-6 md:px-12 md:py-8 shadow-lg w-fit"

@@ -73,7 +73,7 @@ export const eventsList: Event[] = [
         eventDate: "Minggu, 3 Mei 2026",
         location: "Institut Teknologi Bandung Ganesha",
         startRegDate1: new Date("2026-03-13T15:00:00"),
-        endRegDate1: new Date("2026-04-11T23:59:59"),
+        endRegDate1: new Date("2026-04-04T23:59:59"),
         // Batch 1 : 13 Maret - 4 April
         // Batch 2 : 5 April - 11 April 
         Batch1StartRegDate: new Date("2026-03-13T15:00:00"),
