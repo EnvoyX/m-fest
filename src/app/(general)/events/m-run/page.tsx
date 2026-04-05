@@ -114,7 +114,6 @@ export default function ETUPages() {
 
           <Button
             size="lg"
-            disabled={!isOpen}
             className="rounded-xl text-lg md:text-xl font-bold px-10 py-6 md:px-12 md:py-8 shadow-lg w-fit"
           >
             {!isOpen ? (
