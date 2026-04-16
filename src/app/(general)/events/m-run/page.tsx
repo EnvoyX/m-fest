@@ -6,8 +6,6 @@ import { eventsList, type Event } from "@/lib/eventDashboard";
 import { getCurrentDate, wibToUTC } from "@/lib/utils";
 import { isWithinInterval } from "date-fns";
 import RunnerCount, { RunnerCountMain } from "@/components/dashboard/events/RunnerCount";
-import { CLIENT_STATIC_FILES_RUNTIME_MAIN } from "next/dist/shared/lib/constants";
-
 {/*export default function ComingSoon() {
    return (
     <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
@@ -23,15 +21,15 @@ import { CLIENT_STATIC_FILES_RUNTIME_MAIN } from "next/dist/shared/lib/constants
 const currentDate = getCurrentDate();
 const event = eventsList.find((event) => event.id === "M-RUN") as Event;
 function isRegistrationOpen(event: Event, now: Date) {
-                        if (!event.startRegDate1 || !event.endRegDate1) return false;
+  if (!event.startRegDate1 || !event.endRegDate1) return false;
 
-                        const start = wibToUTC(event.startRegDate1);
-                        const end = wibToUTC(event.endRegDate1);
+  const start = wibToUTC(event.startRegDate1);
+  const end = wibToUTC(event.endRegDate1);
 
-                        return isWithinInterval(now, { start, end });
+  return isWithinInterval(now, { start, end });
 }
 const isOpen = isRegistrationOpen(event, currentDate);
-                  
+
 export default function ETUPages() {
   return (
     <div className="w-full overflow-x-hidden">
@@ -47,7 +45,7 @@ export default function ETUPages() {
           width={926}
           className="mx-auto pt-8 pb-5 w-full max-w-[926px] h-auto"
         />
-        
+
         <div className="max-w-4xl mx-auto text-center space-y-8 mt-8">
           <h1 className="text-lg md:text-xl lg:text-2xl leading-relaxed">
             Ever felt your heart pounding like a powerful engine, your breath
@@ -110,22 +108,23 @@ export default function ETUPages() {
       </div>
 
       <div className="flex flex-col items-center my-auto justify-center pb-16">
-          <div className="pb-5"> <RunnerCountMain/> </div>
+        <div className="pb-5"> <RunnerCountMain /> </div>
 
-          <Button
-            size="lg"
-            className="rounded-xl text-lg md:text-xl font-bold px-10 py-6 md:px-12 md:py-8 shadow-lg w-fit"
-          >
-            {!isOpen ? (
-              <span className="flex items-center gap-2 whitespace-nowrap">
-                Register Now <ChevronRight className="h-6 w-6" />
-              </span>
-            ) : (
-              <Link href="/dashboard/events/register/M-RUN/" className="flex items-center gap-2 whitespace-nowrap">
-                Register Now <ChevronRight className="h-6 w-6" />
-              </Link>
-            )}
-          </Button>
+        <Button
+          size="lg"
+          className="rounded-xl text-lg md:text-xl font-bold px-10 py-6 md:px-12 md:py-8 shadow-lg w-fit"
+          disabled={isOpen ? isOpen : !isOpen}
+        >
+          {!isOpen ? (
+            <span className="flex items-center gap-2 whitespace-nowrap">
+              Register Now <ChevronRight className="h-6 w-6" />
+            </span>
+          ) : (
+            <Link href="/dashboard/events/register/M-RUN/" className="flex items-center gap-2 whitespace-nowrap">
+              Register Now <ChevronRight className="h-6 w-6" />
+            </Link>
+          )}
+        </Button>
       </div>
 
       <div className="px-4 pb-8">
