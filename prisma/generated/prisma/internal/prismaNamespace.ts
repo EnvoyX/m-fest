@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.5.0
- * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
+ * Prisma Client JS version: 7.4.0
+ * Query Engine version: ab56fe763f921d033a6c195e7ddeb3e255bdbb57
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.5.0",
-  engine: "280c870be64f457428992c43c1f6d557fab6e29e"
+  client: "7.4.0",
+  engine: "ab56fe763f921d033a6c195e7ddeb3e255bdbb57"
 }
 
 /**
@@ -1397,9 +1397,22 @@ export const EventRegistrationScalarFieldEnum = {
   sourceInfo: 'sourceInfo',
   gender: 'gender',
   isPresence: 'isPresence',
+  almamater: 'almamater',
   activeSocial: 'activeSocial',
   reasonToParticipate: 'reasonToParticipate',
   interestedTopic: 'interestedTopic',
+  talksRegisterSession1: 'talksRegisterSession1',
+  talksRegisterSession2: 'talksRegisterSession2',
+  talksRegisterSession3: 'talksRegisterSession3',
+  talksRegisterSession4: 'talksRegisterSession4',
+  expoRegisterDay1: 'expoRegisterDay1',
+  expoRegisterDay2: 'expoRegisterDay2',
+  talksSession1Presence: 'talksSession1Presence',
+  talksSession2Presence: 'talksSession2Presence',
+  talksSession3Presence: 'talksSession3Presence',
+  talksSession4Presence: 'talksSession4Presence',
+  expoDay1Presence: 'expoDay1Presence',
+  expoDay2Presence: 'expoDay2Presence',
   clinicActivity: 'clinicActivity',
   memenuhiSyarat: 'memenuhiSyarat',
   age: 'age',

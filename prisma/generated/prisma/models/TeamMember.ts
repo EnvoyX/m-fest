@@ -1461,11 +1461,6 @@ export type TeamMemberFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Skip the first `n` TeamMembers.
    */
   skip?: number
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   * 
-   * Filter by unique combinations of TeamMembers.
-   */
   distinct?: Prisma.TeamMemberScalarFieldEnum | Prisma.TeamMemberScalarFieldEnum[]
 }
 

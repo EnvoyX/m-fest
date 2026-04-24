@@ -196,11 +196,28 @@ model EventRegistration {
   sourceInfo           SourceInfo?
   gender               Gender?
   isPresence           Boolean?    @default(false)
+  almamater            String?
 
-  // M-Talks Specific
+  // M-Talks & M-Expo Specific
   activeSocial        String?
   reasonToParticipate String?
   interestedTopic     String?
+
+  talksRegisterSession1 Boolean? @default(false)
+  talksRegisterSession2 Boolean? @default(false)
+  talksRegisterSession3 Boolean? @default(false)
+  talksRegisterSession4 Boolean? @default(false)
+
+  expoRegisterDay1 Boolean? @default(false)
+  expoRegisterDay2 Boolean? @default(false)
+
+  talksSession1Presence Boolean? @default(false)
+  talksSession2Presence Boolean? @default(false)
+  talksSession3Presence Boolean? @default(false)
+  talksSession4Presence Boolean? @default(false)
+
+  expoDay1Presence  Boolean? @default(false)
+  expoDay2Presence  Boolean? @default(false)
 
   // M-Care Specific
   clinicActivity KlinikActivity?
