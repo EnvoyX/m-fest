@@ -180,6 +180,213 @@ async function FetchCompForm({
         redirect("/dashboard/competitions");
     }
 
+    if (comp === "BCC" && team.competition === "BCC") {
+        return (
+            <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto sm:px-6 lg:px-8 py-6">
+                <Tabs defaultValue="extended-abstract" className="p-6! flex! flex-col! sm:flex-row!">
+                    <div className="border-r-0 sm:border-r p-4">
+                        <h1 className="text-3xl font-bold text-foreground">
+                            SUBMISSION DETAILS FOR {comp.toUpperCase()}
+                        </h1>
+                        <div className="flex gap-6 text-muted-foreground mb-2 flex-col sm:flex-row">
+                            <span>
+                                {comp.toUpperCase() === "BCC"
+                                    ? "Business Case Competition"
+                                    : comp.toUpperCase() === "IPPC"
+                                        ? "Innovative Poster and Paper Competition"
+                                        : comp.toUpperCase() === "PDC"
+                                            ? "Pipeline Design Competition"
+                                            : comp.toUpperCase() === "STEM"
+                                                ? "Science, Technology, Engineering, and Mathematics (STEM) Competition"
+                                                : null}{" "}
+                                2026
+                            </span>
+                        </div>
+                        <TabsList variant={"line"}>
+                            <TabsTrigger value="extended-abstract">Preliminary</TabsTrigger>
+                            <TabsTrigger value="full-paper">Pitch Deck</TabsTrigger>
+                        </TabsList>
+                        <Separator orientation="horizontal" />
+
+                        <TabsContent value="extended-abstract">
+                            <div className="mt-6 mb-6 text-white w-full">
+                                <p>
+                                    Hello participant of {comp.toUpperCase()} !!
+                                    <br />
+                                    Here is the submission details for {comp.toUpperCase()} 2026. Also
+                                    there are attached files you need to see.
+                                </p>
+                                <p className="mt-3">
+                                    Good luck!
+                                    <br />
+                                    If there is any question you can contact our contact person in the
+                                    home page.
+                                    <br />
+                                    You can submit your submission for Extended Abstract by press &quot;Submit&quot; button
+                                    on the right
+                                </p>
+                                <p className="mt-3">Guidelines and Information:</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 mt-2">
+                                    <Button asChild>
+                                        <LinkPreview
+                                            url={
+                                                competitions.find(
+                                                    (competition) =>
+                                                        competition.abbreviation === comp.toUpperCase(),
+                                                )?.guideBook as string
+                                            }
+                                            className="font-bold bg-transparent border-3 hover:bg-white/20"
+                                        >
+                                            Guidebook
+                                        </LinkPreview>
+                                    </Button>
+                                    {(competitions.find(
+                                        (competition) =>
+                                            competition.abbreviation === comp.toUpperCase(),
+                                    )?.caseLink as string) && (
+                                            <Button asChild>
+                                                <LinkPreview
+                                                    url={
+                                                        competitions.find(
+                                                            (competition) =>
+                                                                competition.abbreviation === comp.toUpperCase(),
+                                                        )?.caseLink as string
+                                                    }
+                                                    className="font-bold bg-transparent border-3 hover:bg-white/20"
+                                                >
+                                                    Case
+                                                </LinkPreview>
+                                            </Button>
+                                        )}
+                                </div>
+                                <p className="mt-3 text-destructive">
+                                    <span className="font-medium">
+                                        {thisComp?.submissionContext}{" "}
+                                    </span>{" "}
+                                    <span className="font-bold">
+                                        {format(
+                                            thisComp?.submissionDeadline as Date,
+                                            "EEEE, d MMMM yyyy, HH:mm",
+                                        )}
+                                    </span>
+                                </p>
+                                <div className="mt-6 flex justify-center sm:justify-start">
+                                    <CountdownClient
+                                        date={
+                                            competitions.find(
+                                                (competition) =>
+                                                    competition.abbreviation === comp.toUpperCase(),
+                                            )?.submissionDeadline as Date
+                                        }
+                                        description="Submission Deadline"
+                                        type="submissionDeadline"
+                                    />
+                                </div>
+                            </div>
+                        </TabsContent>
+
+                        {/* ---- FULL PAPER TAB ---- */}
+                        <TabsContent value="full-paper">
+                            <div className="mt-6 mb-6 text-white w-full">
+                                <p>
+                                    Hello participant of {comp.toUpperCase()} !!
+                                    <br />
+                                    Here is the submission details for {comp.toUpperCase()} 2026. Also
+                                    there are attached files you need to see.
+                                </p>
+                                <p className="mt-3">
+                                    Good luck!
+                                    <br />
+                                    If there is any question you can contact our contact person in the
+                                    home page.
+                                    <br />
+                                    You can submit your submission for Full Paper by press &quot;Submit&quot; button
+                                    on the right
+                                </p>
+                                <p className="mt-3">Guidelines and Information:</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 mt-2">
+                                    <Button asChild>
+                                        <LinkPreview
+                                            url={
+                                                competitions.find(
+                                                    (competition) =>
+                                                        competition.abbreviation === comp.toUpperCase(),
+                                                )?.guideBook as string
+                                            }
+                                            className="font-bold bg-transparent border-3 hover:bg-white/20"
+                                        >
+                                            Guidebook
+                                        </LinkPreview>
+                                    </Button>
+                                    {(competitions.find(
+                                        (competition) =>
+                                            competition.abbreviation === comp.toUpperCase(),
+                                    )?.caseLink as string) && (
+                                            <Button asChild>
+                                                <LinkPreview
+                                                    url={
+                                                        competitions.find(
+                                                            (competition) =>
+                                                                competition.abbreviation === comp.toUpperCase(),
+                                                        )?.caseLink as string
+                                                    }
+                                                    className="font-bold bg-transparent border-3 hover:bg-white/20"
+                                                >
+                                                    Case
+                                                </LinkPreview>
+                                            </Button>
+                                        )}
+                                </div>
+                                <p className="mt-3 text-destructive">
+                                    <span className="font-medium">
+                                        {thisComp?.submissionContext2}{" "}
+                                    </span>{" "}
+                                    <span className="font-bold">
+                                        {format(
+                                            thisComp?.submissionDeadline2 as Date,
+                                            "EEEE, d MMMM yyyy, HH:mm",
+                                        )}
+                                    </span>
+                                </p>
+                                <div className="mt-6 flex justify-center sm:justify-start">
+                                    <CountdownClient
+                                        date={
+                                            competitions.find(
+                                                (competition) =>
+                                                    competition.abbreviation === comp.toUpperCase(),
+                                            )?.submissionDeadline2 as Date
+                                        }
+                                        description="Submission Deadline"
+                                        type="submissionDeadline"
+                                    />
+                                </div>
+                            </div>
+                        </TabsContent>
+                    </div>
+
+                    <TabsContent value="extended-abstract">
+                        {submissionDeadline && isBefore(currentDate, submissionDeadline) ? (
+                            <div className="p-6 bg-transparent">
+                                <h1 className="text-center font-bold text-2xl">Upload Extended Abstract</h1>
+                                <SubmitForm comp={comp} leaderUserId={team.leaderUserId} type="preliminary" />
+                            </div>
+                        ) : null}
+                    </TabsContent>
+                    <TabsContent value="full-paper">
+                        {thisComp?.submissionDeadline2 && isBefore(currentDate, thisComp.submissionDeadline2) ? (
+                            <div className="p-6 bg-transparent">
+                                <h1 className="text-center font-bold text-2xl">
+                                    Upload {comp === "BCC" ? "Pitch Deck" : "Full Paper"}
+                                </h1>
+                                <SubmitForm comp={comp} leaderUserId={team.leaderUserId} type="pitch-deck" />
+                            </div>
+                        ) : null}
+                    </TabsContent>
+                </Tabs>
+            </section>
+        );
+    }
+
     if (comp === "IPPC" && team.competition === "IPPC") {
         return (
             <section className="min-h-screen bg-transparent w-full max-w-7xl mx-auto sm:px-6 lg:px-8 py-6">

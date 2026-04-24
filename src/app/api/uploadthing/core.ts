@@ -385,13 +385,15 @@ export const ourFileRouter = {
                 throw error;
             }
         }),
-    submitFileBCC: f({
+        submitFileBCC: f({
         blob: {
             maxFileSize: "64GB",
             maxFileCount: 1,
         },
-    })
-        .middleware(async ({ req }) => {
+    }).input(z.object({
+        type: z.enum(["preliminary", "pitch-deck"]).optional()
+    }))
+        .middleware(async ({ req, input }) => {
             const session = await auth.api.getSession({
                 headers: req.headers,
             });
@@ -403,6 +405,7 @@ export const ourFileRouter = {
                 userId: session.user.id,
                 name: session.user.name,
                 email: session.user.email,
+                type: input.type
             };
         })
         .onUploadComplete(async ({ metadata, file }) => {
@@ -427,30 +430,60 @@ export const ourFileRouter = {
 
                 console.log(thisRegisteredCompUser);
 
-                const previousFile = await db.compRegistration.findFirst({
-                    where: {
-                        leaderUserId: thisRegisteredCompUser?.leaderUserId as string,
-                        competitionName: comp,
-                    },
-                    select: { submissionFileKey: true },
-                });
-                if (previousFile?.submissionFileKey) {
-                    await deleteFiles(previousFile?.submissionFileKey);
+                if (metadata.type && metadata.type === "pitch-deck") {
+                    console.log("Uploading pitch deck from Uploadthing")
+                    const previousFile = await db.compRegistration.findFirst({
+                        where: {
+                            leaderUserId: thisRegisteredCompUser?.leaderUserId as string,
+                            competitionName: comp,
+                        },
+                        select: { submissionFileKey2: true },
+                    });
+                    if (previousFile?.submissionFileKey2) {
+                        await deleteFiles(previousFile?.submissionFileKey2);
+                    }
+
+                    await db.compRegistration.update({
+                        where: {
+                            id: thisRegisteredCompUser?.id as string,
+                        },
+                        data: {
+                            submissionFileUrl2: file.ufsUrl,
+                            submissionFileKey2: file.key,
+                            submissionFileCreatedAt2: getCurrentDate(),
+                            submissionFileUploaded2: true,
+                        },
+                    });
+                    return { fileUrl: file.ufsUrl, uploadedBy: metadata.userId };
                 }
 
-                await db.compRegistration.update({
-                    where: {
-                        teamId: thisRegisteredCompUser?.teamId as string,
-                    },
-                    data: {
-                        submissionFileUrl: file.ufsUrl,
-                        submissionFileKey: file.key,
-                        submissionFileCreatedAt: getCurrentDate(),
-                        submissionFileUploaded: true,
-                    },
-                });
+                if (!metadata.type || metadata.type === "preliminary") {
+                    console.log("Uploading preliminary from Uploadthing")
+                    const previousFile = await db.compRegistration.findFirst({
+                        where: {
+                            leaderUserId: thisRegisteredCompUser?.leaderUserId as string,
+                            competitionName: comp,
+                        },
+                        select: { submissionFileKey: true },
+                    });
+                    if (previousFile?.submissionFileKey) {
+                        await deleteFiles(previousFile?.submissionFileKey);
+                    }
 
-                return { fileUrl: file.ufsUrl, uploadedBy: metadata.userId };
+                    await db.compRegistration.update({
+                        where: {
+                            id: thisRegisteredCompUser?.id as string,
+                        },
+                        data: {
+                            submissionFileUrl: file.ufsUrl,
+                            submissionFileKey: file.key,
+                            submissionFileCreatedAt: getCurrentDate(),
+                            submissionFileUploaded: true,
+                        },
+                    });
+                    return { fileUrl: file.ufsUrl, uploadedBy: metadata.userId };
+                }
+
             } catch (error) {
                 console.error("Error in onUploadComplete:", error);
                 throw error;
