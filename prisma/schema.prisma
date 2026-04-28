@@ -209,6 +209,8 @@ model EventRegistration {
   gender               Gender?
   isPresence           Boolean?    @default(false)
   almamater            String?
+  followIgUrl     String?
+
 
   // M-Talks & M-Expo Specific
   activeSocial        String?
@@ -234,7 +236,6 @@ model EventRegistration {
   age             String?
   ktpUrl          String?
   buktiBayarUrl   String?
-  followIgUrl     String?
   category        Kategori? // 5K, 10K, etc
   jerseySize      JerseySize?
   isAlumniHMM     Boolean?     @default(false)
