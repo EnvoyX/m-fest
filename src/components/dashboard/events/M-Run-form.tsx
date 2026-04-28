@@ -38,7 +38,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-const jerseySizes  = [{
+const jerseySizes = [{
     label: "XS",
     value: "XS"
 }, {
@@ -133,9 +133,9 @@ export default function MRunForm() {
         registerEvent.mutate({
             registrationType: "M-RUN",
             batch: batchInfo?.batch,
-            price: form.watch("category") === "UMUM" ? (batchInfo?.pricePublic  as number + is3XL) : (batchInfo?.priceStudent as number + is3XL),
+            price: form.watch("category") === "UMUM" ? (batchInfo?.pricePublic as number + is3XL) : (batchInfo?.priceStudent as number + is3XL),
             ...data,
-            
+
         });
     };
 
@@ -359,7 +359,7 @@ export default function MRunForm() {
                                                         form.setValue("isAlumniHMM", false);
                                                     }
                                                     return field.onChange(val);
-                                                }}  
+                                                }}
                                                 className="flex max-sm:flex-col gap-4 space-x-4"
                                             >
                                                 <div className="flex items-center space-x-2">
@@ -468,14 +468,14 @@ export default function MRunForm() {
                                     </div>
                                 )}
                             </div>
-                              <div className="relative w-full h-full flex flex-col gap-2 justify-center">
+                            <div className="relative w-full h-full flex flex-col gap-2 justify-center">
                                 <div className="flex items-center gap-2">
-                                 <Link href={"/events/jersey_size_mrun_new.png"} target="_blank" className="text-blue-400 underline font-bold italic">
-                                View Size Chart
-                                </Link>
-                                <ArrowUpRightFromSquare className="size-4"/>
-                               </div>
-                                <Image src={`/events/size-chart-m-run.png`} alt={"size-chart"} className="object-cover" height={400} width={600}/>
+                                    <Link href={"/events/jersey_size_mrun_new.png"} target="_blank" className="text-blue-400 underline font-bold italic">
+                                        View Size Chart
+                                    </Link>
+                                    <ArrowUpRightFromSquare className="size-4" />
+                                </div>
+                                <Image src={`/events/size-chart-m-run.png`} alt={"size-chart"} className="object-cover" height={400} width={600} />
                             </div>
                         </div>
 
@@ -701,16 +701,16 @@ export default function MRunForm() {
                                 )}
                             />
                             <h4 className="text-xl font-bold uppercase tracking-widest text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 border-b border-teal-500/20 pb-2">
-                                Batch {batchInfo?.batch} {form.watch("category") && ` | Harga : Rp. ${form.watch("category") === "UMUM" ? (batchInfo?.pricePublic  as number + is3XL) : (batchInfo?.priceStudent as number + is3XL)}`}
+                                Batch {batchInfo?.batch} {form.watch("category") && ` | Harga : Rp. ${form.watch("category") === "UMUM" ? (batchInfo?.pricePublic as number + is3XL) : (batchInfo?.priceStudent as number + is3XL)}`}
                             </h4>
-                    <h3 className="text-base font-bold text-start mb-3">
-                    Pembayaran melalui transfer ke:
-                    <p className="flex flex-col items-start justify-center">
-                        <span>Bank Terdaftar: SEABANK </span>
-                        <span>Nomor Rekening: 901914836624 </span>
-                        <span>Nama Pemilik Rekening: Reva Elita Nurhaliza</span>
-                    </p>
-                    </h3>
+                            <h3 className="text-base font-bold text-start mb-3">
+                                Pembayaran melalui transfer ke:
+                                <p className="flex flex-col items-start justify-center">
+                                    <span>Bank Terdaftar: SEABANK </span>
+                                    <span>Nomor Rekening: 901914836624 </span>
+                                    <span>Nama Pemilik Rekening: Reva Elita Nurhaliza</span>
+                                </p>
+                            </h3>
                             <FormField
                                 control={form.control}
                                 name="buktiBayarUrl"
@@ -739,15 +739,15 @@ export default function MRunForm() {
                                     </FormItem>
                                 )}
                             />
-                              <h3 className="text-sm font-bold uppercase tracking-widest text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 border-b border-teal-500/20 pb-2">
+                            <h3 className="text-sm font-bold uppercase tracking-widest text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 border-b border-teal-500/20 pb-2">
                                 Terms & Condition
                             </h3>
-                               <div className="flex items-center gap-2">
-                                 <Link href={"/events/TERMS _ CONDITIONS M-RUN 2026.pdf"} target="_blank" className="text-blue-400 underline font-bold italic">
-                                Terms & Condition
+                            <div className="flex items-center gap-2">
+                                <Link href={"/events/TERMS _ CONDITIONS M-RUN 2026.pdf"} target="_blank" className="text-blue-400 underline font-bold italic">
+                                    Terms & Condition
                                 </Link>
-                                <ArrowUpRightFromSquare className="size-4"/>
-                               </div>
+                                <ArrowUpRightFromSquare className="size-4" />
+                            </div>
                             <FormField
                                 control={form.control}
                                 name="siapLomba"

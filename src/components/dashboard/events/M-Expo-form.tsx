@@ -22,7 +22,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { mTalksSchema } from "@/lib/event-schema";
+import { mExpoSchema } from "@/lib/event-schema";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useTRPC } from "@/utils/trpc";
 import { useRouter } from "next/navigation";
@@ -31,26 +31,24 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FaInstagram } from "react-icons/fa";
-import type { MTalksSessionType } from "../../../../prisma/generated/prisma/enums";
+import type { MExpoSessionType } from "../../../../prisma/generated/prisma/enums";
 import UploadEventDialog from "./UploadEventDialog";
 
-const TALKS_SESSIONS = [
-    { value: "TALKS_1", label: "Sesi 1" },
-    { value: "TALKS_2", label: "Sesi 2" },
-    { value: "TALKS_3", label: "Sesi 3" },
-    { value: "TALKS_4", label: "Sesi 4" },
+const EXPO_SESSIONS = [
+    { value: "EXPO_DAY_1", label: "Day 1" },
+    { value: "EXPO_DAY_2", label: "Day 2" },
 ];
 
-export default function MTalksForm() {
-    const form = useForm<mTalksSchema>({
-        resolver: zodResolver(mTalksSchema),
+export default function MExpoForm() {
+    const form = useForm<mExpoSchema>({
+        resolver: zodResolver(mExpoSchema),
         defaultValues: {
             participantName: "",
             isITB: false,
             nimITB: "",
             majorITB: "",
             institution: "",
-            talksSessions: [],
+            expoSessions: [],
             followIgUrl: "",
         },
     });
@@ -70,8 +68,8 @@ export default function MTalksForm() {
         ...trpc.event.getEventRegistrationByUserId.queryOptions()
     })
 
-    const mTalksEvent = events?.filter((e) => e.eventType === "M_TALKS")
-    if (mTalksEvent?.length) router.push("/dashboard/events");
+    const mExpoEvent = events?.filter((e) => e.eventType === "M_EXPO")
+    if (mExpoEvent?.length) router.push("/dashboard/events");
 
     const registerEvent = useMutation({
         ...trpc.event.registerEvent.mutationOptions(),
@@ -98,7 +96,7 @@ export default function MTalksForm() {
 
         },
         onSettled: () => {
-            console.log(`Registered event M-Talks`);
+            console.log(`Registered event M-Expo`);
             startTransition(() => {
                 router.push("/dashboard/events");
             });
@@ -109,10 +107,10 @@ export default function MTalksForm() {
         form.setValue("followIgUrl", url);
     }
 
-    function onSubmit(data: mTalksSchema) {
+    function onSubmit(data: mExpoSchema) {
         // console.log("Form Submitted:", data);
         registerEvent.mutate({
-            registrationType: "M-TALKS",
+            registrationType: "M-EXPO",
             ...data,
         });
     }
@@ -121,7 +119,7 @@ export default function MTalksForm() {
         <div className="w-full max-w-lg p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl">
             <div className="mb-8 space-y-2">
                 <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 tracking-tight text-center">
-                    M-TALKS Registration
+                    M-EXPO Registration
                 </h2>
                 {/* <p className="text-slate-400">
           Join the World of Mechanical Engineering Exhibitions. Please fill in
@@ -221,21 +219,21 @@ export default function MTalksForm() {
                     )}
                     <FormField
                         control={form.control}
-                        name="talksSessions"
+                        name="expoSessions"
                         render={() => (
                             <FormItem>
-                                <FormLabel className="text-slate-200">Pilih Sesi Talks</FormLabel>
+                                <FormLabel className="text-slate-200">Pilih Day M-Expo</FormLabel>
                                 <div className="grid grid-cols-2 gap-2">
-                                    {TALKS_SESSIONS.map((session) => (
+                                    {EXPO_SESSIONS.map((session) => (
                                         <FormField
                                             key={session.value}
                                             control={form.control}
-                                            name="talksSessions"
+                                            name="expoSessions"
                                             render={({ field }) => (
                                                 <FormItem className="flex items-center space-x-3 space-y-0 p-3 rounded-md bg-white/5 border border-white/10">
                                                     <FormControl>
                                                         <Checkbox
-                                                            checked={field.value?.includes(session.value as MTalksSessionType)}
+                                                            checked={field.value?.includes(session.value as MExpoSessionType)}
                                                             onCheckedChange={(checked) => {
                                                                 return checked
                                                                     ? field.onChange([...field.value, session.value])
@@ -266,7 +264,6 @@ export default function MTalksForm() {
                         uploadThingRoute="uploadProofFollowIg"
                         handleUploadSuccess={handleUploadSuccess}
                     />
-
                     <FormField
                         control={form.control}
                         name="followIgUrl"

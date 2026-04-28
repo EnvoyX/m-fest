@@ -43,11 +43,33 @@ export const eventRouter = router({
                             isITB: input.isITB,
                             nimITB: input.nimITB,
                             majorITB: input.majorITB,
+                            institution: input.institution,
+                            talksSessions: input.talksSessions,
+                            followIgUrl: input.followIgUrl,
                             sourceInfo: input.sourceInfo,
                         },
                     });
                 });
-            } else if (input.registrationType === "ETU") {
+            }
+            else if (input.registrationType === "M-EXPO") {
+                await ctx.db.$transaction(async (tx) => {
+                    await tx.eventRegistration.create({
+                        data: {
+                            userId,
+                            eventType: "M_EXPO",
+                            participantName: input.participantName,
+                            isITB: input.isITB,
+                            nimITB: input.nimITB,
+                            majorITB: input.majorITB,
+                            institution: input.institution,
+                            expoSessions: input.expoSessions,
+                            followIgUrl: input.followIgUrl,
+                            sourceInfo: input.sourceInfo,
+                        },
+                    });
+                });
+            }
+            else if (input.registrationType === "ETU") {
                 await ctx.db.$transaction(async (tx) => {
                     await tx.eventRegistration.create({
                         data: {

@@ -186,3 +186,21 @@ export const MotorType = {
 } as const
 
 export type MotorType = (typeof MotorType)[keyof typeof MotorType]
+
+
+export const MTalksSessionType = {
+  TALKS_1: 'TALKS_1',
+  TALKS_2: 'TALKS_2',
+  TALKS_3: 'TALKS_3',
+  TALKS_4: 'TALKS_4'
+} as const
+
+export type MTalksSessionType = (typeof MTalksSessionType)[keyof typeof MTalksSessionType]
+
+
+export const MExpoSessionType = {
+  EXPO_DAY_1: 'EXPO_DAY_1',
+  EXPO_DAY_2: 'EXPO_DAY_2'
+} as const
+
+export type MExpoSessionType = (typeof MExpoSessionType)[keyof typeof MExpoSessionType]

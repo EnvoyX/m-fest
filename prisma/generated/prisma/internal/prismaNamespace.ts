@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.4.0
- * Query Engine version: ab56fe763f921d033a6c195e7ddeb3e255bdbb57
+ * Prisma Client JS version: 7.5.0
+ * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.4.0",
-  engine: "ab56fe763f921d033a6c195e7ddeb3e255bdbb57"
+  client: "7.5.0",
+  engine: "280c870be64f457428992c43c1f6d557fab6e29e"
 }
 
 /**
@@ -1394,6 +1394,7 @@ export const EventRegistrationScalarFieldEnum = {
   isITB: 'isITB',
   nimITB: 'nimITB',
   majorITB: 'majorITB',
+  institution: 'institution',
   sourceInfo: 'sourceInfo',
   gender: 'gender',
   isPresence: 'isPresence',
@@ -1401,12 +1402,8 @@ export const EventRegistrationScalarFieldEnum = {
   activeSocial: 'activeSocial',
   reasonToParticipate: 'reasonToParticipate',
   interestedTopic: 'interestedTopic',
-  talksRegisterSession1: 'talksRegisterSession1',
-  talksRegisterSession2: 'talksRegisterSession2',
-  talksRegisterSession3: 'talksRegisterSession3',
-  talksRegisterSession4: 'talksRegisterSession4',
-  expoRegisterDay1: 'expoRegisterDay1',
-  expoRegisterDay2: 'expoRegisterDay2',
+  talksSessions: 'talksSessions',
+  expoSessions: 'expoSessions',
   talksSession1Presence: 'talksSession1Presence',
   talksSession2Presence: 'talksSession2Presence',
   talksSession3Presence: 'talksSession3Presence',
@@ -1776,6 +1773,34 @@ export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Gender[]'
  */
 export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MTalksSessionType[]'
+ */
+export type ListEnumMTalksSessionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MTalksSessionType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MTalksSessionType'
+ */
+export type EnumMTalksSessionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MTalksSessionType'>
+    
+
+
+/**
+ * Reference to a field of type 'MExpoSessionType[]'
+ */
+export type ListEnumMExpoSessionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MExpoSessionType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MExpoSessionType'
+ */
+export type EnumMExpoSessionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MExpoSessionType'>
     
 
 

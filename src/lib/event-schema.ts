@@ -24,12 +24,13 @@ export type mCareSchema = z.infer<typeof mCareSchema>;
 export const mTalksSchema = z
     .object({
         participantName: z.string().min(1, "Nama Lengkap wajib diisi."),
-        isITB: z.boolean({
-            message: "Status wajib diisi.",
-        }),
+        isITB: z.boolean(),
         nimITB: z.string().optional(),
         majorITB: z.string().optional(),
+        institution: z.string().optional(),
+        talksSessions: z.array(z.enum(["TALKS_1", "TALKS_2", "TALKS_3", "TALKS_4"])),
         sourceInfo: z.enum(["INSTAGRAM_MFEST_ITB", "FRIEND", "BANNER", "OTHER"]),
+        followIgUrl: z.string().optional(),
     })
     .superRefine((values, ctx) => {
         if (values.isITB) {
@@ -47,10 +48,60 @@ export const mTalksSchema = z
                     path: ["majorITB"],
                 });
             }
+        } else {
+            if (!values.institution || values.institution.trim() === "") {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: "Asal Kampus wajib diisi (tulis '-' jika tidak ada)",
+                    path: ["institution"],
+                });
+            }
         }
     });
 
+
 export type mTalksSchema = z.infer<typeof mTalksSchema>;
+
+export const mExpoSchema = z
+    .object({
+        participantName: z.string().min(1, "Nama Lengkap wajib diisi."),
+        isITB: z.boolean(),
+        nimITB: z.string().optional(),
+        majorITB: z.string().optional(),
+        institution: z.string().optional(),
+        expoSessions: z.array(z.enum(["EXPO_DAY_1", "EXPO_DAY_2"])),
+        sourceInfo: z.enum(["INSTAGRAM_MFEST_ITB", "FRIEND", "BANNER", "OTHER"]),
+        followIgUrl: z.string().optional(),
+    })
+    .superRefine((values, ctx) => {
+        if (values.isITB) {
+            if (!values.nimITB || values.nimITB.length !== 8) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: "NIM ITB harus terdiri dari 8 digit",
+                    path: ["nimITB"],
+                });
+            }
+            if (!values.majorITB) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: "Jurusan ITB wajib diisi",
+                    path: ["majorITB"],
+                });
+            }
+        } else {
+            if (!values.institution || values.institution.trim() === "") {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: "Asal Kampus wajib diisi (tulis '-' jika tidak ada)",
+                    path: ["institution"],
+                });
+            }
+        }
+    });
+
+
+export type mExpoSchema = z.infer<typeof mExpoSchema>;
 
 export const etuSchema = z
     .object({
@@ -138,7 +189,7 @@ export const mRunSchema = z
         category: z.enum(["UMUM", "MAHASISWA"], {
             error: "Kategori wajib diisi.",
         }),
-        jerseySize: z.enum(["XS","S", "M", "L", "XL", "XXL", "XXXL"], {
+        jerseySize: z.enum(["XS", "S", "M", "L", "XL", "XXL", "XXXL"], {
             error: "Ukuran Jersey wajib diisi.",
         }),
         isAlumniHMM: z
@@ -227,6 +278,7 @@ export const eventsInputProcedureSchema = z.discriminatedUnion(
         mTalksSchema.extend({ registrationType: z.literal("M-TALKS") }),
         etuSchema.extend({ registrationType: z.literal("ETU") }),
         mRunSchema.extend({ registrationType: z.literal("M-RUN"), batch: z.string(), price: z.number() }),
+        mExpoSchema.extend({ registrationType: z.literal("M-EXPO") }),
     ],
 );
 
