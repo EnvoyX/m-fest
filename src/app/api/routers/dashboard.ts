@@ -371,6 +371,23 @@ export const dashboardRouter = router({
                 return
             }
 
+            if (input.type && input.type === "pitch-deck") {
+                console.log("Uploading pitch deck from TRPC")
+                await ctx.db.compRegistration.update({
+                    where: {
+                        teamId: thisRegisteredCompUser?.teamId as string,
+                    },
+                    data: {
+                        submissionFileName2: input.fileName,
+                        submissionFileUrl2: input.fileUrl,
+                        submissionFileUploaded2: true,
+                        submissionFileCreatedAt2: new Date(),
+                        submissionFileSubmitted2: true,
+                    },
+                });
+                return
+            }
+
             console.log("Uploading preliminary from TRPC")
             await ctx.db.compRegistration.update({
                 where: {

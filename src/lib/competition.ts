@@ -82,7 +82,7 @@ export const competitions: Competition[] = [
         icon: "Zap",
         uploadThingRoute: "submitFileBCC",
         submissionDeadline: getSubmissionDeadline("BCC"),
-        submissionDeadline2: new Date("2026-04-25T23:59:59"),
+        submissionDeadline2: new Date("2026-04-30T23:59:59"),
         submissionContext: "Submit your paper before:",
         compOpenCase: getCompCaseDate("BCC"),
         maxQuota: 1000,
