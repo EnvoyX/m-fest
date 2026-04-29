@@ -130,6 +130,17 @@ enum MotorType {
   MANUAL
 }
 
+enum MTalksSessionType {
+  TALKS_1
+  TALKS_2
+  TALKS_3
+  TALKS_4
+}
+enum MExpoSessionType {
+  EXPO_DAY_1
+  EXPO_DAY_2
+}
+
 model CompRegistration {
   id                String          @id @default(uuid())
   userId            String
@@ -193,14 +204,29 @@ model EventRegistration {
   isITB                Boolean?    @default(false)
   nimITB               String?
   majorITB             String?
+  institution          String?
   sourceInfo           SourceInfo?
   gender               Gender?
   isPresence           Boolean?    @default(false)
+  almamater            String?
+  followIgUrl     String?
 
-  // M-Talks Specific
+
+  // M-Talks & M-Expo Specific
   activeSocial        String?
   reasonToParticipate String?
   interestedTopic     String?
+
+  talksSessions       MTalksSessionType[]
+  expoSessions        MExpoSessionType[]
+
+  talksSession1Presence Boolean? @default(false)
+  talksSession2Presence Boolean? @default(false)
+  talksSession3Presence Boolean? @default(false)
+  talksSession4Presence Boolean? @default(false)
+
+  expoDay1Presence Boolean? @default(false)
+  expoDay2Presence Boolean? @default(false)
 
   // M-Care Specific
   clinicActivity KlinikActivity?
@@ -210,7 +236,6 @@ model EventRegistration {
   age             String?
   ktpUrl          String?
   buktiBayarUrl   String?
-  followIgUrl     String?
   category        Kategori? // 5K, 10K, etc
   jerseySize      JerseySize?
   isAlumniHMM     Boolean?     @default(false)

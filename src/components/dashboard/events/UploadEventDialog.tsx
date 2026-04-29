@@ -30,6 +30,7 @@ export default function UploadEventDialog({
     setIsLoading,
     uploadThingRoute,
     setValue,
+    handleUploadSuccess,
 }: UploadEventProps) {
     const [progress, setProgress] = useState<number | null>(null);
     const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -81,21 +82,25 @@ export default function UploadEventDialog({
             setIsLoading(false);
             toast.dismiss("upload-document");
             toast.success(`File uploaded successfully!`);
-            if (uploadThingRouteUpload === "uploadKTPorStudentCard") {
+
+            // This setValue is for M-RUN uploads
+            // M-TALKS & M-EXPO uses handleUploadSuccess
+            if (uploadThingRouteUpload === "uploadKTPorStudentCard" && setValue) {
                 setValue("ktpUrl", res[0]?.ufsUrl as string, {
                     shouldValidate: true,
                 });
             }
-            if (uploadThingRouteUpload === "uploadPaymentProofUrl") {
+            if (uploadThingRouteUpload === "uploadPaymentProofUrl" && setValue) {
                 setValue("buktiBayarUrl", res[0]?.ufsUrl as string, {
                     shouldValidate: true,
                 });
             }
-            if (uploadThingRouteUpload === "uploadProofFollowIg") {
+            if (uploadThingRouteUpload === "uploadProofFollowIg" && setValue) {
                 setValue("followIgUrl", res[0]?.ufsUrl as string, {
                     shouldValidate: true,
                 });
             }
+            handleUploadSuccess?.(res[0]?.ufsUrl as string);
             setActiveDialog(null);
             setFiles([]);
         },

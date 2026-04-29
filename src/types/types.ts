@@ -241,7 +241,8 @@ export type UploadEventProps = {
     id: number;
     title: string;
     uploadThingRoute: UploadThingEventRoute;
-    setValue: UseFormSetValue<{
+    handleUploadSuccess?: (url: string) => void;
+    setValue?: UseFormSetValue<{
         participantName: string;
         gender: "Male" | "Female";
         age: string;
@@ -251,7 +252,7 @@ export type UploadEventProps = {
         emergencyContact: string;
         emergencyContactName: string;
         category: "UMUM" | "MAHASISWA";
-        jerseySize:  "XS" |"S" | "M" | "L" | "XL" | "XXL" | "XXXL";
+        jerseySize: "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL";
         bloodType: "O" | "A" | "B" | "AB";
         rhesus: "POSITIVE" | "NEGATIVE" | "NOT_KNOWN";
         ktpUrl: string;

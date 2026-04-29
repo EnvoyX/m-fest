@@ -1394,12 +1394,22 @@ export const EventRegistrationScalarFieldEnum = {
   isITB: 'isITB',
   nimITB: 'nimITB',
   majorITB: 'majorITB',
+  institution: 'institution',
   sourceInfo: 'sourceInfo',
   gender: 'gender',
   isPresence: 'isPresence',
+  almamater: 'almamater',
   activeSocial: 'activeSocial',
   reasonToParticipate: 'reasonToParticipate',
   interestedTopic: 'interestedTopic',
+  talksSessions: 'talksSessions',
+  expoSessions: 'expoSessions',
+  talksSession1Presence: 'talksSession1Presence',
+  talksSession2Presence: 'talksSession2Presence',
+  talksSession3Presence: 'talksSession3Presence',
+  talksSession4Presence: 'talksSession4Presence',
+  expoDay1Presence: 'expoDay1Presence',
+  expoDay2Presence: 'expoDay2Presence',
   clinicActivity: 'clinicActivity',
   memenuhiSyarat: 'memenuhiSyarat',
   age: 'age',
@@ -1763,6 +1773,34 @@ export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Gender[]'
  */
 export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MTalksSessionType[]'
+ */
+export type ListEnumMTalksSessionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MTalksSessionType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MTalksSessionType'
+ */
+export type EnumMTalksSessionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MTalksSessionType'>
+    
+
+
+/**
+ * Reference to a field of type 'MExpoSessionType[]'
+ */
+export type ListEnumMExpoSessionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MExpoSessionType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MExpoSessionType'
+ */
+export type EnumMExpoSessionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MExpoSessionType'>
     
 
 

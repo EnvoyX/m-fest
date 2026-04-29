@@ -49,12 +49,20 @@ export type EventRegistrationMinAggregateOutputType = {
   isITB: boolean | null
   nimITB: string | null
   majorITB: string | null
+  institution: string | null
   sourceInfo: $Enums.SourceInfo | null
   gender: $Enums.Gender | null
   isPresence: boolean | null
+  almamater: string | null
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
+  talksSession1Presence: boolean | null
+  talksSession2Presence: boolean | null
+  talksSession3Presence: boolean | null
+  talksSession4Presence: boolean | null
+  expoDay1Presence: boolean | null
+  expoDay2Presence: boolean | null
   clinicActivity: $Enums.KlinikActivity | null
   memenuhiSyarat: boolean | null
   age: string | null
@@ -101,12 +109,20 @@ export type EventRegistrationMaxAggregateOutputType = {
   isITB: boolean | null
   nimITB: string | null
   majorITB: string | null
+  institution: string | null
   sourceInfo: $Enums.SourceInfo | null
   gender: $Enums.Gender | null
   isPresence: boolean | null
+  almamater: string | null
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
+  talksSession1Presence: boolean | null
+  talksSession2Presence: boolean | null
+  talksSession3Presence: boolean | null
+  talksSession4Presence: boolean | null
+  expoDay1Presence: boolean | null
+  expoDay2Presence: boolean | null
   clinicActivity: $Enums.KlinikActivity | null
   memenuhiSyarat: boolean | null
   age: string | null
@@ -153,12 +169,22 @@ export type EventRegistrationCountAggregateOutputType = {
   isITB: number
   nimITB: number
   majorITB: number
+  institution: number
   sourceInfo: number
   gender: number
   isPresence: number
+  almamater: number
   activeSocial: number
   reasonToParticipate: number
   interestedTopic: number
+  talksSessions: number
+  expoSessions: number
+  talksSession1Presence: number
+  talksSession2Presence: number
+  talksSession3Presence: number
+  talksSession4Presence: number
+  expoDay1Presence: number
+  expoDay2Presence: number
   clinicActivity: number
   memenuhiSyarat: number
   age: number
@@ -215,12 +241,20 @@ export type EventRegistrationMinAggregateInputType = {
   isITB?: true
   nimITB?: true
   majorITB?: true
+  institution?: true
   sourceInfo?: true
   gender?: true
   isPresence?: true
+  almamater?: true
   activeSocial?: true
   reasonToParticipate?: true
   interestedTopic?: true
+  talksSession1Presence?: true
+  talksSession2Presence?: true
+  talksSession3Presence?: true
+  talksSession4Presence?: true
+  expoDay1Presence?: true
+  expoDay2Presence?: true
   clinicActivity?: true
   memenuhiSyarat?: true
   age?: true
@@ -267,12 +301,20 @@ export type EventRegistrationMaxAggregateInputType = {
   isITB?: true
   nimITB?: true
   majorITB?: true
+  institution?: true
   sourceInfo?: true
   gender?: true
   isPresence?: true
+  almamater?: true
   activeSocial?: true
   reasonToParticipate?: true
   interestedTopic?: true
+  talksSession1Presence?: true
+  talksSession2Presence?: true
+  talksSession3Presence?: true
+  talksSession4Presence?: true
+  expoDay1Presence?: true
+  expoDay2Presence?: true
   clinicActivity?: true
   memenuhiSyarat?: true
   age?: true
@@ -319,12 +361,22 @@ export type EventRegistrationCountAggregateInputType = {
   isITB?: true
   nimITB?: true
   majorITB?: true
+  institution?: true
   sourceInfo?: true
   gender?: true
   isPresence?: true
+  almamater?: true
   activeSocial?: true
   reasonToParticipate?: true
   interestedTopic?: true
+  talksSessions?: true
+  expoSessions?: true
+  talksSession1Presence?: true
+  talksSession2Presence?: true
+  talksSession3Presence?: true
+  talksSession4Presence?: true
+  expoDay1Presence?: true
+  expoDay2Presence?: true
   clinicActivity?: true
   memenuhiSyarat?: true
   age?: true
@@ -458,12 +510,22 @@ export type EventRegistrationGroupByOutputType = {
   isITB: boolean | null
   nimITB: string | null
   majorITB: string | null
+  institution: string | null
   sourceInfo: $Enums.SourceInfo | null
   gender: $Enums.Gender | null
   isPresence: boolean | null
+  almamater: string | null
   activeSocial: string | null
   reasonToParticipate: string | null
   interestedTopic: string | null
+  talksSessions: $Enums.MTalksSessionType[]
+  expoSessions: $Enums.MExpoSessionType[]
+  talksSession1Presence: boolean | null
+  talksSession2Presence: boolean | null
+  talksSession3Presence: boolean | null
+  talksSession4Presence: boolean | null
+  expoDay1Presence: boolean | null
+  expoDay2Presence: boolean | null
   clinicActivity: $Enums.KlinikActivity | null
   memenuhiSyarat: boolean | null
   age: string | null
@@ -533,12 +595,22 @@ export type EventRegistrationWhereInput = {
   isITB?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   nimITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   majorITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  institution?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   sourceInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableFilter<"EventRegistration"> | $Enums.Gender | null
   isPresence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  almamater?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  talksSessions?: Prisma.EnumMTalksSessionTypeNullableListFilter<"EventRegistration">
+  expoSessions?: Prisma.EnumMExpoSessionTypeNullableListFilter<"EventRegistration">
+  talksSession1Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  talksSession2Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  talksSession3Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  talksSession4Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  expoDay1Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  expoDay2Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   clinicActivity?: Prisma.EnumKlinikActivityNullableFilter<"EventRegistration"> | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -586,12 +658,22 @@ export type EventRegistrationOrderByWithRelationInput = {
   isITB?: Prisma.SortOrderInput | Prisma.SortOrder
   nimITB?: Prisma.SortOrderInput | Prisma.SortOrder
   majorITB?: Prisma.SortOrderInput | Prisma.SortOrder
+  institution?: Prisma.SortOrderInput | Prisma.SortOrder
   sourceInfo?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   isPresence?: Prisma.SortOrderInput | Prisma.SortOrder
+  almamater?: Prisma.SortOrderInput | Prisma.SortOrder
   activeSocial?: Prisma.SortOrderInput | Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrderInput | Prisma.SortOrder
   interestedTopic?: Prisma.SortOrderInput | Prisma.SortOrder
+  talksSessions?: Prisma.SortOrder
+  expoSessions?: Prisma.SortOrder
+  talksSession1Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  talksSession2Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  talksSession3Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  talksSession4Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  expoDay1Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  expoDay2Presence?: Prisma.SortOrderInput | Prisma.SortOrder
   clinicActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   memenuhiSyarat?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -642,12 +724,22 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   isITB?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   nimITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   majorITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  institution?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   sourceInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableFilter<"EventRegistration"> | $Enums.Gender | null
   isPresence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  almamater?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  talksSessions?: Prisma.EnumMTalksSessionTypeNullableListFilter<"EventRegistration">
+  expoSessions?: Prisma.EnumMExpoSessionTypeNullableListFilter<"EventRegistration">
+  talksSession1Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  talksSession2Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  talksSession3Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  talksSession4Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  expoDay1Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  expoDay2Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   clinicActivity?: Prisma.EnumKlinikActivityNullableFilter<"EventRegistration"> | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -695,12 +787,22 @@ export type EventRegistrationOrderByWithAggregationInput = {
   isITB?: Prisma.SortOrderInput | Prisma.SortOrder
   nimITB?: Prisma.SortOrderInput | Prisma.SortOrder
   majorITB?: Prisma.SortOrderInput | Prisma.SortOrder
+  institution?: Prisma.SortOrderInput | Prisma.SortOrder
   sourceInfo?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
   isPresence?: Prisma.SortOrderInput | Prisma.SortOrder
+  almamater?: Prisma.SortOrderInput | Prisma.SortOrder
   activeSocial?: Prisma.SortOrderInput | Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrderInput | Prisma.SortOrder
   interestedTopic?: Prisma.SortOrderInput | Prisma.SortOrder
+  talksSessions?: Prisma.SortOrder
+  expoSessions?: Prisma.SortOrder
+  talksSession1Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  talksSession2Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  talksSession3Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  talksSession4Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  expoDay1Presence?: Prisma.SortOrderInput | Prisma.SortOrder
+  expoDay2Presence?: Prisma.SortOrderInput | Prisma.SortOrder
   clinicActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   memenuhiSyarat?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -755,12 +857,22 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   isITB?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   nimITB?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   majorITB?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+  institution?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   sourceInfo?: Prisma.EnumSourceInfoNullableWithAggregatesFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"EventRegistration"> | $Enums.Gender | null
   isPresence?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
+  almamater?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   activeSocial?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+  talksSessions?: Prisma.EnumMTalksSessionTypeNullableListFilter<"EventRegistration">
+  expoSessions?: Prisma.EnumMExpoSessionTypeNullableListFilter<"EventRegistration">
+  talksSession1Presence?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
+  talksSession2Presence?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
+  talksSession3Presence?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
+  talksSession4Presence?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
+  expoDay1Presence?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
+  expoDay2Presence?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   clinicActivity?: Prisma.EnumKlinikActivityNullableWithAggregatesFilter<"EventRegistration"> | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.BoolNullableWithAggregatesFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
@@ -806,12 +918,22 @@ export type EventRegistrationCreateInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
+  institution?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   isPresence?: boolean | null
+  almamater?: string | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
+  talksSessions?: Prisma.EventRegistrationCreatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationCreateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: boolean | null
+  talksSession2Presence?: boolean | null
+  talksSession3Presence?: boolean | null
+  talksSession4Presence?: boolean | null
+  expoDay1Presence?: boolean | null
+  expoDay2Presence?: boolean | null
   clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
@@ -859,12 +981,22 @@ export type EventRegistrationUncheckedCreateInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
+  institution?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   isPresence?: boolean | null
+  almamater?: string | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
+  talksSessions?: Prisma.EventRegistrationCreatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationCreateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: boolean | null
+  talksSession2Presence?: boolean | null
+  talksSession3Presence?: boolean | null
+  talksSession4Presence?: boolean | null
+  expoDay1Presence?: boolean | null
+  expoDay2Presence?: boolean | null
   clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
@@ -910,12 +1042,22 @@ export type EventRegistrationUpdateInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  almamater?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  talksSessions?: Prisma.EventRegistrationUpdatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationUpdateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession3Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession4Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -963,12 +1105,22 @@ export type EventRegistrationUncheckedUpdateInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  almamater?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  talksSessions?: Prisma.EventRegistrationUpdatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationUpdateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession3Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession4Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1015,12 +1167,22 @@ export type EventRegistrationCreateManyInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
+  institution?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   isPresence?: boolean | null
+  almamater?: string | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
+  talksSessions?: Prisma.EventRegistrationCreatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationCreateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: boolean | null
+  talksSession2Presence?: boolean | null
+  talksSession3Presence?: boolean | null
+  talksSession4Presence?: boolean | null
+  expoDay1Presence?: boolean | null
+  expoDay2Presence?: boolean | null
   clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
@@ -1066,12 +1228,22 @@ export type EventRegistrationUpdateManyMutationInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  almamater?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  talksSessions?: Prisma.EventRegistrationUpdatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationUpdateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession3Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession4Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1118,12 +1290,22 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  almamater?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  talksSessions?: Prisma.EventRegistrationUpdatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationUpdateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession3Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession4Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1155,6 +1337,22 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   motorType?: Prisma.NullableEnumMotorTypeFieldUpdateOperationsInput | $Enums.MotorType | null
 }
 
+export type EnumMTalksSessionTypeNullableListFilter<$PrismaModel = never> = {
+  equals?: $Enums.MTalksSessionType[] | Prisma.ListEnumMTalksSessionTypeFieldRefInput<$PrismaModel> | null
+  has?: $Enums.MTalksSessionType | Prisma.EnumMTalksSessionTypeFieldRefInput<$PrismaModel> | null
+  hasEvery?: $Enums.MTalksSessionType[] | Prisma.ListEnumMTalksSessionTypeFieldRefInput<$PrismaModel>
+  hasSome?: $Enums.MTalksSessionType[] | Prisma.ListEnumMTalksSessionTypeFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
+export type EnumMExpoSessionTypeNullableListFilter<$PrismaModel = never> = {
+  equals?: $Enums.MExpoSessionType[] | Prisma.ListEnumMExpoSessionTypeFieldRefInput<$PrismaModel> | null
+  has?: $Enums.MExpoSessionType | Prisma.EnumMExpoSessionTypeFieldRefInput<$PrismaModel> | null
+  hasEvery?: $Enums.MExpoSessionType[] | Prisma.ListEnumMExpoSessionTypeFieldRefInput<$PrismaModel>
+  hasSome?: $Enums.MExpoSessionType[] | Prisma.ListEnumMExpoSessionTypeFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type EventRegistrationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1170,12 +1368,22 @@ export type EventRegistrationCountOrderByAggregateInput = {
   isITB?: Prisma.SortOrder
   nimITB?: Prisma.SortOrder
   majorITB?: Prisma.SortOrder
+  institution?: Prisma.SortOrder
   sourceInfo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   isPresence?: Prisma.SortOrder
+  almamater?: Prisma.SortOrder
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
   interestedTopic?: Prisma.SortOrder
+  talksSessions?: Prisma.SortOrder
+  expoSessions?: Prisma.SortOrder
+  talksSession1Presence?: Prisma.SortOrder
+  talksSession2Presence?: Prisma.SortOrder
+  talksSession3Presence?: Prisma.SortOrder
+  talksSession4Presence?: Prisma.SortOrder
+  expoDay1Presence?: Prisma.SortOrder
+  expoDay2Presence?: Prisma.SortOrder
   clinicActivity?: Prisma.SortOrder
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
@@ -1226,12 +1434,20 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   isITB?: Prisma.SortOrder
   nimITB?: Prisma.SortOrder
   majorITB?: Prisma.SortOrder
+  institution?: Prisma.SortOrder
   sourceInfo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   isPresence?: Prisma.SortOrder
+  almamater?: Prisma.SortOrder
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
   interestedTopic?: Prisma.SortOrder
+  talksSession1Presence?: Prisma.SortOrder
+  talksSession2Presence?: Prisma.SortOrder
+  talksSession3Presence?: Prisma.SortOrder
+  talksSession4Presence?: Prisma.SortOrder
+  expoDay1Presence?: Prisma.SortOrder
+  expoDay2Presence?: Prisma.SortOrder
   clinicActivity?: Prisma.SortOrder
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
@@ -1278,12 +1494,20 @@ export type EventRegistrationMinOrderByAggregateInput = {
   isITB?: Prisma.SortOrder
   nimITB?: Prisma.SortOrder
   majorITB?: Prisma.SortOrder
+  institution?: Prisma.SortOrder
   sourceInfo?: Prisma.SortOrder
   gender?: Prisma.SortOrder
   isPresence?: Prisma.SortOrder
+  almamater?: Prisma.SortOrder
   activeSocial?: Prisma.SortOrder
   reasonToParticipate?: Prisma.SortOrder
   interestedTopic?: Prisma.SortOrder
+  talksSession1Presence?: Prisma.SortOrder
+  talksSession2Presence?: Prisma.SortOrder
+  talksSession3Presence?: Prisma.SortOrder
+  talksSession4Presence?: Prisma.SortOrder
+  expoDay1Presence?: Prisma.SortOrder
+  expoDay2Presence?: Prisma.SortOrder
   clinicActivity?: Prisma.SortOrder
   memenuhiSyarat?: Prisma.SortOrder
   age?: Prisma.SortOrder
@@ -1329,6 +1553,14 @@ export type EventRegistrationOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type EventRegistrationCreatetalksSessionsInput = {
+  set: $Enums.MTalksSessionType[]
+}
+
+export type EventRegistrationCreateexpoSessionsInput = {
+  set: $Enums.MExpoSessionType[]
+}
+
 export type EnumEventTypeFieldUpdateOperationsInput = {
   set?: $Enums.EventType
 }
@@ -1343,6 +1575,16 @@ export type NullableEnumSourceInfoFieldUpdateOperationsInput = {
 
 export type NullableEnumGenderFieldUpdateOperationsInput = {
   set?: $Enums.Gender | null
+}
+
+export type EventRegistrationUpdatetalksSessionsInput = {
+  set?: $Enums.MTalksSessionType[]
+  push?: $Enums.MTalksSessionType | $Enums.MTalksSessionType[]
+}
+
+export type EventRegistrationUpdateexpoSessionsInput = {
+  set?: $Enums.MExpoSessionType[]
+  push?: $Enums.MExpoSessionType | $Enums.MExpoSessionType[]
 }
 
 export type NullableEnumKlinikActivityFieldUpdateOperationsInput = {
@@ -1437,12 +1679,22 @@ export type EventRegistrationCreateWithoutUserInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
+  institution?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   isPresence?: boolean | null
+  almamater?: string | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
+  talksSessions?: Prisma.EventRegistrationCreatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationCreateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: boolean | null
+  talksSession2Presence?: boolean | null
+  talksSession3Presence?: boolean | null
+  talksSession4Presence?: boolean | null
+  expoDay1Presence?: boolean | null
+  expoDay2Presence?: boolean | null
   clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
@@ -1488,12 +1740,22 @@ export type EventRegistrationUncheckedCreateWithoutUserInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
+  institution?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   isPresence?: boolean | null
+  almamater?: string | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
+  talksSessions?: Prisma.EventRegistrationCreatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationCreateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: boolean | null
+  talksSession2Presence?: boolean | null
+  talksSession3Presence?: boolean | null
+  talksSession4Presence?: boolean | null
+  expoDay1Presence?: boolean | null
+  expoDay2Presence?: boolean | null
   clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
@@ -1569,12 +1831,22 @@ export type EventRegistrationScalarWhereInput = {
   isITB?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   nimITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   majorITB?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  institution?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   sourceInfo?: Prisma.EnumSourceInfoNullableFilter<"EventRegistration"> | $Enums.SourceInfo | null
   gender?: Prisma.EnumGenderNullableFilter<"EventRegistration"> | $Enums.Gender | null
   isPresence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  almamater?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   activeSocial?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   reasonToParticipate?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   interestedTopic?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  talksSessions?: Prisma.EnumMTalksSessionTypeNullableListFilter<"EventRegistration">
+  expoSessions?: Prisma.EnumMExpoSessionTypeNullableListFilter<"EventRegistration">
+  talksSession1Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  talksSession2Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  talksSession3Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  talksSession4Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  expoDay1Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
+  expoDay2Presence?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   clinicActivity?: Prisma.EnumKlinikActivityNullableFilter<"EventRegistration"> | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.BoolNullableFilter<"EventRegistration"> | boolean | null
   age?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
@@ -1620,12 +1892,22 @@ export type EventRegistrationCreateManyUserInput = {
   isITB?: boolean | null
   nimITB?: string | null
   majorITB?: string | null
+  institution?: string | null
   sourceInfo?: $Enums.SourceInfo | null
   gender?: $Enums.Gender | null
   isPresence?: boolean | null
+  almamater?: string | null
   activeSocial?: string | null
   reasonToParticipate?: string | null
   interestedTopic?: string | null
+  talksSessions?: Prisma.EventRegistrationCreatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationCreateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: boolean | null
+  talksSession2Presence?: boolean | null
+  talksSession3Presence?: boolean | null
+  talksSession4Presence?: boolean | null
+  expoDay1Presence?: boolean | null
+  expoDay2Presence?: boolean | null
   clinicActivity?: $Enums.KlinikActivity | null
   memenuhiSyarat?: boolean | null
   age?: string | null
@@ -1671,12 +1953,22 @@ export type EventRegistrationUpdateWithoutUserInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  almamater?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  talksSessions?: Prisma.EventRegistrationUpdatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationUpdateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession3Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession4Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1722,12 +2014,22 @@ export type EventRegistrationUncheckedUpdateWithoutUserInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  almamater?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  talksSessions?: Prisma.EventRegistrationUpdatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationUpdateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession3Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession4Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1773,12 +2075,22 @@ export type EventRegistrationUncheckedUpdateManyWithoutUserInput = {
   isITB?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   nimITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   majorITB?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  institution?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceInfo?: Prisma.NullableEnumSourceInfoFieldUpdateOperationsInput | $Enums.SourceInfo | null
   gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   isPresence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  almamater?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   activeSocial?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reasonToParticipate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interestedTopic?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  talksSessions?: Prisma.EventRegistrationUpdatetalksSessionsInput | $Enums.MTalksSessionType[]
+  expoSessions?: Prisma.EventRegistrationUpdateexpoSessionsInput | $Enums.MExpoSessionType[]
+  talksSession1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession3Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  talksSession4Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay1Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expoDay2Presence?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   clinicActivity?: Prisma.NullableEnumKlinikActivityFieldUpdateOperationsInput | $Enums.KlinikActivity | null
   memenuhiSyarat?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1827,12 +2139,22 @@ export type EventRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Int
   isITB?: boolean
   nimITB?: boolean
   majorITB?: boolean
+  institution?: boolean
   sourceInfo?: boolean
   gender?: boolean
   isPresence?: boolean
+  almamater?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
   interestedTopic?: boolean
+  talksSessions?: boolean
+  expoSessions?: boolean
+  talksSession1Presence?: boolean
+  talksSession2Presence?: boolean
+  talksSession3Presence?: boolean
+  talksSession4Presence?: boolean
+  expoDay1Presence?: boolean
+  expoDay2Presence?: boolean
   clinicActivity?: boolean
   memenuhiSyarat?: boolean
   age?: boolean
@@ -1880,12 +2202,22 @@ export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   isITB?: boolean
   nimITB?: boolean
   majorITB?: boolean
+  institution?: boolean
   sourceInfo?: boolean
   gender?: boolean
   isPresence?: boolean
+  almamater?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
   interestedTopic?: boolean
+  talksSessions?: boolean
+  expoSessions?: boolean
+  talksSession1Presence?: boolean
+  talksSession2Presence?: boolean
+  talksSession3Presence?: boolean
+  talksSession4Presence?: boolean
+  expoDay1Presence?: boolean
+  expoDay2Presence?: boolean
   clinicActivity?: boolean
   memenuhiSyarat?: boolean
   age?: boolean
@@ -1933,12 +2265,22 @@ export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   isITB?: boolean
   nimITB?: boolean
   majorITB?: boolean
+  institution?: boolean
   sourceInfo?: boolean
   gender?: boolean
   isPresence?: boolean
+  almamater?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
   interestedTopic?: boolean
+  talksSessions?: boolean
+  expoSessions?: boolean
+  talksSession1Presence?: boolean
+  talksSession2Presence?: boolean
+  talksSession3Presence?: boolean
+  talksSession4Presence?: boolean
+  expoDay1Presence?: boolean
+  expoDay2Presence?: boolean
   clinicActivity?: boolean
   memenuhiSyarat?: boolean
   age?: boolean
@@ -1986,12 +2328,22 @@ export type EventRegistrationSelectScalar = {
   isITB?: boolean
   nimITB?: boolean
   majorITB?: boolean
+  institution?: boolean
   sourceInfo?: boolean
   gender?: boolean
   isPresence?: boolean
+  almamater?: boolean
   activeSocial?: boolean
   reasonToParticipate?: boolean
   interestedTopic?: boolean
+  talksSessions?: boolean
+  expoSessions?: boolean
+  talksSession1Presence?: boolean
+  talksSession2Presence?: boolean
+  talksSession3Presence?: boolean
+  talksSession4Presence?: boolean
+  expoDay1Presence?: boolean
+  expoDay2Presence?: boolean
   clinicActivity?: boolean
   memenuhiSyarat?: boolean
   age?: boolean
@@ -2023,7 +2375,7 @@ export type EventRegistrationSelectScalar = {
   motorType?: boolean
 }
 
-export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "sourceInfo" | "gender" | "isPresence" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "buktiBayarUrl" | "followIgUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "eventStatus" | "paymentStatus" | "batch" | "price" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant" | "motorType", ExtArgs["result"]["eventRegistration"]>
+export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "userId" | "eventType" | "participantName" | "activeEmail" | "phoneNumber" | "fullAddress" | "emergencyContact" | "emergencyContactName" | "isITB" | "nimITB" | "majorITB" | "institution" | "sourceInfo" | "gender" | "isPresence" | "almamater" | "activeSocial" | "reasonToParticipate" | "interestedTopic" | "talksSessions" | "expoSessions" | "talksSession1Presence" | "talksSession2Presence" | "talksSession3Presence" | "talksSession4Presence" | "expoDay1Presence" | "expoDay2Presence" | "clinicActivity" | "memenuhiSyarat" | "age" | "ktpUrl" | "buktiBayarUrl" | "followIgUrl" | "category" | "jerseySize" | "isAlumniHMM" | "isHMM" | "nimHMM" | "bloodType" | "rhesus" | "riwayatPenyakit" | "detailPenyakit" | "alergi" | "detailAlergi" | "siapLomba" | "eventStatus" | "paymentStatus" | "batch" | "price" | "merekKendaraan" | "tahunBuat" | "platNomor" | "lastServiceDate" | "nimOrNip" | "isSopCompliant" | "motorType", ExtArgs["result"]["eventRegistration"]>
 export type EventRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -2054,12 +2406,22 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     isITB: boolean | null
     nimITB: string | null
     majorITB: string | null
+    institution: string | null
     sourceInfo: $Enums.SourceInfo | null
     gender: $Enums.Gender | null
     isPresence: boolean | null
+    almamater: string | null
     activeSocial: string | null
     reasonToParticipate: string | null
     interestedTopic: string | null
+    talksSessions: $Enums.MTalksSessionType[]
+    expoSessions: $Enums.MExpoSessionType[]
+    talksSession1Presence: boolean | null
+    talksSession2Presence: boolean | null
+    talksSession3Presence: boolean | null
+    talksSession4Presence: boolean | null
+    expoDay1Presence: boolean | null
+    expoDay2Presence: boolean | null
     clinicActivity: $Enums.KlinikActivity | null
     memenuhiSyarat: boolean | null
     age: string | null
@@ -2527,12 +2889,22 @@ export interface EventRegistrationFieldRefs {
   readonly isITB: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly nimITB: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly majorITB: Prisma.FieldRef<"EventRegistration", 'String'>
+  readonly institution: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly sourceInfo: Prisma.FieldRef<"EventRegistration", 'SourceInfo'>
   readonly gender: Prisma.FieldRef<"EventRegistration", 'Gender'>
   readonly isPresence: Prisma.FieldRef<"EventRegistration", 'Boolean'>
+  readonly almamater: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly activeSocial: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly reasonToParticipate: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly interestedTopic: Prisma.FieldRef<"EventRegistration", 'String'>
+  readonly talksSessions: Prisma.FieldRef<"EventRegistration", 'MTalksSessionType[]'>
+  readonly expoSessions: Prisma.FieldRef<"EventRegistration", 'MExpoSessionType[]'>
+  readonly talksSession1Presence: Prisma.FieldRef<"EventRegistration", 'Boolean'>
+  readonly talksSession2Presence: Prisma.FieldRef<"EventRegistration", 'Boolean'>
+  readonly talksSession3Presence: Prisma.FieldRef<"EventRegistration", 'Boolean'>
+  readonly talksSession4Presence: Prisma.FieldRef<"EventRegistration", 'Boolean'>
+  readonly expoDay1Presence: Prisma.FieldRef<"EventRegistration", 'Boolean'>
+  readonly expoDay2Presence: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly clinicActivity: Prisma.FieldRef<"EventRegistration", 'KlinikActivity'>
   readonly memenuhiSyarat: Prisma.FieldRef<"EventRegistration", 'Boolean'>
   readonly age: Prisma.FieldRef<"EventRegistration", 'String'>

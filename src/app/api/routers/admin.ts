@@ -1249,6 +1249,162 @@ export const adminRouter = router({
                 },
             });
         }),
+    addPresenceSession: adminProcedure
+        .input(
+            z.object({
+                eventId: z.string(),
+                session: z.enum(["1", "2", "3", "4"]),
+                eventType: z.enum(["M-TALKS", "M-EXPO"]),
+            }),
+        )
+        .mutation(async ({ ctx, input }) => {
+            if (input.eventType === "M-EXPO") {
+                if (input.session === "1") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            expoDay1Presence: true,
+                        },
+                    });
+                }
+
+                if (input.session === "2") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            expoDay2Presence: true,
+                        },
+                    });
+                }
+            }
+            else if (input.eventType === "M-TALKS") {
+                if (input.session === "1") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            talksSession1Presence: true,
+                        },
+                    });
+                }
+
+                if (input.session === "2") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            talksSession2Presence: true,
+                        },
+                    });
+                }
+
+                if (input.session === "3") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            talksSession3Presence: true,
+                        },
+                    });
+                }
+
+                if (input.session === "4") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            talksSession4Presence: true,
+                        },
+                    });
+                }
+            }
+        }),
+    removePresenceSession: adminProcedure
+        .input(
+            z.object({
+                eventId: z.string(),
+                session: z.enum(["1", "2", "3", "4"]),
+                eventType: z.enum(["M-TALKS", "M-EXPO"]),
+            }),
+        )
+        .mutation(async ({ ctx, input }) => {
+            if (input.eventType === "M-EXPO") {
+                if (input.session === "1") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            expoDay1Presence: false,
+                        },
+                    });
+                }
+
+                if (input.session === "2") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            expoDay2Presence: false,
+                        },
+                    });
+                }
+            }
+            else if (input.eventType === "M-TALKS") {
+                if (input.session === "1") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            talksSession1Presence: false,
+                        },
+                    });
+                }
+
+                if (input.session === "2") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            talksSession2Presence: false,
+                        },
+                    });
+                }
+
+                if (input.session === "3") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            talksSession3Presence: false,
+                        },
+                    });
+                }
+
+                if (input.session === "4") {
+                    await ctx.db.eventRegistration.update({
+                        where: {
+                            id: input.eventId,
+                        },
+                        data: {
+                            talksSession4Presence: false,
+                        },
+                    });
+                }
+            }
+        }),
     addPresenceParticipant: adminProcedure
         .input(
             z.object({

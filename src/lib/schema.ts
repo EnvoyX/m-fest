@@ -33,7 +33,7 @@ export const submitFileSchema = z.object({
     fileUrl: z.string().min(1, "File is required"),
     competitionName: z.string().min(1, "Competition name is required"),
     leaderUserId: z.string().min(1, "Leader user id is required"),
-    type: z.literal(["preliminary", "full-paper"]).optional()
+    type: z.literal(["preliminary", "full-paper","pitch-deck"]).optional()
 });
 
 export type submitFileSchema = z.infer<typeof submitFileSchema>;

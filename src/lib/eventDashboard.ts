@@ -3,12 +3,13 @@ import {
     HeartHandshakeIcon,
     MicVocalIcon,
     MotorbikeIcon,
+    Wrench,
     type LucideProps,
 } from "lucide-react";
 import type { ForwardRefExoticComponent, RefAttributes } from "react";
 import type { EventType } from "../../prisma/generated/prisma/enums";
 
-type EventId = "M-CARE" | "M-RUN" | "ETU" | "M-TALKS";
+type EventId = "M-CARE" | "M-RUN" | "ETU" | "M-TALKS" | "M-EXPO";
 
 export type Event = {
     id: EventId;
@@ -75,7 +76,7 @@ export const eventsList: Event[] = [
         startRegDate1: new Date("2026-04-05T13:00:00"),
         endRegDate1: new Date("2026-04-16T11:30:00"),
         // Batch 1 : 13 Maret - 4 April
-        // Batch 2 : 5 April - 11 April 
+        // Batch 2 : 5 April - 11 April
         Batch1StartRegDate: new Date("2026-03-13T15:00:00"),
         Batch1EndRegDate: new Date("2026-04-04T23:59:59"),
         Batch2StartRegDate: new Date("2026-04-05T00:00:00"),
@@ -90,13 +91,25 @@ export const eventsList: Event[] = [
     {
         id: "M-TALKS",
         dbId: "M_TALKS",
-        title: "M-Talks & M-Expo",
-        desc: "Mech-Eng Exhibition",
+        title: "M-Talks",
+        desc: "Mech-Eng Talkshow",
         logo: MicVocalIcon,
         href: "events/m-talks",
         eventDate: "8-9 Mei 2026",
-        location: "ITB, Aula Barat (M-Expo) & Aula Timur (M-Talks)",
-        startRegDate1: new Date("2026-04-30T13:00:00"),
-        endRegDate1: new Date("2026-05-08T23:59:59"),
+        location: "ITB, Aula Timur (M-Talks)",
+        startRegDate1: new Date("2026-04-30T00:00:00"),
+        endRegDate1: new Date("2026-05-09T21:00:00"),
+    },
+    {
+        id: "M-EXPO",
+        dbId: "M_EXPO",
+        title: "M-Expo",
+        desc: "Mech-Eng Exhibition",
+        logo: Wrench,
+        href: "events/m-expo",
+        eventDate: "8-9 Mei 2026",
+        location: "ITB, Aula Barat (M-Expo)",
+        startRegDate1: new Date("2026-04-30T00:00:00"),
+        endRegDate1: new Date("2026-05-09T21:00:00"),
     },
 ];
