@@ -1,4 +1,4 @@
-export default function ComingSoon() {
+/*export default function ComingSoon() {
    return (
     <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
       <div className="bg-trasnparent backdrop-glass-lg m-auto h-fit w-full max-w-xl verflow-hidden rounded-[calc(var(--radius)+.125rem)] border-2 shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)] py-4">
@@ -8,9 +8,9 @@ export default function ComingSoon() {
       </div>
     </section>
   );
-}
+}*/
 
-/*export default function MExpoPage() {
+export default function MExpoPage() {
   return (
     <main className="text-white min-h-screen flex justify-center pt-10 md:pt-20 py-10 px-4 font-sans overflow-x-hidden">
       <div className="w-full max-w-5xl space-y-16">
@@ -73,7 +73,7 @@ export default function ComingSoon() {
           </div>
         </section>
 
-        <section className="space-y-8 pt-8 md:pt-12">
+        {/* <section className="space-y-8 pt-8 md:pt-12">
           <h1 className="text-4xl md:text-7xl font-bold text-center">Floor Plan</h1>
           
           <div className="w-full rounded-xl overflow-hidden border-2 border-gray-600 bg-black shadow-lg">
@@ -106,26 +106,64 @@ export default function ComingSoon() {
           </h1>
 
           <div className="space-y-8 md:space-y-10">
-            <CompanyItem name="Nama Company" />
-            <CompanyItem name="Nama Company" />
+            <CompanyItem 
+              name="Azzura"
+              desc="Azzura refers to companies operating under the Azzura name, commonly associated with industrial services such as engineering, maintenance, inspection, and technical support. Depending on the specific entity, Azzura companies typically support sectors like oil and gas, manufacturing, and infrastructure through specialized technical solutions."
+              bgurl="/sponsors/logo_sponsor/azzura.png" />
+            <CompanyItem 
+              name="PT. Gexcon Indonesia"
+              desc="Gexcon is an international engineering and consulting company specializing in risk management, explosion safety, and computational fluid dynamics (CFD). It provides advanced simulation software and technical advisory services to industries such as oil and gas, hydrogen energy, and process industries to improve safety and mitigate operational risks."
+              bgurl="/sponsors/logo_sponsor/gexcon.PNG" />
+            <CompanyItem 
+              name="Palapa Inspeksi"
+              desc="Palapa Inspeksi (PT Inspeksi Mobil Jogja) is an Indonesian inspection service provider specializing in vehicle inspection and condition assessment. The company offers professional evaluation services for used cars, helping customers verify technical conditions, safety, and overall vehicle quality before purchase."
+              bgurl="/sponsors/logo_sponsor/inspeksi.png" />
+            <CompanyItem 
+              name="Komatsu Group Indonesia"
+              desc="Komatsu is a Japanese multinational corporation that manufactures construction, mining, and industrial equipment. It is one of the world’s leading producers of heavy machinery, including excavators, bulldozers, and dump trucks. The company emphasizes innovation, automation, and sustainability in heavy equipment solutions."
+              bgurl="/sponsors/logo_sponsor/komatsu.png" />
+            <CompanyItem 
+              name="United Tractors"
+              desc="United Tractors is a leading Indonesian company and a subsidiary of Astra International. Established in 1972, it operates in multiple sectors including heavy equipment distribution, mining contracting, coal and gold mining, and energy. The company is the exclusive distributor of Komatsu equipment in Indonesia and plays a major role in the country’s mining and construction industries."
+              bgurl="/sponsors/logo_sponsor/ut.png" />
+            <CompanyItem 
+              name="PT. Pupuk Kalimantan Timur"
+              desc="Pupuk Kalimantan Timur (Pupuk Kaltim) is a state-owned fertilizer manufacturer based in Bontang, Indonesia. Established in 1977, the company produces ammonia, urea, and NPK fertilizers and plays a key role in supporting agricultural productivity across Southeast Asia. It operates multiple large-scale production plants and is part of the Pupuk Indonesia holding group."
+              bgurl="/sponsors/logo_sponsor/pkt.png" />
+            <CompanyItem 
+              name="PT. Nederman Indonesia"
+              desc="Nederman is a global environmental technology company headquartered in Sweden. It specializes in industrial air filtration and resource management solutions designed to reduce emissions, improve workplace safety, and enhance production efficiency. Nederman serves industries such as manufacturing, metalworking, and energy by providing systems for dust, smoke, and fume extraction."
+              bgurl="/sponsors/logo_sponsor/nederman.png" />
+            <CompanyItem 
+              name="Unilever"
+              desc="Unilever is a British-Dutch multinational corporation and one of the world’s largest consumer goods companies. It produces a wide range of products including food, beverages, cleaning agents, and personal care items. With operations in over 190 countries, Unilever focuses on sustainability and innovation while managing well-known global brands."
+              bgurl="/sponsors/logo_sponsor/unilever.png" />
+            <CompanyItem 
+              name="Pertamina EP"
+              desc="Pertamina EP is a subsidiary of Pertamina, responsible for upstream oil and gas exploration and production activities in Indonesia. It manages extensive working areas and operates multiple oil and gas fields across the country."
+              bgurl="/sponsors/logo_sponsor/pertaminaep.png" />
           </div>
-        </section>
+        </section>*/}
 
       </div>
     </main>
   );
 }
 
-function CompanyItem({ name }: { name: string }) {
+function CompanyItem({ name, bgurl, desc }: { name: string; bgurl: string; desc: string }) {
   return (
-    <div className="flex justify-between items-start gap-6 group p-4 rounded-xl hover:bg-white/5 transition-colors">
+    <div className="flex justify-between items-center gap-6 group p-4 rounded-xl hover:bg-white/5 transition-colors">
       <div className="space-y-2 flex-1">
         <h3 className="text-2xl md:text-4xl font-bold text-white">{name}</h3>
-        <p className="text-xl md:text-2xl text-gray-300 leading-snug">
-          Deskripsi singkat perusahaan penjelasan session.
-        </p>
+        <p className="text-xl md:text-2xl text-gray-300 leading-snug text-justify">{desc}</p>
       </div>
-      <div className="w-28 h-28 md:w-40 md:h-40 bg-gray-600 rounded-lg bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-80 shrink-0 border border-gray-500"></div>
+      <div className="w-28 h-28 md:w-40 md:h-40 rounded-lg shrink-0 border border-gray-500 bg-white flex items-center justify-center overflow-hidden p-2">
+        <img
+          src={bgurl}
+          alt={`${name} logo`}
+          className="w-full h-full py-auto object-contain"
+        />
+      </div>
     </div>
   );
-}*/
+}
