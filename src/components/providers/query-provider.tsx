@@ -59,13 +59,13 @@ export default function QueryTanstackProvider({
         <QueryClientProvider client={queryClient}>
             <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
                 {children}
-                <TanStackDevtools plugins={[
-                    {
-                        name: 'TanStack Query',
-                        render: <ReactQueryDevtoolsPanel />,
-                        defaultOpen: true,
-                    },
-                    formDevtoolsPlugin()]} />
+               {process.env.NODE_ENV === "development" &&   <TanStackDevtools plugins={[
+                   {
+                       name: 'TanStack Query',
+                       render: <ReactQueryDevtoolsPanel />,
+                       defaultOpen: true,
+                   },
+                   formDevtoolsPlugin()]} />}
             </TRPCProvider>
         </QueryClientProvider>
     );
