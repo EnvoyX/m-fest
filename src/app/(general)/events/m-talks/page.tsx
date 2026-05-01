@@ -155,7 +155,7 @@ export default function MTalksPage() {
                     )
                 })}
                 <div className="flex flex-col items-center gap-2">
-                    <span className="italic text-sm text-gray-400">Max quota 100 participants per session</span>
+                    <span className="italic text-sm text-gray-400 text-center">Max quota 100 participants per session</span>
                     <div className="flex justify-center pb-20">
                         <Button
                             asChild
