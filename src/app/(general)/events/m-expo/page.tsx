@@ -72,10 +72,6 @@ export default function MExpoPage() {
                 <strong className="text-white block mb-2">Company Session:</strong> 
                 Consult career, apprenticeship, and job vacancies exclusive directly from the source!
               </div>
-              <div>
-                <strong className="text-white block mb-2">Networking:</strong> 
-                Build relation with the experts and young prodigies in technology. Prepare yourself to step further, broaden your vision and find unlimited career potential!
-              </div>
               <p className="text-gray-400 italic text-lg md:text-xl mt-4">
                 We also got <strong className="text-white">free ice cream and photobooth</strong> available!
               </p>
