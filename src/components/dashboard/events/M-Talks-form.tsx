@@ -35,10 +35,10 @@ import type { MTalksSessionType } from "../../../../prisma/generated/prisma/enum
 import UploadEventDialog from "./UploadEventDialog";
 
 const TALKS_SESSIONS = [
-    { value: "TALKS_1", label: "Sesi 1" },
-    { value: "TALKS_2", label: "Sesi 2" },
-    { value: "TALKS_3", label: "Sesi 3" },
-    { value: "TALKS_4", label: "Sesi 4" },
+    { value: "TALKS_1", label: "Day 1 - Sesi 1" },
+    { value: "TALKS_2", label: "Day 1 - Sesi 2" },
+    { value: "TALKS_3", label: "Day 2 - Sesi 1" },
+    { value: "TALKS_4", label: "Day 2 - Sesi 2" },
 ];
 
 export default function MTalksForm() {
@@ -225,14 +225,14 @@ export default function MTalksForm() {
                         render={() => (
                             <FormItem>
                                 <FormLabel className="text-slate-200">Pilih Sesi Talks</FormLabel>
-                                <div className="grid grid-cols-2 gap-2">
+                                <div className="grid max-sm:grid-cols-1 grid-cols-2 gap-2">
                                     {TALKS_SESSIONS.map((session) => (
                                         <FormField
                                             key={session.value}
                                             control={form.control}
                                             name="talksSessions"
                                             render={({ field }) => (
-                                                <FormItem className="flex items-center space-x-3 space-y-0 p-3 rounded-md bg-white/5 border border-white/10">
+                                                <FormItem className="flex items-center  space-x-3 space-y-0 p-3 rounded-md bg-white/5 border border-white/10">
                                                     <FormControl>
                                                         <Checkbox
                                                             checked={field.value?.includes(session.value as MTalksSessionType)}

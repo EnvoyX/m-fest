@@ -177,7 +177,7 @@ export default function MTalksPage() {
                                     Registration Closed
                                 </span>
                             ) : (
-                                <Link href="/dashboard/events/register/M-EXPO">
+                                <Link href="/dashboard/events/register/M-TALKS">
                                     <span className="flex">
                                         Register Now <ChevronRight className="size-5 my-auto" />{" "}
                                     </span>
