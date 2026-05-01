@@ -1,3 +1,9 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ChevronRight, Clock } from "lucide-react";
+import { getCurrentDate, wibToUTC} from "@/lib/utils";
+import { isAfter, isBefore, isWithinInterval } from "date-fns";
+
 /*export default function ComingSoon() {
    return (
     <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
@@ -11,6 +17,10 @@
 }*/
 
 export default function MExpoPage() {
+  const currentDate = getCurrentDate();
+  const startRegDate = wibToUTC(new Date("2026-05-01T15:00:00"));
+  const endRegDate = wibToUTC(new Date("2026-05-09T15:00:00"));
+
   return (
     <main className="text-white min-h-screen flex justify-center pt-10 md:pt-20 py-10 px-4 font-sans overflow-x-hidden">
       <div className="w-full max-w-5xl space-y-16">
@@ -46,7 +56,7 @@ export default function MExpoPage() {
             </div>
             <div className="flex flex-col md:flex-row text-xl md:text-2xl lg:text-3xl font-bold text-white mb-6 gap-2 md:gap-0">
               <span className="w-full md:w-[50%]">Day-2 : Saturday, May 9th 2026</span>
-              <span>09:00 - 16:30</span>
+              <span>09:00 - 15:00</span>
             </div>
             <div className="text-3xl md:text-5xl font-extrabold text-white">100% FREE</div>
           </div>
@@ -60,7 +70,7 @@ export default function MExpoPage() {
               </div>
               <div>
                 <strong className="text-white block mb-2">Company Session:</strong> 
-                Consult career, apprenticeship and job vacancies exclusive directly from the source!
+                Consult career, apprenticeship, and job vacancies exclusive directly from the source!
               </div>
               <div>
                 <strong className="text-white block mb-2">Networking:</strong> 
@@ -70,6 +80,37 @@ export default function MExpoPage() {
                 We also got <strong className="text-white">free ice cream and photobooth</strong> available!
               </p>
             </div>
+
+            <div className="flex justify-center">
+          <Button
+            asChild
+            size="lg"
+            className="rounded-xl text-base object-fill md:text-lg font-bold px-8 py-6 md:px-10 md:py-8 shadow-lg"
+            disabled={
+              !isWithinInterval(currentDate, {
+                start: startRegDate,
+                end: endRegDate,
+              })
+            }
+          >
+            {isBefore(currentDate, startRegDate) ? (
+              <span className="cursor-not-allowed opacity-50 flex items-center gap-2">
+                Coming Soon <Clock className="size-5" />
+              </span>
+            ) : isAfter(currentDate, endRegDate) ? (
+              <span className="cursor-not-allowed opacity-50">
+                Registration Closed
+              </span>
+            ) : (
+              <Link href="/dashboard/events/register/M-EXPO">
+                <span className="flex">
+                  Register Now <ChevronRight className="size-5 my-auto" />{" "}
+                </span>
+              </Link>
+            )}
+          </Button>
+        </div>
+        
           </div>
         </section>
 

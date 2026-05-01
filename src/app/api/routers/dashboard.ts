@@ -1,5 +1,6 @@
 import { getUser } from "@/action/user.action";
 import {
+    publicProcedure,
     protectedProcedure,
     protectedRateLimitedProcedure,
     router,
@@ -604,7 +605,7 @@ export const dashboardRouter = router({
 
         return currentMotorTypeQuota
     }),
-    getMRUNJoinedCount: protectedProcedure.query(async ({ ctx }) => {
+    getMRUNJoinedCount: publicProcedure.query(async ({ ctx }) => {
         const mrunJoinedCount = await ctx.db.eventRegistration.count({
             where: {
                 eventType: "M_RUN",
