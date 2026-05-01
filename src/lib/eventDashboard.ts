@@ -3,7 +3,7 @@ import {
     HeartHandshakeIcon,
     MicVocalIcon,
     MotorbikeIcon,
-    Wrench,
+    Presentation,
     type LucideProps,
 } from "lucide-react";
 import type { ForwardRefExoticComponent, RefAttributes } from "react";
@@ -105,10 +105,12 @@ export const eventsList: Event[] = [
         dbId: "M_EXPO",
         title: "M-Expo",
         desc: "Mech-Eng Exhibition",
-        logo: Wrench,
+        logo: Presentation,
         href: "events/m-expo",
         eventDate: "8-9 Mei 2026",
         location: "ITB, Aula Barat (M-Expo)",
+        startRegDate1: new Date("2026-05-01T15:00:00"),
+        endRegDate1: new Date("2026-05-09T15:00:00"),
         startRegDate1: new Date("2026-05-01T15:00:00"),
         endRegDate1: new Date("2026-05-09T15:00:00"),
     },
