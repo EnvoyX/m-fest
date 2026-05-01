@@ -97,7 +97,7 @@ export const eventsList: Event[] = [
         href: "events/m-talks",
         eventDate: "8-9 Mei 2026",
         location: "ITB, Aula Timur (M-Talks)",
-        startRegDate1: new Date("2026-04-30T00:00:00"),
+        startRegDate1: new Date("2026-05-01T15:00:00"),
         endRegDate1: new Date("2026-05-09T21:00:00"),
     },
     {
