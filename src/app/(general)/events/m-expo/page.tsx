@@ -114,7 +114,7 @@ export default function MExpoPage() {
           </div>
         </section>
 
-        {/* <section className="space-y-8 pt-8 md:pt-12">
+        {/*<section className="space-y-8 pt-8 md:pt-12">
           <h1 className="text-4xl md:text-7xl font-bold text-center">Floor Plan</h1>
           
           <div className="w-full rounded-xl overflow-hidden border-2 border-gray-600 bg-black shadow-lg">
@@ -139,11 +139,11 @@ export default function MExpoPage() {
               <div key={i} className={`h-10 md:h-12 w-full rounded-md bg-gray-500 opacity-50`}></div>
             ))}
           </div>
-        </section>
+        </section>*/}
 
         <section className="space-y-8 pt-8 md:pt-12">
           <h1 className="my-8 text-4xl md:text-7xl font-bold flex items-center justify-center gap-2 text-center">
-            Company Session
+            Companies in Our Expo
           </h1>
 
           <div className="space-y-8 md:space-y-10">
@@ -180,11 +180,11 @@ export default function MExpoPage() {
               desc="Unilever is a British-Dutch multinational corporation and one of the world’s largest consumer goods companies. It produces a wide range of products including food, beverages, cleaning agents, and personal care items. With operations in over 190 countries, Unilever focuses on sustainability and innovation while managing well-known global brands."
               bgurl="/sponsors/logo_sponsor/unilever.png" />
             <CompanyItem 
-              name="Pertamina EP"
-              desc="Pertamina EP is a subsidiary of Pertamina, responsible for upstream oil and gas exploration and production activities in Indonesia. It manages extensive working areas and operates multiple oil and gas fields across the country."
+              name="Pertamina EP & SKK Migas"
+              desc="Pertamina EP is a subsidiary of Pertamina, responsible for upstream oil and gas exploration and production activities in Indonesia. It manages extensive working areas and operates multiple oil and gas fields across the country. SKK Migas (Special Task Force for Upstream Oil and Gas Business Activities) is the Indonesian government body that regulates and supervises upstream oil and gas operations, ensuring efficient resource management and compliance with national policies."
               bgurl="/sponsors/logo_sponsor/pertaminaep.png" />
           </div>
-        </section>*/}
+        </section>
 
       </div>
     </main>
