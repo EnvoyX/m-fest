@@ -22,16 +22,23 @@ export default function MTalksPage() {
             speakers: [
                 {
                     id: 1,
-                    name: "Ir. Avep Disasmita, M.Sc., MBA",
-                    role: "Direktur Utama PT Pertamina Drilling Services Indonesia",
-                    image: "/events/m-talks/Avep.jpg",
+                    name: "Ryan Aditya",
+                    role: "VP Non Rig Services Operation Pertamina Drilling Services Indonesia",
+                    image: "/events/m-talks/Ryan_New.png",
                     session: "Session 1"
                 },
                 {
                     id: 2,
-                    name: "Gexcon",
-                    role: "Gexcon",
-                    image: "/sponsors/logo_sponsor/gexcon.PNG",
+                    name: "Mochamad Safarudin, S.T., M.T. ",
+                    role: "Country Manager and Principal Engineer at GEXCON Indonesia",
+                    image: "/events/m-talks/Pak Andi.jpg",
+                    session: "Session 2"
+                },
+                {
+                    id: 3,
+                    name: "Bintang Kurniadi, S.T.",
+                    role: "Senior Engineer at GEXCON Indonesia",
+                    image: "/events/m-talks/Mas Bintang.jpg",
                     session: "Session 2"
                 },
             ]
@@ -115,12 +122,11 @@ export default function MTalksPage() {
                                     <span>{info.topic}</span>*/}
                                 </h2>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 mb-12">
+                                <div className="flex flex-col sm:flex-row gap-8 lg:gap-12 mb-12">
                                     {info.speakers.map((speaker) => (
-                                        <div key={speaker.id} className="flex flex-col items-center">
-                                            <div className={cn("w-full max-w-xs sm:max-w-sm md:max-w-md  aspect-3/4 rounded-lg border border-gray-600 overflow-hidden mb-5 bg-gray-800 shadow-sm", {
-                                                "bg-white": speaker.name === "Gexcon"
-                                            })}>
+                                        <div key={speaker.id} className="flex flex-col items-center flex-1">
+                                            <div className={cn("w-full max-w-xs sm:max-w-sm md:max-w-md  aspect-3/4 rounded-lg border border-gray-600 overflow-hidden mb-5 bg-gray-800 shadow-sm"
+                                            )}>
                                                 <img
                                                     src={speaker.image}
                                                     alt={speaker.name}
