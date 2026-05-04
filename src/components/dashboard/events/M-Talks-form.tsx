@@ -35,11 +35,44 @@ import type { MTalksSessionType } from "../../../../prisma/generated/prisma/enum
 import UploadEventDialog from "./UploadEventDialog";
 
 const TALKS_SESSIONS = [
-    { value: "TALKS_1", label: "Day 1 - Sesi 1" },
-    { value: "TALKS_2", label: "Day 1 - Sesi 2" },
-    { value: "TALKS_3", label: "Day 2 - Sesi 1" },
-    { value: "TALKS_4", label: "Day 2 - Sesi 2" },
+{ 
+        value: "TALKS_1", 
+        label: "Sesi 1", 
+        day: 1,
+        time: "09.30 - 11.00",
+        speaker: "Ryan Aditya",
+        role: "VP Non Rig Services Operation Pertamina Drilling Services Indonesia"
+    },
+    { 
+        value: "TALKS_2", 
+        label: "Sesi 2", 
+        day: 1,
+        time: "13.00 - 14.30",
+        speaker: "Mochamad Safarudin, S.T., M.T. & Bintang Kurniadi, S.T.",
+        role: "Country Manager and Principal Engineer at GEXCON Indonesia & Senior Engineer at GEXCON Indonesia"
+    },
+    { 
+        value: "TALKS_3", 
+        label: "Sesi 1", 
+        day: 2,
+        time: "09.30 - 11.00",
+        speaker: "Achmad Rizal Roesindrawan",
+        role: "Direktur Corporate Business Development PT Energia Prima Nusantara"
+    },
+    { 
+        value: "TALKS_4", 
+        label: "Sesi 2", 
+        day: 2,
+        time: "11.15 - 12.45",
+        speaker: "Zahid Azmi Ibrahim",
+        role: "Content Creator (Tiktok, Instagram, Youtube) & Youtuber and Author"
+    },
 ];
+const TALKS_DAYS = [
+    { day: 1, label: "Day 1 - 8 Mei 2026" },
+    { day: 2, label: "Day 2 - 9 Mei 2026" },
+]
+
 
 export default function MTalksForm() {
     const form = useForm<mTalksSchema>({
@@ -225,28 +258,44 @@ export default function MTalksForm() {
                         render={() => (
                             <FormItem>
                                 <FormLabel className="text-slate-200">Pilih Sesi Talks</FormLabel>
-                                <div className="grid max-sm:grid-cols-1 grid-cols-2 gap-2">
-                                    {TALKS_SESSIONS.map((session) => (
-                                        <FormField
-                                            key={session.value}
-                                            control={form.control}
-                                            name="talksSessions"
-                                            render={({ field }) => (
-                                                <FormItem className="flex items-center  space-x-3 space-y-0 p-3 rounded-md bg-white/5 border border-white/10">
-                                                    <FormControl>
-                                                        <Checkbox
-                                                            checked={field.value?.includes(session.value as MTalksSessionType)}
-                                                            onCheckedChange={(checked) => {
-                                                                return checked
-                                                                    ? field.onChange([...field.value, session.value])
-                                                                    : field.onChange(field.value?.filter((value) => value !== session.value));
-                                                            }}
-                                                        />
-                                                    </FormControl>
-                                                    <FormLabel className="text-xs font-normal text-slate-300 cursor-pointer">{session.label}</FormLabel>
-                                                </FormItem>
-                                            )}
-                                        />
+                                <div className="flex flex-col gap-4">
+                                    {TALKS_DAYS.map(({ day, label }) => (
+                                        <div key={day}>
+                                            <p className="text-sm font-medium text-slate-300 mb-2">{label}</p>
+                                            <div className="grid grid-cols-2 gap-2">
+                                                {TALKS_SESSIONS.filter((s) => s.day === day).map((session) => (
+                                                    <FormField
+                                                        key={session.value}
+                                                        control={form.control}
+                                                        name="talksSessions"
+                                                        render={({ field }) => (
+                                                            <FormItem className="flex items-start space-x-3 space-y-0 p-3 rounded-md bg-white/5 border border-white/10">
+                                                                <FormControl>
+                                                                    <Checkbox
+                                                                        className="mt-1"
+                                                                        checked={field.value?.includes(session.value as MTalksSessionType)}
+                                                                        onCheckedChange={(checked) => {
+                                                                            return checked
+                                                                                ? field.onChange([...field.value, session.value])
+                                                                                : field.onChange(field.value?.filter((v) => v !== session.value));
+                                                                        }}
+                                                                    />
+                                                                </FormControl>
+                                                                <div className="flex flex-col gap-0.5">
+                                                                    <FormLabel className="text-xs font-semibold text-slate-200 cursor-pointer">
+                                                                        {session.label} · {session.time}
+                                                                    </FormLabel>
+                                                                    <span className="text-xs font-medium text-yellow-400">{session.speaker}</span>
+                                                                    {session.role && (
+                                                                        <span className="text-xs text-slate-400">{session.role}</span>
+                                                                    )}
+                                                                </div>
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
                                     ))}
                                 </div>
                                 <FormMessage />
