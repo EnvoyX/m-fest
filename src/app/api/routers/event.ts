@@ -134,5 +134,17 @@ export const eventRouter = router({
         },
     });
     return count;
-}),
-});
+    }),
+    getTalksSessionsByUserId: protectedProcedure.input(eventsInputProcedureSchema).query(async ({ ctx, input }) => {
+        const talksSessions = await ctx.db.eventRegistration.findMany({
+            where: {
+                userId: ctx.session.user.id as string,
+                eventType: "M_TALKS",
+            },
+            select: {
+                talksSessions: true,
+            },
+        });
+        return talksSessions;
+    })
+})          
