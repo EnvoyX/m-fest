@@ -180,9 +180,6 @@ export const eventRouter = router({
         });
       }
     }),
-});
-
-    }),
     getTalksSessionsByUserId: protectedProcedure.input(eventsInputProcedureSchema).query(async ({ ctx, input }) => {
         const talksSessions = await ctx.db.eventRegistration.findMany({
             where: {
