@@ -103,6 +103,10 @@ export default function MTalksForm() {
         ...trpc.event.getEventRegistrationByUserId.queryOptions()
     })
 
+    const { data: talks4Count } = useQuery({
+        ...trpc.event.getTalks4Count.queryOptions()
+    })
+
     const mTalksEvent = events?.filter((e) => e.eventType === "M_TALKS")
     if (mTalksEvent?.length) router.push("/dashboard/events");
 
@@ -143,7 +147,13 @@ export default function MTalksForm() {
     }
 
     function onSubmit(data: mTalksSchema) {
-        // console.log("Form Submitted:", data);
+        if (data.talksSessions.includes("TALKS_4") && (talks4Count ?? 0) >= 1) {
+            toast.error("Sesi 2 Day 2 sudah penuh", {
+                description: "Kuota untuk Sesi 2 Day 2 telah mencapai batas maksimum (100 peserta).",
+            });
+            return;
+        }
+
         registerEvent.mutate({
             registrationType: "M-TALKS",
             ...data,

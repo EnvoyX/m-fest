@@ -111,7 +111,5 @@ export const eventsList: Event[] = [
         location: "ITB, Aula Barat (M-Expo)",
         startRegDate1: new Date("2026-05-01T15:00:00"),
         endRegDate1: new Date("2026-05-09T15:00:00"),
-        startRegDate1: new Date("2026-05-01T15:00:00"),
-        endRegDate1: new Date("2026-05-09T15:00:00"),
     },
 ];

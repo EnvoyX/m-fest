@@ -124,4 +124,15 @@ export const eventRouter = router({
                 });
             }
         }),
+    getTalks4Count: protectedProcedure.query(async ({ ctx }) => {
+    const count = await ctx.db.eventRegistration.count({
+        where: {
+            eventType: "M_TALKS",
+            talksSessions: {
+                has: "TALKS_4",
+            },
+        },
+    });
+    return count;
+}),
 });
