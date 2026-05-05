@@ -123,16 +123,29 @@ export const eventRouter = router({
         });
       }
     }),
-  getTalks4Count: protectedProcedure.query(async ({ ctx }) => {
-    const count = await ctx.db.eventRegistration.count({
-      where: {
-        eventType: 'M_TALKS',
-        talksSessions: {
-          has: 'TALKS_4',
-        },
-      },
-    });
-    return count;
+  getTalksCount: protectedProcedure.query(async ({ ctx }) => {
+    const sessions = ["TALKS_1", "TALKS_2", "TALKS_3", "TALKS_4"] as const;
+
+    const counts = await Promise.all(
+      sessions.map((session) =>
+        ctx.db.eventRegistration.count({
+          where: {
+            eventType: "M_TALKS",
+            talksSessions: {
+              has: session,
+            },
+          },
+        })
+      )
+    );
+
+    return {
+      TALKS_1: counts[0],
+      TALKS_2: counts[1],
+      TALKS_3: counts[2],
+      TALKS_4: counts[3],
+      total: counts.reduce((a, b) => a + b, 0),
+    };
   }),
   updateRegistrationEvent: protectedProcedure
     .input(eventsInputProcedureSchema)

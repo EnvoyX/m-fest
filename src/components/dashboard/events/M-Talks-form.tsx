@@ -81,8 +81,8 @@ export default function MTalksForm() {
     ...trpc.event.getEventRegistrationByUserId.queryOptions(),
   });
 
-  const { data: talks4Count } = useQuery({
-    ...trpc.event.getTalks4Count.queryOptions(),
+  const { data: talksCount } = useQuery({
+    ...trpc.event.getTalksCount.queryOptions(),
   });
 
   const mTalksEvent = events?.filter((e) => e.eventType === 'M_TALKS');
@@ -177,12 +177,21 @@ export default function MTalksForm() {
   }
 
     function onSubmit(data: mTalksSchema) {
-      if (data.talksSessions.includes("TALKS_4") && (talks4Count ?? 0) >= 100) {
-          toast.error("Sesi 2 Day 2 sudah penuh", {
-              description: "Kuota untuk Sesi 2 Day 2 telah mencapai batas maksimum (100 peserta).",
-          });
-          return;
-      }
+        const sessionChecks: { key: "TALKS_1" | "TALKS_2" | "TALKS_3" | "TALKS_4"; count: number | undefined; label: string }[] = [
+          { key: "TALKS_1", count: talksCount?.TALKS_1, label: "Sesi 1 Day 1" },
+          { key: "TALKS_2", count: talksCount?.TALKS_2, label: "Sesi 2 Day 1" },
+          { key: "TALKS_3", count: talksCount?.TALKS_3, label: "Sesi 1 Day 2" },
+          { key: "TALKS_4", count: talksCount?.TALKS_4, label: "Sesi 2 Day 2" },
+        ];
+
+        for (const session of sessionChecks) {
+          if (data.talksSessions.includes(session.key) && (session.count ?? 0) >= 100) {
+            toast.error(`${session.label} sudah penuh`, {
+              description: `Kuota untuk ${session.label} telah mencapai batas maksimum (100 peserta).`,
+            });
+            return;
+          }
+        }
 
       if (!mTalksData) {
         registerEvent.mutate({
