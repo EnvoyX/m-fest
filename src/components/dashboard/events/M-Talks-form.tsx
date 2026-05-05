@@ -176,27 +176,27 @@ export default function MTalksForm() {
     form.setValue('followIgUrl', url);
   }
 
-  function onSubmit(data: mTalksSchema) {
-    // if (data.talksSessions.includes('TALKS_4') && (talks4Count ?? 0) >= 1) {
-    //   toast.error('Sesi 2 Day 2 sudah penuh', {
-    //     description: 'Kuota untuk Sesi 2 Day 2 telah mencapai batas maksimum (100 peserta).',
-    //   });
-    //   return;
-    // }
+    function onSubmit(data: mTalksSchema) {
+      if (data.talksSessions.includes("TALKS_4") && (talks4Count ?? 0) >= 100) {
+          toast.error("Sesi 2 Day 2 sudah penuh", {
+              description: "Kuota untuk Sesi 2 Day 2 telah mencapai batas maksimum (100 peserta).",
+          });
+          return;
+      }
 
-    if (!mTalksData) {
-      registerEvent.mutate({
-        registrationType: 'M-TALKS',
-        ...data,
-      });
-    } else {
-      updateRegistration.mutate({
-        eventId: mTalksData.id,
-        registrationType: 'M-TALKS',
-        ...data,
-      });
+      if (!mTalksData) {
+        registerEvent.mutate({
+          registrationType: 'M-TALKS',
+          ...data,
+        });
+      } else {
+        updateRegistration.mutate({
+          eventId: mTalksData.id,
+          registrationType: 'M-TALKS',
+          ...data,
+        });
+      }
     }
-  }
 
   return (
     <div className="w-full max-w-lg p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl">
