@@ -2,18 +2,29 @@ import { BlurFade } from "@/components/ui/blur-fade";
 
 export default function Sponsors() {
     return (
-        <section className="py-16">
+        <section className="pt-16">
             <BlurFade inView delay={0.2}>
-                <div className="mx-auto max-w-5xl px-6">
+                <div className="mx-auto px-6 max-w-7xl">
                     <h2 className="text-6xl font-bold text-center mt-8">
                         Our Sponsors
                     </h2>
-                    <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16 sm:gap-y-12">
+                    <div className="flex flex-wrap items-center justify-center py-10">
                         <img
-                            src="/sponsors/Logo Company PT Pertamina EP Zona 7.png"
-                            alt="Pertamina Logo"
-                            width="275px"
-                            height= "auto"
+                            src="/sponsors/sponsors.png"
+                            alt="logo sponsor"
+                            className="w-full"
+                        />
+                    </div>
+                </div>
+                <div>
+                    <h2 className="text-6xl font-bold text-center mt-8">
+                        Supported By
+                    </h2>
+                    <div className="flex flex-wrap items-center justify-center py-10">
+                        <img
+                            src="/sponsors/IAM.png"
+                            alt="logo sponsor"
+                            width="200"
                         />
                     </div>
                 </div>
