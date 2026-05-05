@@ -147,7 +147,7 @@ export default function MTalksForm() {
     }
 
     function onSubmit(data: mTalksSchema) {
-        if (data.talksSessions.includes("TALKS_4") && (talks4Count ?? 0) >= 1) {
+        if (data.talksSessions.includes("TALKS_4") && (talks4Count ?? 0) >= 100) {
             toast.error("Sesi 2 Day 2 sudah penuh", {
                 description: "Kuota untuk Sesi 2 Day 2 telah mencapai batas maksimum (100 peserta).",
             });
