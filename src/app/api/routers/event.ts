@@ -124,19 +124,19 @@ export const eventRouter = router({
       }
     }),
   getTalksCount: protectedProcedure.query(async ({ ctx }) => {
-    const sessions = ["TALKS_1", "TALKS_2", "TALKS_3", "TALKS_4"] as const;
+    const sessions = ['TALKS_1', 'TALKS_2', 'TALKS_3', 'TALKS_4'] as const;
 
     const counts = await Promise.all(
       sessions.map((session) =>
         ctx.db.eventRegistration.count({
           where: {
-            eventType: "M_TALKS",
+            eventType: 'M_TALKS',
             talksSessions: {
               has: session,
             },
           },
-        })
-      )
+        }),
+      ),
     );
 
     return {
@@ -193,16 +193,18 @@ export const eventRouter = router({
         });
       }
     }),
-    getTalksSessionsByUserId: protectedProcedure.input(eventsInputProcedureSchema).query(async ({ ctx, input }) => {
-        const talksSessions = await ctx.db.eventRegistration.findMany({
-            where: {
-                userId: ctx.session.user.id as string,
-                eventType: "M_TALKS",
-            },
-            select: {
-                talksSessions: true,
-            },
-        });
-        return talksSessions;
-    })
-})          
+  getTalksSessionsByUserId: protectedProcedure
+    .input(eventsInputProcedureSchema)
+    .query(async ({ ctx, input }) => {
+      const talksSessions = await ctx.db.eventRegistration.findMany({
+        where: {
+          userId: ctx.session.user.id as string,
+          eventType: 'M_TALKS',
+        },
+        select: {
+          talksSessions: true,
+        },
+      });
+      return talksSessions;
+    }),
+});

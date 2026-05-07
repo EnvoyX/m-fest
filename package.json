@@ -8,8 +8,8 @@
         "start": "next start",
         "lint": "eslint",
         "migrate": "pnpm dlx prisma generate && dotenv -e .env -- pnpm dlx prisma migrate dev",
-          "fmt": "oxfmt",
-    "fmt:check": "oxfmt --check"
+        "fmt": "oxfmt",
+        "fmt:check": "oxfmt --check"
     },
     "type": "module",
     "dependencies": {
@@ -101,7 +101,6 @@
         "tailwind-merge": "^3.3.1",
         "tailwindcss": "^4.1.18",
         "uploadthing": "^7.7.4",
-        "usehooks-ts": "^3.1.1",
         "vaul": "^1.1.2",
         "xlsx": "^0.18.5",
         "zod": "^4.1.12",
