@@ -1,329 +1,396 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState, useTransition } from 'react';
+import { useForm } from 'react-hook-form';
+import { FaInstagram } from 'react-icons/fa';
+import { toast } from 'sonner';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import { mExpoSchema } from "@/lib/event-schema";
-import { useEffect, useRef, useState, useTransition } from "react";
-import { useTRPC } from "@/utils/trpc";
-import { useRouter } from "next/navigation";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { FaInstagram } from "react-icons/fa";
-import type { MExpoSessionType } from "../../../../prisma/generated/prisma/enums";
-import UploadEventDialog from "./UploadEventDialog";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
+import { mExpoSchema } from '@/lib/event-schema';
+import { useTRPC } from '@/utils/trpc';
+
+import type { MExpoSessionType } from '../../../../prisma/generated/prisma/enums';
+import UploadEventDialog from './UploadEventDialog';
 
 const EXPO_SESSIONS = [
-    { value: "EXPO_DAY_1", label: "Day 1" },
-    { value: "EXPO_DAY_2", label: "Day 2" },
+  { value: 'EXPO_DAY_1', label: 'Day 1' },
+  { value: 'EXPO_DAY_2', label: 'Day 2' },
 ];
 
 export default function MExpoForm() {
-    const form = useForm<mExpoSchema>({
-        resolver: zodResolver(mExpoSchema),
-        defaultValues: {
-            participantName: "",
-            isITB: false,
-            nimITB: "",
-            majorITB: "",
-            institution: "",
-            expoSessions: [],
-            followIgUrl: "",
-        },
-    });
+  const trpc = useTRPC();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
 
-    const hasInitialized = useRef(false);
-    useEffect(() => {
-        if (hasInitialized.current) return;
-        hasInitialized.current = true;
-    });
+  const { data: events } = useQuery({
+    ...trpc.event.getEventRegistrationByUserId.queryOptions(),
+  });
 
-    const trpc = useTRPC();
-    const router = useRouter();
-    const [isPending, startTransition] = useTransition();
-    const [isLoading, setIsLoading] = useState(false);
+  const mExpoEvent = events?.filter((e) => e.eventType === 'M_EXPO');
+  const mExpoData = mExpoEvent && mExpoEvent[0];
+  const form = useForm<mExpoSchema>({
+    resolver: zodResolver(mExpoSchema),
+    defaultValues: {
+      participantName: mExpoData?.participantName ?? '',
+      isITB: mExpoData?.isITB ?? false,
+      nimITB: mExpoData?.nimITB ?? '',
+      majorITB: mExpoData?.majorITB ?? '',
+      institution: mExpoData?.institution ?? '',
+      expoSessions: mExpoData?.expoSessions ?? [],
+      followIgUrl: mExpoData?.followIgUrl ?? '',
+      sourceInfo: mExpoData?.sourceInfo ?? undefined,
+    },
+  });
 
-    const { data: events } = useQuery({
-        ...trpc.event.getEventRegistrationByUserId.queryOptions()
-    })
+  const hasInitialized = useRef(false);
+  useEffect(() => {
+    if (hasInitialized.current) return;
+    hasInitialized.current = true;
+  });
 
-    const mExpoEvent = events?.filter((e) => e.eventType === "M_EXPO")
-    if (mExpoEvent?.length) router.push("/dashboard/events");
+  const registerEvent = useMutation({
+    ...trpc.event.registerEvent.mutationOptions(),
+    onMutate: (data) => {
+      setIsLoading(true);
+      console.log('Registering event...', data);
+      toast.loading('Registering event...', {
+        id: 'registering-event',
+      });
+    },
+    onSuccess: (error, variables) => {
+      setIsLoading(false);
+      toast.dismiss('registering-event');
+      toast.success('Event registered');
+      console.log('Event registered', variables);
+    },
+    onError: (error, variables) => {
+      setIsLoading(false);
+      toast.dismiss('registering-event');
+      toast.error('Failed to register event', {
+        description: error.message,
+      });
+      console.log('Event registered', variables);
+    },
+    onSettled: () => {
+      console.log(`Registered event M-Expo`);
+      startTransition(() => {
+        router.push('/dashboard/events');
+      });
+    },
+  });
 
-    const registerEvent = useMutation({
-        ...trpc.event.registerEvent.mutationOptions(),
-        onMutate: (data) => {
-            setIsLoading(true);
-            console.log("Registering event...", data);
-            toast.loading("Registering event...", {
-                id: "registering-event",
-            });
-        },
-        onSuccess: (error, variables) => {
-            setIsLoading(false);
-            toast.dismiss("registering-event");
-            toast.success("Event registered");
-            console.log("Event registered", variables);
-        },
-        onError: (error, variables) => {
-            setIsLoading(false);
-            toast.dismiss("registering-event");
-            toast.error("Failed to register event", {
-                description: error.message,
-            });
-            console.log("Event registered", variables);
+  const updateRegistration = useMutation({
+    ...trpc.event.updateRegistrationEvent.mutationOptions(),
+    onMutate: (data) => {
+      setIsLoading(true);
+      console.log('Updating registration...', data);
+      toast.loading('Updating registration...', {
+        id: 'update-registration',
+      });
+    },
+    onSuccess: (error, variables) => {
+      setIsLoading(false);
+      toast.dismiss('update-registration');
+      toast.success('Event registered');
+      console.log('Registration Updated', variables);
+    },
+    onError: (error, variables) => {
+      setIsLoading(false);
+      toast.dismiss('update-registration');
+      toast.error('Failed to update registration', {
+        description: error.message,
+      });
+      console.log('Event registered', variables);
+    },
+    onSettled: () => {
+      console.log(`M-Talks registration updated`);
+      startTransition(() => {
+        router.push('/dashboard/events');
+      });
+    },
+  });
 
-        },
-        onSettled: () => {
-            console.log(`Registered event M-Expo`);
-            startTransition(() => {
-                router.push("/dashboard/events");
-            });
-        },
-    });
+  function handleUploadSuccess(url: string) {
+    form.setValue('followIgUrl', url);
+  }
 
-    function handleUploadSuccess(url: string) {
-        form.setValue("followIgUrl", url);
+  function onSubmit(data: mExpoSchema) {
+    // console.log("Form Submitted:", data);
+    if (!mExpoData) {
+      registerEvent.mutate({
+        registrationType: 'M-EXPO',
+        ...data,
+      });
+    } else {
+      updateRegistration.mutate({
+        eventId: mExpoData.id,
+        registrationType: 'M-EXPO',
+        ...data,
+      });
     }
+  }
 
-    function onSubmit(data: mExpoSchema) {
-        // console.log("Form Submitted:", data);
-        registerEvent.mutate({
-            registrationType: "M-EXPO",
-            ...data,
-        });
-    }
-
-    return (
-        <div className="w-full max-w-lg p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl">
-            <div className="mb-8 space-y-2">
-                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 tracking-tight text-center">
-                    M-EXPO Registration
-                </h2>
-                {/* <p className="text-slate-400">
+  return (
+    <div className="w-full max-w-lg p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl">
+      <div className="mb-8 space-y-2">
+        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 tracking-tight text-center">
+          M-EXPO Registration
+        </h2>
+        {/* <p className="text-slate-400">
           Join the World of Mechanical Engineering Exhibitions. Please fill in
           your details.
         </p> */}
+      </div>
+
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="participantName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-slate-200">Nama Peserta</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Ichigo Kurosaki"
+                    {...field}
+                    className="bg-white/5 border-white/10 text-white focus:ring-purple-500"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="isITB"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-center justify-between rounded-lg border border-white/10 p-4 bg-white/5">
+                <div className="space-y-0.5">
+                  <FormLabel className="text-slate-200">Status</FormLabel>
+                  <FormDescription className="text-slate-400 text-xs">
+                    Apakah Anda mahasiswa ITB?
+                  </FormDescription>
+                </div>
+                <FormControl>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={(value) => {
+                      field.onChange(value);
+                      form.setValue('nimITB', '');
+                      form.setValue('majorITB', '');
+                      form.setValue('institution', '');
+                    }}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          {form.watch('isITB') ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
+              <FormField
+                control={form.control}
+                name="nimITB"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-slate-200">NIM</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="13123069"
+                        {...field}
+                        className="bg-white/5 border-white/10 text-white"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="majorITB"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-slate-200">Jurusan</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Teknik Mesin"
+                        {...field}
+                        className="bg-white/5 border-white/10 text-white"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <FormField
-                        control={form.control}
-                        name="participantName"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-slate-200">Nama Peserta</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="Ichigo Kurosaki"
-                                        {...field}
-                                        className="bg-white/5 border-white/10 text-white focus:ring-purple-500"
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+          ) : (
+            <FormField
+              control={form.control}
+              name="institution"
+              render={({ field }) => (
+                <FormItem className="animate-in fade-in slide-in-from-top-2 duration-300">
+                  <FormLabel className="text-slate-200">Asal Kampus / Instansi</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Universitas Indonesia / -"
+                      {...field}
+                      className="bg-white/5 border-white/10 text-white"
                     />
-
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+          <FormField
+            control={form.control}
+            name="expoSessions"
+            render={() => (
+              <FormItem>
+                <FormLabel className="text-slate-200">Pilih Day M-Expo</FormLabel>
+                <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-2">
+                  {EXPO_SESSIONS.map((session) => (
                     <FormField
-                        control={form.control}
-                        name="isITB"
-                        render={({ field }) => (
-                            <FormItem className="flex flex-row items-center justify-between rounded-lg border border-white/10 p-4 bg-white/5">
-                                <div className="space-y-0.5">
-                                    <FormLabel className="text-slate-200">Status</FormLabel>
-                                    <FormDescription className="text-slate-400 text-xs">
-                                        Apakah Anda mahasiswa ITB?
-                                    </FormDescription>
-                                </div>
-                                <FormControl>
-                                    <Switch
-                                        checked={field.value}
-                                        onCheckedChange={(value) => {
-                                            field.onChange(value);
-                                            form.setValue("nimITB", "");
-                                            form.setValue("majorITB", "");
-                                            form.setValue("institution", "");
-                                        }}
-                                    />
-                                </FormControl>
-                            </FormItem>
-                        )}
-                    />
-
-                    {form.watch("isITB") ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
-                            <FormField
-                                control={form.control}
-                                name="nimITB"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel className="text-slate-200">NIM</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="13123069" {...field} className="bg-white/5 border-white/10 text-white" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
+                      key={session.value}
+                      control={form.control}
+                      name="expoSessions"
+                      render={({ field }) => (
+                        <FormItem className="flex items-center space-x-3 space-y-0 p-3 rounded-md bg-white/5 border border-white/10">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value?.includes(session.value as MExpoSessionType)}
+                              onCheckedChange={(checked) => {
+                                return checked
+                                  ? field.onChange([...field.value, session.value])
+                                  : field.onChange(
+                                      field.value?.filter((value) => value !== session.value),
+                                    );
+                              }}
                             />
-                            <FormField
-                                control={form.control}
-                                name="majorITB"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel className="text-slate-200">Jurusan</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="Teknik Mesin" {...field} className="bg-white/5 border-white/10 text-white" />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-                    ) : (
-                        <FormField
-                            control={form.control}
-                            name="institution"
-                            render={({ field }) => (
-                                <FormItem className="animate-in fade-in slide-in-from-top-2 duration-300">
-                                    <FormLabel className="text-slate-200">Asal Kampus / Instansi</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Universitas Indonesia / -" {...field} className="bg-white/5 border-white/10 text-white" />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    )}
-                    <FormField
-                        control={form.control}
-                        name="expoSessions"
-                        render={() => (
-                            <FormItem>
-                                <FormLabel className="text-slate-200">Pilih Day M-Expo</FormLabel>
-                                <div className="grid grid-cols-2 gap-2">
-                                    {EXPO_SESSIONS.map((session) => (
-                                        <FormField
-                                            key={session.value}
-                                            control={form.control}
-                                            name="expoSessions"
-                                            render={({ field }) => (
-                                                <FormItem className="flex items-center space-x-3 space-y-0 p-3 rounded-md bg-white/5 border border-white/10">
-                                                    <FormControl>
-                                                        <Checkbox
-                                                            checked={field.value?.includes(session.value as MExpoSessionType)}
-                                                            onCheckedChange={(checked) => {
-                                                                return checked
-                                                                    ? field.onChange([...field.value, session.value])
-                                                                    : field.onChange(field.value?.filter((value) => value !== session.value));
-                                                            }}
-                                                        />
-                                                    </FormControl>
-                                                    <FormLabel className="text-xs font-normal text-slate-300 cursor-pointer">{session.label}</FormLabel>
-                                                </FormItem>
-                                            )}
-                                        />
-                                    ))}
-                                </div>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                          </FormControl>
+                          <FormLabel className="text-xs font-normal text-slate-300 cursor-pointer">
+                            {session.label}
+                          </FormLabel>
+                        </FormItem>
+                      )}
                     />
-                    <a href="https://www.instagram.com/mfestitb?igsh=MWgwZHE0MXBnZWdjag==" className="font-bold text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 italic underline bold"
-                        target="_blank"
-                    >
-                        Instagram @mfestitb
-                    </a>
-                    <UploadEventDialog
-                        id={1}
-                        title="Upload Follow IG Proof"
-                        isLoading={isLoading}
-                        setIsLoading={setIsLoading}
-                        uploadThingRoute="uploadProofFollowIg"
-                        handleUploadSuccess={handleUploadSuccess}
+                  ))}
+                </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <a
+            href="https://www.instagram.com/mfestitb?igsh=MWgwZHE0MXBnZWdjag=="
+            className="font-bold text-transparent bg-clip-text bg-linear-to-r from-teal-400 to-blue-500 italic underline bold"
+            target="_blank"
+          >
+            Instagram @mfestitb
+          </a>
+          <UploadEventDialog
+            id={1}
+            title="Follow IG Proof"
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            uploadThingRoute="uploadProofFollowIg"
+            handleUploadSuccess={handleUploadSuccess}
+          />
+          <FormField
+            control={form.control}
+            name="followIgUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-slate-200">Follow Instagram</FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <FaInstagram className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
+                    <Input
+                      {...field}
+                      disabled
+                      className="bg-white/5 border-white/10 text-slate-400 pl-10 cursor-not-allowed"
                     />
-                    <FormField
-                        control={form.control}
-                        name="followIgUrl"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-slate-200">Follow Instagram</FormLabel>
-                                <FormControl>
-                                    <div className="relative">
-                                        <FaInstagram className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
-                                        <Input {...field} disabled className="bg-white/5 border-white/10 text-slate-400 pl-10 cursor-not-allowed" />
-                                    </div>
-                                </FormControl>
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="sourceInfo"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-slate-200">Tau informasi dari?</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white">
+                      <SelectValue placeholder="Sumber Informasi" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="bg-slate-900 border-white/10 text-white">
+                    <SelectItem value="INSTAGRAM_MFEST_ITB">Instagram M-Fest</SelectItem>
+                    <SelectItem value="FRIEND">Teman</SelectItem>
+                    <SelectItem value="BANNER">Banner</SelectItem>
+                    <SelectItem value="OTHER">Lainnya</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="sourceInfo"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel className="text-slate-200">
-                                    Tau informasi dari?
-                                </FormLabel>
-                                <Select
-                                    onValueChange={field.onChange}
-                                    defaultValue={field.value}
-                                >
-                                    <FormControl>
-                                        <SelectTrigger className="bg-white/5 border-white/10 text-white">
-                                            <SelectValue placeholder="Sumber Informasi" />
-                                        </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent className="bg-slate-900 border-white/10 text-white">
-                                        <SelectItem value="INSTAGRAM_MFEST_ITB">
-                                            Instagram M-Fest
-                                        </SelectItem>
-                                        <SelectItem value="FRIEND">Teman</SelectItem>
-                                        <SelectItem value="BANNER">Banner</SelectItem>
-                                        <SelectItem value="OTHER">Lainnya</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-
-                    <Button
-                        type="submit"
-                        disabled={isLoading || form.formState.isSubmitting || isPending}
-                        className="w-full h-12 bg-linear-to-r from-teal-500 to-blue-600 hover:opacity-90 text-white font-bold transition-all shadow-lg shadow-teal-500/20 cursor-pointer"
-                    >
-                        {isLoading || form.formState.isSubmitting || isPending ? (
-                            <Loader2 className="animate-spin size-6" />
-                        ) : (
-                            "Register"
-                        )}
-                    </Button>
-                </form>
-            </Form>
-        </div>
-    );
+          {!mExpoData ? (
+            <Button
+              type="submit"
+              disabled={isLoading || form.formState.isSubmitting || isPending}
+              className="w-full h-12 bg-linear-to-r from-teal-500 to-blue-600 hover:opacity-90 text-white font-bold transition-all shadow-lg shadow-teal-500/20 cursor-pointer"
+            >
+              {isLoading || form.formState.isSubmitting || isPending ? (
+                <Loader2 className="animate-spin size-6" />
+              ) : (
+                'Register'
+              )}
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              disabled={isLoading || form.formState.isSubmitting || isPending}
+              className="w-full h-12 bg-linear-to-r from-teal-500 to-blue-600 hover:opacity-90 text-white font-bold transition-all shadow-lg shadow-teal-500/20 cursor-pointer"
+            >
+              {isLoading || form.formState.isSubmitting || isPending ? (
+                <Loader2 className="animate-spin size-6" />
+              ) : (
+                'Update'
+              )}
+            </Button>
+          )}
+        </form>
+      </Form>
+    </div>
+  );
 }
